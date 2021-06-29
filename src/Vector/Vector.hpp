@@ -18,11 +18,10 @@ namespace ft {
 			typedef typename Allocator::difference_type	difference_type; // difference_type -> typedef  ptrdiff_t
 
 			typedef VectorIterator<T>	iterator;// iterator
+			typedef VectorIterator<const T>	const_iterator;// const_iterator
 			
-			// const_iterator
 			// reverse_iterator
 			// const_reverse_iterator
-			// difference_type
 
 			/*
 			** Constructors

@@ -2,6 +2,7 @@
 #define FT_VECTOR_HPP
 
 #include <memory>
+#include "Iterator.hpp"
 
 namespace ft {
 	template <class T, class Allocator = std::allocator<T> >
@@ -15,7 +16,9 @@ namespace ft {
 			typedef typename Allocator::const_reference	const_reference;
 			typedef typename Allocator::size_type		size_type; // size_type -> typedef size_t
 			typedef typename Allocator::difference_type	difference_type; // difference_type -> typedef  ptrdiff_t
-			// iterator
+
+			typedef VectorIterator<T>	iterator;// iterator
+			
 			// const_iterator
 			// reverse_iterator
 			// const_reverse_iterator
@@ -45,7 +48,7 @@ namespace ft {
 			/*
 			** Overload operators
 			*/
-			Vector& operator=(const vector& other);
+			Vector& operator=(const Vector& other);
 
 
 		private:

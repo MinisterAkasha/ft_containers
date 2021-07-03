@@ -15,4 +15,120 @@ namespace ft {
 
 	template <typename T>
 	VectorIterator<T>::~VectorIterator() {};
+
+	/*
+	** Overloads
+	*/
+
+	template <typename T>
+	VectorIterator<T>& 	VectorIterator<T>::operator=(const VectorIterator& other) {
+		if (&other == this)
+			return *this;
+	
+		_ptr = other._ptr;
+		return *this;
+	}
+
+	template <typename T>
+	T& 	VectorIterator<T>::operator*() {
+		return *_ptr;
+	}
+
+	template <typename T>
+	T* 	VectorIterator<T>::operator->() {
+		return _ptr;
+	}
+
+	// Prefix
+
+	template <typename T>
+	VectorIterator<T>& 	VectorIterator<T>::operator++() {
+		_ptr++;
+		return *this;
+	}
+
+	template <typename T>
+	VectorIterator<T>& 	VectorIterator<T>::operator--() {
+		_ptr--;
+		return *this;
+	}
+
+	// Postfix
+
+	template <typename T>
+	VectorIterator<T> 	VectorIterator<T>::operator++(int) {
+		VectorIterator tmp = VectorIterator(*this);
+
+		_ptr++;
+		return tmp;
+	}
+
+	template <typename T>
+	VectorIterator<T> 	VectorIterator<T>::operator--(int) {
+		VectorIterator tmp = VectorIterator(*this);
+
+		_ptr--;
+		return tmp;
+	}
+
+	template <typename T>
+	bool	VectorIterator<T>::operator==(const VectorIterator& other) const {
+		return _ptr == other._ptr;
+	}
+
+	template <typename T>
+	bool	VectorIterator<T>::operator!=(const VectorIterator& other) const {
+		return _ptr != other._ptr;
+	}
+
+	template <typename T>
+	bool	VectorIterator<T>::operator>(const VectorIterator& other) const {
+		return _ptr > other._ptr;
+	}
+
+	template <typename T>
+	bool	VectorIterator<T>::operator>=(const VectorIterator& other) const {
+		return _ptr >= other._ptr;
+	}
+
+	template <typename T>
+	bool	VectorIterator<T>::operator<(const VectorIterator& other) const {
+		return _ptr < other._ptr;	
+	}
+
+	template <typename T>
+	bool	VectorIterator<T>::operator<=(const VectorIterator& other) const {
+		return _ptr <= other._ptr;
+	}
+
+	// template <typename T>
+	// VectorIterator<T>& 		VectorIterator<T>::operator-=(ptrdiff_t n) {
+
+	// }
+
+	// template <typename T>
+	// VectorIterator<T>& 		VectorIterator<T>::operator+=(ptrdiff_t n) {
+		
+	// }
+
+	// template <typename T>
+	// VectorIterator<T> 		VectorIterator<T>::operator-(ptrdiff_t n) const {
+	// 	VectorIterator tmp = VectorIterator(*this);
+
+	// 	_ptr -= n;
+	// 	return tmp;
+	// }
+
+	// template <typename T>
+	// VectorIterator<T> 		VectorIterator<T>::operator+(ptrdiff_t n) const {
+	// 	VectorIterator tmp = VectorIterator(*this);
+
+	// 	_ptr += n;
+	// 	return tmp;
+	// }
+
+	// template <typename T>
+	// T& 	VectorIterator<T>::operator[](ptrdiff_t n) const {
+		
+	// }
 }

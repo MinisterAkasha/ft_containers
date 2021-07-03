@@ -7,7 +7,7 @@
 namespace ft {
 
 	template <typename T>
-	class VectorIterator : public std::iterator<std::random_access_iterator_tag, T> {
+	class VectorIterator {
 		private:
 			typedef	T			value_type;
 			typedef T*			pointer;
@@ -24,9 +24,6 @@ namespace ft {
 
 			VectorIterator& 	operator=(const VectorIterator& other);
 
-			bool 				operator==(const VectorIterator& other) const;
-        	bool 				operator!=(const VectorIterator& other) const;
-
 			reference			operator*();
 			pointer				operator->();
 
@@ -35,19 +32,22 @@ namespace ft {
 			VectorIterator 		operator++(int);
 			VectorIterator 		operator--(int);
 
+			bool 				operator==(const VectorIterator& other) const;
+        	bool 				operator!=(const VectorIterator& other) const;
+
         	bool 				operator>(const VectorIterator& other) const;
         	bool 				operator>=(const VectorIterator& other) const;
         	bool 				operator<(const VectorIterator& other) const;
         	bool 				operator<=(const VectorIterator& other) const;
 
-			VectorIterator 		operator-=(int value);
-			VectorIterator 		operator+=(int value);
+			VectorIterator&		operator-=(difference_type n);
+			VectorIterator&		operator+=(difference_type n);
 			
-			VectorIterator 		operator-(int value) const;
-			VectorIterator 		operator+(int value) const;
+			VectorIterator 		operator-(difference_type n) const;
+			VectorIterator 		operator+(difference_type n) const;
 			difference_type 	operator-(const VectorIterator& other) const;
 
-			reference			operator[](int value) const;
+			reference			operator[](difference_type n) const;
 	};
 }
 

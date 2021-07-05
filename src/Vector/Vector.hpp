@@ -102,9 +102,10 @@ namespace ft {
 			allocator_type				get_allocator() const;
 
 			private:
-				T*			_arr;
-				size_type	_size;
-				size_type	_capacity;
+				value_type*		_arr;
+				size_type		_size;
+				size_type		_capacity;
+				allocator_type	_allocator;
 	};
 }
 

@@ -1,11 +1,6 @@
-#include "Vector.hpp"
-#include "vector"
+#include "vector.hpp"
 
-int main()
-{
-    std::vector<int>	hehe;
-	std::vector<int>::iterator d(hehe.begin());
-	// std::vector<int>::iterator b(hehe.begin());
-	d += 2;
+int main() {
+	ft::vector<int> myVector;
 	return 0;
 }

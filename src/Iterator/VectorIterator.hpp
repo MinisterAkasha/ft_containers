@@ -7,7 +7,7 @@
 namespace ft {
 
 	template <typename T>
-	class VectorIterator {
+	class VectorIterator : public std::iterator<std::random_access_iterator_tag, T> {
 		private:
 			typedef	T			value_type;
 			typedef T*			pointer;

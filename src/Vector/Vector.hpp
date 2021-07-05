@@ -1,12 +1,12 @@
 #ifndef FT_VECTOR_HPP
-#define FT_VECTOR_HPP
+# define FT_VECTOR_HPP
 
-#include <memory>
-#include "VectorIterator.hpp"
+# include <memory>
+# include "VectorIterator.hpp"
 
 namespace ft {
 	template <class T, class Allocator = std::allocator<T> >
-	class Vector {
+	class vector {
 		public:
 			typedef Allocator							allocator_type;
 			typedef T									value_type;
@@ -26,22 +26,20 @@ namespace ft {
 			/*
 			** Member functions
 			*/
-			//TODO Vector();
+			explicit vector(const allocator_type &alloc = allocator_type());		// default
 
-			explicit Vector(const allocator_type &alloc = allocator_type());		// default
-
-			explicit Vector(size_type n, const value_type &val = value_type(),		// fill
+			explicit vector(size_type n, const value_type &val = value_type(),		// fill
 							const allocator_type &alloc = allocator_type());
 
 			template <class InputIterator>
-        	Vector (InputIterator first, InputIterator last,				  		// range
+        	vector(InputIterator first, InputIterator last,				  		// range
                  const allocator_type& alloc = allocator_type());
 
-			Vector(const Vector& other);											// copy
+			vector(const vector& other);											// copy
 
-			~Vector();
+			~vector();
 
-			Vector&						operator=(const Vector& other);
+			vector&						operator=(const vector& other);
 
 			/*
 			** Iterators
@@ -60,10 +58,10 @@ namespace ft {
 
 			size_type 					size() const;
 			size_type 					max_size() const;
-			void 						resize (size_type n, value_type val = value_type());
+			void 						resize(size_type n, value_type val = value_type());
 			size_type					capacity() const;
 			bool						empty() const;
-			void						reserve (size_type n);
+			void						reserve(size_type n);
 
 			/*
 			** Element access
@@ -71,8 +69,8 @@ namespace ft {
 
 			reference					operator[](size_type pos);
 			const_reference				operator[](size_type pos) const;
-			reference 					at (size_type n);
-			const_reference 			at (size_type n) const;
+			reference 					at(size_type n);
+			const_reference 			at(size_type n) const;
 			reference 					front();
 			const_reference 			front() const;
 			reference 					back();
@@ -82,17 +80,17 @@ namespace ft {
 			** Modifiers
 			*/
 			template <class InputIterator>
-			void						assign (InputIterator first, InputIterator last); // range
-			void						assign (size_type n, const value_type& val); // fill
-			void 						push_back (const value_type& val);
+			void						assign(InputIterator first, InputIterator last); // range
+			void						assign(size_type n, const value_type& val); // fill
+			void 						push_back(const value_type& val);
 			void						pop_back();
-			iterator					insert (iterator position, const value_type& val); // single element
-		    void 						insert (iterator position, size_type n, const value_type& val); // fill
+			iterator					insert(iterator position, const value_type& val); // single element
+		    void 						insert(iterator position, size_type n, const value_type& val); // fill
 			template <class InputIterator>
-    		void 						insert (iterator position, InputIterator first, InputIterator last); // range
-			iterator 					erase (iterator position);
-			iterator 					erase (iterator first, iterator last);
-			void 						swap (Vector& x);
+    		void 						insert(iterator position, InputIterator first, InputIterator last); // range
+			iterator 					erase(iterator position);
+			iterator 					erase(iterator first, iterator last);
+			void 						swap(vector& x);
 			void						clear();
 
 			/*
@@ -109,6 +107,6 @@ namespace ft {
 	};
 }
 
-# include "Vector.inl"
+# include "vector.inl"
 
 #endif

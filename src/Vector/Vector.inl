@@ -66,7 +66,8 @@ namespace ft
 
 	template <class T, class Allocator>
 	void	vector<T, Allocator>::pop_back() {
-		return ;
+		_allocator.destroy(_arr + _size - 1);
+		_size--;
 	}
 
 	template <class T, class Allocator>
@@ -85,7 +86,6 @@ namespace ft
 		value_type* end = _arr + _size;
 
 		while (end != _arr) {
-			std::cout << end << std::endl;
 			_allocator.destroy(end);
 			end--;
 		}

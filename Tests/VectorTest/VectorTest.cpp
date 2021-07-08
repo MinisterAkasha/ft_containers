@@ -14,6 +14,7 @@ void	VectorTest::test() const {
 	testEnd();
 	testFillConstructor();
 	testEqualOperator();
+	testEmpty();
 }
 
 void	VectorTest::testFillConstructor() const {
@@ -361,6 +362,63 @@ void	VectorTest::testEqualOperator() const {
 		vector1.pop_back();
 
 		TO_EQUAL_VECTOR(vector1, vector2);
+	}
+	std::cout << std::endl;
+}
+
+void	VectorTest::testEmpty() const {
+	std::cout << "* empty(): ";
+	{
+		ft::vector<int> ftVector(10, 4);
+		std::vector<int> stlVector(10, 4);
+
+		TO_EQUAL(ftVector.empty(), stlVector.empty());
+	}
+	{
+		ft::vector<int> ftVector;
+		std::vector<int> stlVector;
+
+		TO_EQUAL(ftVector.empty(), stlVector.empty());
+	}
+	{
+		ft::vector<std::string> ftVector;
+		std::vector<std::string> stlVector;
+
+		TO_EQUAL(ftVector.empty(), stlVector.empty());
+	}
+	{
+		ft::vector<std::string> ftVector(100);
+		std::vector<std::string> stlVector(100);
+
+		TO_EQUAL(ftVector.empty(), stlVector.empty());
+	}
+	{
+		ft::vector<int> ftVector(10, 4);
+		std::vector<int> stlVector(10, 4);
+
+		int rand = std::rand();
+		for (int i = 0; i < 100; i++) {
+			ftVector.push_back(rand);
+			stlVector.push_back(rand);
+			rand = std::rand();
+		}
+		TO_EQUAL(ftVector.empty(), stlVector.empty());
+	}
+	{
+		ft::vector<int> ftVector(10, 4);
+		std::vector<int> stlVector(10, 4);
+
+		int rand = std::rand();
+		for (int i = 0; i < 100; i++) {
+			ftVector.push_back(rand);
+			stlVector.push_back(rand);
+			rand = std::rand();
+		}
+		for (int i = 0; i < 25; i++) {
+			ftVector.pop_back();
+			stlVector.pop_back();
+		}
+		TO_EQUAL(ftVector.empty(), stlVector.empty());
 	}
 	std::cout << std::endl;
 }

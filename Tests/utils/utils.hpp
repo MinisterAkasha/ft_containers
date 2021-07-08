@@ -17,7 +17,7 @@ void createBeginIterators(ftIterator& myIterator, stlIterator& defoultIterator, 
 }
 
 template <class T1>
-void	TO_EQUAL(T1& value1, T1& value2) {
+void	TO_EQUAL(T1 value1, T1 value2) {
 	if (value1 == value2)
 		std::cout << OK << " ";
 	else

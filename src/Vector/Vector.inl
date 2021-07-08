@@ -57,6 +57,11 @@ namespace ft
 		return _size;
 	}
 
+	template <class T, class Allocator>
+	bool	vector<T, Allocator>::empty() const {
+		return _size == 0;
+	}
+
 	/*
 	** Modifiers
 	*/

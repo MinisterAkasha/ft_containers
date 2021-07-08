@@ -64,7 +64,7 @@ namespace ft
 	template <class T, class Allocator>
 	void	vector<T, Allocator>::push_back(const value_type& val) {
 		if (_size == _capacity)
-			this->reserve(_capacity *= 2);
+			this->reserve(_capacity * 2);
 		_allocator.construct(_arr + _size, val);
 		_size++;
 	}
@@ -89,14 +89,14 @@ namespace ft
 	template <class T, class Allocator>
 	vector<T, Allocator>&	vector<T, Allocator>::operator=(const vector& other) {
 		if (&other != this) {
-			~vector();
+			this->~vector();
 			_arr = nullptr;
 			_size = other._size;
 			_capacity = other._capacity;
 			_allocator = other._allocator;
-			_allocator.allocate(_capacity);
+			_arr = _allocator.allocate(_capacity);
 			for (size_type i = 0; i < _size; i++)
-				push_back(other._arr[i]);
+				_allocator.construct(_arr + i, other._arr[i]);
 		}
 		return *this;
 	}
@@ -119,10 +119,9 @@ namespace ft
 	void	vector<T, Allocator>::reserve(size_type size) {
 		if (size > _capacity) {
 			value_type* new_arr;
-			_allocator.allocate(size);
-			for (size_type i; i < _size; i++) {
-				_allocator.construct(_arr + i, _arr[i]);
-			}
+			new_arr = _allocator.allocate(size);
+			for (size_type i; i < _size; i++)
+				_allocator.construct(new_arr + i, _arr[i]);
 			this->~vector();
 			_arr = new_arr;
 			_capacity = size;

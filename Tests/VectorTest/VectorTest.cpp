@@ -16,6 +16,7 @@ void	VectorTest::test() const {
 	testEqualOperator();
 	testEmpty();
 	testCapasity();
+	testMaxSize();
 }
 
 void	VectorTest::testFillConstructor() const {
@@ -477,6 +478,75 @@ void	VectorTest::testCapasity() const {
 			stlVector.pop_back();
 		}
 		TO_EQUAL(ftVector.capacity(), stlVector.capacity());
+	}
+	std::cout << std::endl;
+}
+
+void	VectorTest::testMaxSize() const {
+	std::cout << "* max_size(): ";
+	{
+		ft::vector<int> ftVector(10, 4);
+		std::vector<int> stlVector(10, 4);
+
+		TO_EQUAL(ftVector.max_size(), stlVector.max_size());
+	}
+	{
+		ft::vector<int> ftVector;
+		std::vector<int> stlVector;
+
+		TO_EQUAL(ftVector.max_size(), stlVector.max_size());
+	}
+	{
+		ft::vector<std::string> ftVector;
+		std::vector<std::string> stlVector;
+
+		TO_EQUAL(ftVector.max_size(), stlVector.max_size());
+	}
+	{
+		ft::vector<std::string> ftVector(100);
+		std::vector<std::string> stlVector(100);
+
+		TO_EQUAL(ftVector.max_size(), stlVector.max_size());
+	}
+	{
+		ft::vector<int> ftVector(10, 4);
+		std::vector<int> stlVector(10, 4);
+
+		int rand = std::rand();
+		for (int i = 0; i < 100; i++) {
+			ftVector.push_back(rand);
+			stlVector.push_back(rand);
+			rand = std::rand();
+		}
+		TO_EQUAL(ftVector.max_size(), stlVector.max_size());
+	}
+	{
+		ft::vector<int> ftVector(10, 4);
+		std::vector<int> stlVector(10, 4);
+
+		int rand = std::rand();
+		for (int i = 0; i < 100; i++) {
+			ftVector.push_back(rand);
+			stlVector.push_back(rand);
+			rand = std::rand();
+		}
+		for (int i = 0; i < 25; i++) {
+			ftVector.pop_back();
+			stlVector.pop_back();
+		}
+		TO_EQUAL(ftVector.max_size(), stlVector.max_size());
+	}
+	{
+		ft::vector<int> ftVector(10, 4);
+		std::vector<int> stlVector(10, 4);
+
+		int rand = std::rand();
+		for (int i = 0; i < 10000; i++) {
+			ftVector.push_back(rand);
+			stlVector.push_back(rand);
+			rand = std::rand();
+		}
+		TO_EQUAL(ftVector.max_size(), stlVector.max_size());
 	}
 	std::cout << std::endl;
 }

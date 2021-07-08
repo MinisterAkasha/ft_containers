@@ -10,26 +10,66 @@ VectorTest::~VectorTest() {
 
 void	VectorTest::test() const {
 	std::cout << "<-- Vector test -->" << std::endl;
-	// testSize();
-	// testBegin();
-	// testEnd();
+	testSize();
+	testBegin();
+	testEnd();
 	testFillConstructor();
 }
 
 void	VectorTest::testFillConstructor() const {
 	std::cout << "* fill constuctor: ";
-	size_t	size = 7;
-	int		value = 4;
-	ft::vector<int>		myVector(size, value);
-	std::vector<int>	stlVector(size, value);
 
-	// std::vector<int>::iterator stlIterator = stlVector.begin();
-	ft::vector<int>::iterator myIterator = myVector.begin();
-	while (myIterator != myVector.end())
+	size_t size;
 	{
-		std::cout << *myIterator << std::endl;
-		myIterator++;
+		int		value = 4;
+		size = 7;
+		ft::vector<int>		myVector(size, value);
+		std::vector<int>	stlVector(size, value);
+
+		TO_EQUAL_VECTOR(myVector, stlVector, value);
 	}
+	{
+		int		value = 0;
+		size = 0;
+		ft::vector<int>		myVector(size, value);
+		std::vector<int>	stlVector(size, value);
+
+		TO_EQUAL_VECTOR(myVector, stlVector, value);
+	}
+	{
+				size = 0;
+		int		value = 0;
+		ft::vector<int>		myVector(size);
+		std::vector<int>	stlVector(size);
+
+		TO_EQUAL_VECTOR(myVector, stlVector, value);
+	}
+	{
+		std::string		value = "string";
+		size = 0;
+		ft::vector<std::string>		myVector(size, value);
+		std::vector<std::string>	stlVector(size, value);
+
+		TO_EQUAL_VECTOR(myVector, stlVector, value);
+	}
+	{
+		std::string		value = "string";
+		size = 10;
+		ft::vector<std::string>		myVector(size, value);
+		std::vector<std::string>	stlVector(size, value);
+
+		TO_EQUAL_VECTOR(myVector, stlVector, value);
+	}
+	{
+		double		value = 132.021;
+		size = 50;
+		ft::vector<double>		myVector(size, value);
+		std::vector<double>	stlVector(size, value);
+
+		TO_EQUAL_VECTOR(myVector, stlVector, value);
+	}
+	
+
 	std::cout << std::endl;
 }
 
@@ -46,7 +86,7 @@ void	VectorTest::testBegin() const {
 		myIterator = myVector.begin();
 		stlIterator = stlVector.begin();
 
-		TO_BE(*myIterator, *stlIterator);
+		TO_EQUAL(*myIterator, *stlIterator);
 	}
 
 	{
@@ -59,7 +99,7 @@ void	VectorTest::testBegin() const {
 		myIterator = myVector.begin();
 		stlIterator = stlVector.begin();
 
-		TO_BE(*myIterator, *stlIterator);
+		TO_EQUAL(*myIterator, *stlIterator);
 	}
 
 	{
@@ -72,7 +112,7 @@ void	VectorTest::testBegin() const {
 		myIterator = myVector.begin();
 		stlIterator = stlVector.begin();
 
-		TO_BE(*myIterator, *stlIterator);
+		TO_EQUAL(*myIterator, *stlIterator);
 	}
 
 	{
@@ -85,7 +125,7 @@ void	VectorTest::testBegin() const {
 		myIterator = myVector.begin();
 		stlIterator = stlVector.begin();
 
-		TO_BE(*myIterator, *stlIterator);
+		TO_EQUAL(*myIterator, *stlIterator);
 	}
 	{
 		ft::vector<double>::iterator			myIterator;
@@ -100,7 +140,7 @@ void	VectorTest::testBegin() const {
 		myIterator = myVector.begin();
 		stlIterator = stlVector.begin();
 
-		TO_BE(*myIterator, *stlIterator);
+		TO_EQUAL(*myIterator, *stlIterator);
 	}
 
 
@@ -120,7 +160,7 @@ void	VectorTest::testEnd() const {
 		myIterator = myVector.end();
 		stlIterator = stlVector.end();
 
-		TO_BE(*myIterator, *stlIterator);
+		TO_EQUAL(*myIterator, *stlIterator);
 	}
 
 	{
@@ -133,7 +173,7 @@ void	VectorTest::testEnd() const {
 		myIterator = myVector.end();
 		stlIterator = stlVector.end();
 
-		TO_BE(*myIterator, *stlIterator);
+		TO_EQUAL(*myIterator, *stlIterator);
 	}
 
 	{
@@ -146,7 +186,7 @@ void	VectorTest::testEnd() const {
 		myIterator = myVector.end();
 		stlIterator = stlVector.end();
 
-		TO_BE(*myIterator, *stlIterator);
+		TO_EQUAL(*myIterator, *stlIterator);
 	}
 
 	{
@@ -159,7 +199,7 @@ void	VectorTest::testEnd() const {
 		myIterator = myVector.end();
 		stlIterator = stlVector.end();
 
-		TO_BE(*myIterator, *stlIterator);
+		TO_EQUAL(*myIterator, *stlIterator);
 	}
 	{
 		ft::vector<double>::iterator			myIterator;
@@ -173,7 +213,7 @@ void	VectorTest::testEnd() const {
 		myIterator = myVector.end();
 		stlIterator = stlVector.end();
 
-		TO_BE(*myIterator, *stlIterator);
+		TO_EQUAL(*myIterator, *stlIterator);
 	}
 	{
 		ft::vector<double>::iterator			myIterator;
@@ -187,7 +227,7 @@ void	VectorTest::testEnd() const {
 		myIterator = myVector.end();
 		stlIterator = stlVector.end();
 
-		TO_BE(*myIterator, *stlIterator);
+		TO_EQUAL(*myIterator, *stlIterator);
 	}
 
 	std::cout << std::endl;
@@ -201,7 +241,7 @@ void	VectorTest::testSize() const {
 		size_t				s1 = myVector.size();
 		size_t				s2 = stlVector.size();
 
-		TO_BE(s1, s2);
+		TO_EQUAL(s1, s2);
 	}
 	{
 		ft::vector<int>		myVector(0, 0);
@@ -209,7 +249,7 @@ void	VectorTest::testSize() const {
 		size_t				s1 = myVector.size();
 		size_t				s2 = stlVector.size();
 
-		TO_BE(s1, s2);
+		TO_EQUAL(s1, s2);
 	}
 	{
 		ft::vector<int>		myVector(100, 100);
@@ -217,7 +257,7 @@ void	VectorTest::testSize() const {
 		size_t				s1 = myVector.size();
 		size_t				s2 = stlVector.size();
 
-		TO_BE(s1, s2);
+		TO_EQUAL(s1, s2);
 	}
 	{
 		ft::vector<int>		myVector(15, 15);
@@ -228,7 +268,7 @@ void	VectorTest::testSize() const {
 		size_t				s1 = myVector.size();
 		size_t				s2 = stlVector.size();
 
-		TO_BE(s1, s2);
+		TO_EQUAL(s1, s2);
 	}
 	{
 		ft::vector<int>		myVector(15, 15);
@@ -239,7 +279,7 @@ void	VectorTest::testSize() const {
 		size_t				s1 = myVector.size();
 		size_t				s2 = stlVector.size();
 
-		TO_BE(s1, s2);
+		TO_EQUAL(s1, s2);
 	}
 	{
 		ft::vector<int>		myVector(15, 15);
@@ -250,7 +290,7 @@ void	VectorTest::testSize() const {
 		size_t				s1 = myVector.size();
 		size_t				s2 = stlVector.size();
 
-		TO_BE(s1, s2);
+		TO_EQUAL(s1, s2);
 	}
 	std::cout << std::endl;
 }

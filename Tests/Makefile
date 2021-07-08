@@ -6,7 +6,7 @@ OBJDIR = ./obj
 OBJ = $(C_FILES:%.cpp=%.o)
 O_FILES = $(addprefix $(OBJDIR)/, $(OBJ))
 
-INCLUDE = -I./../src/vector -I./../src/Iterator -I./VectorTest
+INCLUDE = -I./../src/vector -I./../src/Iterator -I./VectorTest -I./utils
 		
 C_FILES = test.cpp VectorTest.cpp
 SRC_PATHS = ./ \

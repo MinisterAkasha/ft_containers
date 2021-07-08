@@ -4,6 +4,7 @@
 # include <iostream>
 # include <vector>
 # include "vector.hpp"
+# include "utils.hpp"
 
 class VectorTest {
 	private:
@@ -15,6 +16,7 @@ class VectorTest {
 	
 	private:
 		void testFillConstructor() const;
+		void testBegin() const;
 	
 	public:
 		VectorTest();

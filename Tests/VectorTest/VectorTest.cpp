@@ -337,5 +337,30 @@ void	VectorTest::testEqualOperator() const {
 
 		TO_EQUAL_VECTOR(vector1, vector2);
 	}
+	{
+		ft::vector<std::string> vector1(10);
+		ft::vector<std::string> vector2;
+
+		for (int i = 0; i < 100; i++) {
+			vector1.push_back("string");
+		}
+		vector2 = vector1;
+
+		TO_EQUAL_VECTOR(vector1, vector2);
+	}
+	{
+		ft::vector<std::string> vector1(10);
+		ft::vector<std::string> vector2;
+
+		for (int i = 0; i < 100; i++) {
+			vector1.push_back("looooooooooooooooooooooooooooooooooooooooooooooooooong string");
+		}
+
+		vector2 = vector1;
+		vector2.pop_back();
+		vector1.pop_back();
+
+		TO_EQUAL_VECTOR(vector1, vector2);
+	}
 	std::cout << std::endl;
 }

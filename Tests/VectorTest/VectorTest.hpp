@@ -21,6 +21,7 @@ class VectorTest {
 		void testSize() const;
 		void testEqualOperator() const;
 		void testEmpty() const;
+		void testCapasity() const;
 	
 	public:
 		VectorTest();

@@ -19,6 +19,16 @@ namespace ft
 
 	template <class T, class Allocator>
 	vector<T, Allocator>::~vector() {
-		
+		_allocator.destroy(_arr);
+		_allocator.deallocate(_arr, _capacity);
+	}
+
+	/*
+	** Iterators
+	*/
+
+	template <class T, class Allocator>
+	typename vector<T, Allocator>::iterator	vector<T, Allocator>::begin() {
+		return _arr;
 	}
 }

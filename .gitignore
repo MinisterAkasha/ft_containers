@@ -1,2 +1,6 @@
 ft_container
 .vscode
+test
+Tests./test
+Tests/obj
+./obj

@@ -160,7 +160,7 @@ void	VectorTest::testEnd() const {
 		myIterator = myVector.end();
 		stlIterator = stlVector.end();
 
-		TO_EQUAL(*myIterator, *stlIterator);
+		TO_EQUAL(*(--myIterator), *(--stlIterator));
 	}
 
 	{
@@ -173,7 +173,7 @@ void	VectorTest::testEnd() const {
 		myIterator = myVector.end();
 		stlIterator = stlVector.end();
 
-		TO_EQUAL(*myIterator, *stlIterator);
+		TO_EQUAL(*(--myIterator), *(--stlIterator));
 	}
 
 	{
@@ -186,7 +186,7 @@ void	VectorTest::testEnd() const {
 		myIterator = myVector.end();
 		stlIterator = stlVector.end();
 
-		TO_EQUAL(*myIterator, *stlIterator);
+		TO_EQUAL(*(--myIterator), *(--stlIterator));
 	}
 
 	{
@@ -199,7 +199,7 @@ void	VectorTest::testEnd() const {
 		myIterator = myVector.end();
 		stlIterator = stlVector.end();
 
-		TO_EQUAL(*myIterator, *stlIterator);
+		TO_EQUAL(*(--myIterator), *(--stlIterator));
 	}
 	{
 		ft::vector<double>::iterator			myIterator;
@@ -213,7 +213,7 @@ void	VectorTest::testEnd() const {
 		myIterator = myVector.end();
 		stlIterator = stlVector.end();
 
-		TO_EQUAL(*myIterator, *stlIterator);
+		TO_EQUAL(*(--myIterator), *(--stlIterator));
 	}
 	{
 		ft::vector<double>::iterator			myIterator;
@@ -227,7 +227,7 @@ void	VectorTest::testEnd() const {
 		myIterator = myVector.end();
 		stlIterator = stlVector.end();
 
-		TO_EQUAL(*myIterator, *stlIterator);
+		TO_EQUAL(*(--myIterator), *(--stlIterator));
 	}
 
 	std::cout << std::endl;

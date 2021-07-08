@@ -1,6 +1,6 @@
 NAME = test
 CC = clang++
-FLAGS = -Wall -Wextra -Werror --std=c++98
+FLAGS = --std=c++98
 
 OBJDIR = ./obj
 OBJ = $(C_FILES:%.cpp=%.o)

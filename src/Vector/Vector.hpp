@@ -14,8 +14,8 @@ namespace ft {
 			typedef typename Allocator::const_pointer	const_pointer;
 			typedef typename Allocator::reference		reference;
 			typedef typename Allocator::const_reference	const_reference;
-			typedef typename Allocator::size_type		size_type; // size_type -> typedef size_t
-			typedef typename Allocator::difference_type	difference_type; // difference_type -> typedef  ptrdiff_t
+			typedef typename Allocator::size_type		size_type; 			// size_type -> typedef size_t
+			typedef typename Allocator::difference_type	difference_type; 	// difference_type -> typedef  ptrdiff_t
 
 			typedef VectorIterator<T>					iterator;
 			typedef VectorIterator<const T>				const_iterator;
@@ -26,13 +26,13 @@ namespace ft {
 			/*
 			** Member functions
 			*/
-			explicit vector(const allocator_type &alloc = allocator_type());		// default
+			explicit vector(const allocator_type& alloc = allocator_type());		// default
 
-			explicit vector(size_type n, const value_type &val = value_type(),		// fill
-							const allocator_type &alloc = allocator_type());
+			explicit vector(size_type n, const value_type& val = value_type(),		// fill
+							const allocator_type& alloc = allocator_type());
 
 			template <class InputIterator>
-        	vector(InputIterator first, InputIterator last,				  		// range
+        	vector(InputIterator first, InputIterator last,				  			// range
                  const allocator_type& alloc = allocator_type());
 
 			vector(const vector& other);											// copy

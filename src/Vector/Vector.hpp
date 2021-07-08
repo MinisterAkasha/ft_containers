@@ -57,7 +57,7 @@ namespace ft {
 			*/
 
 			size_type 					size() const;
-			// size_type 					max_size() const;
+			size_type 					max_size() const;
 			// void 						resize(size_type n, value_type val = value_type());
 			size_type					capacity() const;
 			bool						empty() const;

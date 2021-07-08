@@ -67,6 +67,11 @@ namespace ft
 		return _capacity;
 	}
 
+	template <class T, class Allocator>
+	typename vector<T, Allocator>::size_type	vector<T, Allocator>::max_size() const{
+		return _allocator.max_size();
+	}
+
 	/*
 	** Modifiers
 	*/

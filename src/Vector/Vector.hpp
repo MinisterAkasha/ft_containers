@@ -106,6 +106,7 @@ namespace ft {
 				allocator_type	_allocator;
 
 				void destroyAllElems();
+				void reserve(size_type size);
 	};
 }
 

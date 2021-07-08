@@ -1,7 +1,10 @@
-#include <iostream>
+#include <iostream> //!DEL
 
 namespace ft
 {
+	/*
+	** Constructors
+	*/
 
 	template <class T, class Allocator>
 	vector<T, Allocator>::vector(const allocator_type& alloc)
@@ -59,9 +62,10 @@ namespace ft
 
 	template <class T, class Allocator>
 	void	vector<T, Allocator>::push_back(const value_type& val) {
-		if (val)
-			return ;
-		return ;
+		if (_size == _capacity)
+			this->reserve(_capacity *= 2);
+		_allocator.construct(_arr + _size, val);
+		_size++;
 	}
 
 	template <class T, class Allocator>
@@ -85,9 +89,23 @@ namespace ft
 	void	vector<T, Allocator>::destroyAllElems() {
 		value_type* end = _arr + _size;
 
-		while (end != _arr) {
+		while (end >= _arr) {
 			_allocator.destroy(end);
 			end--;
+		}
+	}
+
+	template <class T, class Allocator>
+	void	vector<T, Allocator>::reserve(size_type size) {
+		if (size > _capacity) {
+			value_type* new_arr;
+			_allocator.allocate(size);
+			for (size_type i; i < _size; i++) {
+				_allocator.construct(_arr + i, _arr[i]);
+			}
+			this->~vector();
+			_arr = new_arr;
+			_capacity = size;
 		}
 	}
 }

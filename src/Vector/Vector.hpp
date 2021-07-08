@@ -104,6 +104,8 @@ namespace ft {
 				size_type		_size;
 				size_type		_capacity;
 				allocator_type	_allocator;
+
+				void destroyAllElems();
 	};
 }
 

@@ -1,3 +1,5 @@
+#include <iostream>
+
 namespace ft
 {
 
@@ -17,8 +19,14 @@ namespace ft
 	}
 
 	template <class T, class Allocator>
+	vector<T, Allocator>::vector(const vector& other) { //TODO
+		if (other)
+			return ;
+	}
+
+	template <class T, class Allocator>
 	vector<T, Allocator>::~vector() {
-		_allocator.destroy(_arr);
+		this->destroyAllElems();
 		_allocator.deallocate(_arr, _capacity);
 	}
 
@@ -66,5 +74,20 @@ namespace ft
 		if (val)
 			return position;
 		return position;
+	}
+
+	/*
+	** Private
+	*/
+
+	template <class T, class Allocator>
+	void	vector<T, Allocator>::destroyAllElems() {
+		value_type* end = _arr + _size;
+
+		while (end != _arr) {
+			std::cout << end << std::endl;
+			_allocator.destroy(end);
+			end--;
+		}
 	}
 }

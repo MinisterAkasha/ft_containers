@@ -8,7 +8,7 @@ namespace ft
 
 	template <class T, class Allocator>
 	vector<T, Allocator>::vector(const allocator_type& alloc)
-		: _arr(nullptr), _size(0), _capacity(1), _allocator(alloc) {
+		: _arr(nullptr), _size(0), _capacity(0), _allocator(alloc) {
 		_arr = _allocator.allocate(_capacity);
 	};
 
@@ -60,6 +60,11 @@ namespace ft
 	template <class T, class Allocator>
 	bool	vector<T, Allocator>::empty() const {
 		return _size == 0;
+	}
+
+	template <class T, class Allocator>
+	typename vector<T, Allocator>::size_type	vector<T, Allocator>::capacity() const{
+		return _capacity;
 	}
 
 	/*

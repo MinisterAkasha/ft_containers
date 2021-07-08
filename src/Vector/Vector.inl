@@ -22,15 +22,16 @@ namespace ft
 	}
 
 	template <class T, class Allocator>
-	vector<T, Allocator>::vector(const vector& other) { //TODO
-		if (other)
-			return ;
+	vector<T, Allocator>::vector(const vector& other)
+	: _arr(nullptr), _size(other._size), _capacity(other._capacity), _allocator(other._allocator) {
+		operator=(other);
 	}
 
 	template <class T, class Allocator>
 	vector<T, Allocator>::~vector() {
+		value_type *start = _arr;
 		this->destroyAllElems();
-		_allocator.deallocate(_arr, _capacity);
+		_allocator.deallocate(start, _capacity);
 	}
 
 	/*
@@ -79,6 +80,25 @@ namespace ft
 		if (val)
 			return position;
 		return position;
+	}
+
+	/*
+	** Overload
+	*/
+
+	template <class T, class Allocator>
+	vector<T, Allocator>&	vector<T, Allocator>::operator=(const vector& other) {
+		if (&other != this) {
+			~vector();
+			_arr = nullptr;
+			_size = other._size;
+			_capacity = other._capacity;
+			_allocator = other._allocator;
+			_allocator.allocate(_capacity);
+			for (size_type i = 0; i < _size; i++)
+				push_back(other._arr[i]);
+		}
+		return *this;
 	}
 
 	/*

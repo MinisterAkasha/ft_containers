@@ -19,6 +19,7 @@ class VectorTest {
 		void testBegin() const;
 		void testEnd() const;
 		void testSize() const;
+		void testEqualOperator() const;
 	
 	public:
 		VectorTest();

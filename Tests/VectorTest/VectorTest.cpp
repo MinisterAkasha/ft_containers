@@ -4,16 +4,16 @@ VectorTest::VectorTest() {
 	test();
 }
 
-VectorTest::~VectorTest() {
-	//TODO delete all memory
-}
+VectorTest::~VectorTest() {}
 
 void	VectorTest::test() const {
 	std::cout << "<-- Vector test -->" << std::endl;
+	std::srand(time(NULL));
 	testSize();
 	testBegin();
 	testEnd();
 	testFillConstructor();
+	testEqualOperator();
 }
 
 void	VectorTest::testFillConstructor() const {
@@ -26,7 +26,7 @@ void	VectorTest::testFillConstructor() const {
 		ft::vector<int>		myVector(size, value);
 		std::vector<int>	stlVector(size, value);
 
-		TO_EQUAL_VECTOR(myVector, stlVector, value);
+		TO_EQUAL_VECTOR(myVector, stlVector);
 	}
 	{
 		int		value = 0;
@@ -34,7 +34,7 @@ void	VectorTest::testFillConstructor() const {
 		ft::vector<int>		myVector(size, value);
 		std::vector<int>	stlVector(size, value);
 
-		TO_EQUAL_VECTOR(myVector, stlVector, value);
+		TO_EQUAL_VECTOR(myVector, stlVector);
 	}
 	{
 				size = 0;
@@ -42,7 +42,7 @@ void	VectorTest::testFillConstructor() const {
 		ft::vector<int>		myVector(size);
 		std::vector<int>	stlVector(size);
 
-		TO_EQUAL_VECTOR(myVector, stlVector, value);
+		TO_EQUAL_VECTOR(myVector, stlVector);
 	}
 	{
 		std::string		value = "string";
@@ -50,7 +50,7 @@ void	VectorTest::testFillConstructor() const {
 		ft::vector<std::string>		myVector(size, value);
 		std::vector<std::string>	stlVector(size, value);
 
-		TO_EQUAL_VECTOR(myVector, stlVector, value);
+		TO_EQUAL_VECTOR(myVector, stlVector);
 	}
 	{
 		std::string		value = "string";
@@ -58,7 +58,7 @@ void	VectorTest::testFillConstructor() const {
 		ft::vector<std::string>		myVector(size, value);
 		std::vector<std::string>	stlVector(size, value);
 
-		TO_EQUAL_VECTOR(myVector, stlVector, value);
+		TO_EQUAL_VECTOR(myVector, stlVector);
 	}
 	{
 		double		value = 132.021;
@@ -66,7 +66,7 @@ void	VectorTest::testFillConstructor() const {
 		ft::vector<double>		myVector(size, value);
 		std::vector<double>	stlVector(size, value);
 
-		TO_EQUAL_VECTOR(myVector, stlVector, value);
+		TO_EQUAL_VECTOR(myVector, stlVector);
 	}
 	
 
@@ -166,9 +166,10 @@ void	VectorTest::testEnd() const {
 	{
 		ft::vector<std::string>::iterator	myIterator;
 		std::vector<std::string>::iterator	stlIterator;
+		std::string							string = "string";
 
-		ft::vector<std::string>	myVector(2, std::string("string"));
-		std::vector<std::string> stlVector(2, std::string("string"));
+		ft::vector<std::string>	myVector(2, string);
+		std::vector<std::string> stlVector(2, string);
 
 		myIterator = myVector.end();
 		stlIterator = stlVector.end();
@@ -179,9 +180,10 @@ void	VectorTest::testEnd() const {
 	{
 		ft::vector<std::string>::iterator	myIterator;
 		std::vector<std::string>::iterator	stlIterator;
+		std::string							string = "loooooooooooooooong string";
 
-		ft::vector<std::string>	myVector(15, std::string("loooooooooooooooong string"));
-		std::vector<std::string> stlVector(15, std::string("loooooooooooooooong string"));
+		ft::vector<std::string>	myVector(15, string);
+		std::vector<std::string> stlVector(15, string);
 
 		myIterator = myVector.end();
 		stlIterator = stlVector.end();
@@ -291,6 +293,49 @@ void	VectorTest::testSize() const {
 		size_t				s2 = stlVector.size();
 
 		TO_EQUAL(s1, s2);
+	}
+	std::cout << std::endl;
+}
+
+void	VectorTest::testEqualOperator() const {
+	std::cout << "* operator=(): ";
+	{
+		ft::vector<int> vector1(10, 4);
+		ft::vector<int> vector2;
+
+		vector2 = vector1;
+
+		TO_EQUAL_VECTOR(vector1, vector2);
+	}
+	{
+		ft::vector<int> vector1;
+		ft::vector<int> vector2;
+
+		vector2 = vector1;
+
+		TO_EQUAL_VECTOR(vector1, vector2);
+	}
+	{
+		ft::vector<double> vector1;
+		ft::vector<double> vector2;
+
+		for (int i = 0; i < 100; i++) {
+			vector1.push_back(std::rand());
+		}
+		vector2 = vector1;
+
+		TO_EQUAL_VECTOR(vector1, vector2);
+	}
+	{
+		ft::vector<int> vector1(10, 15);
+		ft::vector<int> vector2;
+
+		for (int i = 0; i < 100; i++) {
+			vector1.push_back(std::rand() % 1000);
+		}
+		vector2 = vector1;
+
+		TO_EQUAL_VECTOR(vector1, vector2);
 	}
 	std::cout << std::endl;
 }

@@ -107,7 +107,7 @@ namespace ft
 
 	template <class T, class Allocator>
 	void	vector<T, Allocator>::destroyAllElems() {
-		value_type* end = _arr + _size;
+		value_type* end = _arr + _size - 1;
 
 		while (end >= _arr) {
 			_allocator.destroy(end);
@@ -120,7 +120,7 @@ namespace ft
 		if (size > _capacity) {
 			value_type* new_arr;
 			new_arr = _allocator.allocate(size);
-			for (size_type i; i < _size; i++)
+			for (size_type i = 0; i < _size; i++) 
 				_allocator.construct(new_arr + i, _arr[i]);
 			this->~vector();
 			_arr = new_arr;

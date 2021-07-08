@@ -24,10 +24,10 @@ void	TO_EQUAL(T1& value1, T1& value2) {
 		std::cout << KO << " ";
 }
 
-template <class ftVectorContainer, class stlVectorContainer, class T>
-void	TO_EQUAL_VECTOR(ftVectorContainer& ftVector, stlVectorContainer& stlVector, T type = T()) {
-	typename ft::vector<T>::iterator		myIterator = ftVector.begin();
-	typename std::vector<T>::iterator		stlIterator = stlVector.begin();
+template <class V1, class V2>
+void	TO_EQUAL_VECTOR(V1& ftVector, V2& stlVector) {
+	typename V1::iterator		myIterator = ftVector.begin();
+	typename V2::iterator		stlIterator = stlVector.begin();
 
 	if (ftVector.size() != stlVector.size()) {
 		std::cout << KO << " ";

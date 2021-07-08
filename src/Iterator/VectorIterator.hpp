@@ -17,6 +17,7 @@ namespace ft {
 			pointer _ptr;
 
 		public:
+			VectorIterator();
 			VectorIterator(T* ptr);
   			VectorIterator(const VectorIterator& other);
 

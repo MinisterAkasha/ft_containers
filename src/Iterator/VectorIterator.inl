@@ -4,6 +4,9 @@ namespace ft {
 	*/
 
 	template <typename T>
+	VectorIterator<T>::VectorIterator() : _ptr(nullptr) {};
+
+	template <typename T>
 	VectorIterator<T>::VectorIterator(T* ptr) : _ptr(ptr) {};
 
 	template <typename T>

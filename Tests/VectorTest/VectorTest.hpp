@@ -17,6 +17,8 @@ class VectorTest {
 	private:
 		void testFillConstructor() const;
 		void testBegin() const;
+		void testEnd() const;
+		void testSize() const;
 	
 	public:
 		VectorTest();

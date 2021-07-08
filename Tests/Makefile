@@ -1,16 +1,18 @@
-NAME = ft_container
+NAME = test
 CC = clang++
 FLAGS = -Wall -Wextra -Werror --std=c++98
 
-TEST_DIR = ./Tests
 OBJDIR = ./obj
 OBJ = $(C_FILES:%.cpp=%.o)
 O_FILES = $(addprefix $(OBJDIR)/, $(OBJ))
 
-INCLUDE = -I./src/vector -I./src/Iterator -I./
+INCLUDE = -I./../src/vector -I./../src/Iterator -I./VectorTest
 		
-C_FILES = main.cpp
-SRC_PATHS = ./
+C_FILES = test.cpp VectorTest.cpp
+SRC_PATHS = ./ \
+			./VectorTest
+
+			
 
 vpath %.cpp $(SRC_PATHS)
 vpath %.o $(OBJDIR)
@@ -21,16 +23,14 @@ YELLOW = \033[3;93m
 BLUE = \033[3;34m
 TEXT_RESET = \033[0;0m
 
-.PHONY: all clean fclean re test
+.PHONY: all clean fclean re
 
 all: $(OBJDIR) $(NAME)
 
 $(NAME): $(OBJ)
 	@$(CC) $(FLAGS) $(INCLUDE) $(O_FILES) -o $@
+	# mv $@ ../
 	@echo "$(GREEN)Success!"
-
-test:
-	make -C $(TEST_DIR)
 
 $(OBJDIR):
 	@mkdir -p $(OBJDIR)
@@ -40,14 +40,11 @@ $(OBJDIR):
 	@$(CC) $(FLAGS) $(INCLUDE) -c $< -o $(OBJDIR)/$@
 
 clean:
-	@echo "$(TEXT_RESET)"
 	@rm -rf $(OBJDIR)
-	@echo "$(YELLOW)Delete 'o' files"
 
 fclean: clean
 	@echo "$(TEXT_RESET)"
-	@rm -f $(NAME) */**/*.replace */*.replace *.replace test
-	@make fclean -C $(TEST_DIR)
+	@rm -f $(NAME) */**/*.replace */*.replace *.replace
 	@echo "$(YELLOW)Delete the binary file '$(NAME)'"
 	@echo
 

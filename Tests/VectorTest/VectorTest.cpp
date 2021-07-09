@@ -13,6 +13,7 @@ void	VectorTest::test() const {
 	testPopBack();
 	testPushBack();
 	testSingleInsert();
+	testFillInsert();
 	testSize();
 	testBegin();
 	testEnd();
@@ -579,6 +580,30 @@ void	VectorTest::testSingleInsert() const {
 		TO_EQUAL_VECTOR(ftVector, stlVector);
 	}
 	{
+		ft::vector<int>		ftVector;
+		std::vector<int>	stlVector;
+
+		ft::vector<int>::iterator	ftIterator = ftVector.end();
+		std::vector<int>::iterator	stlIterator = stlVector.end();
+
+		ftVector.insert(ftIterator, 10);
+		stlVector.insert(stlIterator, 10);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector;
+		std::vector<int>	stlVector;
+
+		ft::vector<int>::iterator	ftIterator = ftVector.end()++;
+		std::vector<int>::iterator	stlIterator = stlVector.end()++;
+
+		ftVector.insert(ftIterator, 10);
+		stlVector.insert(stlIterator, 10);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
 		ft::vector<int>		ftVector(10, 4);
 		std::vector<int>	stlVector(10, 4);
 
@@ -861,6 +886,157 @@ void VectorTest::testReserve() const {
 
 		ftVector.reserve(100);
 		stlVector.reserve(100);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	std::cout << std::endl;
+}
+
+void	VectorTest::testFillInsert() const {
+	std::cout << "* insert()<fill>: ";
+	{
+		ft::vector<int>		ftVector(2, 3);
+		std::vector<int>	stlVector(2, 3);
+
+		ft::vector<int>::iterator	ftIterator = ftVector.begin();
+		std::vector<int>::iterator	stlIterator = stlVector.begin();
+
+		ftVector.insert(ftIterator, 4, 14);
+		stlVector.insert(stlIterator, 4, 14);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector;
+		std::vector<int>	stlVector;
+
+		ft::vector<int>::iterator	ftIterator = ftVector.end();
+		std::vector<int>::iterator	stlIterator = stlVector.end();
+
+		ftVector.insert(ftIterator, 10, 5);
+		stlVector.insert(stlIterator, 10, 5);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector;
+		std::vector<int>	stlVector;
+
+		ft::vector<int>::iterator	ftIterator = ftVector.end()++;
+		std::vector<int>::iterator	stlIterator = stlVector.end()++;
+
+		ftVector.insert(ftIterator, 10, 5);
+		stlVector.insert(stlIterator, 10, 5);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector(10, 4);
+		std::vector<int>	stlVector(10, 4);
+
+		ft::vector<int>::iterator	ftIterator = --(ftVector.end());
+		std::vector<int>::iterator	stlIterator = --(stlVector.end());
+
+		ftVector.insert(ftIterator, 2, 17);
+		stlVector.insert(stlIterator, 2, 17);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector(5, 4);
+		std::vector<int>	stlVector(5, 4);
+
+		ft::vector<int>::iterator	ftIterator = ftVector.begin();
+		std::vector<int>::iterator	stlIterator = stlVector.begin();
+
+		ftVector.insert(ftIterator, 10, 50);
+		stlVector.insert(stlIterator, 10, 50);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector(10, 4);
+		std::vector<int>	stlVector(10, 4);
+
+		ft::vector<int>::iterator	ftIterator = --(ftVector.end());
+		std::vector<int>::iterator	stlIterator = --(stlVector.end());
+
+		
+		ftVector.insert(ftIterator, 0, 10);
+		stlVector.insert(stlIterator, 0, 10);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector(10, 4);
+		std::vector<int>	stlVector(10, 4);
+
+		int rand = std::rand();
+		for (int i = 0; i < 100; i++) {
+			ftVector.push_back(rand);
+			stlVector.push_back(rand);
+			rand = std::rand();
+		}
+
+		ft::vector<int>::iterator	ftIterator = --(ftVector.end());
+		std::vector<int>::iterator	stlIterator = --(stlVector.end());
+
+		ftVector.insert(ftIterator, 10, 1);
+		stlVector.insert(stlIterator, 10, 1);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector(10, 4);
+		std::vector<int>	stlVector(10, 4);
+
+
+		for (int i = 0; i < 100; i++) {
+			ftVector.push_back(i);
+			stlVector.push_back(i);
+		
+		}
+		ft::vector<int>::iterator	ftIterator = ftVector.begin() + 2;
+		std::vector<int>::iterator	stlIterator = stlVector.begin() + 2;
+		
+		ftVector.insert(ftIterator, 100, 10);
+		stlVector.insert(stlIterator, 100, 10);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector(55, 4);
+		std::vector<int>	stlVector(55, 4);
+
+		ft::vector<int>::iterator	ftIterator = ftVector.begin();
+		std::vector<int>::iterator	stlIterator = stlVector.begin();
+
+		ftVector.insert(ftIterator, 55, 1);
+		stlVector.insert(stlIterator, 55, 1);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector(55, 4);
+		std::vector<int>	stlVector(55, 4);
+
+		ft::vector<int>::iterator	ftIterator = ftVector.begin() + 10;
+		std::vector<int>::iterator	stlIterator = stlVector.begin() + 10;
+
+		ftVector.insert(ftIterator, 0, 55);
+		stlVector.insert(stlIterator, 0, 55);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector(55, 4);
+		std::vector<int>	stlVector(55, 4);
+
+		ft::vector<int>::iterator	ftIterator = ftVector.begin() + 10;
+		std::vector<int>::iterator	stlIterator = stlVector.begin() + 10;
+
+		ftVector.insert(ftIterator, 100, 55);
+		stlVector.insert(stlIterator, 100, 55);
 
 		TO_EQUAL_VECTOR(ftVector, stlVector);
 	}

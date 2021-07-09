@@ -24,6 +24,7 @@ class VectorTest {
 		void testCapasity() const;
 		void testMaxSize() const;
 		void testSingleInsert() const;
+		void testFillInsert() const;
 		void testPopBack() const;
 		void testPushBack() const;
 		void testReserve() const;

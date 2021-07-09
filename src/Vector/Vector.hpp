@@ -61,7 +61,7 @@ namespace ft {
 			// void 						resize(size_type n, value_type val = value_type());
 			size_type					capacity() const;
 			bool						empty() const;
-			// void						reserve(size_type n);
+			void						reserve(size_type n);
 
 			/*
 			** Element access
@@ -106,7 +106,6 @@ namespace ft {
 				allocator_type	_allocator;
 
 				void destroyAllElems();
-				void reserve(size_type size);
 	};
 }
 

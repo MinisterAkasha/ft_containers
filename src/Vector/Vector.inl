@@ -29,7 +29,7 @@ namespace ft
 
 	template <class T, class Allocator>
 	vector<T, Allocator>::~vector() {
-		value_type *start = _arr;
+		pointer start = _arr;
 		this->destroyAllElems();
 		_allocator.deallocate(start, _capacity);
 	}
@@ -72,14 +72,33 @@ namespace ft
 		return _allocator.max_size();
 	}
 
+	template <class T, class Allocator>
+	void	vector<T, Allocator>::reserve(size_type size) {
+		if (size > _capacity) {
+			pointer new_arr = _allocator.allocate(size);
+			pointer prevArr = _arr;
+			for (size_type i = 0; i < _size; i++) {
+				_allocator.construct(new_arr + i, *prevArr);
+				prevArr++;
+			}
+			this->~vector();
+			_arr = new_arr;
+			_capacity = size;
+		}
+	}
+
 	/*
 	** Modifiers
 	*/
 
 	template <class T, class Allocator>
 	void	vector<T, Allocator>::push_back(const value_type& val) {
-		if (_size == _capacity)
-			this->reserve(_capacity * 2);
+		if (_size == _capacity) {
+			if (_capacity == 0)
+				reserve(1);
+			else
+				reserve(_capacity * 2);
+		}
 		_allocator.construct(_arr + _size, val);
 		_size++;
 	}
@@ -92,9 +111,7 @@ namespace ft
 
 	template <class T, class Allocator>
 	typename vector<T, Allocator>::iterator	vector<T, Allocator>::insert(iterator position, const value_type& val) {
-		if (val)
-			return position;
-		return position;
+		return _arr;
 	}
 
 	/*
@@ -122,24 +139,13 @@ namespace ft
 
 	template <class T, class Allocator>
 	void	vector<T, Allocator>::destroyAllElems() {
-		value_type* end = _arr + _size - 1;
+		if (_size != 0) {
+			pointer end = _arr + _size - 1;
 
-		while (end >= _arr) {
-			_allocator.destroy(end);
-			end--;
-		}
-	}
-
-	template <class T, class Allocator>
-	void	vector<T, Allocator>::reserve(size_type size) {
-		if (size > _capacity) {
-			value_type* new_arr;
-			new_arr = _allocator.allocate(size);
-			for (size_type i = 0; i < _size; i++) 
-				_allocator.construct(new_arr + i, _arr[i]);
-			this->~vector();
-			_arr = new_arr;
-			_capacity = size;
+			while (end >= _arr) {
+				_allocator.destroy(end);
+				end--;
+			}
 		}
 	}
 }

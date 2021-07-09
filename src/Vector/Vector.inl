@@ -75,14 +75,14 @@ namespace ft
 	template <class T, class Allocator>
 	void	vector<T, Allocator>::reserve(size_type size) {
 		if (size > _capacity) {
-			pointer new_arr = _allocator.allocate(size);
+			pointer newArr = _allocator.allocate(size);
 			pointer prevArr = _arr;
 			for (size_type i = 0; i < _size; i++) {
-				_allocator.construct(new_arr + i, *prevArr);
+				_allocator.construct(newArr + i, *prevArr);
 				prevArr++;
 			}
 			this->~vector();
-			_arr = new_arr;
+			_arr = newArr;
 			_capacity = size;
 		}
 	}
@@ -93,12 +93,8 @@ namespace ft
 
 	template <class T, class Allocator>
 	void	vector<T, Allocator>::push_back(const value_type& val) {
-		if (_size == _capacity) {
-			if (_capacity == 0)
-				reserve(1);
-			else
-				reserve(_capacity * 2);
-		}
+		if (_size == _capacity)
+				reserve(_capacity * 2 ? _capacity * 2 : 1);
 		_allocator.construct(_arr + _size, val);
 		_size++;
 	}
@@ -111,7 +107,26 @@ namespace ft
 
 	template <class T, class Allocator>
 	typename vector<T, Allocator>::iterator	vector<T, Allocator>::insert(iterator position, const value_type& val) {
-		return _arr;
+		size_type index = 0;
+
+		while (begin() + index != position && index < _size)
+			index++;
+
+		if (_size == _capacity)
+			reserve(_capacity * 2 ? _capacity * 2 : 1);
+
+		pointer newArr = _allocator.allocate(_capacity);
+		size_type oldArrIndex = 0;
+		for (size_type i = 0; i < _size + 1; i++) {
+			if (i == index)
+				_allocator.construct(newArr + index, val);
+			else
+				_allocator.construct(newArr + i, _arr[oldArrIndex++]);
+		}
+		this->~vector();
+		_arr = newArr;
+		_size++;
+		return &_arr[index];
 	}
 
 	/*

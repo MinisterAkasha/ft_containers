@@ -33,12 +33,12 @@ namespace ft {
 	}
 
 	template <typename T>
-	T& 	VectorIterator<T>::operator*() {
+	typename VectorIterator<T>::reference 	VectorIterator<T>::operator*() {
 		return *_ptr;
 	}
 
 	template <typename T>
-	T* 	VectorIterator<T>::operator->() {
+	typename VectorIterator<T>::pointer 	VectorIterator<T>::operator->() {
 		return _ptr;
 	}
 
@@ -104,34 +104,30 @@ namespace ft {
 		return _ptr <= other._ptr;
 	}
 
-	// template <typename T>
-	// VectorIterator<T>& 		VectorIterator<T>::operator-=(ptrdiff_t n) {
+	template <typename T>
+	VectorIterator<T>& 		VectorIterator<T>::operator-=(ptrdiff_t n) {
+		_ptr -= n;
+		return *this;
+	}
 
-	// }
+	template <typename T>
+	VectorIterator<T>& 		VectorIterator<T>::operator+=(ptrdiff_t n) {
+		_ptr += n;
+		return *this;
+	}
 
-	// template <typename T>
-	// VectorIterator<T>& 		VectorIterator<T>::operator+=(ptrdiff_t n) {
-		
-	// }
+	template <typename T>
+	VectorIterator<T> 		VectorIterator<T>::operator-(ptrdiff_t n) const {
+		return _ptr - n;
+	}
 
-	// template <typename T>
-	// VectorIterator<T> 		VectorIterator<T>::operator-(ptrdiff_t n) const {
-	// 	VectorIterator tmp = VectorIterator(*this);
+	template <typename T>
+	VectorIterator<T> 		VectorIterator<T>::operator+(ptrdiff_t n) const {
+		return _ptr + n;
+	}
 
-	// 	_ptr -= n;
-	// 	return tmp;
-	// }
-
-	// template <typename T>
-	// VectorIterator<T> 		VectorIterator<T>::operator+(ptrdiff_t n) const {
-	// 	VectorIterator tmp = VectorIterator(*this);
-
-	// 	_ptr += n;
-	// 	return tmp;
-	// }
-
-	// template <typename T>
-	// T& 	VectorIterator<T>::operator[](ptrdiff_t n) const {
-		
-	// }
+	template <typename T>
+	typename VectorIterator<T>::reference 	VectorIterator<T>::operator[](ptrdiff_t n) const {
+		return (*(operator+(n)));
+	}
 }

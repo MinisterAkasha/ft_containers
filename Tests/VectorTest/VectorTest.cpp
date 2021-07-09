@@ -20,6 +20,7 @@ void	VectorTest::test() const {
 	testCapasity();
 	testMaxSize();
 	testSingleInsert();
+	testReserve();
 }
 
 void	VectorTest::testFillConstructor() const {
@@ -735,6 +736,74 @@ void VectorTest::testPushBack() const {
 
 		ftVector.push_back("vector");
 		stlVector.push_back("vector");
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	std::cout << std::endl;
+}
+
+void VectorTest::testReserve() const {
+	std::cout << "* reserve(): ";
+	{
+		ft::vector<int>		ftVector;
+		std::vector<int>	stlVector;
+
+		ftVector.reserve(100);
+		stlVector.reserve(100);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector;
+		std::vector<int>	stlVector;
+
+		ftVector.reserve(0);
+		stlVector.reserve(0);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector;
+		std::vector<int>	stlVector;
+
+		ftVector.reserve(0);
+		stlVector.reserve(0);
+
+		TO_EQUAL(ftVector.capacity(), stlVector.capacity());
+	}
+	{
+		ft::vector<int>		ftVector;
+		std::vector<int>	stlVector;
+
+		ftVector.reserve(100);
+		stlVector.reserve(100);
+
+		TO_EQUAL(ftVector.capacity(), stlVector.capacity());
+	}
+	{
+		ft::vector<std::string>		ftVector;
+		std::vector<std::string>	stlVector;
+
+		ftVector.reserve(100);
+		stlVector.reserve(100);
+
+		TO_EQUAL(ftVector.capacity(), stlVector.capacity());
+	}
+	{
+		ft::vector<std::string>		ftVector(10, std::string("vector"));
+		std::vector<std::string>	stlVector(10, std::string("vector"));
+
+		ftVector.reserve(100);
+		stlVector.reserve(100);
+
+		TO_EQUAL(ftVector.capacity(), stlVector.capacity());
+	}
+	{
+		ft::vector<std::string>		ftVector(10, std::string("vector"));
+		std::vector<std::string>	stlVector(10, std::string("vector"));
+
+		ftVector.reserve(100);
+		stlVector.reserve(100);
 
 		TO_EQUAL_VECTOR(ftVector, stlVector);
 	}

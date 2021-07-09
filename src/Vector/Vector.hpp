@@ -85,7 +85,7 @@ namespace ft {
 			void 						push_back(const value_type& val);
 			void						pop_back();
 			iterator					insert(iterator position, const value_type& val); // single element
-		    // void 						insert(iterator position, size_type n, const value_type& val); // fill
+		    void 						insert(iterator position, size_type n, const value_type& val); // fill
 			// template <class InputIterator>
     		// void 						insert(iterator position, InputIterator first, InputIterator last); // range
 			// iterator 					erase(iterator position);

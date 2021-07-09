@@ -129,6 +129,12 @@ namespace ft
 		return &_arr[index];
 	}
 
+	template <class T, class Allocator>
+	void vector<T, Allocator>::insert(iterator position, size_type n, const value_type& val) {
+		while (n--)
+			position = insert(position, val);
+	}
+
 	/*
 	** Overload
 	*/

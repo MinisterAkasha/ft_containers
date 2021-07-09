@@ -9,6 +9,8 @@ VectorTest::~VectorTest() {}
 void	VectorTest::test() const {
 	std::cout << "<-- Vector test -->" << std::endl;
 	std::srand(time(NULL));
+	testPopBack();
+	testPushBack();
 	testSize();
 	testBegin();
 	testEnd();
@@ -17,6 +19,7 @@ void	VectorTest::test() const {
 	testEmpty();
 	testCapasity();
 	testMaxSize();
+	testSingleInsert();
 }
 
 void	VectorTest::testFillConstructor() const {
@@ -322,7 +325,7 @@ void	VectorTest::testEqualOperator() const {
 		ft::vector<double> vector1;
 		ft::vector<double> vector2;
 
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 5; i++) {
 			vector1.push_back(std::rand());
 		}
 		vector2 = vector1;
@@ -446,6 +449,15 @@ void	VectorTest::testCapasity() const {
 		TO_EQUAL(ftVector.capacity(), stlVector.capacity());
 	}
 	{
+		ft::vector<int> ftVector;
+		std::vector<int> stlVector;
+
+		ftVector.push_back(10);
+		stlVector.push_back(10);
+
+		TO_EQUAL(ftVector.capacity(), stlVector.capacity());
+	}
+	{
 		ft::vector<std::string> ftVector(100);
 		std::vector<std::string> stlVector(100);
 
@@ -547,6 +559,184 @@ void	VectorTest::testMaxSize() const {
 			rand = std::rand();
 		}
 		TO_EQUAL(ftVector.max_size(), stlVector.max_size());
+	}
+	std::cout << std::endl;
+}
+
+void	VectorTest::testSingleInsert() const {
+	std::cout << "* insert()<single elem>: ";
+	{
+		ft::vector<int>		ftVector;
+		std::vector<int>	stlVector;
+
+		ft::vector<int>::iterator	ftIterator = ftVector.begin();
+		std::vector<int>::iterator	stlIterator = stlVector.begin();
+
+		ftVector.insert(ftIterator, 10);
+		stlVector.insert(stlIterator, 10);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector(10, 4);
+		std::vector<int>	stlVector(10, 4);
+
+		ft::vector<int>::iterator	ftIterator = --(ftVector.end());
+		std::vector<int>::iterator	stlIterator = --(stlVector.end());
+
+		ftVector.insert(ftIterator, 10);
+		stlVector.insert(stlIterator, 10);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector(10, 4);
+		std::vector<int>	stlVector(10, 4);
+
+		ft::vector<int>::iterator	ftIterator = --(ftVector.end());
+		std::vector<int>::iterator	stlIterator = --(stlVector.end());
+
+		
+		ftVector.insert(ftIterator, 10);
+		stlVector.insert(stlIterator, 10);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector(10, 4);
+		std::vector<int>	stlVector(10, 4);
+
+		int rand = std::rand();
+		for (int i = 0; i < 100; i++) {
+			ftVector.push_back(rand);
+			stlVector.push_back(rand);
+			rand = std::rand();
+		}
+
+		ft::vector<int>::iterator	ftIterator = --(ftVector.end());
+		std::vector<int>::iterator	stlIterator = --(stlVector.end());
+
+		ftVector.insert(ftIterator, 10);
+		stlVector.insert(stlIterator, 10);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector(10, 4);
+		std::vector<int>	stlVector(10, 4);
+
+
+		for (int i = 0; i < 100; i++) {
+			ftVector.push_back(i);
+			stlVector.push_back(i);
+		
+		}
+		ft::vector<int>::iterator	ftIterator = ftVector.begin() + 2;
+		std::vector<int>::iterator	stlIterator = stlVector.begin() + 2;
+		
+		ftVector.insert(ftIterator, 100);
+		stlVector.insert(stlIterator, 100);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	std::cout << std::endl;
+}
+
+void VectorTest::testPopBack() const {
+	std::cout << "* pop_back(): ";
+	{
+		ft::vector<int>		ftVector(10, 10);
+		std::vector<int>	stlVector(10, 10);
+
+		ftVector.pop_back();
+		stlVector.pop_back();
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector(100, 1000);
+		std::vector<int>	stlVector(100, 1000);
+
+		for (int i = 0; i < 100; i++) {
+			ftVector.pop_back();
+			stlVector.pop_back();
+		}
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<std::string>		ftVector(100, std::string("string"));
+		std::vector<std::string>	stlVector(100, std::string("string"));
+
+		for (int i = 0; i < 50; i++) {
+			ftVector.pop_back();
+			stlVector.pop_back();
+		}
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<std::string>		ftVector(1, std::string("looooooooooooooooooooooooooooong string"));
+		std::vector<std::string>	stlVector(1, std::string("looooooooooooooooooooooooooooong string"));
+
+		ftVector.pop_back();
+		stlVector.pop_back();
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	std::cout << std::endl;
+}
+
+void VectorTest::testPushBack() const {
+	std::cout << "* push_back(): ";
+	{
+		ft::vector<int>		ftVector(10, 10);
+		std::vector<int>	stlVector(10, 10);
+
+		ftVector.push_back(4);
+		stlVector.push_back(4);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector(100, 1000);
+		std::vector<int>	stlVector(100, 1000);
+
+		for (int i = 0; i < 100; i++) {
+			ftVector.push_back(i);
+			stlVector.push_back(i);
+		}
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<std::string>		ftVector(100, std::string("string"));
+		std::vector<std::string>	stlVector(100, std::string("string"));
+
+		for (int i = 0; i < 50; i++) {
+			ftVector.push_back("s");
+			stlVector.push_back("s");
+		}
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<std::string>		ftVector(1, std::string("looooooooooooooooooooooooooooong string"));
+		std::vector<std::string>	stlVector(1, std::string("looooooooooooooooooooooooooooong string"));
+
+		ftVector.push_back("vector");
+		stlVector.push_back("vector");
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<std::string>		ftVector;
+		std::vector<std::string>	stlVector;
+
+		ftVector.push_back("vector");
+		stlVector.push_back("vector");
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
 	}
 	std::cout << std::endl;
 }

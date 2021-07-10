@@ -143,6 +143,16 @@ namespace ft
 		return _arr[0];
 	}
 
+	template <class T, class Allocator>
+	typename vector<T, Allocator>::reference vector<T, Allocator>::back() {
+		return _arr[_size - 1];
+	}
+
+	template <class T, class Allocator>
+	typename vector<T, Allocator>::const_reference vector<T, Allocator>::back() const {
+		return _arr[_size - 1];
+	}
+
 	/*
 	** Modifiers
 	*/

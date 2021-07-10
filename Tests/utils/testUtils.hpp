@@ -7,6 +7,17 @@
 # define OK "\033[1;92m\u2713\033[0;0m"
 # define KO "\033[1;31m\u2718\033[0;0m"
 
+template <class ftVector, class stlVector>
+void	createRandomVectors(ftVector& ft, stlVector& stl, size_t size) {
+	int	rand = std::rand();
+
+	for (size_t i = 0; i < size; i++) {
+		ft.push_back(rand);
+		stl.push_back(rand);
+		rand = std::rand();
+	}
+}
+
 template <class ftIterator, class stlIterator, class size_type, class T>
 void createBeginIterators(ftIterator& myIterator, stlIterator& defoultIterator, size_type size, T value) {
 	ft::vector<T>	myVector(size, value);

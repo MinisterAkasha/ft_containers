@@ -31,6 +31,7 @@ class VectorTest {
 		void testReserve() const;
 		void testClear() const;
 		void testSingleErase() const;
+		void testRangeErase() const;
 	
 	public:
 		VectorTest();

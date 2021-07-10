@@ -25,6 +25,7 @@ void	VectorTest::test() const {
 	testMaxSize();
 	testClear();
 	testSingleErase();
+	testRangeErase();
 }
 
 void	VectorTest::testFillConstructor() const {
@@ -1256,6 +1257,15 @@ void	VectorTest::testSingleErase() const {
 		ft::vector<int>		ftVector(2, 3);
 		std::vector<int>	stlVector(2, 3);
 		
+		ftVector.erase(--ftVector.end());
+		stlVector.erase(--stlVector.end());
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector(2, 3);
+		std::vector<int>	stlVector(2, 3);
+		
 		createRandomVectors(ftVector, stlVector, 100);
 
 		ftVector.erase(ftVector.begin());
@@ -1402,4 +1412,231 @@ void	VectorTest::testSingleErase() const {
 	std::cout << std::endl;
 }
 
+void	VectorTest::testRangeErase() const {
+	std::cout << "* erase()<range>: ";
+	{
+		ft::vector<int>		ftVector(2, 3);
+		std::vector<int>	stlVector(2, 3);
+		
+		ftVector.erase(ftVector.begin(), ftVector.begin() + 1);
+		stlVector.erase(stlVector.begin(), stlVector.begin() + 1);
 
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector(2, 3);
+		std::vector<int>	stlVector(2, 3);
+		
+		// createRandomVectors(ftVector, stlVector, 2);
+		ftVector.push_back(10);
+		ftVector.push_back(20);
+		stlVector.push_back(10);
+		stlVector.push_back(20);
+
+		ftVector.erase(ftVector.begin(), ftVector.begin() + 2);
+		stlVector.erase(stlVector.begin(), stlVector.begin() + 2);
+
+		ft::vector<int>::iterator ftItr = ftVector.begin();
+		std::vector<int>::iterator stlItr = stlVector.begin();
+
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector(2, 3);
+		std::vector<int>	stlVector(2, 3);
+		
+		createRandomVectors(ftVector, stlVector, 100);
+
+		ftVector.erase(ftVector.begin() + 50, ftVector.begin() + 80);
+		stlVector.erase(stlVector.begin() + 50, stlVector.begin() + 80);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector;
+		std::vector<int>	stlVector;
+		
+		createRandomVectors(ftVector, stlVector, 100);
+
+		ftVector.erase(ftVector.begin() + 50, ftVector.begin() + 80);
+		stlVector.erase(stlVector.begin() + 50, stlVector.begin() + 80);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector;
+		std::vector<int>	stlVector;
+		
+		createRandomVectors(ftVector, stlVector, 100);
+
+		ftVector.erase(ftVector.begin() + 50, ftVector.begin() + 80);
+		stlVector.erase(stlVector.begin() + 50, stlVector.begin() + 80);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector;
+		std::vector<int>	stlVector;
+		
+		createRandomVectors(ftVector, stlVector, 100);
+
+		ftVector.erase(ftVector.begin(), ftVector.end());
+		stlVector.erase(stlVector.begin(), stlVector.end());
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector(100, 20);
+		std::vector<int>	stlVector(100, 20);
+		
+		createRandomVectors(ftVector, stlVector, 100);
+
+		ftVector.erase(ftVector.end() - 80, ftVector.end() - 50);
+		stlVector.erase(stlVector.end() - 80, stlVector.end() - 50);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<std::string>		ftVector(10, "vector");
+		std::vector<std::string>	stlVector(10, "vector");
+		
+		ftVector.erase(ftVector.begin(), ftVector.begin());
+		stlVector.erase(stlVector.begin(), stlVector.begin());
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<std::string>		ftVector(10, "vector");
+		std::vector<std::string>	stlVector(10, "vector");
+		
+		ftVector.erase(ftVector.begin() + 5, ftVector.begin() + 8);
+		stlVector.erase(stlVector.begin() + 5, stlVector.begin() + 8);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<std::string>		ftVector(10, "vector");
+		std::vector<std::string>	stlVector(10, "vector");
+		
+		ftVector.erase(ftVector.begin(), ftVector.begin() + 9);
+		stlVector.erase(stlVector.begin(), stlVector.begin() + 9);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector(2, 3);
+		std::vector<int>	stlVector(2, 3);
+
+		ft::vector<int>::iterator	ftIterator = ftVector.erase(ftVector.begin(), ftVector.begin() + 1);
+		std::vector<int>::iterator	stlIterator = stlVector.erase(stlVector.begin(), stlVector.begin() + 1);
+		
+		TO_EQUAL(*ftIterator, *stlIterator);
+	}
+	{
+		ft::vector<int>		ftVector(2, 3);
+		std::vector<int>	stlVector(2, 3);
+		
+		createRandomVectors(ftVector, stlVector, 100);
+
+		ft::vector<int>::iterator	ftIterator = ftVector.erase(ftVector.begin(), ftVector.begin() + 50);
+		std::vector<int>::iterator	stlIterator = stlVector.erase(stlVector.begin(), stlVector.begin() + 50);
+
+		TO_EQUAL(*ftIterator, *stlIterator);
+	}
+	{
+		ft::vector<int>		ftVector(2, 3);
+		std::vector<int>	stlVector(2, 3);
+		
+		createRandomVectors(ftVector, stlVector, 100);
+
+		ft::vector<int>::iterator	ftIterator = ftVector.erase(ftVector.begin() + 50, ftVector.begin() + 80);
+		std::vector<int>::iterator	stlIterator = stlVector.erase(stlVector.begin() + 50, stlVector.begin() + 80);
+
+		TO_EQUAL(*ftIterator, *stlIterator);
+	}
+	{
+		ft::vector<int>		ftVector;
+		std::vector<int>	stlVector;
+		
+		createRandomVectors(ftVector, stlVector, 100);
+
+		ft::vector<int>::iterator	ftIterator = ftVector.erase(ftVector.begin() + 50, ftVector.begin() + 80);
+		std::vector<int>::iterator	stlIterator = stlVector.erase(stlVector.begin() + 50, stlVector.begin() + 80);
+
+
+		TO_EQUAL(*ftIterator, *stlIterator);
+	}
+	{
+		ft::vector<int>		ftVector(100, 150);
+		std::vector<int>	stlVector(100, 150);
+		
+		createRandomVectors(ftVector, stlVector, 100);
+
+		ft::vector<int>::iterator	ftIterator = ftVector.erase(ftVector.begin() + 50, ftVector.end());
+		std::vector<int>::iterator	stlIterator = stlVector.erase(stlVector.begin() + 50, stlVector.end());
+
+		TO_EQUAL(*ftIterator, *stlIterator);
+	}
+	{
+		ft::vector<int>		ftVector;
+		std::vector<int>	stlVector;
+		
+		createRandomVectors(ftVector, stlVector, 5);
+
+		ft::vector<int>::iterator	ftIterator = ftVector.erase(ftVector.begin() + 2, ftVector.begin() + 4);
+		std::vector<int>::iterator	stlIterator = stlVector.erase(stlVector.begin() + 2, stlVector.begin() + 4);
+
+		TO_EQUAL(*ftIterator, *stlIterator);
+	}
+	{
+		ft::vector<int>		ftVector(100, 20);
+		std::vector<int>	stlVector(100, 20);
+		
+		createRandomVectors(ftVector, stlVector, 100);
+
+		ft::vector<int>::iterator	ftIterator = ftVector.erase(ftVector.end() - 80, ftVector.end() - 50);
+		std::vector<int>::iterator	stlIterator = stlVector.erase(stlVector.end() - 80, stlVector.end() - 50);
+
+		TO_EQUAL(*ftIterator, *stlIterator);
+	}
+	{
+		ft::vector<int>		ftVector;
+		std::vector<int>	stlVector;
+		
+		createRandomVectors(ftVector, stlVector, 100);
+
+		ft::vector<int>::iterator	ftIterator = ftVector.erase(ftVector.end() - 80, ftVector.end() - 50);
+		std::vector<int>::iterator	stlIterator = stlVector.erase(stlVector.end() - 80, stlVector.end() - 50);
+
+		TO_EQUAL(*ftIterator, *stlIterator);
+	}
+	{
+		ft::vector<std::string>		ftVector(10, "vector");
+		std::vector<std::string>	stlVector(10, "vector");
+
+		ft::vector<std::string>::iterator	ftIterator = ftVector.erase(ftVector.begin(), ftVector.begin() + 5);
+		std::vector<std::string>::iterator	stlIterator = stlVector.erase(stlVector.begin(), stlVector.begin() + 5);
+		
+		TO_EQUAL(*ftIterator, *stlIterator);
+	}
+	{
+		ft::vector<std::string>		ftVector(10, "vector");
+		std::vector<std::string>	stlVector(10, "vector");
+
+		ft::vector<std::string>::iterator	ftIterator = ftVector.erase(ftVector.begin(), ftVector.begin());
+		std::vector<std::string>::iterator	stlIterator = stlVector.erase(stlVector.begin(), stlVector.begin() + 5);
+		
+		TO_EQUAL(*ftIterator, *stlIterator);
+	}
+	{
+		ft::vector<std::string>		ftVector(10, "vector");
+		std::vector<std::string>	stlVector(10, "vector");
+
+		ft::vector<std::string>::iterator	ftIterator = ftVector.erase(ftVector.begin(), ftVector.begin() + 9);
+		std::vector<std::string>::iterator	stlIterator = stlVector.erase(stlVector.begin(), stlVector.begin() + 9);
+		
+		TO_EQUAL(*ftIterator, *stlIterator);
+	}
+	std::cout << std::endl;
+}

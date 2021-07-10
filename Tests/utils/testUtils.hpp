@@ -7,6 +7,17 @@
 # define OK "\033[1;92m\u2713\033[0;0m"
 # define KO "\033[1;31m\u2718\033[0;0m"
 
+template <class Vector>
+void	printVector(Vector& v) {
+	typename Vector::iterator itr = v.begin();
+
+	while (itr != v.end()) {
+		std::cout << *itr << " " << std::endl;
+		itr++;
+	}
+	std::cout << std::endl;
+}
+
 template <class ftVector, class stlVector>
 void	createRandomVectors(ftVector& ft, stlVector& stl, size_t size) {
 	int	rand = std::rand();
@@ -28,36 +39,36 @@ void createBeginIterators(ftIterator& myIterator, stlIterator& defoultIterator, 
 }
 
 template <class T1>
-void	TO_EQUAL(T1 value1, T1 value2) {
+bool	TO_EQUAL(T1 value1, T1 value2) {
 	if (value1 == value2)
-		std::cout << OK << " ";
-	else {
-		std::cout << KO << " ";
-		std::cout << "[Actual value: " << value1 << " .Shoud be: " << value2 << "] " ;
-	}
+		return true;
+	else 
+		return false;
 }
 
 template <class V1, class V2>
-void	TO_EQUAL_VECTOR(V1& ftVector, V2& stlVector) {
+bool	TO_EQUAL_VECTOR(V1& ftVector, V2& stlVector) {
 	typename V1::iterator		myIterator = ftVector.begin();
 	typename V2::iterator		stlIterator = stlVector.begin();
 
-	if (ftVector.size() != stlVector.size()) {
-		std::cout << KO << " ";
-		std::cout << "[Actual size: " << ftVector.size() << " .Shoud be: " << stlVector.size() << "] ";
-		return ;
-	}
+	if (ftVector.size() != stlVector.size())
+		return false;
 	
 	while (myIterator != ftVector.end() || stlIterator != stlVector.end()) {
-		if (*myIterator != *stlIterator) {
-			std::cout << KO << " ";
-			std::cout << "[Actual value: " << *myIterator << " .Shoud be: " << *stlIterator << "] " ;
-			return ;
-		}
+		if (*myIterator != *stlIterator) 
+			return false;
 		myIterator++;
 		stlIterator++;
 	}
-	std::cout << OK << " ";
+	return true;
+}
+
+template<class Bool>
+void	PRINT_RESULT(Bool res) {
+	if (res)
+		std::cout << OK << " ";
+	else
+		std::cout << KO << " ";
 }
 
 #endif

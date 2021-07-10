@@ -26,6 +26,7 @@ void	VectorTest::test() const {
 	testClear();
 	testSingleErase();
 	testRangeErase();
+	testSwap();
 }
 
 void	VectorTest::testFillConstructor() const {
@@ -38,7 +39,7 @@ void	VectorTest::testFillConstructor() const {
 		ft::vector<int>		myVector(size, value);
 		std::vector<int>	stlVector(size, value);
 
-		TO_EQUAL_VECTOR(myVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(myVector, stlVector));
 	}
 	{
 		int		value = 0;
@@ -46,7 +47,7 @@ void	VectorTest::testFillConstructor() const {
 		ft::vector<int>		myVector(size, value);
 		std::vector<int>	stlVector(size, value);
 
-		TO_EQUAL_VECTOR(myVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(myVector, stlVector));
 	}
 	{
 				size = 0;
@@ -54,7 +55,7 @@ void	VectorTest::testFillConstructor() const {
 		ft::vector<int>		myVector(size);
 		std::vector<int>	stlVector(size);
 
-		TO_EQUAL_VECTOR(myVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(myVector, stlVector));
 	}
 	{
 		std::string		value = "string";
@@ -62,7 +63,7 @@ void	VectorTest::testFillConstructor() const {
 		ft::vector<std::string>		myVector(size, value);
 		std::vector<std::string>	stlVector(size, value);
 
-		TO_EQUAL_VECTOR(myVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(myVector, stlVector));
 	}
 	{
 		std::string		value = "string";
@@ -70,7 +71,7 @@ void	VectorTest::testFillConstructor() const {
 		ft::vector<std::string>		myVector(size, value);
 		std::vector<std::string>	stlVector(size, value);
 
-		TO_EQUAL_VECTOR(myVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(myVector, stlVector));
 	}
 	{
 		double		value = 132.021;
@@ -78,7 +79,7 @@ void	VectorTest::testFillConstructor() const {
 		ft::vector<double>		myVector(size, value);
 		std::vector<double>	stlVector(size, value);
 
-		TO_EQUAL_VECTOR(myVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(myVector, stlVector));
 	}
 	
 
@@ -98,7 +99,7 @@ void	VectorTest::testBegin() const {
 		myIterator = myVector.begin();
 		stlIterator = stlVector.begin();
 
-		TO_EQUAL(*myIterator, *stlIterator);
+		PRINT_RESULT(TO_EQUAL(*myIterator, *stlIterator));
 	}
 
 	{
@@ -111,7 +112,7 @@ void	VectorTest::testBegin() const {
 		myIterator = myVector.begin();
 		stlIterator = stlVector.begin();
 
-		TO_EQUAL(*myIterator, *stlIterator);
+		PRINT_RESULT(TO_EQUAL(*myIterator, *stlIterator));
 	}
 
 	{
@@ -124,7 +125,7 @@ void	VectorTest::testBegin() const {
 		myIterator = myVector.begin();
 		stlIterator = stlVector.begin();
 
-		TO_EQUAL(*myIterator, *stlIterator);
+		PRINT_RESULT(TO_EQUAL(*myIterator, *stlIterator));
 	}
 
 	{
@@ -137,7 +138,7 @@ void	VectorTest::testBegin() const {
 		myIterator = myVector.begin();
 		stlIterator = stlVector.begin();
 
-		TO_EQUAL(*myIterator, *stlIterator);
+		PRINT_RESULT(TO_EQUAL(*myIterator, *stlIterator));
 	}
 	{
 		ft::vector<double>::iterator			myIterator;
@@ -152,7 +153,7 @@ void	VectorTest::testBegin() const {
 		myIterator = myVector.begin();
 		stlIterator = stlVector.begin();
 
-		TO_EQUAL(*myIterator, *stlIterator);
+		PRINT_RESULT(TO_EQUAL(*myIterator, *stlIterator));
 	}
 
 
@@ -172,7 +173,7 @@ void	VectorTest::testEnd() const {
 		myIterator = myVector.end();
 		stlIterator = stlVector.end();
 
-		TO_EQUAL(*(--myIterator), *(--stlIterator));
+		PRINT_RESULT(TO_EQUAL(*(--myIterator), *(--stlIterator)));
 	}
 
 	{
@@ -186,7 +187,7 @@ void	VectorTest::testEnd() const {
 		myIterator = myVector.end();
 		stlIterator = stlVector.end();
 
-		TO_EQUAL(*(--myIterator), *(--stlIterator));
+		PRINT_RESULT(TO_EQUAL(*(--myIterator), *(--stlIterator)));
 	}
 
 	{
@@ -200,7 +201,7 @@ void	VectorTest::testEnd() const {
 		myIterator = myVector.end();
 		stlIterator = stlVector.end();
 
-		TO_EQUAL(*(--myIterator), *(--stlIterator));
+		PRINT_RESULT(TO_EQUAL(*(--myIterator), *(--stlIterator)));
 	}
 
 	{
@@ -213,7 +214,7 @@ void	VectorTest::testEnd() const {
 		myIterator = myVector.end();
 		stlIterator = stlVector.end();
 
-		TO_EQUAL(*(--myIterator), *(--stlIterator));
+		PRINT_RESULT(TO_EQUAL(*(--myIterator), *(--stlIterator)));
 	}
 	{
 		ft::vector<double>::iterator			myIterator;
@@ -227,7 +228,7 @@ void	VectorTest::testEnd() const {
 		myIterator = myVector.end();
 		stlIterator = stlVector.end();
 
-		TO_EQUAL(*(--myIterator), *(--stlIterator));
+		PRINT_RESULT(TO_EQUAL(*(--myIterator), *(--stlIterator)));
 	}
 	{
 		ft::vector<double>::iterator			myIterator;
@@ -241,7 +242,7 @@ void	VectorTest::testEnd() const {
 		myIterator = myVector.end();
 		stlIterator = stlVector.end();
 
-		TO_EQUAL(*(--myIterator), *(--stlIterator));
+		PRINT_RESULT(TO_EQUAL(*(--myIterator), *(--stlIterator)));
 	}
 
 	std::cout << std::endl;
@@ -255,7 +256,7 @@ void	VectorTest::testSize() const {
 		size_t				s1 = myVector.size();
 		size_t				s2 = stlVector.size();
 
-		TO_EQUAL(s1, s2);
+		PRINT_RESULT(TO_EQUAL(s1, s2));
 	}
 	{
 		ft::vector<int>		myVector(0, 0);
@@ -263,7 +264,7 @@ void	VectorTest::testSize() const {
 		size_t				s1 = myVector.size();
 		size_t				s2 = stlVector.size();
 
-		TO_EQUAL(s1, s2);
+		PRINT_RESULT(TO_EQUAL(s1, s2));
 	}
 	{
 		ft::vector<int>		myVector(100, 100);
@@ -271,7 +272,7 @@ void	VectorTest::testSize() const {
 		size_t				s1 = myVector.size();
 		size_t				s2 = stlVector.size();
 
-		TO_EQUAL(s1, s2);
+		PRINT_RESULT(TO_EQUAL(s1, s2));
 	}
 	{
 		ft::vector<int>		myVector(15, 15);
@@ -282,7 +283,7 @@ void	VectorTest::testSize() const {
 		size_t				s1 = myVector.size();
 		size_t				s2 = stlVector.size();
 
-		TO_EQUAL(s1, s2);
+		PRINT_RESULT(TO_EQUAL(s1, s2));
 	}
 	{
 		ft::vector<int>		myVector(15, 15);
@@ -293,7 +294,7 @@ void	VectorTest::testSize() const {
 		size_t				s1 = myVector.size();
 		size_t				s2 = stlVector.size();
 
-		TO_EQUAL(s1, s2);
+		PRINT_RESULT(TO_EQUAL(s1, s2));
 	}
 	{
 		ft::vector<int>		myVector(15, 15);
@@ -304,7 +305,7 @@ void	VectorTest::testSize() const {
 		size_t				s1 = myVector.size();
 		size_t				s2 = stlVector.size();
 
-		TO_EQUAL(s1, s2);
+		PRINT_RESULT(TO_EQUAL(s1, s2));
 	}
 	std::cout << std::endl;
 }
@@ -317,7 +318,7 @@ void	VectorTest::testEqualOperator() const {
 
 		vector2 = vector1;
 
-		TO_EQUAL_VECTOR(vector1, vector2);
+		PRINT_RESULT(TO_EQUAL_VECTOR(vector1, vector2));
 	}
 	{
 		ft::vector<int> vector1;
@@ -325,7 +326,7 @@ void	VectorTest::testEqualOperator() const {
 
 		vector2 = vector1;
 
-		TO_EQUAL_VECTOR(vector1, vector2);
+		PRINT_RESULT(TO_EQUAL_VECTOR(vector1, vector2));
 	}
 	{
 		ft::vector<double> vector1;
@@ -336,7 +337,7 @@ void	VectorTest::testEqualOperator() const {
 		}
 		vector2 = vector1;
 
-		TO_EQUAL_VECTOR(vector1, vector2);
+		PRINT_RESULT(TO_EQUAL_VECTOR(vector1, vector2));
 	}
 	{
 		ft::vector<int> vector1(10, 15);
@@ -347,7 +348,7 @@ void	VectorTest::testEqualOperator() const {
 		}
 		vector2 = vector1;
 
-		TO_EQUAL_VECTOR(vector1, vector2);
+		PRINT_RESULT(TO_EQUAL_VECTOR(vector1, vector2));
 	}
 	{
 		ft::vector<std::string> vector1(10);
@@ -358,7 +359,7 @@ void	VectorTest::testEqualOperator() const {
 		}
 		vector2 = vector1;
 
-		TO_EQUAL_VECTOR(vector1, vector2);
+		PRINT_RESULT(TO_EQUAL_VECTOR(vector1, vector2));
 	}
 	{
 		ft::vector<std::string> vector1(10);
@@ -372,7 +373,7 @@ void	VectorTest::testEqualOperator() const {
 		vector2.pop_back();
 		vector1.pop_back();
 
-		TO_EQUAL_VECTOR(vector1, vector2);
+		PRINT_RESULT(TO_EQUAL_VECTOR(vector1, vector2));
 	}
 	std::cout << std::endl;
 }
@@ -383,25 +384,25 @@ void	VectorTest::testEmpty() const {
 		ft::vector<int> ftVector(10, 4);
 		std::vector<int> stlVector(10, 4);
 
-		TO_EQUAL(ftVector.empty(), stlVector.empty());
+		PRINT_RESULT(TO_EQUAL(ftVector.empty(), stlVector.empty()));
 	}
 	{
 		ft::vector<int> ftVector;
 		std::vector<int> stlVector;
 
-		TO_EQUAL(ftVector.empty(), stlVector.empty());
+		PRINT_RESULT(TO_EQUAL(ftVector.empty(), stlVector.empty()));
 	}
 	{
 		ft::vector<std::string> ftVector;
 		std::vector<std::string> stlVector;
 
-		TO_EQUAL(ftVector.empty(), stlVector.empty());
+		PRINT_RESULT(TO_EQUAL(ftVector.empty(), stlVector.empty()));
 	}
 	{
 		ft::vector<std::string> ftVector(100);
 		std::vector<std::string> stlVector(100);
 
-		TO_EQUAL(ftVector.empty(), stlVector.empty());
+		PRINT_RESULT(TO_EQUAL(ftVector.empty(), stlVector.empty()));
 	}
 	{
 		ft::vector<int> ftVector(10, 4);
@@ -413,7 +414,7 @@ void	VectorTest::testEmpty() const {
 			stlVector.push_back(rand);
 			rand = std::rand();
 		}
-		TO_EQUAL(ftVector.empty(), stlVector.empty());
+		PRINT_RESULT(TO_EQUAL(ftVector.empty(), stlVector.empty()));
 	}
 	{
 		ft::vector<int> ftVector(10, 4);
@@ -429,7 +430,7 @@ void	VectorTest::testEmpty() const {
 			ftVector.pop_back();
 			stlVector.pop_back();
 		}
-		TO_EQUAL(ftVector.empty(), stlVector.empty());
+		PRINT_RESULT(TO_EQUAL(ftVector.empty(), stlVector.empty()));
 	}
 	std::cout << std::endl;
 }
@@ -440,19 +441,33 @@ void	VectorTest::testCapasity() const {
 		ft::vector<int> ftVector(10, 4);
 		std::vector<int> stlVector(10, 4);
 
-		TO_EQUAL(ftVector.capacity(), stlVector.capacity());
+		PRINT_RESULT(TO_EQUAL(ftVector.capacity(), stlVector.capacity()));
+	}
+	{
+		ft::vector<int> ftVector1;
+		ft::vector<int> ftVector2;
+		std::vector<int> stlVector1;
+		std::vector<int> stlVector2;
+
+		createRandomVectors(ftVector1, stlVector1, 100);
+		createRandomVectors(ftVector2, stlVector2, 15);
+
+		ftVector1.swap(ftVector2);
+		stlVector1.swap(stlVector2);
+
+		PRINT_RESULT(TO_EQUAL(ftVector1.capacity(), stlVector1.capacity()) && TO_EQUAL(ftVector2.capacity(), stlVector2.capacity()));
 	}
 	{
 		ft::vector<int> ftVector;
 		std::vector<int> stlVector;
 
-		TO_EQUAL(ftVector.capacity(), stlVector.capacity());
+		PRINT_RESULT(TO_EQUAL(ftVector.capacity(), stlVector.capacity()));
 	}
 	{
 		ft::vector<std::string> ftVector;
 		std::vector<std::string> stlVector;
 
-		TO_EQUAL(ftVector.capacity(), stlVector.capacity());
+		PRINT_RESULT(TO_EQUAL(ftVector.capacity(), stlVector.capacity()));
 	}
 	{
 		ft::vector<int> ftVector;
@@ -461,13 +476,13 @@ void	VectorTest::testCapasity() const {
 		ftVector.push_back(10);
 		stlVector.push_back(10);
 
-		TO_EQUAL(ftVector.capacity(), stlVector.capacity());
+		PRINT_RESULT(TO_EQUAL(ftVector.capacity(), stlVector.capacity()));
 	}
 	{
 		ft::vector<std::string> ftVector(100);
 		std::vector<std::string> stlVector(100);
 
-		TO_EQUAL(ftVector.capacity(), stlVector.capacity());
+		PRINT_RESULT(TO_EQUAL(ftVector.capacity(), stlVector.capacity()));
 	}
 	{
 		ft::vector<int> ftVector(10, 4);
@@ -479,7 +494,7 @@ void	VectorTest::testCapasity() const {
 			stlVector.push_back(rand);
 			rand = std::rand();
 		}
-		TO_EQUAL(ftVector.capacity(), stlVector.capacity());
+		PRINT_RESULT(TO_EQUAL(ftVector.capacity(), stlVector.capacity()));
 	}
 	{
 		ft::vector<int> ftVector(10, 4);
@@ -495,7 +510,7 @@ void	VectorTest::testCapasity() const {
 			ftVector.pop_back();
 			stlVector.pop_back();
 		}
-		TO_EQUAL(ftVector.capacity(), stlVector.capacity());
+		PRINT_RESULT(TO_EQUAL(ftVector.capacity(), stlVector.capacity()));
 	}
 	std::cout << std::endl;
 }
@@ -506,25 +521,25 @@ void	VectorTest::testMaxSize() const {
 		ft::vector<int> ftVector(10, 4);
 		std::vector<int> stlVector(10, 4);
 
-		TO_EQUAL(ftVector.max_size(), stlVector.max_size());
+		PRINT_RESULT(TO_EQUAL(ftVector.max_size(), stlVector.max_size()));
 	}
 	{
 		ft::vector<int> ftVector;
 		std::vector<int> stlVector;
 
-		TO_EQUAL(ftVector.max_size(), stlVector.max_size());
+		PRINT_RESULT(TO_EQUAL(ftVector.max_size(), stlVector.max_size()));
 	}
 	{
 		ft::vector<std::string> ftVector;
 		std::vector<std::string> stlVector;
 
-		TO_EQUAL(ftVector.max_size(), stlVector.max_size());
+		PRINT_RESULT(TO_EQUAL(ftVector.max_size(), stlVector.max_size()));
 	}
 	{
 		ft::vector<std::string> ftVector(100);
 		std::vector<std::string> stlVector(100);
 
-		TO_EQUAL(ftVector.max_size(), stlVector.max_size());
+		PRINT_RESULT(TO_EQUAL(ftVector.max_size(), stlVector.max_size()));
 	}
 	{
 		ft::vector<int> ftVector(10, 4);
@@ -536,7 +551,7 @@ void	VectorTest::testMaxSize() const {
 			stlVector.push_back(rand);
 			rand = std::rand();
 		}
-		TO_EQUAL(ftVector.max_size(), stlVector.max_size());
+		PRINT_RESULT(TO_EQUAL(ftVector.max_size(), stlVector.max_size()));
 	}
 	{
 		ft::vector<int> ftVector(10, 4);
@@ -552,7 +567,7 @@ void	VectorTest::testMaxSize() const {
 			ftVector.pop_back();
 			stlVector.pop_back();
 		}
-		TO_EQUAL(ftVector.max_size(), stlVector.max_size());
+		PRINT_RESULT(TO_EQUAL(ftVector.max_size(), stlVector.max_size()));
 	}
 	{
 		ft::vector<int> ftVector(10, 4);
@@ -564,7 +579,7 @@ void	VectorTest::testMaxSize() const {
 			stlVector.push_back(rand);
 			rand = std::rand();
 		}
-		TO_EQUAL(ftVector.max_size(), stlVector.max_size());
+		PRINT_RESULT(TO_EQUAL(ftVector.max_size(), stlVector.max_size()));
 	}
 	std::cout << std::endl;
 }
@@ -581,7 +596,7 @@ void	VectorTest::testSingleInsert() const {
 		ftVector.insert(ftIterator, 10);
 		stlVector.insert(stlIterator, 10);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector;
@@ -593,7 +608,7 @@ void	VectorTest::testSingleInsert() const {
 		ftVector.insert(ftIterator, 10);
 		stlVector.insert(stlIterator, 10);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector;
@@ -605,7 +620,7 @@ void	VectorTest::testSingleInsert() const {
 		ftVector.insert(ftIterator, 10);
 		stlVector.insert(stlIterator, 10);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector(10, 4);
@@ -617,7 +632,7 @@ void	VectorTest::testSingleInsert() const {
 		ftVector.insert(ftIterator, 10);
 		stlVector.insert(stlIterator, 10);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector(5, 4);
@@ -629,7 +644,7 @@ void	VectorTest::testSingleInsert() const {
 		ftVector.insert(ftIterator, 10);
 		stlVector.insert(stlIterator, 10);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector(10, 4);
@@ -642,7 +657,7 @@ void	VectorTest::testSingleInsert() const {
 		ftVector.insert(ftIterator, 10);
 		stlVector.insert(stlIterator, 10);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector(10, 4);
@@ -661,7 +676,7 @@ void	VectorTest::testSingleInsert() const {
 		ftVector.insert(ftIterator, 10);
 		stlVector.insert(stlIterator, 10);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector(10, 4);
@@ -679,7 +694,7 @@ void	VectorTest::testSingleInsert() const {
 		ftVector.insert(ftIterator, 100);
 		stlVector.insert(stlIterator, 100);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector(10, 4);
@@ -694,7 +709,7 @@ void	VectorTest::testSingleInsert() const {
 		ft::vector<int>::iterator	ftIterator = ftVector.begin() + 2;
 		std::vector<int>::iterator	stlIterator = stlVector.begin() + 2;
 		
-		TO_EQUAL(*ftVector.insert(ftIterator, 100), *stlVector.insert(stlIterator, 100));
+		PRINT_RESULT(TO_EQUAL(*ftVector.insert(ftIterator, 100), *stlVector.insert(stlIterator, 100)));
 	}
 	{
 		ft::vector<int>		ftVector(100, 15);
@@ -704,7 +719,7 @@ void	VectorTest::testSingleInsert() const {
 		ft::vector<int>::iterator	ftIterator = ftVector.begin();
 		std::vector<int>::iterator	stlIterator = stlVector.begin();
 		
-		TO_EQUAL(*ftVector.insert(ftIterator, 100), *stlVector.insert(stlIterator, 100));
+		PRINT_RESULT(TO_EQUAL(*ftVector.insert(ftIterator, 100), *stlVector.insert(stlIterator, 100)));
 	}
 	{
 		ft::vector<int>		ftVector(100, 15);
@@ -714,7 +729,7 @@ void	VectorTest::testSingleInsert() const {
 		ft::vector<int>::iterator	ftIterator = --(ftVector.end());
 		std::vector<int>::iterator	stlIterator = --(stlVector.end());
 		
-		TO_EQUAL(*ftVector.insert(ftIterator, 100), *stlVector.insert(stlIterator, 100));
+		PRINT_RESULT(TO_EQUAL(*ftVector.insert(ftIterator, 100), *stlVector.insert(stlIterator, 100)));
 	}
 	{
 		ft::vector<std::string>		ftVector(100, std::string("vector"));
@@ -724,12 +739,12 @@ void	VectorTest::testSingleInsert() const {
 		ft::vector<std::string>::iterator	ftIterator = ftVector.begin() + 50;
 		std::vector<std::string>::iterator	stlIterator = stlVector.begin() + 50;
 		
-		TO_EQUAL(*ftVector.insert(ftIterator, std::string("insert")), *stlVector.insert(stlIterator, std::string("insert")));
+		PRINT_RESULT(TO_EQUAL(*ftVector.insert(ftIterator, std::string("insert")), *stlVector.insert(stlIterator, std::string("insert"))));
 	}
 	std::cout << std::endl;
 }
 
-void VectorTest::testPopBack() const {
+void	VectorTest::testPopBack() const {
 	std::cout << "* pop_back(): ";
 	{
 		ft::vector<int>		ftVector(10, 10);
@@ -738,7 +753,7 @@ void VectorTest::testPopBack() const {
 		ftVector.pop_back();
 		stlVector.pop_back();
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector(100, 1000);
@@ -749,7 +764,7 @@ void VectorTest::testPopBack() const {
 			stlVector.pop_back();
 		}
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<std::string>		ftVector(100, std::string("string"));
@@ -760,7 +775,7 @@ void VectorTest::testPopBack() const {
 			stlVector.pop_back();
 		}
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<std::string>		ftVector(1, std::string("looooooooooooooooooooooooooooong string"));
@@ -769,12 +784,12 @@ void VectorTest::testPopBack() const {
 		ftVector.pop_back();
 		stlVector.pop_back();
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	std::cout << std::endl;
 }
 
-void VectorTest::testPushBack() const {
+void	VectorTest::testPushBack() const {
 	std::cout << "* push_back(): ";
 	{
 		ft::vector<int>		ftVector(10, 10);
@@ -783,7 +798,7 @@ void VectorTest::testPushBack() const {
 		ftVector.push_back(4);
 		stlVector.push_back(4);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector(100, 1000);
@@ -794,7 +809,7 @@ void VectorTest::testPushBack() const {
 			stlVector.push_back(i);
 		}
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<std::string>		ftVector(100, std::string("string"));
@@ -805,7 +820,7 @@ void VectorTest::testPushBack() const {
 			stlVector.push_back("s");
 		}
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<std::string>		ftVector(1, std::string("looooooooooooooooooooooooooooong string"));
@@ -814,7 +829,7 @@ void VectorTest::testPushBack() const {
 		ftVector.push_back("vector");
 		stlVector.push_back("vector");
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<std::string>		ftVector;
@@ -823,12 +838,12 @@ void VectorTest::testPushBack() const {
 		ftVector.push_back("vector");
 		stlVector.push_back("vector");
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	std::cout << std::endl;
 }
 
-void VectorTest::testReserve() const {
+void	VectorTest::testReserve() const {
 	std::cout << "* reserve(): ";
 	{
 		ft::vector<int>		ftVector;
@@ -837,7 +852,7 @@ void VectorTest::testReserve() const {
 		ftVector.reserve(100);
 		stlVector.reserve(100);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector;
@@ -846,7 +861,7 @@ void VectorTest::testReserve() const {
 		ftVector.reserve(0);
 		stlVector.reserve(0);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector;
@@ -855,7 +870,7 @@ void VectorTest::testReserve() const {
 		ftVector.reserve(0);
 		stlVector.reserve(0);
 
-		TO_EQUAL(ftVector.capacity(), stlVector.capacity());
+		PRINT_RESULT(TO_EQUAL(ftVector.capacity(), stlVector.capacity()));
 	}
 	{
 		ft::vector<int>		ftVector;
@@ -864,7 +879,7 @@ void VectorTest::testReserve() const {
 		ftVector.reserve(100);
 		stlVector.reserve(100);
 
-		TO_EQUAL(ftVector.capacity(), stlVector.capacity());
+		PRINT_RESULT(TO_EQUAL(ftVector.capacity(), stlVector.capacity()));
 	}
 	{
 		ft::vector<std::string>		ftVector;
@@ -873,7 +888,7 @@ void VectorTest::testReserve() const {
 		ftVector.reserve(100);
 		stlVector.reserve(100);
 
-		TO_EQUAL(ftVector.capacity(), stlVector.capacity());
+		PRINT_RESULT(TO_EQUAL(ftVector.capacity(), stlVector.capacity()));
 	}
 	{
 		ft::vector<std::string>		ftVector(10, std::string("vector"));
@@ -882,7 +897,7 @@ void VectorTest::testReserve() const {
 		ftVector.reserve(100);
 		stlVector.reserve(100);
 
-		TO_EQUAL(ftVector.capacity(), stlVector.capacity());
+		PRINT_RESULT(TO_EQUAL(ftVector.capacity(), stlVector.capacity()));
 	}
 	{
 		ft::vector<std::string>		ftVector(10, std::string("vector"));
@@ -891,7 +906,7 @@ void VectorTest::testReserve() const {
 		ftVector.reserve(100);
 		stlVector.reserve(100);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	std::cout << std::endl;
 }
@@ -908,7 +923,7 @@ void	VectorTest::testFillInsert() const {
 		ftVector.insert(ftIterator, 4, 14);
 		stlVector.insert(stlIterator, 4, 14);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector;
@@ -920,7 +935,7 @@ void	VectorTest::testFillInsert() const {
 		ftVector.insert(ftIterator, 10, 5);
 		stlVector.insert(stlIterator, 10, 5);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector;
@@ -932,7 +947,7 @@ void	VectorTest::testFillInsert() const {
 		ftVector.insert(ftIterator, 10, 5);
 		stlVector.insert(stlIterator, 10, 5);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector(10, 4);
@@ -944,7 +959,7 @@ void	VectorTest::testFillInsert() const {
 		ftVector.insert(ftIterator, 2, 17);
 		stlVector.insert(stlIterator, 2, 17);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector(5, 4);
@@ -956,7 +971,7 @@ void	VectorTest::testFillInsert() const {
 		ftVector.insert(ftIterator, 10, 50);
 		stlVector.insert(stlIterator, 10, 50);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector(10, 4);
@@ -969,7 +984,7 @@ void	VectorTest::testFillInsert() const {
 		ftVector.insert(ftIterator, 0, 10);
 		stlVector.insert(stlIterator, 0, 10);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector(10, 4);
@@ -988,7 +1003,7 @@ void	VectorTest::testFillInsert() const {
 		ftVector.insert(ftIterator, 10, 1);
 		stlVector.insert(stlIterator, 10, 1);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector(10, 4);
@@ -1006,7 +1021,7 @@ void	VectorTest::testFillInsert() const {
 		ftVector.insert(ftIterator, 100, 10);
 		stlVector.insert(stlIterator, 100, 10);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector(55, 4);
@@ -1018,7 +1033,7 @@ void	VectorTest::testFillInsert() const {
 		ftVector.insert(ftIterator, 55, 1);
 		stlVector.insert(stlIterator, 55, 1);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector(55, 4);
@@ -1030,7 +1045,7 @@ void	VectorTest::testFillInsert() const {
 		ftVector.insert(ftIterator, 1, 55);
 		stlVector.insert(stlIterator, 1, 55);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector(55, 4);
@@ -1042,7 +1057,7 @@ void	VectorTest::testFillInsert() const {
 		ftVector.insert(ftIterator, 100, 55);
 		stlVector.insert(stlIterator, 100, 55);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	std::cout << std::endl;
 }
@@ -1060,7 +1075,7 @@ void	VectorTest::testRangeInsert() const {
 		ftVector.insert(ftIterator, arr, arr + 5);
 		stlVector.insert(stlIterator, arr, arr + 5);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector(20, 3);
@@ -1073,7 +1088,7 @@ void	VectorTest::testRangeInsert() const {
 		ftVector.insert(ftIterator, arr, arr);
 		stlVector.insert(stlIterator, arr, arr);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector(20, 3);
@@ -1086,7 +1101,7 @@ void	VectorTest::testRangeInsert() const {
 		ftVector.insert(ftIterator, arr, arr + 6);
 		stlVector.insert(stlIterator, arr, arr + 6);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector(20, 3);
@@ -1099,7 +1114,7 @@ void	VectorTest::testRangeInsert() const {
 		ftVector.insert(ftIterator, arr, arr + 6);
 		stlVector.insert(stlIterator, arr, arr + 6);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector;
@@ -1112,7 +1127,7 @@ void	VectorTest::testRangeInsert() const {
 		ftVector.insert(ftIterator, arr, arr + 6);
 		stlVector.insert(stlIterator, arr, arr + 6);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector;
@@ -1126,7 +1141,7 @@ void	VectorTest::testRangeInsert() const {
 
 		stlVector.insert(stlIterator, arr, arr + 6);
 		ftVector.insert(ftIterator, arr, arr + 6);
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<std::string>		ftVector(20, "vector");
@@ -1139,7 +1154,7 @@ void	VectorTest::testRangeInsert() const {
 		ftVector.insert(ftIterator, arr, arr + 6);
 		stlVector.insert(stlIterator, arr, arr + 6);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<std::string>		ftVector;
@@ -1152,7 +1167,7 @@ void	VectorTest::testRangeInsert() const {
 		ftVector.insert(ftIterator, arr, arr + 6);
 		stlVector.insert(stlIterator, arr, arr + 6);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<std::string>		ftVector;
@@ -1165,7 +1180,7 @@ void	VectorTest::testRangeInsert() const {
 		ftVector.insert(ftIterator, arr, arr + 6);
 		stlVector.insert(stlIterator, arr, arr + 6);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	std::cout << std::endl;
 }
@@ -1179,7 +1194,7 @@ void	VectorTest::testClear() const {
 		ftVector.clear();
 		stlVector.clear();
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector(200, 3);
@@ -1188,7 +1203,7 @@ void	VectorTest::testClear() const {
 		ftVector.clear();
 		stlVector.clear();
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector;
@@ -1197,7 +1212,7 @@ void	VectorTest::testClear() const {
 		ftVector.clear();
 		stlVector.clear();
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector;
@@ -1208,7 +1223,7 @@ void	VectorTest::testClear() const {
 		ftVector.clear();
 		stlVector.clear();
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector;
@@ -1219,7 +1234,7 @@ void	VectorTest::testClear() const {
 		ftVector.clear();
 		stlVector.clear();
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<std::string>		ftVector(200, "vector");
@@ -1228,7 +1243,7 @@ void	VectorTest::testClear() const {
 		ftVector.clear();
 		stlVector.clear();
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<std::string>		ftVector;
@@ -1237,7 +1252,7 @@ void	VectorTest::testClear() const {
 		ftVector.clear();
 		stlVector.clear();
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	std::cout << std::endl;
 }
@@ -1251,7 +1266,7 @@ void	VectorTest::testSingleErase() const {
 		ftVector.erase(ftVector.begin());
 		stlVector.erase(stlVector.begin());
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector(2, 3);
@@ -1260,7 +1275,7 @@ void	VectorTest::testSingleErase() const {
 		ftVector.erase(--ftVector.end());
 		stlVector.erase(--stlVector.end());
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector(2, 3);
@@ -1271,7 +1286,7 @@ void	VectorTest::testSingleErase() const {
 		ftVector.erase(ftVector.begin());
 		stlVector.erase(stlVector.begin());
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector(2, 3);
@@ -1282,7 +1297,7 @@ void	VectorTest::testSingleErase() const {
 		ftVector.erase(ftVector.begin() + 50);
 		stlVector.erase(stlVector.begin() + 50);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector;
@@ -1293,7 +1308,7 @@ void	VectorTest::testSingleErase() const {
 		ftVector.erase(ftVector.begin() + 50);
 		stlVector.erase(stlVector.begin() + 50);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector;
@@ -1304,7 +1319,7 @@ void	VectorTest::testSingleErase() const {
 		ftVector.erase(ftVector.begin() + 50);
 		stlVector.erase(stlVector.begin() + 50);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector(100, 20);
@@ -1315,7 +1330,7 @@ void	VectorTest::testSingleErase() const {
 		ftVector.erase(ftVector.end() - 50);
 		stlVector.erase(stlVector.end() - 50);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<std::string>		ftVector(10, "vector");
@@ -1324,7 +1339,7 @@ void	VectorTest::testSingleErase() const {
 		ftVector.erase(ftVector.begin());
 		stlVector.erase(stlVector.begin());
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<std::string>		ftVector(10, "vector");
@@ -1333,7 +1348,7 @@ void	VectorTest::testSingleErase() const {
 		ftVector.erase(ftVector.begin() + 5);
 		stlVector.erase(stlVector.begin() + 5);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<std::string>		ftVector(10, "vector");
@@ -1342,21 +1357,13 @@ void	VectorTest::testSingleErase() const {
 		ftVector.erase(ftVector.begin() + 9);
 		stlVector.erase(stlVector.begin() + 9);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector(2, 3);
 		std::vector<int>	stlVector(2, 3);
 		
-		TO_EQUAL(*ftVector.erase(ftVector.begin()), *stlVector.erase(stlVector.begin()));
-	}
-	{
-		ft::vector<int>		ftVector(2, 3);
-		std::vector<int>	stlVector(2, 3);
-		
-		createRandomVectors(ftVector, stlVector, 100);
-
-		TO_EQUAL(*ftVector.erase(ftVector.begin()), *stlVector.erase(stlVector.begin()));
+		PRINT_RESULT(TO_EQUAL(*ftVector.erase(ftVector.begin()), *stlVector.erase(stlVector.begin())));
 	}
 	{
 		ft::vector<int>		ftVector(2, 3);
@@ -1364,7 +1371,15 @@ void	VectorTest::testSingleErase() const {
 		
 		createRandomVectors(ftVector, stlVector, 100);
 
-		TO_EQUAL(*ftVector.erase(ftVector.begin() + 50), *stlVector.erase(stlVector.begin() + 50));
+		PRINT_RESULT(TO_EQUAL(*ftVector.erase(ftVector.begin()), *stlVector.erase(stlVector.begin())));
+	}
+	{
+		ft::vector<int>		ftVector(2, 3);
+		std::vector<int>	stlVector(2, 3);
+		
+		createRandomVectors(ftVector, stlVector, 100);
+
+		PRINT_RESULT(TO_EQUAL(*ftVector.erase(ftVector.begin() + 50), *stlVector.erase(stlVector.begin() + 50)));
 	}
 	{
 		ft::vector<int>		ftVector;
@@ -1373,7 +1388,7 @@ void	VectorTest::testSingleErase() const {
 		createRandomVectors(ftVector, stlVector, 100);
 
 
-		TO_EQUAL(*ftVector.erase(ftVector.begin() + 50), *stlVector.erase(stlVector.begin() + 50));
+		PRINT_RESULT(TO_EQUAL(*ftVector.erase(ftVector.begin() + 50), *stlVector.erase(stlVector.begin() + 50)));
 	}
 	{
 		ft::vector<int>		ftVector;
@@ -1381,7 +1396,7 @@ void	VectorTest::testSingleErase() const {
 		
 		createRandomVectors(ftVector, stlVector, 100);
 
-		TO_EQUAL(*ftVector.erase(ftVector.begin() + 50), *stlVector.erase(stlVector.begin() + 50));
+		PRINT_RESULT(TO_EQUAL(*ftVector.erase(ftVector.begin() + 50), *stlVector.erase(stlVector.begin() + 50)));
 	}
 	{
 		ft::vector<int>		ftVector(100, 20);
@@ -1389,25 +1404,25 @@ void	VectorTest::testSingleErase() const {
 		
 		createRandomVectors(ftVector, stlVector, 100);
 
-		TO_EQUAL(*ftVector.erase(ftVector.end() - 50), *stlVector.erase(stlVector.end() - 50));
+		PRINT_RESULT(TO_EQUAL(*ftVector.erase(ftVector.end() - 50), *stlVector.erase(stlVector.end() - 50)));
 	}
 	{
 		ft::vector<std::string>		ftVector(10, "vector");
 		std::vector<std::string>	stlVector(10, "vector");
 		
-		TO_EQUAL(*ftVector.erase(ftVector.begin()), *stlVector.erase(stlVector.begin()));
+		PRINT_RESULT(TO_EQUAL(*ftVector.erase(ftVector.begin()), *stlVector.erase(stlVector.begin())));
 	}
 	{
 		ft::vector<std::string>		ftVector(10, "vector");
 		std::vector<std::string>	stlVector(10, "vector");
 		
-		TO_EQUAL(*ftVector.erase(ftVector.begin() + 5), *stlVector.erase(stlVector.begin() + 5));
+		PRINT_RESULT(TO_EQUAL(*ftVector.erase(ftVector.begin() + 5), *stlVector.erase(stlVector.begin() + 5)));
 	}
 	{
 		ft::vector<std::string>		ftVector(10, "vector");
 		std::vector<std::string>	stlVector(10, "vector");
 		
-		TO_EQUAL(*ftVector.erase(ftVector.begin() + 9), *stlVector.erase(stlVector.begin() + 9));
+		PRINT_RESULT(TO_EQUAL(*ftVector.erase(ftVector.begin() + 9), *stlVector.erase(stlVector.begin() + 9)));
 	}
 	std::cout << std::endl;
 }
@@ -1421,26 +1436,22 @@ void	VectorTest::testRangeErase() const {
 		ftVector.erase(ftVector.begin(), ftVector.begin() + 1);
 		stlVector.erase(stlVector.begin(), stlVector.begin() + 1);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector(2, 3);
 		std::vector<int>	stlVector(2, 3);
 		
-		// createRandomVectors(ftVector, stlVector, 2);
-		ftVector.push_back(10);
-		ftVector.push_back(20);
-		stlVector.push_back(10);
-		stlVector.push_back(20);
+		createRandomVectors(ftVector, stlVector, 2);
 
-		ftVector.erase(ftVector.begin(), ftVector.begin() + 2);
-		stlVector.erase(stlVector.begin(), stlVector.begin() + 2);
+		ftVector.erase(ftVector.begin(), ftVector.end());
+		stlVector.erase(stlVector.begin(), stlVector.end());
 
 		ft::vector<int>::iterator ftItr = ftVector.begin();
 		std::vector<int>::iterator stlItr = stlVector.begin();
 
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector(2, 3);
@@ -1451,7 +1462,7 @@ void	VectorTest::testRangeErase() const {
 		ftVector.erase(ftVector.begin() + 50, ftVector.begin() + 80);
 		stlVector.erase(stlVector.begin() + 50, stlVector.begin() + 80);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector;
@@ -1462,7 +1473,7 @@ void	VectorTest::testRangeErase() const {
 		ftVector.erase(ftVector.begin() + 50, ftVector.begin() + 80);
 		stlVector.erase(stlVector.begin() + 50, stlVector.begin() + 80);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector;
@@ -1473,7 +1484,7 @@ void	VectorTest::testRangeErase() const {
 		ftVector.erase(ftVector.begin() + 50, ftVector.begin() + 80);
 		stlVector.erase(stlVector.begin() + 50, stlVector.begin() + 80);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector;
@@ -1484,7 +1495,7 @@ void	VectorTest::testRangeErase() const {
 		ftVector.erase(ftVector.begin(), ftVector.end());
 		stlVector.erase(stlVector.begin(), stlVector.end());
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector(100, 20);
@@ -1495,7 +1506,7 @@ void	VectorTest::testRangeErase() const {
 		ftVector.erase(ftVector.end() - 80, ftVector.end() - 50);
 		stlVector.erase(stlVector.end() - 80, stlVector.end() - 50);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<std::string>		ftVector(10, "vector");
@@ -1504,7 +1515,7 @@ void	VectorTest::testRangeErase() const {
 		ftVector.erase(ftVector.begin(), ftVector.begin());
 		stlVector.erase(stlVector.begin(), stlVector.begin());
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<std::string>		ftVector(10, "vector");
@@ -1513,7 +1524,7 @@ void	VectorTest::testRangeErase() const {
 		ftVector.erase(ftVector.begin() + 5, ftVector.begin() + 8);
 		stlVector.erase(stlVector.begin() + 5, stlVector.begin() + 8);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<std::string>		ftVector(10, "vector");
@@ -1522,7 +1533,7 @@ void	VectorTest::testRangeErase() const {
 		ftVector.erase(ftVector.begin(), ftVector.begin() + 9);
 		stlVector.erase(stlVector.begin(), stlVector.begin() + 9);
 
-		TO_EQUAL_VECTOR(ftVector, stlVector);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
 	}
 	{
 		ft::vector<int>		ftVector(2, 3);
@@ -1531,7 +1542,7 @@ void	VectorTest::testRangeErase() const {
 		ft::vector<int>::iterator	ftIterator = ftVector.erase(ftVector.begin(), ftVector.begin() + 1);
 		std::vector<int>::iterator	stlIterator = stlVector.erase(stlVector.begin(), stlVector.begin() + 1);
 		
-		TO_EQUAL(*ftIterator, *stlIterator);
+		PRINT_RESULT(TO_EQUAL(*ftIterator, *stlIterator));
 	}
 	{
 		ft::vector<int>		ftVector(2, 3);
@@ -1542,7 +1553,7 @@ void	VectorTest::testRangeErase() const {
 		ft::vector<int>::iterator	ftIterator = ftVector.erase(ftVector.begin(), ftVector.begin() + 50);
 		std::vector<int>::iterator	stlIterator = stlVector.erase(stlVector.begin(), stlVector.begin() + 50);
 
-		TO_EQUAL(*ftIterator, *stlIterator);
+		PRINT_RESULT(TO_EQUAL(*ftIterator, *stlIterator));
 	}
 	{
 		ft::vector<int>		ftVector(2, 3);
@@ -1553,7 +1564,7 @@ void	VectorTest::testRangeErase() const {
 		ft::vector<int>::iterator	ftIterator = ftVector.erase(ftVector.begin() + 50, ftVector.begin() + 80);
 		std::vector<int>::iterator	stlIterator = stlVector.erase(stlVector.begin() + 50, stlVector.begin() + 80);
 
-		TO_EQUAL(*ftIterator, *stlIterator);
+		PRINT_RESULT(TO_EQUAL(*ftIterator, *stlIterator));
 	}
 	{
 		ft::vector<int>		ftVector;
@@ -1565,7 +1576,7 @@ void	VectorTest::testRangeErase() const {
 		std::vector<int>::iterator	stlIterator = stlVector.erase(stlVector.begin() + 50, stlVector.begin() + 80);
 
 
-		TO_EQUAL(*ftIterator, *stlIterator);
+		PRINT_RESULT(TO_EQUAL(*ftIterator, *stlIterator));
 	}
 	{
 		ft::vector<int>		ftVector(100, 150);
@@ -1576,7 +1587,7 @@ void	VectorTest::testRangeErase() const {
 		ft::vector<int>::iterator	ftIterator = ftVector.erase(ftVector.begin() + 50, ftVector.end());
 		std::vector<int>::iterator	stlIterator = stlVector.erase(stlVector.begin() + 50, stlVector.end());
 
-		TO_EQUAL(*ftIterator, *stlIterator);
+		PRINT_RESULT(TO_EQUAL(*ftIterator, *stlIterator));
 	}
 	{
 		ft::vector<int>		ftVector;
@@ -1587,7 +1598,7 @@ void	VectorTest::testRangeErase() const {
 		ft::vector<int>::iterator	ftIterator = ftVector.erase(ftVector.begin() + 2, ftVector.begin() + 4);
 		std::vector<int>::iterator	stlIterator = stlVector.erase(stlVector.begin() + 2, stlVector.begin() + 4);
 
-		TO_EQUAL(*ftIterator, *stlIterator);
+		PRINT_RESULT(TO_EQUAL(*ftIterator, *stlIterator));
 	}
 	{
 		ft::vector<int>		ftVector(100, 20);
@@ -1598,7 +1609,7 @@ void	VectorTest::testRangeErase() const {
 		ft::vector<int>::iterator	ftIterator = ftVector.erase(ftVector.end() - 80, ftVector.end() - 50);
 		std::vector<int>::iterator	stlIterator = stlVector.erase(stlVector.end() - 80, stlVector.end() - 50);
 
-		TO_EQUAL(*ftIterator, *stlIterator);
+		PRINT_RESULT(TO_EQUAL(*ftIterator, *stlIterator));
 	}
 	{
 		ft::vector<int>		ftVector;
@@ -1609,7 +1620,18 @@ void	VectorTest::testRangeErase() const {
 		ft::vector<int>::iterator	ftIterator = ftVector.erase(ftVector.end() - 80, ftVector.end() - 50);
 		std::vector<int>::iterator	stlIterator = stlVector.erase(stlVector.end() - 80, stlVector.end() - 50);
 
-		TO_EQUAL(*ftIterator, *stlIterator);
+		PRINT_RESULT(TO_EQUAL(*ftIterator, *stlIterator));
+	}
+	{
+		ft::vector<int>		ftVector;
+		std::vector<int>	stlVector;
+		
+		createRandomVectors(ftVector, stlVector, 100);
+
+		ft::vector<int>::iterator	ftIterator = ftVector.erase(ftVector.begin(), ftVector.end() - 1);
+		std::vector<int>::iterator	stlIterator = stlVector.erase(stlVector.begin(), stlVector.end() - 1);
+
+		PRINT_RESULT(TO_EQUAL(*ftIterator, *stlIterator));
 	}
 	{
 		ft::vector<std::string>		ftVector(10, "vector");
@@ -1618,7 +1640,7 @@ void	VectorTest::testRangeErase() const {
 		ft::vector<std::string>::iterator	ftIterator = ftVector.erase(ftVector.begin(), ftVector.begin() + 5);
 		std::vector<std::string>::iterator	stlIterator = stlVector.erase(stlVector.begin(), stlVector.begin() + 5);
 		
-		TO_EQUAL(*ftIterator, *stlIterator);
+		PRINT_RESULT(TO_EQUAL(*ftIterator, *stlIterator));
 	}
 	{
 		ft::vector<std::string>		ftVector(10, "vector");
@@ -1627,7 +1649,7 @@ void	VectorTest::testRangeErase() const {
 		ft::vector<std::string>::iterator	ftIterator = ftVector.erase(ftVector.begin(), ftVector.begin());
 		std::vector<std::string>::iterator	stlIterator = stlVector.erase(stlVector.begin(), stlVector.begin() + 5);
 		
-		TO_EQUAL(*ftIterator, *stlIterator);
+		PRINT_RESULT(TO_EQUAL(*ftIterator, *stlIterator));
 	}
 	{
 		ft::vector<std::string>		ftVector(10, "vector");
@@ -1636,7 +1658,51 @@ void	VectorTest::testRangeErase() const {
 		ft::vector<std::string>::iterator	ftIterator = ftVector.erase(ftVector.begin(), ftVector.begin() + 9);
 		std::vector<std::string>::iterator	stlIterator = stlVector.erase(stlVector.begin(), stlVector.begin() + 9);
 		
-		TO_EQUAL(*ftIterator, *stlIterator);
+		PRINT_RESULT(TO_EQUAL(*ftIterator, *stlIterator));
+	}
+	std::cout << std::endl;
+}
+
+void	VectorTest::testSwap() const {
+	std::cout << "* erase()<range>: ";
+	{
+		ft::vector<int>	ftVector1(10, 10);
+		ft::vector<int>	ftVector2(5, 20);
+
+		std::vector<int>	stlVector1(2, 10);
+		std::vector<int>	stlVector2(10, 20);
+
+		stlVector1.swap(stlVector2);
+		ftVector1.swap(ftVector2);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector1, stlVector1) && TO_EQUAL_VECTOR(ftVector2, stlVector2));
+	}
+	{
+		ft::vector<int>	ftVector1(10, 10);
+		ft::vector<int>	ftVector2(1, 2);
+
+		std::vector<int>	stlVector1(10, 10);
+		std::vector<int>	stlVector2(1, 2);
+
+		stlVector1.swap(stlVector2);
+		ftVector1.swap(ftVector2);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector1, stlVector1) && TO_EQUAL_VECTOR(ftVector2, stlVector2));
+	}
+	{
+		ft::vector<int>	ftVector1;
+		ft::vector<int>	ftVector2;
+
+		std::vector<int>	stlVector1;
+		std::vector<int>	stlVector2;
+
+		createRandomVectors(ftVector1, stlVector1, 100);
+		createRandomVectors(ftVector2, stlVector2, 15);
+
+		stlVector1.swap(stlVector2);
+		ftVector1.swap(ftVector2);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector1, stlVector1) && TO_EQUAL_VECTOR(ftVector2, stlVector2));
 	}
 	std::cout << std::endl;
 }

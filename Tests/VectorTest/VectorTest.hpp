@@ -32,6 +32,7 @@ class VectorTest {
 		void testClear() const;
 		void testSingleErase() const;
 		void testRangeErase() const;
+		void testSwap() const;
 	
 	public:
 		VectorTest();

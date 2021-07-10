@@ -29,6 +29,7 @@ class VectorTest {
 		void testPopBack() const;
 		void testPushBack() const;
 		void testReserve() const;
+		void testClear() const;
 	
 	public:
 		VectorTest();

@@ -23,6 +23,7 @@ void	VectorTest::test() const {
 	testEmpty();
 	testCapasity();
 	testMaxSize();
+	testClear();
 }
 
 void	VectorTest::testFillConstructor() const {
@@ -1166,4 +1167,78 @@ void	VectorTest::testRangeInsert() const {
 	}
 	std::cout << std::endl;
 }
+
+void	VectorTest::testClear() const {
+	std::cout << "* clear(): ";
+	{
+		ft::vector<int>		ftVector(2, 3);
+		std::vector<int>	stlVector(2, 3);
+		
+		ftVector.clear();
+		stlVector.clear();
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector(200, 3);
+		std::vector<int>	stlVector(200, 3);
+		
+		ftVector.clear();
+		stlVector.clear();
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector;
+		std::vector<int>	stlVector;
+		
+		ftVector.clear();
+		stlVector.clear();
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector;
+		std::vector<int>	stlVector;
+		
+		createRandomVectors(ftVector, stlVector, 100);
+
+		ftVector.clear();
+		stlVector.clear();
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector;
+		std::vector<int>	stlVector;
+		
+		createRandomVectors(ftVector, stlVector, 1000);
+
+		ftVector.clear();
+		stlVector.clear();
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<std::string>		ftVector(200, "vector");
+		std::vector<std::string>	stlVector(200, "vector");
+		
+		ftVector.clear();
+		stlVector.clear();
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<std::string>		ftVector;
+		std::vector<std::string>	stlVector;
+		
+		ftVector.clear();
+		stlVector.clear();
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	std::cout << std::endl;
+}
+
+
 

@@ -118,6 +118,20 @@ namespace ft
 	typename vector<T, Allocator>::const_reference vector<T, Allocator>::operator[](size_type pos) const {
 		return _arr[pos];
 	}
+	
+	template <class T, class Allocator>
+	typename vector<T, Allocator>::reference vector<T, Allocator>::at(size_type pos) {
+		if (pos >= _size)
+			throw std::out_of_range("Out of bounds position");
+		return _arr[pos];
+	}
+
+	template <class T, class Allocator>
+	typename vector<T, Allocator>::const_reference vector<T, Allocator>::at(size_type pos) const {
+		if (pos >= _size)
+			throw std::out_of_range("Out of bounds position");
+		return _arr[pos];
+	}
 
 	/*
 	** Modifiers

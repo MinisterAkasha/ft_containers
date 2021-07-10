@@ -33,6 +33,7 @@ class VectorTest {
 		void testSingleErase() const;
 		void testRangeErase() const;
 		void testSwap() const;
+		void testNonMemberEqualOperator() const;
 	
 	public:
 		VectorTest();

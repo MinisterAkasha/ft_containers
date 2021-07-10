@@ -4,7 +4,7 @@
 # include <iostream>
 # include <vector>
 # include "vector.hpp"
-# include "utils.hpp"
+# include "testUtils.hpp"
 
 class VectorTest {
 	private:
@@ -25,6 +25,7 @@ class VectorTest {
 		void testMaxSize() const;
 		void testSingleInsert() const;
 		void testFillInsert() const;
+		void testRangeInsert() const;
 		void testPopBack() const;
 		void testPushBack() const;
 		void testReserve() const;

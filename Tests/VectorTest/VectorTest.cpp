@@ -14,6 +14,7 @@ void	VectorTest::test() const {
 	testPushBack();
 	testSingleInsert();
 	testFillInsert();
+	testRangeInsert();
 	testSize();
 	testBegin();
 	testEnd();
@@ -1023,8 +1024,8 @@ void	VectorTest::testFillInsert() const {
 		ft::vector<int>::iterator	ftIterator = ftVector.begin() + 10;
 		std::vector<int>::iterator	stlIterator = stlVector.begin() + 10;
 
-		ftVector.insert(ftIterator, 0, 55);
-		stlVector.insert(stlIterator, 0, 55);
+		ftVector.insert(ftIterator, 1, 55);
+		stlVector.insert(stlIterator, 1, 55);
 
 		TO_EQUAL_VECTOR(ftVector, stlVector);
 	}
@@ -1042,3 +1043,127 @@ void	VectorTest::testFillInsert() const {
 	}
 	std::cout << std::endl;
 }
+
+void	VectorTest::testRangeInsert() const {
+	std::cout << "* insert()<range>: ";
+	{
+		ft::vector<int>		ftVector(2, 3);
+		std::vector<int>	stlVector(2, 3);
+		int arr[] = {1, 2, 3, 4, 5, 10};
+
+		ft::vector<int>::iterator	ftIterator = ftVector.begin();
+		std::vector<int>::iterator	stlIterator = stlVector.begin();
+
+		ftVector.insert(ftIterator, arr, arr + 5);
+		stlVector.insert(stlIterator, arr, arr + 5);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector(20, 3);
+		std::vector<int>	stlVector(20, 3);
+		int arr[] = {1, 2, 3, 4, 5, 10};
+
+		ft::vector<int>::iterator	ftIterator = ftVector.begin() + 5;
+		std::vector<int>::iterator	stlIterator = stlVector.begin() + 5;
+
+		ftVector.insert(ftIterator, arr, arr);
+		stlVector.insert(stlIterator, arr, arr);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector(20, 3);
+		std::vector<int>	stlVector(20, 3);
+		int arr[] = {1, 2, 3, 4, 5, 10};
+
+		ft::vector<int>::iterator	ftIterator = ftVector.begin() + 5;
+		std::vector<int>::iterator	stlIterator = stlVector.begin() + 5;
+
+		ftVector.insert(ftIterator, arr, arr + 6);
+		stlVector.insert(stlIterator, arr, arr + 6);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector(20, 3);
+		std::vector<int>	stlVector(20, 3);
+		int arr[] = {1, 2, 3, 4, 5, 10};
+
+		ft::vector<int>::iterator	ftIterator = ftVector.end() - 5;
+		std::vector<int>::iterator	stlIterator = stlVector.end() - 5;
+
+		ftVector.insert(ftIterator, arr, arr + 6);
+		stlVector.insert(stlIterator, arr, arr + 6);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector;
+		std::vector<int>	stlVector;
+		int arr[] = {1, 2, 3, 4, 5, 10};
+
+		ft::vector<int>::iterator	ftIterator = ftVector.begin();
+		std::vector<int>::iterator	stlIterator = stlVector.begin();
+
+		ftVector.insert(ftIterator, arr, arr + 6);
+		stlVector.insert(stlIterator, arr, arr + 6);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector;
+		std::vector<int>	stlVector;
+		int arr[] = {1, 2, 3, 4, 5, 10};
+
+		createRandomVectors(ftVector, stlVector, 10);
+
+		ft::vector<int>::iterator	ftIterator = ftVector.begin();
+		std::vector<int>::iterator	stlIterator = stlVector.begin();
+
+		stlVector.insert(stlIterator, arr, arr + 6);
+		ftVector.insert(ftIterator, arr, arr + 6);
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<std::string>		ftVector(20, "vector");
+		std::vector<std::string>	stlVector(20, "vector");
+		std::string arr[] = {"vector1", "vector2", "vector3", "vector4", "vector5", "vector6"};
+
+		ft::vector<std::string>::iterator	ftIterator = ftVector.end() - 5;
+		std::vector<std::string>::iterator	stlIterator = stlVector.end() - 5;
+
+		ftVector.insert(ftIterator, arr, arr + 6);
+		stlVector.insert(stlIterator, arr, arr + 6);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<std::string>		ftVector;
+		std::vector<std::string>	stlVector;
+		std::string arr[] = {"vector1", "vector2", "vector3", "vector4", "vector5", "vector6"};
+
+		ft::vector<std::string>::iterator	ftIterator = ftVector.end()--;
+		std::vector<std::string>::iterator	stlIterator = stlVector.end()--;
+
+		ftVector.insert(ftIterator, arr, arr + 6);
+		stlVector.insert(stlIterator, arr, arr + 6);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<std::string>		ftVector;
+		std::vector<std::string>	stlVector;
+		std::string arr[] = {"vector1", "vector2", "vector3", "vector4", "vector5", "vector6"};
+
+		ft::vector<std::string>::iterator	ftIterator = ftVector.begin();
+		std::vector<std::string>::iterator	stlIterator = stlVector.begin();
+
+		ftVector.insert(ftIterator, arr, arr + 6);
+		stlVector.insert(stlIterator, arr, arr + 6);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	std::cout << std::endl;
+}
+

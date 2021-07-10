@@ -38,6 +38,7 @@ class VectorTest {
 		void testFillAssign() const;
 		void testRangeAssign() const;
 		void testResize() const;
+		void testAccessOperator() const;
 	
 	public:
 		VectorTest();

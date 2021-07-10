@@ -31,6 +31,7 @@ void	VectorTest::test() const {
 	testFillAssign();
 	testRangeAssign();
 	testResize();
+	testAccessOperator();
 	testNonMemberEqualOperator();
 }
 
@@ -2357,5 +2358,63 @@ void	VectorTest::testResize() const {
 
 	// 	PRINT_RESULT(TO_EQUAL(ft.capacity(), stl.capacity()));	
 	// }
+	std::cout << std::endl;
+}
+
+void	VectorTest::testAccessOperator() const {
+	std::cout << "* operator[]: ";
+	{
+		ft::vector<int>		ft;
+		std::vector<int>	stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		PRINT_RESULT(TO_EQUAL(ft[0], stl[0]));
+	}
+	{
+		ft::vector<int>		ft(10);
+		std::vector<int>	stl(10);
+
+		createRandomVectors(ft, stl, 100);
+
+		PRINT_RESULT(TO_EQUAL(ft[99], stl[99]));
+	}
+	{
+		ft::vector<int>		ft(10);
+		std::vector<int>	stl(10);
+
+		ft.push_back(1);
+		stl.push_back(2);
+
+		PRINT_RESULT(!TO_EQUAL(ft[10], stl[10]));
+	}
+	{
+		ft::vector<int>		ft(10);
+		std::vector<int>	stl(10);
+
+		createRandomVectors(ft, stl, 100);
+
+		PRINT_RESULT(TO_EQUAL(ft[99], stl[99]));
+	}
+	{
+		ft::vector<int>		ft(10, 10);
+		std::vector<int>	stl(10, 10);
+
+		createRandomVectors(ft, stl, 100);
+
+		PRINT_RESULT(TO_EQUAL(ft[50], stl[50]));
+	}
+	{
+		ft::vector<std::string>		ft(10, "vector");
+		std::vector<std::string>	stl(10, "vector");
+
+		PRINT_RESULT(TO_EQUAL(ft[5], stl[5]));
+	}
+	{
+		ft::vector<std::string>		ft(10, "vector");
+		std::vector<std::string>	stl(10, "vector");
+
+		PRINT_RESULT(TO_EQUAL(ft[9], stl[9]));
+	}
 	std::cout << std::endl;
 }

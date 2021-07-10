@@ -154,7 +154,22 @@ namespace ft
 
 	template <class T, class Allocator>
 	typename vector<T, Allocator>::iterator vector<T, Allocator>::erase(iterator position) {
-		return position;
+		size_type index = 0;
+
+		while (begin() + index != position && index < _size)
+			index++;
+		
+		pointer newArr = _allocator.allocate(_capacity);
+		size_type oldArrIndex = 0;
+		for (size_type i = 0; i < _size; i++) {
+			if (i == index)
+				oldArrIndex++;
+			_allocator.construct(newArr + i, _arr[oldArrIndex++]);
+		}
+		this->~vector();
+		_arr = newArr;
+		_size--;
+		return &_arr[index];
 	}
 
 	/*

@@ -83,7 +83,7 @@ namespace ft {
 
 			// template <class InputIterator>
 			// void						assign(InputIterator first, InputIterator last); // range
-			// void						assign(size_type n, const value_type& val); // fill
+			void						assign(size_type n, const value_type& val); // fill
 			void 						push_back(const value_type& val);
 			void						pop_back();
 			iterator					insert(iterator position, const value_type& val); // single element

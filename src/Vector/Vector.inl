@@ -208,6 +208,18 @@ namespace ft
 		_allocator = allocatorTmp;
 	}
 
+	template <class T, class Allocator>
+	void vector<T, Allocator>::assign(size_type n, const value_type& val) {
+		this->~vector();
+		_arr = nullptr;
+		_size = n;
+		if (!_capacity)
+			_capacity = n;
+		_arr = _allocator.allocate(n);
+		for (size_type i = 0; i < n; i++)
+			_allocator.construct(_arr + i, val);
+	}
+
 	/*
 	** 	Allocator
 	*/

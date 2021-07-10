@@ -145,6 +145,13 @@ namespace ft
 		}
 	}
 
+	template <class T, class Allocator>
+	void vector<T, Allocator>::clear() {
+		for (size_type i = 0; i < _size; i++)
+			_allocator.destroy(_arr + i);
+		_size = 0;
+	}
+
 	/*
 	** Overload
 	*/

@@ -94,7 +94,7 @@ namespace ft {
 			// iterator 					erase(iterator position);
 			// iterator 					erase(iterator first, iterator last);
 			// void 						swap(vector& x);
-			// void						clear();
+			void						clear();
 
 			/*
 			** 	Allocator

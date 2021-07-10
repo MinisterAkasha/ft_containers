@@ -36,7 +36,7 @@ namespace ft {
         	// vector(InputIterator first, InputIterator last,				  			// range
             //      const allocator_type& alloc = allocator_type());
 
-			vector(const vector& other);											// copy
+			vector(const vector& other);											//TODO написать тесты!!! copy
 
 			~vector();
 
@@ -50,8 +50,8 @@ namespace ft {
 			const_iterator 				begin() const;
 			iterator					end();
 			const_iterator				end() const;
-			// // reverse_iterator			rbegin();//TODO
-			// // const_reverse_iterator	rbegin() const;//TODO
+			// reverse_iterator			rbegin();//TODO
+			// const_reverse_iterator	rbegin() const;//TODO
 
 			/*
 			** Capacity
@@ -80,6 +80,7 @@ namespace ft {
 			/*
 			** Modifiers
 			*/
+
 			// template <class InputIterator>
 			// void						assign(InputIterator first, InputIterator last); // range
 			// void						assign(size_type n, const value_type& val); // fill
@@ -99,7 +100,7 @@ namespace ft {
 			** 	Allocator
 			*/
 		
-			// allocator_type				get_allocator() const;
+			allocator_type				get_allocator() const;
 
 			private:
 				value_type*		_arr;

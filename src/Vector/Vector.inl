@@ -209,6 +209,15 @@ namespace ft
 	}
 
 	/*
+	** 	Allocator
+	*/
+
+	template <class T, class Allocator>
+	typename vector<T, Allocator>::allocator_type vector<T, Allocator>::get_allocator() const {
+		return _allocator;
+	}
+
+	/*
 	** Overload
 	*/
 

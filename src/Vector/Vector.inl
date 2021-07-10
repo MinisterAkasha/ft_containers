@@ -107,10 +107,7 @@ namespace ft
 
 	template <class T, class Allocator>
 	typename vector<T, Allocator>::iterator	vector<T, Allocator>::insert(iterator position, const value_type& val) {
-		size_type index = 0;
-
-		while (begin() + index != position && index < _size)
-			index++;
+		size_type index = getIndexFromPosition(position);
 
 		if (_size == _capacity)
 			reserve(_capacity * 2 ? _capacity * 2 : 1);
@@ -154,10 +151,7 @@ namespace ft
 
 	template <class T, class Allocator>
 	typename vector<T, Allocator>::iterator vector<T, Allocator>::erase(iterator position) {
-		size_type index = 0;
-
-		while (begin() + index != position && index < _size)
-			index++;
+		size_type index = getIndexFromPosition(position);
 		
 		pointer newArr = _allocator.allocate(_capacity);
 		size_type oldArrIndex = 0;
@@ -170,6 +164,26 @@ namespace ft
 		_arr = newArr;
 		_size--;
 		return &_arr[index];
+	}
+
+	template <class T, class Allocator>
+	typename vector<T, Allocator>::iterator vector<T, Allocator>::erase(iterator first, iterator last) {
+		// size_type index = 0;
+
+		// while (begin() + index != position && index < _size)
+		// 	index++;
+		
+		// pointer newArr = _allocator.allocate(_capacity);
+		// size_type oldArrIndex = 0;
+		// for (size_type i = 0; i < _size; i++) {
+		// 	if (i == index)
+		// 		oldArrIndex++;
+		// 	_allocator.construct(newArr + i, _arr[oldArrIndex++]);
+		// }
+		// this->~vector();
+		// _arr = newArr;
+		// _size--;
+		return first;
 	}
 
 	/*
@@ -205,5 +219,14 @@ namespace ft
 				end--;
 			}
 		}
+	}
+
+	template <class T, class Allocator>
+	typename vector<T, Allocator>::size_type	vector<T, Allocator>::getIndexFromPosition(iterator position) {
+		size_type index = 0;
+
+		while (begin() + index != position && index < _size)
+			index++;
+		return index;
 	}
 }

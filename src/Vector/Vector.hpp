@@ -91,7 +91,7 @@ namespace ft {
     		void insert(iterator position, InputIterator first, InputIterator last,
 				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr); // range
 			iterator 					erase(iterator position);
-			// iterator 					erase(iterator first, iterator last);
+			iterator 					erase(iterator first, iterator last);
 			// void 						swap(vector& x);
 			void						clear();
 
@@ -107,7 +107,8 @@ namespace ft {
 				size_type		_capacity;
 				allocator_type	_allocator;
 
-				void destroyAllElems();
+				void 		destroyAllElems();
+				size_type	getIndexFromPosition(iterator position);
 	};
 }
 

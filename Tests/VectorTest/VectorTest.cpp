@@ -28,6 +28,7 @@ void	VectorTest::test() const {
 	testRangeErase();
 	testSwap();
 	testGetAllocator();
+	testFillAssign();
 	testNonMemberEqualOperator();
 }
 
@@ -1692,7 +1693,7 @@ void	VectorTest::testRangeErase() const {
 }
 
 void	VectorTest::testSwap() const {
-	std::cout << "* erase()<range>: ";
+	std::cout << "* swap(): ";
 	{
 		ft::vector<int>	ftVector1(10, 10);
 		ft::vector<int>	ftVector2(5, 20);
@@ -1876,6 +1877,196 @@ void	VectorTest::testGetAllocator() const {
 		ft::vector<int> ftVector2;
 
 		PRINT_RESULT(ftVector1.get_allocator() == ftVector2.get_allocator());
+	}
+	std::cout << std::endl;
+}
+
+void	VectorTest::testFillAssign() const {
+	std::cout << "* assign()<fill>: ";
+	{
+		ft::vector<int> ftVector;
+		std::vector<int> stlVector;
+
+		ftVector.assign(10, 10);
+		stlVector.assign(10, 10);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
+	}
+	{
+		ft::vector<int> ftVector;
+		std::vector<int> stlVector;
+
+		createRandomVectors(ftVector, stlVector, 100);
+		ftVector.assign(10, 10);
+		stlVector.assign(10, 10);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
+	}
+	{
+		ft::vector<int> ftVector(10, 10);
+		std::vector<int> stlVector(10, 10);
+
+		ftVector.assign(10, 10);
+		stlVector.assign(10, 10);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
+	}
+	{
+		ft::vector<int> ftVector(10, 10);
+		std::vector<int> stlVector(10, 10);
+
+		ftVector.assign(0, 10);
+		stlVector.assign(0, 10);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
+	}
+	{
+		ft::vector<int> ftVector(10, 10);
+		std::vector<int> stlVector(10, 10);
+
+		ftVector.assign(1000, 10);
+		stlVector.assign(1000, 10);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
+	}
+	{
+		ft::vector<int> ftVector(10, 10);
+		std::vector<int> stlVector(10, 10);
+
+		createRandomVectors(ftVector, stlVector, 100);
+		ftVector.assign(10, 10);
+		stlVector.assign(10, 10);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
+	}
+	{
+		ft::vector<int> ftVector(10);
+		std::vector<int> stlVector(10);
+
+		createRandomVectors(ftVector, stlVector, 100);
+		ftVector.assign(10, 10);
+		stlVector.assign(10, 10);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
+	}
+	{
+		ft::vector<int> ftVector(10);
+		std::vector<int> stlVector(10);
+
+		createRandomVectors(ftVector, stlVector, 100);
+		ftVector.assign(10, 10);
+		stlVector.assign(10, 10);
+
+		removeElemsFromVector(ftVector, 5);
+		removeElemsFromVector(stlVector, 5);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
+	}
+	{
+		ft::vector<int> ftVector(10);
+		std::vector<int> stlVector(10);
+
+		ftVector.assign(10, 10);
+		stlVector.assign(10, 10);
+
+		removeElemsFromVector(ftVector, 10);
+		removeElemsFromVector(stlVector, 10);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
+	}
+	{
+		ft::vector<int> ftVector(100);
+		std::vector<int> stlVector(100);
+
+		ftVector.assign(5, 10);
+		stlVector.assign(5, 10);
+
+		removeElemsFromVector(ftVector, 5);
+		removeElemsFromVector(stlVector, 5);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector, stlVector));
+	}
+	{
+		ft::vector<int> ftVector;
+		std::vector<int> stlVector;
+
+
+		ftVector.assign(10, 10);
+		stlVector.assign(10, 10);
+
+		PRINT_RESULT(TO_EQUAL(ftVector.capacity(), stlVector.capacity()));
+	}
+	{
+		ft::vector<int> ftVector;
+		std::vector<int> stlVector;
+
+
+		ftVector.assign(0, 10);
+		stlVector.assign(0, 10);
+
+		PRINT_RESULT(TO_EQUAL(ftVector.capacity(), stlVector.capacity()));
+	}
+	{
+		ft::vector<int> ftVector(100, 100);
+		std::vector<int> stlVector(100, 100);
+
+
+		ftVector.assign(0, 10);
+		stlVector.assign(0, 10);
+
+		PRINT_RESULT(TO_EQUAL(ftVector.capacity(), stlVector.capacity()));
+	}
+	{
+		ft::vector<int> ftVector;
+		std::vector<int> stlVector;
+
+		createRandomVectors(ftVector, stlVector, 100);
+
+		ftVector.assign(0, 10);
+		stlVector.assign(0, 10);
+
+		PRINT_RESULT(TO_EQUAL(ftVector.capacity(), stlVector.capacity()));
+	}
+	{
+		ft::vector<int> ftVector;
+		std::vector<int> stlVector;
+
+		createRandomVectors(ftVector, stlVector, 100);
+
+		ftVector.assign(10, 10);
+		stlVector.assign(10, 10);
+
+		PRINT_RESULT(TO_EQUAL(ftVector.capacity(), stlVector.capacity()));
+	}
+	{
+		ft::vector<int> ftVector;
+		std::vector<int> stlVector;
+
+		createRandomVectors(ftVector, stlVector, 100);
+
+		ftVector.assign(110, 10);
+		stlVector.assign(110, 10);
+
+		PRINT_RESULT(TO_EQUAL(ftVector.capacity(), stlVector.capacity()));
+	}
+	{
+		ft::vector<int> ftVector;
+		std::vector<int> stlVector;
+
+		createRandomVectors(ftVector, stlVector, 0);
+
+		ftVector.assign(110, 10);
+		stlVector.assign(110, 10);
+
+		PRINT_RESULT(TO_EQUAL(ftVector.capacity(), stlVector.capacity()));
+	}
+	{
+		ft::vector<int> ftVector;
+		std::vector<int> stlVector;
+
+		createRandomVectors(ftVector, stlVector, 0);
+
+		ftVector.assign(0, 10);
+		stlVector.assign(0, 10);
+
+		PRINT_RESULT(TO_EQUAL(ftVector.capacity(), stlVector.capacity()));
 	}
 	std::cout << std::endl;
 }

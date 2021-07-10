@@ -68,8 +68,8 @@ namespace ft {
 			** Element access
 			*/
 
-			// reference					operator[](size_type pos);
-			// const_reference				operator[](size_type pos) const;
+			reference					operator[](size_type pos);
+			const_reference				operator[](size_type pos) const;
 			// reference 					at(size_type n);
 			// const_reference 			at(size_type n) const;
 			// reference 					front();

@@ -106,6 +106,20 @@ namespace ft
 	}
 
 	/*
+	** Element access
+	*/
+
+	template <class T, class Allocator>
+	typename vector<T, Allocator>::reference vector<T, Allocator>::operator[](size_type pos) {
+		return _arr[pos];
+	}
+
+	template <class T, class Allocator>
+	typename vector<T, Allocator>::const_reference vector<T, Allocator>::operator[](size_type pos) const {
+		return _arr[pos];
+	}
+
+	/*
 	** Modifiers
 	*/
 

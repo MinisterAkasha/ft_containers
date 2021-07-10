@@ -97,6 +97,14 @@ namespace ft
 		}
 	}
 
+	template <class T, class Allocator>
+	void vector<T, Allocator>::resize(size_type n, value_type val) {
+		if (n < _size)
+			erase(_arr + n, end());
+		else
+			insert(end(), n - _size, val);
+	}
+
 	/*
 	** Modifiers
 	*/
@@ -238,7 +246,7 @@ namespace ft
 		if (newSize > _capacity)
 			_capacity = newSize;
 
-		_arr = _allocator.allocate(newSize);
+		_arr = _allocator.allocate(_capacity);
 		for (size_type i = 0; i < newSize; i++) {
 			_allocator.construct(_arr + i, *first);
 			first++;

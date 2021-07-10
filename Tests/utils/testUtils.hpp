@@ -31,8 +31,10 @@ template <class T1>
 void	TO_EQUAL(T1 value1, T1 value2) {
 	if (value1 == value2)
 		std::cout << OK << " ";
-	else
+	else {
 		std::cout << KO << " ";
+		std::cout << "[Actual value: " << value1 << " .Shoud be: " << value2 << "] " ;
+	}
 }
 
 template <class V1, class V2>
@@ -42,12 +44,14 @@ void	TO_EQUAL_VECTOR(V1& ftVector, V2& stlVector) {
 
 	if (ftVector.size() != stlVector.size()) {
 		std::cout << KO << " ";
+		std::cout << "[Actual size: " << ftVector.size() << " .Shoud be: " << stlVector.size() << "] ";
 		return ;
 	}
 	
 	while (myIterator != ftVector.end() || stlIterator != stlVector.end()) {
 		if (*myIterator != *stlIterator) {
 			std::cout << KO << " ";
+			std::cout << "[Actual value: " << *myIterator << " .Shoud be: " << *stlIterator << "] " ;
 			return ;
 		}
 		myIterator++;

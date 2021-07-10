@@ -27,6 +27,7 @@ void	VectorTest::test() const {
 	testSingleErase();
 	testRangeErase();
 	testSwap();
+	testGetAllocator();
 	testNonMemberEqualOperator();
 }
 
@@ -1864,6 +1865,17 @@ void	VectorTest::testNonMemberEqualOperator() const {
 		std::vector<std::string> stlVector2(10, "vector");
 
 		PRINT_RESULT((ftVector1 == ftVector2) && (stlVector1 == stlVector2));
+	}
+	std::cout << std::endl;
+}
+
+void	VectorTest::testGetAllocator() const {
+	std::cout << "* get_allocator(): ";
+	{
+		ft::vector<int> ftVector1;
+		ft::vector<int> ftVector2;
+
+		PRINT_RESULT(ftVector1.get_allocator() == ftVector2.get_allocator());
 	}
 	std::cout << std::endl;
 }

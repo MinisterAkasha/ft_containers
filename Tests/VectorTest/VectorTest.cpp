@@ -458,6 +458,32 @@ void	VectorTest::testCapasity() const {
 		PRINT_RESULT(TO_EQUAL(ftVector1.capacity(), stlVector1.capacity()) && TO_EQUAL(ftVector2.capacity(), stlVector2.capacity()));
 	}
 	{
+		ft::vector<int> ftVector1;
+		ft::vector<int> ftVector2;
+		std::vector<int> stlVector1;
+		std::vector<int> stlVector2;
+
+
+		ftVector1.swap(ftVector2);
+		stlVector1.swap(stlVector2);
+
+		PRINT_RESULT(TO_EQUAL(ftVector1.capacity(), stlVector1.capacity()) && TO_EQUAL(ftVector2.capacity(), stlVector2.capacity()));
+	}
+	{
+		ft::vector<int> ftVector1(10, 15);
+		ft::vector<int> ftVector2(100, 4);
+		std::vector<int> stlVector1(10, 15);
+		std::vector<int> stlVector2(100, 4);
+
+		createRandomVectors(ftVector1, stlVector1, 100);
+		createRandomVectors(ftVector2, stlVector2, 15);
+
+		ftVector1.swap(ftVector2);
+		stlVector1.swap(stlVector2);
+
+		PRINT_RESULT(TO_EQUAL(ftVector1.capacity(), stlVector1.capacity()) && TO_EQUAL(ftVector2.capacity(), stlVector2.capacity()));
+	}
+	{
 		ft::vector<int> ftVector;
 		std::vector<int> stlVector;
 
@@ -1669,8 +1695,8 @@ void	VectorTest::testSwap() const {
 		ft::vector<int>	ftVector1(10, 10);
 		ft::vector<int>	ftVector2(5, 20);
 
-		std::vector<int>	stlVector1(2, 10);
-		std::vector<int>	stlVector2(10, 20);
+		std::vector<int>	stlVector1(10, 10);
+		std::vector<int>	stlVector2(5, 20);
 
 		stlVector1.swap(stlVector2);
 		ftVector1.swap(ftVector2);
@@ -1701,6 +1727,57 @@ void	VectorTest::testSwap() const {
 
 		stlVector1.swap(stlVector2);
 		ftVector1.swap(ftVector2);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector1, stlVector1) && TO_EQUAL_VECTOR(ftVector2, stlVector2));
+	}
+	{
+		ft::vector<int>	ftVector1;
+		ft::vector<int>	ftVector2;
+
+		std::vector<int>	stlVector1;
+		std::vector<int>	stlVector2;
+
+		createRandomVectors(ftVector1, stlVector1, 100);
+		createRandomVectors(ftVector2, stlVector2, 15);
+
+		stlVector1.swap(stlVector1);
+		ftVector1.swap(ftVector1);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector1, stlVector1) && TO_EQUAL_VECTOR(ftVector2, stlVector2));
+	}
+	{
+		ft::vector<int>	ftVector1;
+		ft::vector<int>	ftVector2;
+
+		std::vector<int>	stlVector1;
+		std::vector<int>	stlVector2;
+
+		stlVector1.swap(stlVector1);
+		ftVector1.swap(ftVector1);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector1, stlVector1) && TO_EQUAL_VECTOR(ftVector2, stlVector2));
+	}
+	{
+		ft::vector<std::string>	ftVector1;
+		ft::vector<std::string>	ftVector2;
+
+		std::vector<std::string>	stlVector1;
+		std::vector<std::string>	stlVector2;
+
+		stlVector1.swap(stlVector1);
+		ftVector1.swap(ftVector1);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector1, stlVector1) && TO_EQUAL_VECTOR(ftVector2, stlVector2));
+	}
+	{
+		ft::vector<std::string>	ftVector1(10, "vector");
+		ft::vector<std::string>	ftVector2(2, "swap");
+
+		std::vector<std::string>	stlVector1(10, "vector");
+		std::vector<std::string>	stlVector2(2, "swap");
+
+		stlVector1.swap(stlVector1);
+		ftVector1.swap(ftVector1);
 
 		PRINT_RESULT(TO_EQUAL_VECTOR(ftVector1, stlVector1) && TO_EQUAL_VECTOR(ftVector2, stlVector2));
 	}

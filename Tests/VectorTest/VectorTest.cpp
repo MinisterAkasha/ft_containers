@@ -1334,6 +1334,71 @@ void	VectorTest::testSingleErase() const {
 
 		TO_EQUAL_VECTOR(ftVector, stlVector);
 	}
+	{
+		ft::vector<int>		ftVector(2, 3);
+		std::vector<int>	stlVector(2, 3);
+		
+		TO_EQUAL(*ftVector.erase(ftVector.begin()), *stlVector.erase(stlVector.begin()));
+	}
+	{
+		ft::vector<int>		ftVector(2, 3);
+		std::vector<int>	stlVector(2, 3);
+		
+		createRandomVectors(ftVector, stlVector, 100);
+
+		TO_EQUAL(*ftVector.erase(ftVector.begin()), *stlVector.erase(stlVector.begin()));
+	}
+	{
+		ft::vector<int>		ftVector(2, 3);
+		std::vector<int>	stlVector(2, 3);
+		
+		createRandomVectors(ftVector, stlVector, 100);
+
+		TO_EQUAL(*ftVector.erase(ftVector.begin() + 50), *stlVector.erase(stlVector.begin() + 50));
+	}
+	{
+		ft::vector<int>		ftVector;
+		std::vector<int>	stlVector;
+		
+		createRandomVectors(ftVector, stlVector, 100);
+
+
+		TO_EQUAL(*ftVector.erase(ftVector.begin() + 50), *stlVector.erase(stlVector.begin() + 50));
+	}
+	{
+		ft::vector<int>		ftVector;
+		std::vector<int>	stlVector;
+		
+		createRandomVectors(ftVector, stlVector, 100);
+
+		TO_EQUAL(*ftVector.erase(ftVector.begin() + 50), *stlVector.erase(stlVector.begin() + 50));
+	}
+	{
+		ft::vector<int>		ftVector(100, 20);
+		std::vector<int>	stlVector(100, 20);
+		
+		createRandomVectors(ftVector, stlVector, 100);
+
+		TO_EQUAL(*ftVector.erase(ftVector.end() - 50), *stlVector.erase(stlVector.end() - 50));
+	}
+	{
+		ft::vector<std::string>		ftVector(10, "vector");
+		std::vector<std::string>	stlVector(10, "vector");
+		
+		TO_EQUAL(*ftVector.erase(ftVector.begin()), *stlVector.erase(stlVector.begin()));
+	}
+	{
+		ft::vector<std::string>		ftVector(10, "vector");
+		std::vector<std::string>	stlVector(10, "vector");
+		
+		TO_EQUAL(*ftVector.erase(ftVector.begin() + 5), *stlVector.erase(stlVector.begin() + 5));
+	}
+	{
+		ft::vector<std::string>		ftVector(10, "vector");
+		std::vector<std::string>	stlVector(10, "vector");
+		
+		TO_EQUAL(*ftVector.erase(ftVector.begin() + 9), *stlVector.erase(stlVector.begin() + 9));
+	}
 	std::cout << std::endl;
 }
 

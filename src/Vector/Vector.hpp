@@ -87,11 +87,10 @@ namespace ft {
 			void						pop_back();
 			iterator					insert(iterator position, const value_type& val); // single element
 		    void 						insert(iterator position, size_type n, const value_type& val); // fill
-
 			template <class InputIterator>
     		void insert(iterator position, InputIterator first, InputIterator last,
 				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr); // range
-			// iterator 					erase(iterator position);
+			iterator 					erase(iterator position);
 			// iterator 					erase(iterator first, iterator last);
 			// void 						swap(vector& x);
 			void						clear();

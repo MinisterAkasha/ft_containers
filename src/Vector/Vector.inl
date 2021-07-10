@@ -152,6 +152,11 @@ namespace ft
 		_size = 0;
 	}
 
+	template <class T, class Allocator>
+	typename vector<T, Allocator>::iterator vector<T, Allocator>::erase(iterator position) {
+		return position;
+	}
+
 	/*
 	** Overload
 	*/

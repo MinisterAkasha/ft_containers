@@ -24,6 +24,7 @@ void	VectorTest::test() const {
 	testCapasity();
 	testMaxSize();
 	testClear();
+	testSingleErase();
 }
 
 void	VectorTest::testFillConstructor() const {
@@ -1240,5 +1241,100 @@ void	VectorTest::testClear() const {
 	std::cout << std::endl;
 }
 
+void	VectorTest::testSingleErase() const {
+	std::cout << "* erase()<single>: ";
+	{
+		ft::vector<int>		ftVector(2, 3);
+		std::vector<int>	stlVector(2, 3);
+		
+		ftVector.erase(ftVector.begin());
+		stlVector.erase(stlVector.begin());
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector(2, 3);
+		std::vector<int>	stlVector(2, 3);
+		
+		createRandomVectors(ftVector, stlVector, 100);
+
+		ftVector.erase(ftVector.begin());
+		stlVector.erase(stlVector.begin());
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector(2, 3);
+		std::vector<int>	stlVector(2, 3);
+		
+		createRandomVectors(ftVector, stlVector, 100);
+
+		ftVector.erase(ftVector.begin() + 50);
+		stlVector.erase(stlVector.begin() + 50);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector;
+		std::vector<int>	stlVector;
+		
+		createRandomVectors(ftVector, stlVector, 100);
+
+		ftVector.erase(ftVector.begin() + 50);
+		stlVector.erase(stlVector.begin() + 50);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector;
+		std::vector<int>	stlVector;
+		
+		createRandomVectors(ftVector, stlVector, 100);
+
+		ftVector.erase(ftVector.begin() + 50);
+		stlVector.erase(stlVector.begin() + 50);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<int>		ftVector(100, 20);
+		std::vector<int>	stlVector(100, 20);
+		
+		createRandomVectors(ftVector, stlVector, 100);
+
+		ftVector.erase(ftVector.end() - 50);
+		stlVector.erase(stlVector.end() - 50);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<std::string>		ftVector(10, "vector");
+		std::vector<std::string>	stlVector(10, "vector");
+		
+		ftVector.erase(ftVector.begin());
+		stlVector.erase(stlVector.begin());
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<std::string>		ftVector(10, "vector");
+		std::vector<std::string>	stlVector(10, "vector");
+		
+		ftVector.erase(ftVector.begin() + 5);
+		stlVector.erase(stlVector.begin() + 5);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	{
+		ft::vector<std::string>		ftVector(10, "vector");
+		std::vector<std::string>	stlVector(10, "vector");
+		
+		ftVector.erase(ftVector.begin() + 9);
+		stlVector.erase(stlVector.begin() + 9);
+
+		TO_EQUAL_VECTOR(ftVector, stlVector);
+	}
+	std::cout << std::endl;
+}
 
 

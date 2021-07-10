@@ -30,6 +30,7 @@ class VectorTest {
 		void testPushBack() const;
 		void testReserve() const;
 		void testClear() const;
+		void testSingleErase() const;
 	
 	public:
 		VectorTest();

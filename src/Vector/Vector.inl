@@ -220,6 +220,32 @@ namespace ft
 			_allocator.construct(_arr + i, val);
 	}
 
+	template <class T, class Allocator>
+	template <class InputIterator>
+	void vector<T, Allocator>::assign(InputIterator first, InputIterator last,
+		typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type*) {
+		size_type newSize = 0;
+		InputIterator position = first;
+		while (position != last) {
+			newSize++;
+			position++;
+		}
+
+		this->~vector();
+		_arr = nullptr;
+		_size = newSize;
+
+		if (newSize > _capacity)
+			_capacity = newSize;
+
+		_arr = _allocator.allocate(newSize);
+		for (size_type i = 0; i < newSize; i++) {
+			_allocator.construct(_arr + i, *first);
+			first++;
+		}
+
+	}
+
 	/*
 	** 	Allocator
 	*/

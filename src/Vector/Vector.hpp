@@ -81,8 +81,9 @@ namespace ft {
 			** Modifiers
 			*/
 
-			// template <class InputIterator>
-			// void						assign(InputIterator first, InputIterator last); // range
+			template <class InputIterator>
+			void						assign(InputIterator first, InputIterator last,
+				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr); // range
 			void						assign(size_type n, const value_type& val); // fill
 			void 						push_back(const value_type& val);
 			void						pop_back();

@@ -44,7 +44,17 @@ namespace ft
 	}
 
 	template <class T, class Allocator>
+	typename vector<T, Allocator>::const_iterator	vector<T, Allocator>::begin() const {
+		return _arr;
+	}
+
+	template <class T, class Allocator>
 	typename vector<T, Allocator>::iterator	vector<T, Allocator>::end() {
+		return _arr + _size;
+	}
+
+	template <class T, class Allocator>
+	typename vector<T, Allocator>::const_iterator	vector<T, Allocator>::end() const {
 		return _arr + _size;
 	}
 
@@ -177,6 +187,27 @@ namespace ft
 		return position;
 	}
 
+	template <class T, class Allocator>
+	void vector<T, Allocator>::swap(vector& x) {
+		if (x == *this)
+			return ;
+
+		pointer			arrTmp = x._arr;
+		size_type 		sizeTmp = x._size;
+		size_type 		capacityTmp = x._capacity;
+		allocator_type	allocatorTmp = x._allocator;
+
+		x._arr = _arr;
+		x._size = _size;
+		x._capacity = _capacity;
+		x._allocator = _allocator;
+
+		_arr = arrTmp;
+		_size = sizeTmp;
+		_capacity = capacityTmp;
+		_allocator = allocatorTmp;
+	}
+
 	/*
 	** Overload
 	*/
@@ -194,6 +225,31 @@ namespace ft
 				_allocator.construct(_arr + i, other._arr[i]);
 		}
 		return *this;
+	}
+
+	/*
+	** Non-member overloads
+	*/
+
+	template <class T, class Alloc>
+  	bool operator==(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {
+		if (lhs.size() != rhs.size())
+		  	return false;
+
+		typedef typename vector<T,Alloc>::const_iterator const_iterator;
+		
+		const_iterator lBegin = lhs.begin();
+		const_iterator rBegin = rhs.begin();
+		const_iterator lEnd = lhs.end();
+		const_iterator rEnd = rhs.end();
+
+		while (lBegin != lEnd && rBegin != rEnd) {
+			if (*lBegin != *rBegin)
+				return false;
+			lBegin++;
+			rBegin++;
+		}
+		return true;
 	}
 
 	/*

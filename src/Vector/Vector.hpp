@@ -47,9 +47,9 @@ namespace ft {
 			*/
 
 			iterator					begin();
-			// const_iterator 				begin() const;
+			const_iterator 				begin() const;
 			iterator					end();
-			// const_iterator				end() const;
+			const_iterator				end() const;
 			// // reverse_iterator			rbegin();//TODO
 			// // const_reverse_iterator	rbegin() const;//TODO
 
@@ -92,7 +92,7 @@ namespace ft {
 				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr); // range
 			iterator 					erase(iterator position);
 			iterator 					erase(iterator first, iterator last);
-			// void 						swap(vector& x);
+			void 						swap(vector& x);
 			void						clear();
 
 			/*
@@ -110,6 +110,31 @@ namespace ft {
 				void 		destroyAllElems();
 				size_type	getIndexFromPosition(iterator position);
 	};
+
+	/*
+	** Non-member overloads
+	*/
+
+	template <class T, class Alloc>
+  	bool operator==(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
+	
+	template <class T, class Alloc>
+  	bool operator!=(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
+
+	template <class T, class Alloc>
+	bool operator<(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
+
+	template <class T, class Alloc>
+	bool operator<=(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
+
+	template <class T, class Alloc>
+	bool operator>(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
+
+	template <class T, class Alloc>
+	bool operator>=(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs);
+
+	template <class T, class Alloc>
+	void swap(vector<T,Alloc>& x, vector<T,Alloc>& y);
 }
 
 # include "vector.inl"

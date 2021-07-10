@@ -72,8 +72,8 @@ namespace ft {
 			const_reference				operator[](size_type pos) const;
 			reference 					at(size_type n);
 			const_reference 			at(size_type n) const;
-			// reference 					front();
-			// const_reference 			front() const;
+			reference 					front();
+			const_reference 			front() const;
 			// reference 					back();
 			// const_reference				back() const;
 

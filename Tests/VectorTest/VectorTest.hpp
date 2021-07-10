@@ -41,6 +41,7 @@ class VectorTest {
 		void testAccessOperator() const;
 		void testAt() const;
 		void testFront() const;
+		void testBack() const;
 	
 	public:
 		VectorTest();

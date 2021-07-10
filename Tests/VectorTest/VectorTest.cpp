@@ -34,6 +34,7 @@ void	VectorTest::test() const {
 	testAccessOperator();
 	testAt();
 	testFront();
+	testBack();
 	testNonMemberEqualOperator();
 }
 
@@ -2585,6 +2586,84 @@ void	VectorTest::testFront() const {
 		createRandomVectors(ft, stl, 100);
 
 		PRINT_RESULT(TO_EQUAL(ft.front(), stl.front()));
+	}
+	std::cout << std::endl;
+}
+
+void	VectorTest::testBack() const {
+	std::cout << "* back(): ";
+	{
+		ft::vector<int>		ft;
+		std::vector<int>	stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		PRINT_RESULT(TO_EQUAL(ft.back(), stl.back()));
+	}
+	{
+		ft::vector<int>		ft(10);
+		std::vector<int>	stl(10);
+
+		createRandomVectors(ft, stl, 100);
+
+		PRINT_RESULT(TO_EQUAL(ft.back(), stl.back()));
+	}
+	{
+		ft::vector<int>		ft(10);
+		std::vector<int>	stl(10);
+
+		ft.push_back(1);
+		stl.push_back(2);
+
+		PRINT_RESULT(!TO_EQUAL(ft.back(), stl.back()));
+	}
+	{
+		ft::vector<int>		ft(10);
+		std::vector<int>	stl(10);
+
+		createRandomVectors(ft, stl, 100);
+
+		PRINT_RESULT(TO_EQUAL(ft.back(), stl.back()));
+	}
+	{
+		ft::vector<int>		ft(10, 10);
+		std::vector<int>	stl(10, 10);
+
+		createRandomVectors(ft, stl, 100);
+
+		PRINT_RESULT(TO_EQUAL(ft.back(), stl.back()));
+	}
+	{
+		ft::vector<std::string>		ft(10, "vector");
+		std::vector<std::string>	stl(10, "vector");
+
+		PRINT_RESULT(TO_EQUAL(ft.back(), stl.back()));
+	}
+	{
+		ft::vector<std::string>		ft(10, "vector");
+		std::vector<std::string>	stl(10, "vector");
+
+		PRINT_RESULT(TO_EQUAL(ft.back(), stl.back()));
+	}
+	{
+		ft::vector<std::string>		ft(10, "vector");
+		std::vector<std::string>	stl(10, "vector");
+
+		PRINT_RESULT(TO_EQUAL(ft.back(), stl.back()));
+	}
+	{
+		ft::vector<std::string>		ft(10, "vector");
+		std::vector<std::string>	stl(10, "vector");
+
+		PRINT_RESULT(TO_EQUAL(ft.back(), stl.back()));
+	}
+	{
+		ft::vector<int>		ft(10);
+		std::vector<int>	stl(10);
+
+		createRandomVectors(ft, stl, 100);
+
+		PRINT_RESULT(TO_EQUAL(ft.back(), stl.back()));
 	}
 	std::cout << std::endl;
 }

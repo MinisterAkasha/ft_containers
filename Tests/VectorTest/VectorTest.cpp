@@ -32,6 +32,7 @@ void	VectorTest::test() const {
 	testRangeAssign();
 	testResize();
 	testAccessOperator();
+	testAt();
 	testNonMemberEqualOperator();
 }
 
@@ -2415,6 +2416,96 @@ void	VectorTest::testAccessOperator() const {
 		std::vector<std::string>	stl(10, "vector");
 
 		PRINT_RESULT(TO_EQUAL(ft[9], stl[9]));
+	}
+	std::cout << std::endl;
+}
+
+void	VectorTest::testAt() const {
+	std::cout << "* at(): ";
+	{
+		ft::vector<int>		ft;
+		std::vector<int>	stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		PRINT_RESULT(TO_EQUAL(ft.at(0), stl.at(0)));
+	}
+	{
+		ft::vector<int>		ft(10);
+		std::vector<int>	stl(10);
+
+		createRandomVectors(ft, stl, 100);
+
+		PRINT_RESULT(TO_EQUAL(ft.at(99), stl.at(99)));
+	}
+	{
+		ft::vector<int>		ft(10);
+		std::vector<int>	stl(10);
+
+		ft.push_back(1);
+		stl.push_back(2);
+
+		PRINT_RESULT(!TO_EQUAL(ft.at(10), stl.at(10)));
+	}
+	{
+		ft::vector<int>		ft(10);
+		std::vector<int>	stl(10);
+
+		createRandomVectors(ft, stl, 100);
+
+		PRINT_RESULT(TO_EQUAL(ft.at(99), stl.at(99)));
+	}
+	{
+		ft::vector<int>		ft(10, 10);
+		std::vector<int>	stl(10, 10);
+
+		createRandomVectors(ft, stl, 100);
+
+		PRINT_RESULT(TO_EQUAL(ft.at(50), stl.at(50)));
+	}
+	{
+		ft::vector<std::string>		ft(10, "vector");
+		std::vector<std::string>	stl(10, "vector");
+
+		PRINT_RESULT(TO_EQUAL(ft.at(5), stl.at(5)));
+	}
+	{
+		ft::vector<std::string>		ft(10, "vector");
+		std::vector<std::string>	stl(10, "vector");
+
+		PRINT_RESULT(TO_EQUAL(ft.at(9), stl.at(9)));
+	}
+	{
+		ft::vector<std::string>		ft(10, "vector");
+		std::vector<std::string>	stl(10, "vector");
+
+		try {
+			PRINT_RESULT(TO_EQUAL(ft.at(12), stl.at(12)));
+		} catch (std::out_of_range) {
+			PRINT_RESULT(true);
+		}
+	}
+	{
+		ft::vector<std::string>		ft(10, "vector");
+		std::vector<std::string>	stl(10, "vector");
+
+		try {
+			PRINT_RESULT(TO_EQUAL(ft.at(10), stl.at(10)));
+		} catch (std::out_of_range) {
+			PRINT_RESULT(true);
+		}
+	}
+	{
+		ft::vector<int>		ft(10);
+		std::vector<int>	stl(10);
+
+		createRandomVectors(ft, stl, 100);
+
+		try {
+			PRINT_RESULT(TO_EQUAL(ft.at(100), stl.at(100)));
+		} catch (std::out_of_range) {
+			PRINT_RESULT(true);
+		}
 	}
 	std::cout << std::endl;
 }

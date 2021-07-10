@@ -135,6 +135,16 @@ namespace ft
 			position = insert(position, val);
 	}
 
+	template <class T, class Allocator>
+	template <class InputIterator>
+    void vector<T, Allocator>::insert(iterator position, InputIterator first, InputIterator last,
+				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type*) {
+		while (first != last) {
+			position = insert(position, *first) + 1;
+			first++;
+		}
+	}
+
 	/*
 	** Overload
 	*/

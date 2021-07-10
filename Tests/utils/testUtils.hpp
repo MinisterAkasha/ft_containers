@@ -29,6 +29,13 @@ void	createRandomVectors(ftVector& ft, stlVector& stl, size_t size) {
 	}
 }
 
+template <class Vector>
+void	removeElemsFromVector(Vector& vector, size_t size) {
+	for (size_t i = 0; i < size; i++) {
+		vector.pop_back();
+	}
+}
+
 template <class ftIterator, class stlIterator, class size_type, class T>
 void createBeginIterators(ftIterator& myIterator, stlIterator& defoultIterator, size_type size, T value) {
 	ft::vector<T>	myVector(size, value);

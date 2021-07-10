@@ -40,6 +40,7 @@ class VectorTest {
 		void testResize() const;
 		void testAccessOperator() const;
 		void testAt() const;
+		void testFront() const;
 	
 	public:
 		VectorTest();

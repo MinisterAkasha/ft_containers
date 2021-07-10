@@ -30,6 +30,7 @@ void	VectorTest::test() const {
 	testGetAllocator();
 	testFillAssign();
 	testRangeAssign();
+	testResize();
 	testNonMemberEqualOperator();
 }
 
@@ -1020,12 +1021,7 @@ void	VectorTest::testFillInsert() const {
 		ft::vector<int>		ftVector(10, 4);
 		std::vector<int>	stlVector(10, 4);
 
-		int rand = std::rand();
-		for (int i = 0; i < 100; i++) {
-			ftVector.push_back(rand);
-			stlVector.push_back(rand);
-			rand = std::rand();
-		}
+		createRandomVectors(ftVector, stlVector, 100);
 
 		ft::vector<int>::iterator	ftIterator = --(ftVector.end());
 		std::vector<int>::iterator	stlIterator = --(stlVector.end());
@@ -1040,11 +1036,8 @@ void	VectorTest::testFillInsert() const {
 		std::vector<int>	stlVector(10, 4);
 
 
-		for (int i = 0; i < 100; i++) {
-			ftVector.push_back(i);
-			stlVector.push_back(i);
-		
-		}
+		createRandomVectors(ftVector, stlVector, 100);
+
 		ft::vector<int>::iterator	ftIterator = ftVector.begin() + 2;
 		std::vector<int>::iterator	stlIterator = stlVector.begin() + 2;
 		
@@ -2223,5 +2216,146 @@ void	VectorTest::testRangeAssign() const {
 
 		PRINT_RESULT(TO_EQUAL(ftVector.capacity(), stlVector.capacity()));
 	}
+	std::cout << std::endl;
+}
+
+void	VectorTest::testResize() const {
+	std::cout << "* resize(): ";
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		ft.resize(10);
+		stl.resize(10);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ft, stl));	
+	}
+	{
+		ft::vector<int> ft(100);
+		std::vector<int> stl(100);
+
+		ft.resize(10);
+		stl.resize(10);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ft, stl));	
+	}
+	{
+		ft::vector<int> ft(100);
+		std::vector<int> stl(100);
+
+		ft.resize(110);
+		stl.resize(110);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ft, stl));	
+	}
+	{
+		ft::vector<int> ft(100);
+		std::vector<int> stl(100);
+
+		ft.resize(10, 10);
+		stl.resize(10, 10);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ft, stl));	
+	}
+	{
+		ft::vector<int> ft(100, 10);
+		std::vector<int> stl(100, 10);
+
+		ft.resize(10);
+		stl.resize(10);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ft, stl));	
+	}
+	{
+		ft::vector<int> ft(100, 10);
+		std::vector<int> stl(100, 10);
+
+		ft.resize(10, 4);
+		stl.resize(10, 4);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ft, stl));	
+	}
+	{
+		ft::vector<int> ft(100, 10);
+		std::vector<int> stl(100, 10);
+
+		ft.resize(110, 4);
+		stl.resize(110, 4);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ft, stl));	
+	}
+	{
+		ft::vector<int> ft(1, 10);
+		std::vector<int> stl(1, 10);
+
+		ft.resize(5, 4);
+		stl.resize(5, 4);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ft, stl));	
+	}
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		ft.resize(5, 4);
+		stl.resize(5, 4);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ft, stl));	
+	}
+	
+	// { //TODO
+	// 	ft::vector<int> ft;
+	// 	std::vector<int> stl;
+
+	// 	ft.resize(10);
+	// 	stl.resize(10);
+
+	// 	PRINT_RESULT(TO_EQUAL(ft.capacity(), stl.capacity()));	
+	// }
+	// {
+	// 	ft::vector<int> ft(100);
+	// 	std::vector<int> stl(100);
+
+	// 	ft.resize(10);
+	// 	stl.resize(10);
+
+	// 	PRINT_RESULT(TO_EQUAL(ft.capacity(), stl.capacity()));	
+	// }
+	// {
+	// 	ft::vector<int> ft(100);
+	// 	std::vector<int> stl(100);
+
+	// 	ft.resize(10, 10);
+	// 	stl.resize(10, 10);
+
+	// 	PRINT_RESULT(TO_EQUAL(ft.capacity(), stl.capacity()));	
+	// }
+	// {
+	// 	ft::vector<int> ft(100, 10);
+	// 	std::vector<int> stl(100, 10);
+
+	// 	ft.resize(10);
+	// 	stl.resize(10);
+
+	// 	PRINT_RESULT(TO_EQUAL(ft.capacity(), stl.capacity()));	
+	// }
+	// {
+	// 	ft::vector<int> ft(100, 10);
+	// 	std::vector<int> stl(100, 10);
+
+	// 	ft.resize(10, 4);
+	// 	stl.resize(10, 4);
+
+	// 	PRINT_RESULT(TO_EQUAL(ft.capacity(), stl.capacity()));	
+	// }
+	// {
+	// 	ft::vector<int> ft(100, 10);
+	// 	std::vector<int> stl(100, 10);
+
+	// 	ft.resize(110, 4);
+	// 	stl.resize(110, 4);
+
+	// 	PRINT_RESULT(TO_EQUAL(ft.capacity(), stl.capacity()));	
+	// }
 	std::cout << std::endl;
 }

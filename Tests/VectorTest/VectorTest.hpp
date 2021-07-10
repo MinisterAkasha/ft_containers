@@ -37,6 +37,7 @@ class VectorTest {
 		void testGetAllocator() const;
 		void testFillAssign() const;
 		void testRangeAssign() const;
+		void testResize() const;
 	
 	public:
 		VectorTest();

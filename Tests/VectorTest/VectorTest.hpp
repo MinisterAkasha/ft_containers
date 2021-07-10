@@ -36,6 +36,7 @@ class VectorTest {
 		void testNonMemberEqualOperator() const;
 		void testGetAllocator() const;
 		void testFillAssign() const;
+		void testRangeAssign() const;
 	
 	public:
 		VectorTest();

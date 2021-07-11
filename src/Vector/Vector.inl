@@ -23,7 +23,7 @@ namespace ft
 
 	template <class T, class Allocator>
 	vector<T, Allocator>::vector(const vector& other)
-	: _arr(nullptr), _size(other._size), _capacity(other._capacity), _allocator(other._allocator) {
+	: _arr(nullptr), _size(0), _capacity(0), _allocator(other._allocator){
 		operator=(other);
 	}
 
@@ -345,8 +345,9 @@ namespace ft
 			_capacity = other._capacity;
 			_allocator = other._allocator;
 			_arr = _allocator.allocate(_capacity);
-			for (size_type i = 0; i < _size; i++)
+			for (size_type i = 0; i < _size; i++) {
 				_allocator.construct(_arr + i, other._arr[i]);
+			}
 		}
 		return *this;
 	}

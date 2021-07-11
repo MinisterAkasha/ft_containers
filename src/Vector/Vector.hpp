@@ -27,6 +27,7 @@ namespace ft {
 			/*
 			** Member functions
 			*/
+		
 			explicit vector(const allocator_type& alloc = allocator_type());		// default
 
 			explicit vector(size_type n, const value_type& val = value_type(),		// fill

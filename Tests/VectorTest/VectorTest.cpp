@@ -38,6 +38,7 @@ void	VectorTest::test() const {
 	testFront();
 	testBack();
 	testNonMemberEqualOperator();
+	testNonMemberNotEqualOperator();
 }
 
 void	VectorTest::testFillConstructor() const {
@@ -2774,6 +2775,68 @@ void	VectorTest::testCopyConstructor() const {
 		std::vector<std::string>	stl(stlSupport);
 
 		PRINT_RESULT(TO_EQUAL_VECTOR(ft, stl));
+	}
+	std::cout << std::endl;
+}
+
+void	VectorTest::testNonMemberNotEqualOperator() const {
+	std::cout << "* operator!= <non-member>: ";
+	{
+		ft::vector<int> ftVector1;
+		ft::vector<int> ftVector2;
+
+		std::vector<int> stlVector1;
+		std::vector<int> stlVector2;
+
+		PRINT_RESULT(!((ftVector1 != ftVector2) && (stlVector1 != stlVector2)));
+	}
+	{
+		ft::vector<int> ftVector1(10, 10);
+		ft::vector<int> ftVector2(10, 10);
+
+		std::vector<int> stlVector1(10, 10);
+		std::vector<int> stlVector2(10, 10);
+
+		PRINT_RESULT(!((ftVector1 != ftVector2) && (stlVector1 != stlVector2)));
+	}
+	{
+		ft::vector<int> ftVector1;
+		ft::vector<int> ftVector2;
+
+		std::vector<int> stlVector1;
+		std::vector<int> stlVector2;
+
+		PRINT_RESULT(!((ftVector1 != ftVector2) && (stlVector1 != stlVector2)));
+	}
+	{
+		ft::vector<int> ftVector1;
+		ft::vector<int> ftVector2;
+
+		std::vector<int> stlVector1;
+		std::vector<int> stlVector2;
+
+		createRandomVectors(ftVector1, ftVector2, 100);
+		createRandomVectors(stlVector1, stlVector2, 100);
+
+		PRINT_RESULT(!((ftVector1 != ftVector2) && (stlVector1 != stlVector2)));
+	}
+	{
+		ft::vector<std::string> ftVector1;
+		ft::vector<std::string> ftVector2;
+
+		std::vector<std::string> stlVector1;
+		std::vector<std::string> stlVector2;
+
+		PRINT_RESULT(!((ftVector1 != ftVector2) && (stlVector1 != stlVector2)));
+	}
+	{
+		ft::vector<std::string> ftVector1(10, "vector");
+		ft::vector<std::string> ftVector2(10, "vector");
+
+		std::vector<std::string> stlVector1(10, "vector");
+		std::vector<std::string> stlVector2(10, "vector");
+
+		PRINT_RESULT(!((ftVector1 != ftVector2) && (stlVector1 != stlVector2)));
 	}
 	std::cout << std::endl;
 }

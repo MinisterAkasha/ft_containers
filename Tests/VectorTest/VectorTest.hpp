@@ -44,6 +44,7 @@ class VectorTest {
 		void testAt() const;
 		void testFront() const;
 		void testBack() const;
+		void testNonMemberNotEqualOperator() const;
 	
 	public:
 		VectorTest();

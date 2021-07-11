@@ -32,9 +32,10 @@ namespace ft {
 			explicit vector(size_type n, const value_type& val = value_type(),		// fill
 							const allocator_type& alloc = allocator_type());
 
-			// template <class InputIterator>
-        	// vector(InputIterator first, InputIterator last,				  			// range
-            //      const allocator_type& alloc = allocator_type());
+			template <class InputIterator>
+        	vector(InputIterator first, InputIterator last,				  			// range
+                const allocator_type& alloc = allocator_type(),
+				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr);
 
 			vector(const vector& other);											//TODO написать тесты!!! copy
 

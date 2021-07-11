@@ -28,6 +28,27 @@ namespace ft
 	}
 
 	template <class T, class Allocator>
+	template <class InputIterator>
+    vector<T, Allocator>::vector(InputIterator first, InputIterator last, const allocator_type& alloc,
+	typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type*)
+	: _arr(nullptr), _size(0), _capacity(0), _allocator(alloc) {
+		size_type size = 0;
+		InputIterator position = first;
+		while (position != last) {
+			size++;
+			position++;
+		}
+		_capacity = size;
+		_arr = _allocator.allocate(0);
+
+		insert(_arr, first, last);
+	}
+
+	/*
+	** Destructor
+	*/
+
+	template <class T, class Allocator>
 	vector<T, Allocator>::~vector() {
 		pointer start = _arr;
 		this->destroyAllElems();

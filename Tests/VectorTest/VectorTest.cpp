@@ -20,6 +20,7 @@ void	VectorTest::test() const {
 	testEnd();
 	testFillConstructor();
 	testRangeConstructor();
+	testCopyConstructor();
 	testEqualOperator();
 	testEmpty();
 	testCapasity();
@@ -2708,6 +2709,69 @@ void	VectorTest::testRangeConstructor() const {
 
 		ft::vector<std::string>		ft(ftIter, ftIter);
 		std::vector<std::string>	stl(stlIter, stlIter);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ft, stl));
+	}
+	std::cout << std::endl;
+}
+
+void	VectorTest::testCopyConstructor() const {
+	std::cout << "* copy constructor: ";
+	{
+		ft::vector<int>		ftSupport(10, 100);
+		std::vector<int>	stlSupport(10, 100);
+
+		ft::vector<int>		ft(ftSupport);
+		std::vector<int>	stl(stlSupport);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ft, stl));
+	}
+	{
+		ft::vector<int>		ftSupport(10, 100);
+		std::vector<int>	stlSupport(10, 100);
+
+		ft::vector<int>		ft(ftSupport);
+		std::vector<int>	stl(stlSupport);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ft, stl));
+	}
+	{
+		ft::vector<int>		ftSupport;
+		std::vector<int>	stlSupport;
+
+		createRandomVectors(ftSupport, stlSupport, 100);
+
+		ft::vector<int>		ft(ftSupport);
+		std::vector<int>	stl(stlSupport);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ft, stl));
+	}
+	{
+		ft::vector<int>		ftSupport;
+		std::vector<int>	stlSupport;
+
+		createRandomVectors(ftSupport, stlSupport, 100);
+
+		ft::vector<int>		ft(ftSupport);
+		std::vector<int>	stl(stlSupport);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ft, stl));
+	}
+	{
+		ft::vector<std::string>		ftSupport(50, "vector");
+		std::vector<std::string>	stlSupport(50, "vector");
+
+		ft::vector<std::string>		ft(ftSupport);
+		std::vector<std::string>	stl(stlSupport);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ft, stl));
+	}
+	{
+		ft::vector<std::string>		ftSupport(50, "vector");
+		std::vector<std::string>	stlSupport(50, "vector");
+
+		ft::vector<std::string>		ft(ftSupport);
+		std::vector<std::string>	stl(stlSupport);
 
 		PRINT_RESULT(TO_EQUAL_VECTOR(ft, stl));
 	}

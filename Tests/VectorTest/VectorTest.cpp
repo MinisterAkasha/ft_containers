@@ -19,6 +19,7 @@ void	VectorTest::test() const {
 	testBegin();
 	testEnd();
 	testFillConstructor();
+	testRangeConstructor();
 	testEqualOperator();
 	testEmpty();
 	testCapasity();
@@ -1806,15 +1807,6 @@ void	VectorTest::testNonMemberEqualOperator() const {
 		PRINT_RESULT((ftVector1 == ftVector2) && (stlVector1 == stlVector2));
 	}
 	{
-		ft::vector<int> ftVector1(10, 10);
-		ft::vector<int> ftVector2(10, 15);
-
-		std::vector<int> stlVector1(10, 10);
-		std::vector<int> stlVector2(10, 15);
-
-		PRINT_RESULT(!(ftVector1 == ftVector2) && !(stlVector1 == stlVector2));
-	}
-	{
 		ft::vector<int> ftVector1;
 		ft::vector<int> ftVector2;
 
@@ -1834,18 +1826,6 @@ void	VectorTest::testNonMemberEqualOperator() const {
 		createRandomVectors(stlVector1, stlVector2, 100);
 
 		PRINT_RESULT((ftVector1 == ftVector2) && (stlVector1 == stlVector2));
-	}
-	{
-		ft::vector<int> ftVector1;
-		ft::vector<int> ftVector2;
-
-		std::vector<int> stlVector1;
-		std::vector<int> stlVector2;
-
-		createRandomVectors(ftVector1, stlVector1, 100);
-		createRandomVectors(ftVector2, stlVector2, 10);
-
-		PRINT_RESULT(!(ftVector1 == ftVector2) && !(stlVector1 == stlVector2));
 	}
 	{
 		ft::vector<std::string> ftVector1;
@@ -2386,15 +2366,6 @@ void	VectorTest::testAccessOperator() const {
 		ft::vector<int>		ft(10);
 		std::vector<int>	stl(10);
 
-		ft.push_back(1);
-		stl.push_back(2);
-
-		PRINT_RESULT(!TO_EQUAL(ft[10], stl[10]));
-	}
-	{
-		ft::vector<int>		ft(10);
-		std::vector<int>	stl(10);
-
 		createRandomVectors(ft, stl, 100);
 
 		PRINT_RESULT(TO_EQUAL(ft[99], stl[99]));
@@ -2439,15 +2410,6 @@ void	VectorTest::testAt() const {
 		createRandomVectors(ft, stl, 100);
 
 		PRINT_RESULT(TO_EQUAL(ft.at(99), stl.at(99)));
-	}
-	{
-		ft::vector<int>		ft(10);
-		std::vector<int>	stl(10);
-
-		ft.push_back(1);
-		stl.push_back(2);
-
-		PRINT_RESULT(!TO_EQUAL(ft.at(10), stl.at(10)));
 	}
 	{
 		ft::vector<int>		ft(10);
@@ -2612,15 +2574,6 @@ void	VectorTest::testBack() const {
 		ft::vector<int>		ft(10);
 		std::vector<int>	stl(10);
 
-		ft.push_back(1);
-		stl.push_back(2);
-
-		PRINT_RESULT(!TO_EQUAL(ft.back(), stl.back()));
-	}
-	{
-		ft::vector<int>		ft(10);
-		std::vector<int>	stl(10);
-
 		createRandomVectors(ft, stl, 100);
 
 		PRINT_RESULT(TO_EQUAL(ft.back(), stl.back()));
@@ -2664,6 +2617,99 @@ void	VectorTest::testBack() const {
 		createRandomVectors(ft, stl, 100);
 
 		PRINT_RESULT(TO_EQUAL(ft.back(), stl.back()));
+	}
+	std::cout << std::endl;
+}
+
+void	VectorTest::testRangeConstructor() const {
+	std::cout << "* range constructor: ";
+	{
+		ft::vector<int>		ftSupport(10, 100);
+		std::vector<int>	stlSupport(10, 100);
+
+		ft::vector<int>::iterator ftIter = ftSupport.begin();
+		std::vector<int>::iterator stlIter = stlSupport.begin();
+
+		ft::vector<int>		ft(ftIter, ftIter + 5);
+		std::vector<int>	stl(stlIter, stlIter + 5);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ft, stl));
+	}
+	{
+		ft::vector<int>		ftSupport(10, 100);
+		std::vector<int>	stlSupport(10, 100);
+
+		ft::vector<int>::iterator ftIter = ftSupport.begin();
+		std::vector<int>::iterator stlIter = stlSupport.begin();
+
+		ft::vector<int>		ft(ftIter, ftSupport.end());
+		std::vector<int>	stl(stlIter, stlSupport.end());
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ft, stl));
+	}
+	{
+		ft::vector<int>		ftSupport;
+		std::vector<int>	stlSupport;
+
+		createRandomVectors(ftSupport, stlSupport, 100);
+
+		ft::vector<int>::iterator ftIter = ftSupport.begin();
+		std::vector<int>::iterator stlIter = stlSupport.begin();
+
+		ft::vector<int>		ft(ftIter, ftSupport.end());
+		std::vector<int>	stl(stlIter, stlSupport.end());
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ft, stl));
+	}
+	{
+		ft::vector<int>		ftSupport;
+		std::vector<int>	stlSupport;
+
+		createRandomVectors(ftSupport, stlSupport, 100);
+
+		ft::vector<int>::iterator ftIter = ftSupport.begin();
+		std::vector<int>::iterator stlIter = stlSupport.begin();
+
+		ft::vector<int>		ft(ftIter, ftIter + 10);
+		std::vector<int>	stl(stlIter, stlIter + 10);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ft, stl));
+	}
+	{
+		ft::vector<std::string>		ftSupport(50, "vector");
+		std::vector<std::string>	stlSupport(50, "vector");
+
+		ft::vector<std::string>::iterator ftIter = ftSupport.begin();
+		std::vector<std::string>::iterator stlIter = stlSupport.begin();
+
+		ft::vector<std::string>		ft(ftIter, ftIter + 40);
+		std::vector<std::string>	stl(stlIter, stlIter + 40);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ft, stl));
+	}
+	{
+		ft::vector<std::string>		ftSupport(50, "vector");
+		std::vector<std::string>	stlSupport(50, "vector");
+
+		ft::vector<std::string>::iterator ftIter = ftSupport.begin();
+		std::vector<std::string>::iterator stlIter = stlSupport.begin();
+
+		ft::vector<std::string>		ft(ftIter, ftIter);
+		std::vector<std::string>	stl(stlIter, stlIter);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ft, stl));
+	}
+	{
+		ft::vector<std::string>		ftSupport(50, "vector");
+		std::vector<std::string>	stlSupport(50, "vector");
+
+		ft::vector<std::string>::iterator ftIter = ftSupport.end();
+		std::vector<std::string>::iterator stlIter = stlSupport.end();
+
+		ft::vector<std::string>		ft(ftIter, ftIter);
+		std::vector<std::string>	stl(stlIter, stlIter);
+
+		PRINT_RESULT(TO_EQUAL_VECTOR(ft, stl));
 	}
 	std::cout << std::endl;
 }

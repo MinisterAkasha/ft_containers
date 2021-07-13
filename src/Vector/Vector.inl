@@ -402,6 +402,11 @@ namespace ft
 		return (!operator>(rhs, lhs));
 	}
 
+	template <class T, class Alloc>
+	void swap (vector<T,Alloc>& x, vector<T,Alloc>& y) {
+		x.swap(y);
+	}
+
 	/*
 	** Private
 	*/

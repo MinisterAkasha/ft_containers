@@ -52,8 +52,10 @@ namespace ft {
 			const_iterator 				begin() const;
 			iterator					end();
 			const_iterator				end() const;
-			// reverse_iterator			rbegin();//TODO
-			// const_reverse_iterator	rbegin() const;//TODO
+			reverse_iterator			rbegin();//TODO
+			const_reverse_iterator		rbegin() const;//TODO
+			reverse_iterator			rend();//TODO
+			const_reverse_iterator		rend() const;//TODO
 
 			/*
 			** Capacity

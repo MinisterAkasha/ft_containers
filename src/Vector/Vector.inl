@@ -78,6 +78,26 @@ namespace ft
 		return _arr + _size;
 	}
 
+	template <class T, class Allocator>
+	typename vector<T, Allocator>::reverse_iterator	vector<T, Allocator>::rbegin() {
+		return reverse_iterator(_arr + _size);
+	}
+
+	template <class T, class Allocator>
+	typename vector<T, Allocator>::const_reverse_iterator	vector<T, Allocator>::rbegin() const {
+		return reverse_iterator(_arr + _size);
+	}
+
+	template <class T, class Allocator>
+	typename vector<T, Allocator>::reverse_iterator	vector<T, Allocator>::rend() {
+		return reverse_iterator(_arr);
+	}
+
+	template <class T, class Allocator>
+	typename vector<T, Allocator>::const_reverse_iterator	vector<T, Allocator>::rend() const {
+		return reverse_iterator(_arr);
+	}
+
 	/*
 	** Capacity
 	*/

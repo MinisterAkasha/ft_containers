@@ -384,30 +384,12 @@ namespace ft
 
 	template <class T, class Alloc>
   	bool operator<(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {
-		if (lhs.size() < rhs.size())
-		  	return true;
-
-		typedef typename vector<T,Alloc>::const_iterator const_iterator;
-		
-		const_iterator lBegin = lhs.begin();
-		const_iterator rBegin = rhs.begin();
-		const_iterator lEnd = lhs.end();
-		const_iterator rEnd = rhs.end();
-
-		while (lBegin != lEnd && rBegin != rEnd) {
-			if (*lBegin < *rBegin)
-				return true;
-			else if (*lBegin > *rBegin)
-				return false;
-			lBegin++;
-			rBegin++;
-		}
-		return false;
+		return (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
 	}
 
 	template <class T, class Alloc>
   	bool operator<=(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {
-		return operator<=(rhs, lhs);  
+		return !operator<(rhs, lhs);  
 	}
 
 	/*

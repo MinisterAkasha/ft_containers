@@ -75,7 +75,7 @@ namespace ft
 
 	template <class T, class Allocator>
 	typename vector<T, Allocator>::const_iterator	vector<T, Allocator>::end() const {
-		return _arr + _size;
+		return const_iterator(_arr + _size);
 	}
 
 	template <class T, class Allocator>
@@ -85,7 +85,7 @@ namespace ft
 
 	template <class T, class Allocator>
 	typename vector<T, Allocator>::const_reverse_iterator	vector<T, Allocator>::rbegin() const {
-		return reverse_iterator(_arr + _size);
+		return const_reverse_iterator(_arr + _size);
 	}
 
 	template <class T, class Allocator>
@@ -95,7 +95,7 @@ namespace ft
 
 	template <class T, class Allocator>
 	typename vector<T, Allocator>::const_reverse_iterator	vector<T, Allocator>::rend() const {
-		return reverse_iterator(_arr);
+		return const_reverse_iterator(_arr);
 	}
 
 	/*

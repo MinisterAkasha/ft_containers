@@ -38,7 +38,7 @@ namespace ft {
                 const allocator_type& alloc = allocator_type(),
 				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr);
 
-			vector(const vector& other);											//TODO написать тесты!!! copy
+			vector(const vector& other);
 
 			~vector();
 
@@ -85,15 +85,15 @@ namespace ft {
 
 			template <class InputIterator>
 			void						assign(InputIterator first, InputIterator last,
-				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr); // range
-			void						assign(size_type n, const value_type& val); // fill
+				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr);	// range
+			void						assign(size_type n, const value_type& val);									// fill
 			void 						push_back(const value_type& val);
 			void						pop_back();
-			iterator					insert(iterator position, const value_type& val); // single element
-		    void 						insert(iterator position, size_type n, const value_type& val); // fill
+			iterator					insert(iterator position, const value_type& val);							// single element
+		    void 						insert(iterator position, size_type n, const value_type& val);				// fill
 			template <class InputIterator>
     		void insert(iterator position, InputIterator first, InputIterator last,
-				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr); // range
+				typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type* = nullptr);	// range
 			iterator 					erase(iterator position);
 			iterator 					erase(iterator first, iterator last);
 			void 						swap(vector& x);

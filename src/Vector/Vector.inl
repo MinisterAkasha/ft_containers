@@ -53,6 +53,7 @@ namespace ft
 		pointer start = _arr;
 		this->destroyAllElems();
 		_allocator.deallocate(start, _capacity);
+		_arr = nullptr;
 	}
 
 	/*
@@ -288,7 +289,6 @@ namespace ft
 	template <class T, class Allocator>
 	void vector<T, Allocator>::assign(size_type n, const value_type& val) {
 		this->~vector();
-		_arr = nullptr;
 		_size = n;
 		if (!_capacity)
 			_capacity = n;
@@ -309,7 +309,6 @@ namespace ft
 		}
 
 		this->~vector();
-		_arr = nullptr;
 		_size = newSize;
 
 		if (newSize > _capacity)
@@ -340,7 +339,6 @@ namespace ft
 	vector<T, Allocator>&	vector<T, Allocator>::operator=(const vector& other) {
 		if (&other != this) {
 			this->~vector();
-			_arr = nullptr;
 			_size = other._size;
 			_capacity = other._capacity;
 			_allocator = other._allocator;

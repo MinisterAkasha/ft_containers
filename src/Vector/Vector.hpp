@@ -4,25 +4,25 @@
 # include <memory>
 # include "utils.hpp"
 # include "VectorIterator.hpp"
+# include "reverseIterator.hpp"
 
 namespace ft {
 	template <class T, class Allocator = std::allocator<T> >
 	class vector {
 		public:
-			typedef Allocator							allocator_type;
-			typedef T									value_type;
-			typedef typename Allocator::pointer			pointer;
-			typedef typename Allocator::const_pointer	const_pointer;
-			typedef typename Allocator::reference		reference;
-			typedef typename Allocator::const_reference	const_reference;
-			typedef typename Allocator::size_type		size_type; 			// size_type -> typedef size_t
-			typedef typename Allocator::difference_type	difference_type; 	// difference_type -> typedef  ptrdiff_t
+			typedef Allocator								allocator_type;
+			typedef T										value_type;
+			typedef typename Allocator::pointer				pointer;
+			typedef typename Allocator::const_pointer		const_pointer;
+			typedef typename Allocator::reference			reference;
+			typedef typename Allocator::const_reference		const_reference;
+			typedef typename Allocator::size_type			size_type; 			// size_type -> typedef size_t
+			typedef typename Allocator::difference_type		difference_type; 	// difference_type -> typedef  ptrdiff_t
 
-			typedef VectorIterator<T>					iterator;
-			typedef VectorIterator<const T>				const_iterator;
-			
-			// reverse_iterator //TODO
-			// const_reverse_iterator //TODO
+			typedef VectorIterator<T>						iterator;
+			typedef VectorIterator<const T>					const_iterator;
+			typedef ft::reverse_iterator<iterator>			reverse_iterator;
+			typedef ft::reverse_iterator<const_iterator>	const_reverse_iterator;
 
 			/*
 			** Member functions

@@ -392,6 +392,11 @@ namespace ft
 		return !operator<(rhs, lhs);  
 	}
 
+	template <class T, class Alloc>
+  	bool operator>(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {
+		return (ft::lexicographical_compare(rhs.begin(), rhs.end(), lhs.begin(), lhs.end()));
+	}
+
 	/*
 	** Private
 	*/

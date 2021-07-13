@@ -1,5 +1,3 @@
-#include <iostream> //!DEL
-
 namespace ft
 {
 	/*

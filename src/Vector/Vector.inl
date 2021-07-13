@@ -379,7 +379,7 @@ namespace ft
 
 	template <class T, class Alloc>
   	bool operator!=(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {
-		return operator==(lhs, rhs);  
+		return !operator==(lhs, rhs);  
 	}
 
 	template <class T, class Alloc>
@@ -405,10 +405,10 @@ namespace ft
 		return false;
 	}
 
-	// template <class T, class Alloc>
-  	// bool operator<=(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {
-	// 	return operator<=(rhs, lhs);  
-	// }
+	template <class T, class Alloc>
+  	bool operator<=(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs) {
+		return operator<=(rhs, lhs);  
+	}
 
 	/*
 	** Private

@@ -2,19 +2,19 @@
 # define ITERATOR_HPP
 
 # include <iterator>
+# include "IteratorTraits.hpp"
 
 
 namespace ft {
 
 	template <typename T>
-	class VectorIterator : public std::iterator<std::random_access_iterator_tag, T> {
+	class VectorIterator : public ft::iterator<ft::random_access_iterator_tag, T> {
 		public:
-			typedef	T			value_type;
-			typedef T*			pointer;
-			typedef T&			reference;
-			typedef ptrdiff_t	difference_type;
-
-			pointer _ptr;
+			typedef	T																				value_type;
+			typedef T*																				pointer;
+			typedef T&																				reference;
+			typedef ptrdiff_t																		difference_type;
+			typedef typename std::iterator<std::random_access_iterator_tag, T>::iterator_category	iterator_category;
 
 		public:
 			VectorIterator();
@@ -49,6 +49,9 @@ namespace ft {
 			difference_type 	operator-(const VectorIterator& other) const;
 
 			reference			operator[](difference_type n) const;
+		
+		private:
+			pointer _ptr;
 	};
 }
 

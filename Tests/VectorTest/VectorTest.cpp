@@ -1811,6 +1811,33 @@ void	VectorTest::testNonMemberEqualOperator() const {
 		PRINT_RESULT((ftVector1 == ftVector2) && (stlVector1 == stlVector2));
 	}
 	{
+		ft::vector<int>		ft1(10, 100);
+		ft::vector<int>		ft2(1, 10);
+
+		std::vector<int>	stl1(10, 100);
+		std::vector<int>	stl2(1, 10);
+
+		PRINT_RESULT((ft1 == ft2) == (stl1 == stl2));
+	}
+	{
+		ft::vector<int>		ft1(10, 10);
+		ft::vector<int>		ft2(1, 10);
+
+		std::vector<int>	stl1(10, 10);
+		std::vector<int>	stl2(1, 10);
+
+		PRINT_RESULT((ft1 == ft2) == (stl1 == stl2));
+	}
+	{
+		ft::vector<int>		ft1(10, 10);
+		ft::vector<int>		ft2(1, 100);
+
+		std::vector<int>	stl1(10, 10);
+		std::vector<int>	stl2(1, 100);
+
+		PRINT_RESULT((ft1 == ft2) == (stl1 == stl2));
+	}
+	{
 		ft::vector<int> ftVector1;
 		ft::vector<int> ftVector2;
 
@@ -2790,7 +2817,7 @@ void	VectorTest::testNonMemberNotEqualOperator() const {
 		std::vector<int> stlVector1;
 		std::vector<int> stlVector2;
 
-		PRINT_RESULT(!((ftVector1 != ftVector2) == (stlVector1 != stlVector2)));
+		PRINT_RESULT(((ftVector1 != ftVector2) == (stlVector1 != stlVector2)));
 	}
 	{
 		ft::vector<int> ftVector1(10, 10);
@@ -2799,7 +2826,34 @@ void	VectorTest::testNonMemberNotEqualOperator() const {
 		std::vector<int> stlVector1(10, 10);
 		std::vector<int> stlVector2(10, 10);
 
-		PRINT_RESULT(!((ftVector1 != ftVector2) == (stlVector1 != stlVector2)));
+		PRINT_RESULT(((ftVector1 != ftVector2) == (stlVector1 != stlVector2)));
+	}
+	{
+		ft::vector<int>		ft1(10, 100);
+		ft::vector<int>		ft2(1, 10);
+
+		std::vector<int>	stl1(10, 100);
+		std::vector<int>	stl2(1, 10);
+
+		PRINT_RESULT((ft1 != ft2) == (stl1 != stl2));
+	}
+	{
+		ft::vector<int>		ft1(10, 10);
+		ft::vector<int>		ft2(1, 10);
+
+		std::vector<int>	stl1(10, 10);
+		std::vector<int>	stl2(1, 10);
+
+		PRINT_RESULT((ft1 != ft2) == (stl1 != stl2));
+	}
+	{
+		ft::vector<int>		ft1(10, 10);
+		ft::vector<int>		ft2(1, 100);
+
+		std::vector<int>	stl1(10, 10);
+		std::vector<int>	stl2(1, 100);
+
+		PRINT_RESULT((ft1 != ft2) == (stl1 != stl2));
 	}
 	{
 		ft::vector<int> ftVector1;
@@ -2808,7 +2862,7 @@ void	VectorTest::testNonMemberNotEqualOperator() const {
 		std::vector<int> stlVector1;
 		std::vector<int> stlVector2;
 
-		PRINT_RESULT(!((ftVector1 != ftVector2) == (stlVector1 != stlVector2)));
+		PRINT_RESULT(((ftVector1 != ftVector2) == (stlVector1 != stlVector2)));
 	}
 	{
 		ft::vector<int> ftVector1;
@@ -2820,7 +2874,7 @@ void	VectorTest::testNonMemberNotEqualOperator() const {
 		createRandomVectors(ftVector1, ftVector2, 100);
 		createRandomVectors(stlVector1, stlVector2, 100);
 
-		PRINT_RESULT(!((ftVector1 != ftVector2) == (stlVector1 != stlVector2)));
+		PRINT_RESULT(((ftVector1 != ftVector2) == (stlVector1 != stlVector2)));
 	}
 	{
 		ft::vector<std::string> ftVector1;
@@ -2829,7 +2883,7 @@ void	VectorTest::testNonMemberNotEqualOperator() const {
 		std::vector<std::string> stlVector1;
 		std::vector<std::string> stlVector2;
 
-		PRINT_RESULT(!((ftVector1 != ftVector2) == (stlVector1 != stlVector2)));
+		PRINT_RESULT(((ftVector1 != ftVector2) == (stlVector1 != stlVector2)));
 	}
 	{
 		ft::vector<std::string> ftVector1(10, "vector");
@@ -2838,7 +2892,7 @@ void	VectorTest::testNonMemberNotEqualOperator() const {
 		std::vector<std::string> stlVector1(10, "vector");
 		std::vector<std::string> stlVector2(10, "vector");
 
-		PRINT_RESULT(!((ftVector1 != ftVector2) == (stlVector1 != stlVector2)));
+		PRINT_RESULT(((ftVector1 != ftVector2) == (stlVector1 != stlVector2)));
 	}
 	std::cout << std::endl;
 }
@@ -2869,6 +2923,33 @@ void	VectorTest::testNonMemberLess() const {
 
 		std::vector<int>	stl1(10, 10);
 		std::vector<int>	stl2(10, 100);
+
+		PRINT_RESULT((ft1 < ft2) == (stl1 < stl2));
+	}
+	{
+		ft::vector<int>		ft1(10, 100);
+		ft::vector<int>		ft2(1, 10);
+
+		std::vector<int>	stl1(10, 100);
+		std::vector<int>	stl2(1, 10);
+
+		PRINT_RESULT((ft1 < ft2) == (stl1 < stl2));
+	}
+	{
+		ft::vector<int>		ft1(10, 10);
+		ft::vector<int>		ft2(1, 10);
+
+		std::vector<int>	stl1(10, 10);
+		std::vector<int>	stl2(1, 10);
+
+		PRINT_RESULT((ft1 < ft2) == (stl1 < stl2));
+	}
+	{
+		ft::vector<int>		ft1(10, 10);
+		ft::vector<int>		ft2(1, 100);
+
+		std::vector<int>	stl1(10, 10);
+		std::vector<int>	stl2(1, 100);
 
 		PRINT_RESULT((ft1 < ft2) == (stl1 < stl2));
 	}
@@ -2905,6 +2986,99 @@ void	VectorTest::testNonMemberLess() const {
 		}
 
 		PRINT_RESULT((ft1 < ft2) == (stl1 < stl2));
+	}
+	std::cout << std::endl;
+}
+
+void	VectorTest::testNonMemberLessOrEqual() const {
+	std::cout << "* operator<= <non-member>: ";
+	{
+		ft::vector<int>		ft1(10, 100);
+		ft::vector<int>		ft2(10, 10);
+
+		std::vector<int>	stl1(10, 100);
+		std::vector<int>	stl2(10, 10);
+
+		PRINT_RESULT((ft1 <= ft2) == (stl1 <= stl2));
+	}
+	{
+		ft::vector<int>		ft1(10, 10);
+		ft::vector<int>		ft2(10, 10);
+
+		std::vector<int>	stl1(10, 10);
+		std::vector<int>	stl2(10, 10);
+
+		PRINT_RESULT((ft1 <= ft2) == (stl1 <= stl2));
+	}
+	{
+		ft::vector<int>		ft1(10, 10);
+		ft::vector<int>		ft2(10, 100);
+
+		std::vector<int>	stl1(10, 10);
+		std::vector<int>	stl2(10, 100);
+
+		PRINT_RESULT((ft1 <= ft2) == (stl1 <= stl2));
+	}
+	{
+		ft::vector<int>		ft1(10, 100);
+		ft::vector<int>		ft2(1, 10);
+
+		std::vector<int>	stl1(10, 100);
+		std::vector<int>	stl2(1, 10);
+
+		PRINT_RESULT((ft1 <= ft2) == (stl1 <= stl2));
+	}
+	{
+		ft::vector<int>		ft1(10, 10);
+		ft::vector<int>		ft2(1, 10);
+
+		std::vector<int>	stl1(10, 10);
+		std::vector<int>	stl2(1, 10);
+
+		PRINT_RESULT((ft1 <= ft2) == (stl1 <= stl2));
+	}
+	{
+		ft::vector<int>		ft1(10, 10);
+		ft::vector<int>		ft2(1, 100);
+
+		std::vector<int>	stl1(10, 10);
+		std::vector<int>	stl2(1, 100);
+
+		PRINT_RESULT((ft1 <= ft2) == (stl1 <= stl2));
+	}
+	{
+		ft::vector<int>		ft1(1, 10);
+		ft::vector<int>		ft2(10, 100);
+
+		std::vector<int>	stl1(1, 10);
+		std::vector<int>	stl2(10, 100);
+
+		PRINT_RESULT((ft1 <= ft2) == (stl1 <= stl2));
+	}
+	{
+		ft::vector<int>		ft1;
+		ft::vector<int>		ft2(10, 100);
+
+		std::vector<int>	stl1;
+		std::vector<int>	stl2(10, 100);
+
+		PRINT_RESULT((ft1 <= ft2) == (stl1 <= stl2));
+	}
+	{
+		ft::vector<int>		ft1;
+		ft::vector<int>		ft2;
+
+		std::vector<int>	stl1;
+		std::vector<int>	stl2;
+
+		for (int i = 0; i < 10; i++) {
+			ft1.push_back(i);
+			ft2.push_back(i);
+			stl1.push_back(i);
+			stl2.push_back(i);
+		}
+
+		PRINT_RESULT((ft1 <= ft2) == (stl1 <= stl2));
 	}
 	std::cout << std::endl;
 }

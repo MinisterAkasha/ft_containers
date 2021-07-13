@@ -18,6 +18,7 @@ void	VectorTest::test() const {
 	testSize();
 	testBegin();
 	testEnd();
+	testREnd();
 	testFillConstructor();
 	testRangeConstructor();
 	testCopyConstructor();
@@ -107,58 +108,58 @@ void	VectorTest::testBegin() const {
 	std::cout << "* begin(): ";
 
 	{
-		ft::vector<int>::iterator			myIterator;
+		ft::vector<int>::iterator			ftIterator;
 		std::vector<int>::iterator			stlIterator;
 
 		ft::vector<int>	myVector(10, 4);
 		std::vector<int> stlVector(10, 4);
 
-		myIterator = myVector.begin();
+		ftIterator = myVector.begin();
 		stlIterator = stlVector.begin();
 
-		PRINT_RESULT(TO_EQUAL(*myIterator, *stlIterator));
+		PRINT_RESULT(TO_EQUAL(*ftIterator, *stlIterator));
 	}
 
 	{
-		ft::vector<std::string>::iterator	myIterator;
+		ft::vector<std::string>::iterator	ftIterator;
 		std::vector<std::string>::iterator	stlIterator;
 
 		ft::vector<std::string>	myVector(10, std::string("string"));
 		std::vector<std::string> stlVector(10, std::string("string"));
 
-		myIterator = myVector.begin();
+		ftIterator = myVector.begin();
 		stlIterator = stlVector.begin();
 
-		PRINT_RESULT(TO_EQUAL(*myIterator, *stlIterator));
+		PRINT_RESULT(TO_EQUAL(*ftIterator, *stlIterator));
 	}
 
 	{
-		ft::vector<std::string>::iterator	myIterator;
+		ft::vector<std::string>::iterator	ftIterator;
 		std::vector<std::string>::iterator	stlIterator;
 
 		ft::vector<std::string>	myVector(25, std::string("loooooooooooooooong string"));
 		std::vector<std::string> stlVector(25, std::string("loooooooooooooooong string"));
 
-		myIterator = myVector.begin();
+		ftIterator = myVector.begin();
 		stlIterator = stlVector.begin();
 
-		PRINT_RESULT(TO_EQUAL(*myIterator, *stlIterator));
+		PRINT_RESULT(TO_EQUAL(*ftIterator, *stlIterator));
 	}
 
 	{
-		ft::vector<double>::iterator			myIterator;
+		ft::vector<double>::iterator			ftIterator;
 		std::vector<double>::iterator			stlIterator;
 
 		ft::vector<double>	myVector(15, 7.025);
 		std::vector<double> stlVector(15, 7.025);
 
-		myIterator = myVector.begin();
+		ftIterator = myVector.begin();
 		stlIterator = stlVector.begin();
 
-		PRINT_RESULT(TO_EQUAL(*myIterator, *stlIterator));
+		PRINT_RESULT(TO_EQUAL(*ftIterator, *stlIterator));
 	}
 	{
-		ft::vector<double>::iterator			myIterator;
+		ft::vector<double>::iterator			ftIterator;
 		std::vector<double>::iterator			stlIterator;
 
 		ft::vector<double>	myVector(15, 7.025);
@@ -167,10 +168,10 @@ void	VectorTest::testBegin() const {
 		myVector.insert(myVector.begin(), 10);
 		stlVector.insert(stlVector.begin(), 10);
 
-		myIterator = myVector.begin();
+		ftIterator = myVector.begin();
 		stlIterator = stlVector.begin();
 
-		PRINT_RESULT(TO_EQUAL(*myIterator, *stlIterator));
+		PRINT_RESULT(TO_EQUAL(*ftIterator, *stlIterator));
 	}
 
 
@@ -181,60 +182,60 @@ void	VectorTest::testEnd() const {
 	std::cout << "* end(): ";
 
 	{
-		ft::vector<int>::iterator			myIterator;
+		ft::vector<int>::iterator			ftIterator;
 		std::vector<int>::iterator			stlIterator;
 
 		ft::vector<int>	myVector(100, 4);
 		std::vector<int> stlVector(100, 4);
 
-		myIterator = myVector.end();
+		ftIterator = myVector.end();
 		stlIterator = stlVector.end();
 
-		PRINT_RESULT(TO_EQUAL(*(--myIterator), *(--stlIterator)));
+		PRINT_RESULT(TO_EQUAL(*(--ftIterator), *(--stlIterator)));
 	}
 
 	{
-		ft::vector<std::string>::iterator	myIterator;
+		ft::vector<std::string>::iterator	ftIterator;
 		std::vector<std::string>::iterator	stlIterator;
 		std::string							string = "string";
 
 		ft::vector<std::string>	myVector(2, string);
 		std::vector<std::string> stlVector(2, string);
 
-		myIterator = myVector.end();
+		ftIterator = myVector.end();
 		stlIterator = stlVector.end();
 
-		PRINT_RESULT(TO_EQUAL(*(--myIterator), *(--stlIterator)));
+		PRINT_RESULT(TO_EQUAL(*(--ftIterator), *(--stlIterator)));
 	}
 
 	{
-		ft::vector<std::string>::iterator	myIterator;
+		ft::vector<std::string>::iterator	ftIterator;
 		std::vector<std::string>::iterator	stlIterator;
 		std::string							string = "loooooooooooooooong string";
 
 		ft::vector<std::string>	myVector(15, string);
 		std::vector<std::string> stlVector(15, string);
 
-		myIterator = myVector.end();
+		ftIterator = myVector.end();
 		stlIterator = stlVector.end();
 
-		PRINT_RESULT(TO_EQUAL(*(--myIterator), *(--stlIterator)));
+		PRINT_RESULT(TO_EQUAL(*(--ftIterator), *(--stlIterator)));
 	}
 
 	{
-		ft::vector<double>::iterator			myIterator;
+		ft::vector<double>::iterator			ftIterator;
 		std::vector<double>::iterator			stlIterator;
 
 		ft::vector<double>	myVector(15, 7.025);
 		std::vector<double> stlVector(15, 7.025);
 
-		myIterator = myVector.end();
+		ftIterator = myVector.end();
 		stlIterator = stlVector.end();
 
-		PRINT_RESULT(TO_EQUAL(*(--myIterator), *(--stlIterator)));
+		PRINT_RESULT(TO_EQUAL(*(--ftIterator), *(--stlIterator)));
 	}
 	{
-		ft::vector<double>::iterator			myIterator;
+		ft::vector<double>::iterator			ftIterator;
 		std::vector<double>::iterator			stlIterator;
 
 		ft::vector<double>	myVector(15, 7.025);
@@ -242,13 +243,13 @@ void	VectorTest::testEnd() const {
 		myVector.pop_back();
 		stlVector.pop_back();
 
-		myIterator = myVector.end();
+		ftIterator = myVector.end();
 		stlIterator = stlVector.end();
 
-		PRINT_RESULT(TO_EQUAL(*(--myIterator), *(--stlIterator)));
+		PRINT_RESULT(TO_EQUAL(*(--ftIterator), *(--stlIterator)));
 	}
 	{
-		ft::vector<double>::iterator			myIterator;
+		ft::vector<double>::iterator			ftIterator;
 		std::vector<double>::iterator			stlIterator;
 
 		ft::vector<double>	myVector(15, 7.025);
@@ -256,12 +257,152 @@ void	VectorTest::testEnd() const {
 		myVector.push_back(10);
 		stlVector.push_back(10);
 
-		myIterator = myVector.end();
+		ftIterator = myVector.end();
 		stlIterator = stlVector.end();
 
-		PRINT_RESULT(TO_EQUAL(*(--myIterator), *(--stlIterator)));
+		PRINT_RESULT(TO_EQUAL(*(--ftIterator), *(--stlIterator)));
 	}
 
+	std::cout << std::endl;
+}
+
+void	VectorTest::testREnd() const {
+	std::cout << "* rend(): ";
+	{
+		ft::vector<int>::reverse_iterator			ftIterator;
+		std::vector<int>::reverse_iterator			stlIterator;
+
+		ft::vector<int>	myVector(100, 4);
+		std::vector<int> stlVector(100, 4);
+
+		ftIterator = myVector.rend();
+		stlIterator = stlVector.rend();
+
+		PRINT_RESULT(TO_EQUAL(*(--ftIterator), *(--stlIterator)));
+	}
+	{
+		ft::vector<int>::reverse_iterator			ftIterator;
+		std::vector<int>::reverse_iterator			stlIterator;
+
+		ft::vector<int>	myVector(1);
+		std::vector<int> stlVector(1);
+
+		ftIterator = myVector.rend();
+		stlIterator = stlVector.rend();
+
+		PRINT_RESULT(TO_EQUAL(*(--ftIterator), *(--stlIterator)));
+	}
+	{
+		ft::vector<int>::reverse_iterator			ftIterator;
+		std::vector<int>::reverse_iterator			stlIterator;
+
+		ft::vector<int>	myVector;
+		std::vector<int> stlVector;
+
+		for (int i = 0; i < 10; i++) {
+			myVector.push_back(i);
+			stlVector.push_back(i);
+		}
+
+		ftIterator = myVector.rend();
+		stlIterator = stlVector.rend();
+
+		PRINT_RESULT(TO_EQUAL(*(--ftIterator), *(--stlIterator)));
+	}
+	{
+		ft::vector<std::string>::reverse_iterator	ftIterator;
+		std::vector<std::string>::reverse_iterator	stlIterator;
+		std::string							string = "string";
+
+		ft::vector<std::string>	myVector(2, string);
+		std::vector<std::string> stlVector(2, string);
+
+		ftIterator = myVector.rend();
+		stlIterator = stlVector.rend();
+
+		PRINT_RESULT(TO_EQUAL(*(--ftIterator), *(--stlIterator)));
+	}
+	{
+		ft::vector<std::string>::reverse_iterator	ftIterator;
+		std::vector<std::string>::reverse_iterator	stlIterator;
+		std::string							string = "loooooooooooooooong string";
+
+		ft::vector<std::string>	myVector(15, string);
+		std::vector<std::string> stlVector(15, string);
+
+		ftIterator = myVector.rend();
+		stlIterator = stlVector.rend();
+
+		PRINT_RESULT(TO_EQUAL(*(--ftIterator), *(--stlIterator)));
+	}
+	{
+		ft::vector<double>::reverse_iterator			ftIterator;
+		std::vector<double>::reverse_iterator			stlIterator;
+
+		ft::vector<double>	myVector(15, 7.025);
+		std::vector<double> stlVector(15, 7.025);
+
+		ftIterator = myVector.rend();
+		stlIterator = stlVector.rend();
+
+		PRINT_RESULT(TO_EQUAL(*(--ftIterator), *(--stlIterator)));
+	}
+	{
+		ft::vector<double>::reverse_iterator			ftIterator;
+		std::vector<double>::reverse_iterator			stlIterator;
+
+		ft::vector<double>	myVector(15, 7.025);
+		std::vector<double> stlVector(15, 7.025);
+		myVector.pop_back();
+		stlVector.pop_back();
+
+		ftIterator = myVector.rend();
+		stlIterator = stlVector.rend();
+
+		PRINT_RESULT(TO_EQUAL(*(--ftIterator), *(--stlIterator)));
+	}
+	{
+		ft::vector<double>::reverse_iterator			ftIterator;
+		std::vector<double>::reverse_iterator			stlIterator;
+
+		ft::vector<double>	myVector(15, 7.025);
+		std::vector<double> stlVector(15, 7.025);
+		myVector.push_back(10);
+		stlVector.push_back(10);
+
+		ftIterator = myVector.rend();
+		stlIterator = stlVector.rend();
+
+		PRINT_RESULT(TO_EQUAL(*(--ftIterator), *(--stlIterator)));
+	}
+	{
+		ft::vector<int>::reverse_iterator			ftIterator;
+		std::vector<int>::reverse_iterator			stlIterator;
+
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ftIterator = ft.rend();
+		stlIterator = stl.rend();
+
+		PRINT_RESULT(TO_EQUAL(*(--ftIterator), *(--stlIterator)));
+	}
+	{
+		ft::vector<int>::reverse_iterator			ftIterator;
+		std::vector<int>::reverse_iterator			stlIterator;
+
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 1000);
+
+		ftIterator = ft.rend();
+		stlIterator = stl.rend();
+
+		PRINT_RESULT(TO_EQUAL(*(--ftIterator), *(--stlIterator)));
+	}
 	std::cout << std::endl;
 }
 

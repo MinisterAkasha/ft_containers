@@ -20,6 +20,7 @@ class VectorTest {
 		void testCopyConstructor() const;
 		void testBegin() const;
 		void testEnd() const;
+		void testREnd() const;
 		void testSize() const;
 		void testEqualOperator() const;
 		void testEmpty() const;

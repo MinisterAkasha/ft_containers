@@ -48,6 +48,7 @@ class VectorTest {
 		void testNonMemberLess() const;
 		void testNonMemberLessOrEqual() const;
 		void testNonMemberMore() const;
+		void testNonMemberMoreOrMore() const;
 	
 	public:
 		VectorTest();

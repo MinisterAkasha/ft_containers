@@ -49,7 +49,7 @@ template <class T1>
 bool	TO_EQUAL(T1 value1, T1 value2) {
 	if (value1 == value2)
 		return true;
-	std::cout << "[Current value: " << value1 << " Should be " << value2 << "]" << std::endl;
+	std::cout << "[Current value: " << value1 << " Should be " << value2 << "] ";
 	return false;
 }
 
@@ -59,13 +59,13 @@ bool	TO_EQUAL_VECTOR(V1& ftVector, V2& stlVector) {
 	typename V2::iterator		stlIterator = stlVector.begin();
 
 	if (ftVector.size() != stlVector.size()) {
-		std::cout << "[Current size: " << ftVector.size() << " Should be " << stlVector.size() << "]" << std::endl;
+		std::cout << "[Current size: " << ftVector.size() << " Should be " << stlVector.size() << "] ";
 		return false;
 	}
 	
 	while (myIterator != ftVector.end() || stlIterator != stlVector.end()) {
 		if (*myIterator != *stlIterator) {
-			std::cout << "[Current value: " << *myIterator << " Should be " << *stlIterator << "]" << std::endl;
+			std::cout << "[Current value: " << *myIterator << " Should be " << *stlIterator << "] ";
 			return false;
 		}
 		myIterator++;

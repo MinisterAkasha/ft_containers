@@ -105,29 +105,49 @@ namespace ft {
 	}
 
 	template <typename T>
-	VectorIterator<T>& 		VectorIterator<T>::operator-=(ptrdiff_t n) {
+	VectorIterator<T>& 		VectorIterator<T>::operator-=(difference_type n) {
 		_ptr -= n;
 		return *this;
 	}
 
 	template <typename T>
-	VectorIterator<T>& 		VectorIterator<T>::operator+=(ptrdiff_t n) {
+	VectorIterator<T>& 		VectorIterator<T>::operator+=(difference_type n) {
 		_ptr += n;
 		return *this;
 	}
 
 	template <typename T>
-	VectorIterator<T> 		VectorIterator<T>::operator-(ptrdiff_t n) const {
+	VectorIterator<T> 		VectorIterator<T>::operator-(difference_type n) const {
 		return _ptr - n;
 	}
 
 	template <typename T>
-	VectorIterator<T> 		VectorIterator<T>::operator+(ptrdiff_t n) const {
+	VectorIterator<T> 		VectorIterator<T>::operator+(difference_type n) const {
 		return _ptr + n;
 	}
 
 	template <typename T>
-	typename VectorIterator<T>::reference 	VectorIterator<T>::operator[](ptrdiff_t n) const {
+	typename VectorIterator<T>::reference 	VectorIterator<T>::operator[](difference_type n) const {
 		return (*(operator+(n)));
 	}
+
+	/*
+	** Non member overloads
+	*/
+
+	// template <typename T>
+	// ptrdiff_t operator-(const VectorIterator<T> &litr, const VectorIterator<T> &ritr) {
+	// 	return litr.operator->() - ritr.operator->();
+	// }
+
+	// template <typename T>
+	// VectorIterator<T> operator+(const VectorIterator<T> &iter, size_t n) {
+	// 	VectorIterator<T> res = iter;
+	// 	return res += n;
+	// }
+
+	// template <typename T>
+	// VectorIterator<T> operator+(size_t n, const VectorIterator<T> &iter) {
+	// 	return iter + n;
+	// }
 }

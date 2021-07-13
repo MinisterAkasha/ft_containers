@@ -20,12 +20,12 @@ namespace ft {
 			** Constructors
 			*/
 
-			reverse_iterator(); 										// defoult
+			reverse_iterator(); 											// defoult
 
-			explicit reverse_iterator (iterator_type it);				// initialization
+			explicit reverse_iterator(iterator_type it);					// initialization
 
 			template <class Itererator>
-			reverse_iterator (const reverse_iterator<Itererator>& rev_it); 	// copy
+			reverse_iterator(const reverse_iterator<Itererator>& rev_it); 	// copy
 
 			/*
 			** Destructors
@@ -49,7 +49,14 @@ namespace ft {
 			reverse_iterator  	operator--(int);
 			reverse_iterator& 	operator-=(difference_type n);
 			reference			operator[](difference_type n) const;
+
+		private:
+			iterator_type _base;
 	};
+
+	/*
+	** Non-member functions
+	*/
 
 	template <class Iterator>
   	bool operator== (const reverse_iterator<Iterator>& lhs,

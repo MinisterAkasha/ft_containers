@@ -136,8 +136,8 @@ namespace ft {
 	*/
 
 	// template <typename T>
-	// ptrdiff_t operator-(const VectorIterator<T> &litr, const VectorIterator<T> &ritr) {
-	// 	return litr.operator->() - ritr.operator->();
+	// ptrdiff_t operator-(const VectorIterator<T> &lhs, const VectorIterator<T> &rhs) {
+	// 	return lhs.operator->() - rhs.operator->();
 	// }
 
 	// template <typename T>

@@ -17,6 +17,7 @@ void	VectorTest::test() const {
 	testRangeInsert();
 	testSize();
 	testBegin();
+	testConstBegin();
 	testEnd();
 	testREnd();
 	testRBegin();
@@ -176,6 +177,72 @@ void	VectorTest::testBegin() const {
 	}
 
 
+	std::cout << std::endl;
+}
+
+void	VectorTest::testConstBegin() const {
+	std::cout << "* begin()<const_iterator>: ";
+	{
+
+		ft::vector<double>	myVector(15, 7.025);
+		std::vector<double> stlVector(15, 7.025);
+		myVector.push_back(10);
+		stlVector.push_back(10);
+
+		ft::vector<double>::const_iterator			ftIterator = myVector.begin();
+		std::vector<double>::const_iterator			stlIterator = stlVector.begin();
+
+		PRINT_RESULT(TO_EQUAL(*(ftIterator), *(stlIterator)));
+	}
+	{
+		ft::vector<int>::const_iterator			ftIterator;
+		std::vector<int>::const_iterator			stlIterator;
+
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ftIterator = ft.begin() + 50;
+		stlIterator = stl.begin() + 50;
+
+		PRINT_RESULT(TO_EQUAL(*(ftIterator), *(stlIterator)));
+	}
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 1000);
+
+		ft::vector<int>::const_iterator		ftIterator = ft.begin();
+		std::vector<int>::const_iterator			stlIterator = stl.begin();
+
+		PRINT_RESULT(TO_EQUAL(*ftIterator, *stlIterator));
+	}
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 1000);
+
+		ft::vector<int>::const_iterator		ftIterator = ft.begin() + 500;
+		std::vector<int>::const_iterator			stlIterator = stl.begin() + 500;
+
+		PRINT_RESULT(TO_EQUAL(*ftIterator, *stlIterator));
+	}
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ft::vector<int>::const_iterator		ftIterator = ft.begin() + 5;
+		std::vector<int>::const_iterator			stlIterator = stl.begin() + 5;
+
+
+
+		PRINT_RESULT(TO_EQUAL(*ftIterator, *stlIterator));
+	}
 	std::cout << std::endl;
 }
 

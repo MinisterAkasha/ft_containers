@@ -3,6 +3,7 @@
 
 # include <iostream>
 # include <vector>
+# include <type_traits>
 # include "vector.hpp"
 # include "testUtils.hpp"
 
@@ -19,6 +20,7 @@ class VectorTest {
 		void testRangeConstructor() const;
 		void testCopyConstructor() const;
 		void testBegin() const;
+		void testConstBegin() const;
 		void testEnd() const;
 		void testREnd() const;
 		void testRBegin() const;

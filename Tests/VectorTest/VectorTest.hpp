@@ -57,6 +57,7 @@ class VectorTest {
 		void testNonMemberMoreOrMore() const;
 		void testSwapNonMemver() const;
 		void testNonMemberOperatorMinus() const;
+		void testNonMemberOperatorPlus() const;
 
 		void testVectorIterator() const;
 	

@@ -107,21 +107,15 @@ namespace ft {
 	** Non member overloads
 	*/
 
-	// template <typename T>
-	// ptrdiff_t operator-(const VectorIterator<T> &lhs, const VectorIterator<T> &rhs) {
-	// 	return lhs.operator->() - rhs.operator->();
-	// }
+	template <typename T>
+	ptrdiff_t operator-(const VectorIterator<T> &lhs, const VectorIterator<T> &rhs) {
+		return lhs.operator->() - rhs.operator->();
+	}
 
-	// template <typename T>
-	// VectorIterator<T> operator+(const VectorIterator<T> &iter, size_t n) {
-	// 	VectorIterator<T> res = iter;
-	// 	return res += n;
-	// }
-
-	// template <typename T>
-	// VectorIterator<T> operator+(size_t n, const VectorIterator<T> &iter) {
-	// 	return iter + n;
-	// }
+	template <typename T>
+	VectorIterator<T> operator+(size_t n, const VectorIterator<T> &iter) {
+		return iter + n;
+	}
 	
 }
 

@@ -50,6 +50,7 @@ void	VectorTest::test() const {
 	testNonMemberLessOrEqual();
 	testNonMemberMore();
 	testNonMemberMoreOrMore();
+	testNonMemberOperatorMinus();
 
 	testVectorIterator();
 }
@@ -4369,6 +4370,89 @@ void	VectorTest::testVectorIterator() const {
 		createRandomVectors(ft, stl, 1000);
 
 		PRINT_RESULT(TO_EQUAL(ft[999], stl[999]));
+	}
+	std::cout << std::endl;
+}
+
+void 	VectorTest::testNonMemberOperatorMinus() const {
+	std::cout << "* operator- <non-member>: ";
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ft::vector<int>::iterator ftReverse1 = ft.end();
+		ft::vector<int>::iterator ftReverse2 = ft.end();
+		std::vector<int>::iterator stlReverse1 = stl.end();
+		std::vector<int>::iterator stlReverse2 = stl.end();
+
+		PRINT_RESULT(TO_EQUAL((ftReverse1 - ftReverse2), (stlReverse1 - stlReverse2)));
+	}
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ft::vector<int>::iterator ftReverse1 = ft.begin();
+		ft::vector<int>::iterator ftReverse2 = ft.begin();
+		std::vector<int>::iterator stlReverse1 = stl.begin();
+		std::vector<int>::iterator stlReverse2 = stl.begin();
+
+		PRINT_RESULT(TO_EQUAL((ftReverse1 - ftReverse2), (stlReverse1 - stlReverse2)));
+	}
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ft::vector<int>::iterator ftReverse1 = ft.end() - 10;
+		ft::vector<int>::iterator ftReverse2 = ft.end();
+		std::vector<int>::iterator stlReverse1 = stl.end() - 10;
+		std::vector<int>::iterator stlReverse2 = stl.end();
+
+		PRINT_RESULT(TO_EQUAL((ftReverse1 - ftReverse2), (stlReverse1 - stlReverse2)));
+	}
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ft::vector<int>::iterator ftReverse1 = ft.begin() + 10;
+		ft::vector<int>::iterator ftReverse2 = ft.begin();
+		std::vector<int>::iterator stlReverse1 = stl.begin() + 10;
+		std::vector<int>::iterator stlReverse2 = stl.begin();
+
+		PRINT_RESULT(TO_EQUAL((ftReverse1 - ftReverse2), (stlReverse1 - stlReverse2)));
+	}
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ft::vector<int>::iterator ftReverse1 = ft.begin() - 10;
+		ft::vector<int>::iterator ftReverse2 = ft.begin() + 10;
+		std::vector<int>::iterator stlReverse1 = stl.begin() - 10;
+		std::vector<int>::iterator stlReverse2 = stl.begin() + 10;
+
+		PRINT_RESULT(TO_EQUAL((ftReverse1 - ftReverse2), (stlReverse1 - stlReverse2)));
+	}
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ft::vector<int>::iterator ftReverse1 = ft.begin() - 10;
+		ft::vector<int>::iterator ftReverse2 = ft.end() + 10;
+		std::vector<int>::iterator stlReverse1 = stl.begin() - 10;
+		std::vector<int>::iterator stlReverse2 = stl.end() + 10;
+
+		PRINT_RESULT(TO_EQUAL((ftReverse1 - ftReverse2), (stlReverse1 - stlReverse2)));
 	}
 	std::cout << std::endl;
 }

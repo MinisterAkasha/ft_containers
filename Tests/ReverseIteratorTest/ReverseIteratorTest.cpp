@@ -11,7 +11,7 @@ void	ReverseIteratorTest::test() const {
 	testInitializationConstructor();	
 	testOperatorPlus();
 	testOperatorMinus();
-	testOperatorDecrement();
+	testOperatorIncrement();
 	testBase();
 }
 
@@ -548,6 +548,94 @@ void	ReverseIteratorTest::testOperatorDecrement() const {
 		std::vector<int>::reverse_iterator stlReverse = --stl.rend();
 
 		PRINT_RESULT(TO_EQUAL(*(--ftReverse), *(--stlReverse)));
+	}
+	std::cout << std::endl;
+}
+
+void	ReverseIteratorTest::testOperatorIncrement() const {
+	std::cout << "* operator++: ";
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ft::vector<int>::reverse_iterator ftReverse = ft.rbegin();
+		std::vector<int>::reverse_iterator stlReverse = stl.rbegin();
+
+		ftReverse++;
+		stlReverse++;
+		
+		PRINT_RESULT(TO_EQUAL(*(ftReverse), *(stlReverse)));
+	}
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ft::vector<int>::reverse_iterator ftReverse = ft.rbegin();
+		std::vector<int>::reverse_iterator stlReverse = stl.rbegin();
+
+		++ftReverse;
+		++stlReverse;
+		
+		PRINT_RESULT(TO_EQUAL(*(ftReverse), *(stlReverse)));
+	}
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ft::vector<int>::reverse_iterator ftReverse = ft.rbegin()++;
+		std::vector<int>::reverse_iterator stlReverse = stl.rbegin()++;
+
+		PRINT_RESULT(TO_EQUAL(*(ftReverse), *(stlReverse)));
+	}
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ft::vector<int>::reverse_iterator ftReverse = ft.rbegin()++;
+		std::vector<int>::reverse_iterator stlReverse = stl.rbegin()++;
+
+		PRINT_RESULT(TO_EQUAL(*(++ftReverse), *(++stlReverse)));
+	}
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ft::vector<int>::reverse_iterator ftReverse = ft.rbegin();
+		std::vector<int>::reverse_iterator stlReverse = stl.rbegin();
+
+		PRINT_RESULT(TO_EQUAL(*(++ftReverse), *(++stlReverse)));
+	}
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ft::vector<int>::reverse_iterator ftReverse = ft.rbegin()++;
+		std::vector<int>::reverse_iterator stlReverse = stl.rbegin()++;
+
+		PRINT_RESULT(TO_EQUAL(*(++ftReverse), *(++stlReverse)));
+	}
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ft::vector<int>::reverse_iterator ftReverse = ++ft.rbegin();
+		std::vector<int>::reverse_iterator stlReverse = ++stl.rbegin();
+
+		PRINT_RESULT(TO_EQUAL(*(++ftReverse), *(++stlReverse)));
 	}
 	std::cout << std::endl;
 }

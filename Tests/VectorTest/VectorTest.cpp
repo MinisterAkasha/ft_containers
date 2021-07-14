@@ -7,7 +7,7 @@ VectorTest::VectorTest() {
 VectorTest::~VectorTest() {}
 
 void	VectorTest::test() const {
-	std::cout << "<-- Vector test -->" << std::endl;
+	std::cout << std::endl << "<-- Vector test -->" << std::endl << std::endl;
 	std::srand(time(NULL));
 	testReserve();
 	testPopBack();

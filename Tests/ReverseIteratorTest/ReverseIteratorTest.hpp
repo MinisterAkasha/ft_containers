@@ -17,6 +17,7 @@ class ReverseIteratorTest {
 		void	testOperatorIncrement() const;
 		void	testOperatorMinusEq() const;
 		void	testOperatorPlusEq() const;
+		void	testOperatorAt() const;
 
 	public:
 		ReverseIteratorTest();

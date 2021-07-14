@@ -1,7 +1,7 @@
 #include "ReverseIteratorTest.hpp"
 
 ReverseIteratorTest::ReverseIteratorTest() {
-	std::cout << "<-- Reverse iterator test -->" << std::endl;
+	std::cout << std::endl << "<-- Reverse iterator test -->" << std::endl << std::endl;
 	test();
 }
 
@@ -12,7 +12,9 @@ void	ReverseIteratorTest::test() const {
 	testOperatorPlus();
 	testOperatorMinus();
 	testOperatorIncrement();
+	testOperatorDecrement();
 	testOperatorMinusEq();
+	testOperatorAt();
 	testBase();
 }
 
@@ -719,3 +721,153 @@ void	ReverseIteratorTest::testOperatorMinusEq() const {
 	}
 	std::cout << std::endl;
 }
+
+void	ReverseIteratorTest::testOperatorPlusEq() const {
+	std::cout << "* operator-=: ";
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ft::vector<int>::reverse_iterator ftReverse = ft.rend();
+		std::vector<int>::reverse_iterator stlReverse = stl.rend();
+
+		ftReverse -= 10;
+		stlReverse -= 10;
+		
+		PRINT_RESULT(TO_EQUAL(*(ftReverse), *(stlReverse)));
+	}
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ft::vector<int>::reverse_iterator ftReverse = ft.rbegin();
+		std::vector<int>::reverse_iterator stlReverse = stl.rbegin();
+
+		ftReverse -= -10;
+		stlReverse -= -10;
+		
+		PRINT_RESULT(TO_EQUAL(*(ftReverse), *(stlReverse)));
+	}
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ft::vector<int>::reverse_iterator ftReverse = ft.rend();
+		std::vector<int>::reverse_iterator stlReverse = stl.rend();
+
+		ftReverse -= 10;
+		stlReverse -= 10;
+		
+		PRINT_RESULT(TO_EQUAL(*(ftReverse -= 1), *(stlReverse -= 1)));
+	}
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ft::vector<int>::reverse_iterator ftReverse = ft.rend();
+		std::vector<int>::reverse_iterator stlReverse = stl.rend();
+
+		for (int i = 0; i < 10; i++) {
+			ftReverse -= 1;
+			stlReverse -= 1;
+		}
+		
+		PRINT_RESULT(TO_EQUAL(*(ftReverse), *(stlReverse)));
+	}
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ft::vector<int>::reverse_iterator ftReverse = ft.rend();
+		std::vector<int>::reverse_iterator stlReverse = stl.rend();
+
+		for (int i = 0; i < 10; i++) {
+			ftReverse -= i;
+			stlReverse -= i;
+		}
+		
+		PRINT_RESULT(TO_EQUAL(*(ftReverse), *(stlReverse)));
+	}
+	std::cout << std::endl;
+}
+
+void	ReverseIteratorTest::testOperatorAt() const {
+	std::cout << "* operator[]: ";
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ft::vector<int>::reverse_iterator ftReverse = ft.rbegin();
+		std::vector<int>::reverse_iterator stlReverse = stl.rbegin();
+
+		PRINT_RESULT(TO_EQUAL(ftReverse[10], stlReverse[10]));
+	}
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ft::vector<int>::reverse_iterator ftReverse = ft.rbegin();
+		std::vector<int>::reverse_iterator stlReverse = stl.rbegin();
+
+		PRINT_RESULT(TO_EQUAL(ftReverse[10], stlReverse[10]));
+	}
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ft::vector<int>::reverse_iterator ftReverse = ft.rend();
+		std::vector<int>::reverse_iterator stlReverse = stl.rend();
+
+		ftReverse -= 10;
+		stlReverse -= 10;
+		
+		PRINT_RESULT(TO_EQUAL(ftReverse[1], stlReverse[1]));
+	}
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ft::vector<int>::reverse_iterator ftReverse = ft.rbegin();
+		std::vector<int>::reverse_iterator stlReverse = stl.rbegin();
+		
+		PRINT_RESULT(TO_EQUAL(ftReverse[0], stlReverse[0]));
+	}
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ft::vector<int>::reverse_iterator ftReverse = ft.rbegin();
+		std::vector<int>::reverse_iterator stlReverse = stl.rbegin();
+
+		for (int i = 0; i < 10; i++) {
+			ftReverse -= i;
+			stlReverse -= i;
+		}
+		
+		PRINT_RESULT(TO_EQUAL(ftReverse[99], stlReverse[99]));
+	}
+	std::cout << std::endl;
+}
+
+
+

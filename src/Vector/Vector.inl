@@ -60,17 +60,17 @@ namespace ft
 
 	template <class T, class Allocator>
 	typename vector<T, Allocator>::iterator	vector<T, Allocator>::begin() {
-		return _arr;
+		return iterator(_arr);
 	}
 
 	template <class T, class Allocator>
 	typename vector<T, Allocator>::const_iterator	vector<T, Allocator>::begin() const {
-		return _arr;
+		return const_iterator(_arr);
 	}
 
 	template <class T, class Allocator>
 	typename vector<T, Allocator>::iterator	vector<T, Allocator>::end() {
-		return _arr + _size;
+		return iterator(_arr + _size);
 	}
 
 	template <class T, class Allocator>

@@ -23,6 +23,7 @@ class VectorTest {
 		void testEnd() const;
 		void testConstEnd() const;
 		void testREnd() const;
+		void testConstREnd() const;
 		void testRBegin() const;
 		void testSize() const;
 		void testEqualOperator() const;

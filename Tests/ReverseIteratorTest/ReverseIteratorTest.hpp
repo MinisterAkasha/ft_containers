@@ -10,6 +10,7 @@
 class ReverseIteratorTest {
 	private:
 		void	testInitializationConstructor() const;
+		void	testBase() const;
 
 	public:
 		ReverseIteratorTest();

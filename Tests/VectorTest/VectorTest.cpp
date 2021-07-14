@@ -196,7 +196,7 @@ void	VectorTest::testConstBegin() const {
 	}
 	{
 		ft::vector<int>::const_iterator			ftIterator;
-		std::vector<int>::const_iterator			stlIterator;
+		std::vector<int>::const_iterator		stlIterator;
 
 		ft::vector<int> ft;
 		std::vector<int> stl;
@@ -238,8 +238,6 @@ void	VectorTest::testConstBegin() const {
 
 		ft::vector<int>::const_iterator		ftIterator = ft.begin() + 5;
 		std::vector<int>::const_iterator			stlIterator = stl.begin() + 5;
-
-
 
 		PRINT_RESULT(TO_EQUAL(*ftIterator, *stlIterator));
 	}

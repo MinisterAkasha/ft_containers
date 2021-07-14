@@ -3,7 +3,6 @@
 
 # include <iostream>
 # include <vector>
-# include <type_traits>
 # include "vector.hpp"
 # include "testUtils.hpp"
 

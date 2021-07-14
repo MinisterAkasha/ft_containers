@@ -29,6 +29,14 @@ void	createRandomVectors(ftVector& ft, stlVector& stl, size_t size) {
 	}
 }
 
+template <class ftVector, class stlVector>
+void	createOrderedVectors(ftVector& ft, stlVector& stl, size_t size) {
+	for (size_t i = 0; i < size; i++) {
+		ft.push_back(i);
+		stl.push_back(i);
+	}
+}
+
 template <class Vector>
 void	removeElemsFromVector(Vector& vector, size_t size) {
 	for (size_t i = 0; i < size; i++) {

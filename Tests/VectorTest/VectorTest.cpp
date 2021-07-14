@@ -4145,8 +4145,8 @@ void	VectorTest::testVectorIterator() const {
 		std::vector<int>::iterator stlIter = stl.end();
 
 		for (int i = 0; i < 10; i++) {
-			ftIter++;
-			stlIter++;
+			ftIter--;
+			stlIter--;
 		}
 
 		PRINT_RESULT(TO_EQUAL(*ftIter, *stlIter));

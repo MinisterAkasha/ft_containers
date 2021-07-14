@@ -50,6 +50,8 @@ void	VectorTest::test() const {
 	testNonMemberLessOrEqual();
 	testNonMemberMore();
 	testNonMemberMoreOrMore();
+
+	testVectorIterator();
 }
 
 void	VectorTest::testFillConstructor() const {
@@ -4092,3 +4094,281 @@ void	VectorTest::testNonMemberMoreOrMore() const {
 	std::cout << std::endl;
 }
 
+void	VectorTest::testVectorIterator() const {
+	std::cout << "* Vector Iterator: ";
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ft::vector<int>::iterator ftIter = ft.begin();
+		std::vector<int>::iterator stlIter = stl.begin();
+
+		PRINT_RESULT(TO_EQUAL(*ftIter, *stlIter));
+	}
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ft::vector<int>::iterator ftIter = ft.begin();
+		std::vector<int>::iterator stlIter = stl.begin();
+
+		ftIter += 10;
+		stlIter += 10;
+
+		PRINT_RESULT(TO_EQUAL(*ftIter, *stlIter));
+	}
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ft::vector<int>::iterator ftIter = ft.end();
+		std::vector<int>::iterator stlIter = stl.end();
+
+		ftIter -= 10;
+		stlIter -= 10;
+
+		PRINT_RESULT(TO_EQUAL(*ftIter, *stlIter));
+	}
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ft::vector<int>::iterator ftIter = ft.end();
+		std::vector<int>::iterator stlIter = stl.end();
+
+		for (int i = 0; i < 10; i++) {
+			ftIter++;
+			stlIter++;
+		}
+
+		PRINT_RESULT(TO_EQUAL(*ftIter, *stlIter));
+	}
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ft::vector<int>::iterator ftIter = ft.begin();
+		std::vector<int>::iterator stlIter = stl.begin();
+
+		for (int i = 0; i < 10; i++) {
+			++ftIter;
+			++stlIter;
+		}
+
+		PRINT_RESULT(TO_EQUAL(*ftIter, *stlIter));
+	}
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ft::vector<int>::iterator ftIter = ft.begin();
+		std::vector<int>::iterator stlIter = stl.begin();
+
+		PRINT_RESULT(TO_EQUAL(*(ftIter + 10), *(stlIter + 10)));
+	}
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ft::vector<int>::iterator ftIter = ft.end();
+		std::vector<int>::iterator stlIter = stl.end();
+
+		PRINT_RESULT(TO_EQUAL(*(ftIter - 10), *(stlIter - 10)));
+	}
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 100);
+
+		ft::vector<int>::iterator ftIter = ft.end();
+		std::vector<int>::iterator stlIter = stl.end();
+
+		PRINT_RESULT(TO_EQUAL(*(ftIter - 100), *(stlIter - 100)));
+	}
+	{
+		ft::vector<int> ft1;
+		ft::vector<int> ft2;
+		std::vector<int> stl1;
+		std::vector<int> stl2;
+
+		int rand;
+		for (int i = 0; i < 100; i++) {
+			rand = std::rand();
+			ft1.push_back(rand);
+			ft2.push_back(rand);
+			stl1.push_back(rand);
+			stl2.push_back(rand);
+		}
+
+		ft::vector<int>::iterator ftIter1 = ft1.begin();
+		ft::vector<int>::iterator ftIter2 = ft2.begin();
+		std::vector<int>::iterator stlIter1 = stl1.begin();
+		std::vector<int>::iterator stlIter2 = stl2.begin();
+
+		PRINT_RESULT(TO_EQUAL(ftIter1 == ftIter2, stlIter1 == stlIter2));
+	}
+	{
+		ft::vector<int> ft1;
+		ft::vector<int> ft2;
+		std::vector<int> stl1;
+		std::vector<int> stl2;
+
+		int rand;
+		for (int i = 0; i < 100; i++) {
+			rand = std::rand();
+			ft1.push_back(rand);
+			ft2.push_back(rand);
+			stl1.push_back(rand);
+			stl2.push_back(rand);
+		}
+
+		ft::vector<int>::iterator ftIter1 = ft1.begin();
+		ft::vector<int>::iterator ftIter2 = ft2.begin();
+		std::vector<int>::iterator stlIter1 = stl1.begin();
+		std::vector<int>::iterator stlIter2 = stl2.begin();
+
+		PRINT_RESULT(TO_EQUAL(ftIter1 == ftIter1, stlIter1 == stlIter1));
+	}
+	{
+		ft::vector<int> ft1;
+		ft::vector<int> ft2;
+		std::vector<int> stl1;
+		std::vector<int> stl2;
+
+		int rand;
+		for (int i = 0; i < 100; i++) {
+			rand = std::rand();
+			ft1.push_back(rand);
+			ft2.push_back(rand);
+			stl1.push_back(rand);
+			stl2.push_back(rand);
+		}
+
+		ft::vector<int>::iterator ftIter1 = ft1.begin();
+		ft::vector<int>::iterator ftIter2 = ftIter1;
+		std::vector<int>::iterator stlIter1 = stl1.begin();
+		std::vector<int>::iterator stlIter2 = stlIter1;
+
+		PRINT_RESULT(TO_EQUAL(ftIter1 == ftIter2, stlIter1 == stlIter2));
+	}
+	{
+		ft::vector<int> ft1;
+		ft::vector<int> ft2;
+		std::vector<int> stl1;
+		std::vector<int> stl2;
+
+		createRandomVectors(ft1, stl1, 1000);
+		createRandomVectors(ft2, stl2, 1000);
+
+		ft::vector<int>::iterator ftIter1 = ft1.begin();
+		ft::vector<int>::iterator ftIter2 = ft2.begin();
+		std::vector<int>::iterator stlIter1 = stl1.begin();
+		std::vector<int>::iterator stlIter2 = stl2.begin();
+
+		PRINT_RESULT(TO_EQUAL(ftIter1 != ftIter2, stlIter1 != stlIter2));
+	}
+	{
+		ft::vector<int> ft1;
+		ft::vector<int> ft2;
+		std::vector<int> stl1;
+		std::vector<int> stl2;
+
+		createRandomVectors(ft1, stl1, 1000);
+		createRandomVectors(ft2, stl2, 1000);
+
+		ft::vector<int>::iterator ftIter1 = ft1.begin();
+		ft::vector<int>::iterator ftIter2 = ft2.begin();
+		std::vector<int>::iterator stlIter1 = stl1.begin();
+		std::vector<int>::iterator stlIter2 = stl2.begin();
+
+		PRINT_RESULT(TO_EQUAL(ftIter1 > ftIter2, stlIter1 > stlIter2));
+	}
+	{
+		ft::vector<int> ft1;
+		ft::vector<int> ft2;
+		std::vector<int> stl1;
+		std::vector<int> stl2;
+
+		createRandomVectors(ft1, stl1, 1000);
+		createRandomVectors(ft2, stl2, 1000);
+
+		ft::vector<int>::iterator ftIter1 = ft1.begin();
+		ft::vector<int>::iterator ftIter2 = ft2.begin();
+		std::vector<int>::iterator stlIter1 = stl1.begin();
+		std::vector<int>::iterator stlIter2 = stl2.begin();
+
+		PRINT_RESULT(TO_EQUAL(ftIter1 >= ftIter2, stlIter1 >= stlIter2));
+	}
+	{
+		ft::vector<int> ft1;
+		ft::vector<int> ft2;
+		std::vector<int> stl1;
+		std::vector<int> stl2;
+
+		createRandomVectors(ft1, stl1, 1000);
+		createRandomVectors(ft2, stl2, 1000);
+
+		ft::vector<int>::iterator ftIter1 = ft1.begin();
+		ft::vector<int>::iterator ftIter2 = ft2.begin();
+		std::vector<int>::iterator stlIter1 = stl1.begin();
+		std::vector<int>::iterator stlIter2 = stl2.begin();
+
+		PRINT_RESULT(TO_EQUAL(ftIter1 < ftIter2, stlIter1 < stlIter2));
+	}
+	{
+		ft::vector<int> ft1;
+		ft::vector<int> ft2;
+		std::vector<int> stl1;
+		std::vector<int> stl2;
+
+		createRandomVectors(ft1, stl1, 1000);
+		createRandomVectors(ft2, stl2, 1000);
+
+		ft::vector<int>::iterator ftIter1 = ft1.begin();
+		ft::vector<int>::iterator ftIter2 = ft2.begin();
+		std::vector<int>::iterator stlIter1 = stl1.begin();
+		std::vector<int>::iterator stlIter2 = stl2.begin();
+
+		PRINT_RESULT(TO_EQUAL(ftIter1 <= ftIter2, stlIter1 <= stlIter2));
+	}
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 1000);
+
+		PRINT_RESULT(TO_EQUAL(ft[100], stl[100]));
+	}
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 1000);
+
+		PRINT_RESULT(TO_EQUAL(ft[0], stl[0]));
+	}
+	{
+		ft::vector<int> ft;
+		std::vector<int> stl;
+
+		createRandomVectors(ft, stl, 1000);
+
+		PRINT_RESULT(TO_EQUAL(ft[999], stl[999]));
+	}
+	std::cout << std::endl;
+}

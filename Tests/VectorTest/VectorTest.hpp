@@ -56,6 +56,8 @@ class VectorTest {
 		void testNonMemberMore() const;
 		void testNonMemberMoreOrMore() const;
 		void testSwapNonMemver() const;
+
+		void testVectorIterator() const;
 	
 	public:
 		VectorTest();

@@ -125,6 +125,4 @@ namespace ft {
 	
 }
 
-# include "VectorIterator.inl"
-
 #endif

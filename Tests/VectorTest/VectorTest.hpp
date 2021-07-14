@@ -25,6 +25,7 @@ class VectorTest {
 		void testREnd() const;
 		void testConstREnd() const;
 		void testRBegin() const;
+		void testConstRBegin() const;
 		void testSize() const;
 		void testEqualOperator() const;
 		void testEmpty() const;

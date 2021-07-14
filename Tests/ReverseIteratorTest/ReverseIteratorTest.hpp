@@ -24,6 +24,7 @@ class ReverseIteratorTest {
 		void	testNonMemberLessOrEqual() const;
 		void	testNonMemberMore() const;
 		void	testNonMemberMoreOrEqual() const;
+		void	testNonMemberOperatorMinus() const;
 
 	public:
 		ReverseIteratorTest();

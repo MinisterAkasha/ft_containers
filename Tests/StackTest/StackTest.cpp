@@ -1113,3 +1113,157 @@ void	StackTest::testNonMemberLessOperator() const {
 	}
 	std::cout << std::endl;
 }
+
+void	StackTest::testNonMemberLessOrEqualOperator() const {
+	std::cout << "* operator<= <non-member>: ";
+	{
+		ft::stack<int, ft::vector<int> > ftS1;
+		ft::stack<int, ft::vector<int> > ftS2;
+		std::stack<int, std::vector<int> > stlS1;
+		std::stack<int, std::vector<int> > stlS2;
+
+		createRandomStack(ftS1, ftS2, 10);
+		createRandomStack(stlS1, stlS2, 10);
+
+		PRINT_RESULT(TO_EQUAL((ftS1 <= ftS2), (stlS1 <= stlS2)));
+	}
+	{
+		ft::stack<int, ft::vector<int> > ftS1;
+		ft::stack<int, ft::vector<int> > ftS2;
+		std::stack<int, std::vector<int> > stlS1;
+		std::stack<int, std::vector<int> > stlS2;
+
+		PRINT_RESULT(TO_EQUAL((ftS1 <= ftS2), (stlS1 <= stlS2)));
+	}
+	{
+		ft::vector<int> ftV1;
+		ft::vector<int> ftV2;
+		std::vector<int> stlV1;
+		std::vector<int> stlV2;
+
+		createRandomVectors(ftV1, ftV2, 100);
+		createRandomVectors(stlV1, stlV2, 100);
+
+		ft::stack<int, ft::vector<int> > ftS1(ftV1);
+		ft::stack<int, ft::vector<int> > ftS2(ftV2);
+		std::stack<int, std::vector<int> > stlS1(stlV1);
+		std::stack<int, std::vector<int> > stlS2(stlV2);
+
+		PRINT_RESULT(TO_EQUAL((ftS1 <= ftS2), (stlS1 <= stlS2)));
+	}
+	{
+		ft::vector<int> ftV1(10, 10);
+		ft::vector<int> ftV2(10, 10);
+		std::vector<int> stlV1(10, 10);
+		std::vector<int> stlV2(10, 10);
+
+		ft::stack<int, ft::vector<int> > ftS1(ftV1);
+		ft::stack<int, ft::vector<int> > ftS2(ftV2);
+		std::stack<int, std::vector<int> > stlS1(stlV1);
+		std::stack<int, std::vector<int> > stlS2(stlV2);
+
+		PRINT_RESULT(TO_EQUAL((ftS1 <= ftS2), (stlS1 <= stlS2)));
+	}
+	{
+		ft::vector<int> ftV1;
+		ft::vector<int> ftV2;
+		std::vector<int> stlV1;
+		std::vector<int> stlV2;
+
+		createRandomVectors(ftV1, stlV1, 100);
+		createRandomVectors(ftV2, stlV2, 100);
+
+		ft::stack<int, ft::vector<int> > ftS1(ftV1);
+		ft::stack<int, ft::vector<int> > ftS2(ftV2);
+		std::stack<int, std::vector<int> > stlS1(stlV1);
+		std::stack<int, std::vector<int> > stlS2(stlV2);
+
+		PRINT_RESULT(TO_EQUAL((ftS1 <= ftS2), (stlS1 <= stlS2)));
+	}
+	{
+		ft::vector<int> ftV1;
+		ft::vector<int> ftV2(10, 100);
+		std::vector<int> stlV1;
+		std::vector<int> stlV2(10, 100);
+
+		ft::stack<int, ft::vector<int> > ftS1(ftV1);
+		ft::stack<int, ft::vector<int> > ftS2(ftV2);
+		std::stack<int, std::vector<int> > stlS1(stlV1);
+		std::stack<int, std::vector<int> > stlS2(stlV2);
+
+		PRINT_RESULT(TO_EQUAL((ftS1 <= ftS2), (stlS1 <= stlS2)));
+	}
+	{
+		ft::vector<int> ftV1(10, 100);
+		ft::vector<int> ftV2;
+		std::vector<int> stlV1(10, 100);
+		std::vector<int> stlV2;
+
+		ft::stack<int, ft::vector<int> > ftS1(ftV1);
+		ft::stack<int, ft::vector<int> > ftS2(ftV2);
+		std::stack<int, std::vector<int> > stlS1(stlV1);
+		std::stack<int, std::vector<int> > stlS2(stlV2);
+
+		PRINT_RESULT(TO_EQUAL((ftS1 <= ftS2), (stlS1 <= stlS2)));
+	}
+
+	{
+		std::list<int> ftV1;
+		std::list<int> ftV2;
+		std::list<int> stlV1;
+		std::list<int> stlV2;
+
+		createRandomList(ftV1, ftV2, 100);
+		createRandomList(stlV1, stlV2, 100);
+
+		ft::stack<int, std::list<int> > ftS1(ftV1);
+		ft::stack<int, std::list<int> > ftS2(ftV2);
+		std::stack<int, std::list<int> > stlS1(stlV1);
+		std::stack<int, std::list<int> > stlS2(stlV2);
+
+		PRINT_RESULT(TO_EQUAL((ftS1 <= ftS2), (stlS1 <= stlS2)));
+	}
+	{
+		std::list<int> ftV1(10, 10);
+		std::list<int> ftV2(10, 10);
+		std::vector<int> stlV1(10, 10);
+		std::vector<int> stlV2(10, 10);
+
+		ft::stack<int, std::list<int> > ftS1(ftV1);
+		ft::stack<int, std::list<int> > ftS2(ftV2);
+		std::stack<int, std::vector<int> > stlS1(stlV1);
+		std::stack<int, std::vector<int> > stlS2(stlV2);
+
+		PRINT_RESULT(TO_EQUAL((ftS1 <= ftS2), (stlS1 <= stlS2)));
+	}
+	{
+		std::list<int> ftV1;
+		std::list<int> ftV2;
+		std::list<int> stlV1;
+		std::list<int> stlV2;
+
+		createRandomList(ftV1, stlV1, 100);
+		createRandomList(ftV2, stlV2, 100);
+
+		ft::stack<int, std::list<int> > ftS1(ftV1);
+		ft::stack<int, std::list<int> > ftS2(ftV2);
+		std::stack<int, std::list<int> > stlS1(stlV1);
+		std::stack<int, std::list<int> > stlS2(stlV2);
+
+		PRINT_RESULT(TO_EQUAL((ftS1 <= ftS2), (stlS1 <= stlS2)));
+	}
+	{
+		std::list<int> ftV1(5, 5);
+		std::list<int> ftV2(5, 5);
+		std::list<int> stlV1(5, 5);
+		std::list<int> stlV2(5, 5);
+
+		ft::stack<int, std::list<int> > ftS1(ftV1);
+		ft::stack<int, std::list<int> > ftS2(ftV2);
+		std::stack<int, std::list<int> > stlS1(stlV1);
+		std::stack<int, std::list<int> > stlS2(stlV2);
+
+		PRINT_RESULT(TO_EQUAL((ftS1 <= ftS2), (stlS1 <= stlS2)));
+	}
+	std::cout << std::endl;
+}

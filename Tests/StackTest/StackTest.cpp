@@ -17,6 +17,8 @@ void	StackTest::test() const {
 	testNonMemberEqualOperator();
 	testNonMemberNotEqualOperator();
 	testNonMemberLessOperator();
+	// testNonMemberLessOrEqualOperator();
+	testNonMemberMoreOperator();
 }
 
 void	StackTest::testConstructor() const {
@@ -1114,8 +1116,8 @@ void	StackTest::testNonMemberLessOperator() const {
 	std::cout << std::endl;
 }
 
-void	StackTest::testNonMemberLessOrEqualOperator() const {
-	std::cout << "* operator<= <non-member>: ";
+void	StackTest::testNonMemberMoreOperator() const {
+	std::cout << "* operator> <non-member>: ";
 	{
 		ft::stack<int, ft::vector<int> > ftS1;
 		ft::stack<int, ft::vector<int> > ftS2;
@@ -1125,7 +1127,7 @@ void	StackTest::testNonMemberLessOrEqualOperator() const {
 		createRandomStack(ftS1, ftS2, 10);
 		createRandomStack(stlS1, stlS2, 10);
 
-		PRINT_RESULT(TO_EQUAL((ftS1 <= ftS2), (stlS1 <= stlS2)));
+		PRINT_RESULT(TO_EQUAL((ftS1 > ftS2), (stlS1 > stlS2)));
 	}
 	{
 		ft::stack<int, ft::vector<int> > ftS1;
@@ -1133,7 +1135,7 @@ void	StackTest::testNonMemberLessOrEqualOperator() const {
 		std::stack<int, std::vector<int> > stlS1;
 		std::stack<int, std::vector<int> > stlS2;
 
-		PRINT_RESULT(TO_EQUAL((ftS1 <= ftS2), (stlS1 <= stlS2)));
+		PRINT_RESULT(TO_EQUAL((ftS1 > ftS2), (stlS1 > stlS2)));
 	}
 	{
 		ft::vector<int> ftV1;
@@ -1149,7 +1151,7 @@ void	StackTest::testNonMemberLessOrEqualOperator() const {
 		std::stack<int, std::vector<int> > stlS1(stlV1);
 		std::stack<int, std::vector<int> > stlS2(stlV2);
 
-		PRINT_RESULT(TO_EQUAL((ftS1 <= ftS2), (stlS1 <= stlS2)));
+		PRINT_RESULT(TO_EQUAL((ftS1 > ftS2), (stlS1 > stlS2)));
 	}
 	{
 		ft::vector<int> ftV1(10, 10);
@@ -1162,7 +1164,7 @@ void	StackTest::testNonMemberLessOrEqualOperator() const {
 		std::stack<int, std::vector<int> > stlS1(stlV1);
 		std::stack<int, std::vector<int> > stlS2(stlV2);
 
-		PRINT_RESULT(TO_EQUAL((ftS1 <= ftS2), (stlS1 <= stlS2)));
+		PRINT_RESULT(TO_EQUAL((ftS1 > ftS2), (stlS1 > stlS2)));
 	}
 	{
 		ft::vector<int> ftV1;
@@ -1178,7 +1180,7 @@ void	StackTest::testNonMemberLessOrEqualOperator() const {
 		std::stack<int, std::vector<int> > stlS1(stlV1);
 		std::stack<int, std::vector<int> > stlS2(stlV2);
 
-		PRINT_RESULT(TO_EQUAL((ftS1 <= ftS2), (stlS1 <= stlS2)));
+		PRINT_RESULT(TO_EQUAL((ftS1 > ftS2), (stlS1 > stlS2)));
 	}
 	{
 		ft::vector<int> ftV1;
@@ -1191,7 +1193,7 @@ void	StackTest::testNonMemberLessOrEqualOperator() const {
 		std::stack<int, std::vector<int> > stlS1(stlV1);
 		std::stack<int, std::vector<int> > stlS2(stlV2);
 
-		PRINT_RESULT(TO_EQUAL((ftS1 <= ftS2), (stlS1 <= stlS2)));
+		PRINT_RESULT(TO_EQUAL((ftS1 > ftS2), (stlS1 > stlS2)));
 	}
 	{
 		ft::vector<int> ftV1(10, 100);
@@ -1204,7 +1206,7 @@ void	StackTest::testNonMemberLessOrEqualOperator() const {
 		std::stack<int, std::vector<int> > stlS1(stlV1);
 		std::stack<int, std::vector<int> > stlS2(stlV2);
 
-		PRINT_RESULT(TO_EQUAL((ftS1 <= ftS2), (stlS1 <= stlS2)));
+		PRINT_RESULT(TO_EQUAL((ftS1 > ftS2), (stlS1 > stlS2)));
 	}
 
 	{
@@ -1221,7 +1223,7 @@ void	StackTest::testNonMemberLessOrEqualOperator() const {
 		std::stack<int, std::list<int> > stlS1(stlV1);
 		std::stack<int, std::list<int> > stlS2(stlV2);
 
-		PRINT_RESULT(TO_EQUAL((ftS1 <= ftS2), (stlS1 <= stlS2)));
+		PRINT_RESULT(TO_EQUAL((ftS1 > ftS2), (stlS1 > stlS2)));
 	}
 	{
 		std::list<int> ftV1(10, 10);
@@ -1234,7 +1236,7 @@ void	StackTest::testNonMemberLessOrEqualOperator() const {
 		std::stack<int, std::vector<int> > stlS1(stlV1);
 		std::stack<int, std::vector<int> > stlS2(stlV2);
 
-		PRINT_RESULT(TO_EQUAL((ftS1 <= ftS2), (stlS1 <= stlS2)));
+		PRINT_RESULT(TO_EQUAL((ftS1 > ftS2), (stlS1 > stlS2)));
 	}
 	{
 		std::list<int> ftV1;
@@ -1250,7 +1252,7 @@ void	StackTest::testNonMemberLessOrEqualOperator() const {
 		std::stack<int, std::list<int> > stlS1(stlV1);
 		std::stack<int, std::list<int> > stlS2(stlV2);
 
-		PRINT_RESULT(TO_EQUAL((ftS1 <= ftS2), (stlS1 <= stlS2)));
+		PRINT_RESULT(TO_EQUAL((ftS1 > ftS2), (stlS1 > stlS2)));
 	}
 	{
 		std::list<int> ftV1(5, 5);
@@ -1263,7 +1265,7 @@ void	StackTest::testNonMemberLessOrEqualOperator() const {
 		std::stack<int, std::list<int> > stlS1(stlV1);
 		std::stack<int, std::list<int> > stlS2(stlV2);
 
-		PRINT_RESULT(TO_EQUAL((ftS1 <= ftS2), (stlS1 <= stlS2)));
+		PRINT_RESULT(TO_EQUAL((ftS1 > ftS2), (stlS1 > stlS2)));
 	}
 	std::cout << std::endl;
 }

@@ -1,6 +1,8 @@
 #ifndef UTILS_HPP
 # define UTILS_HPP
 
+# include <memory>
+
 namespace ft {
 	template<bool Cond, class T = void>
 	struct enable_if {};

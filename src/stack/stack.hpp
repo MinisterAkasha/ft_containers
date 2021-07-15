@@ -29,6 +29,24 @@ namespace ft {
 	
 		private:
 			container_type _c;
+			template <class A, class B>
+			friend bool	operator==(const stack<A, B> &lhs, const stack<A, B> &rhs);
+
+			template <class A, class B>
+			friend bool	operator!=(const stack<A, B> &lhs, const stack<A, B> &rhs);
+
+			template <class A, class B>
+			friend bool	operator<(const stack<A, B> &lhs, const stack<A, B> &rhs);
+
+			template <class A, class B>
+			friend bool	operator<=(const stack<A, B> &lhs, const stack<A, B> &rhs);
+
+			template <class A, class B>
+			friend bool	operator>(const stack<A, B> &lhs, const stack<A, B> &rhs);
+
+			template <class A, class B>
+			friend bool	operator>=(const stack<A, B> &lhs, const stack<A, B> &rhs);
+
 	};
 
 	/*

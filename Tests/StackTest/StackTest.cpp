@@ -13,6 +13,7 @@ void	StackTest::test() const {
 	testPop();
 	testEmpty();
 	testSize();
+	testTop();
 }
 
 void	StackTest::testConstructor() const {
@@ -504,6 +505,237 @@ void	StackTest::testSize() const {
 		createRandomStack(ftS, stlS, 15);
 
 		PRINT_RESULT(TO_EQUAL(ftS.size(), stlS.size()));
+	}
+	std::cout << std::endl;
+}
+
+void	StackTest::testTop() const {
+	std::cout << "* top(): ";
+	{
+		ft::stack<int, ft::vector<int> > ftS;
+		std::stack<int, std::vector<int> > stlS;
+
+		createRandomStack(ftS, stlS, 1);
+
+		PRINT_RESULT(TO_EQUAL(ftS.top(), stlS.top()));
+	}
+	{
+		ft::stack<int, ft::vector<int> > ftS;
+		std::stack<int, std::vector<int> > stlS;
+
+		createRandomStack(ftS, stlS, 100);
+
+		PRINT_RESULT(TO_EQUAL(ftS.top(), stlS.top()));
+	}
+	{
+		ft::vector<int> ftV;
+		std::vector<int> stlV;
+
+		createRandomVectors(ftV, stlV, 100);
+
+		ft::stack<int, ft::vector<int> > ftS(ftV);
+		std::stack<int, std::vector<int> > stlS(stlV);
+
+		PRINT_RESULT(TO_EQUAL(ftS.top(), stlS.top()));
+	}
+	{
+		ft::vector<int> ftV(10, 10);
+		std::vector<int> stlV(10, 10);
+
+		ft::stack<int, ft::vector<int> > ftS(ftV);
+		std::stack<int, std::vector<int> > stlS(stlV);
+
+		PRINT_RESULT(TO_EQUAL(ftS.top(), stlS.top()));
+	}
+	{
+		ft::vector<int> ftV;
+		std::vector<int> stlV;
+
+		ft::stack<int, ft::vector<int> > ftS(ftV);
+		std::stack<int, std::vector<int> > stlS(stlV);
+
+		createRandomStack(ftS, stlS, 100);
+
+		PRINT_RESULT(TO_EQUAL(ftS.top(), stlS.top()));
+	}
+	{
+		ft::vector<int> ftV(10, 100);
+		std::vector<int> stlV(10, 100);
+
+		ft::stack<int, ft::vector<int> > ftS(ftV);
+		std::stack<int, std::vector<int> > stlS(stlV);
+
+		createRandomStack(ftS, stlS, 100);
+
+		PRINT_RESULT(TO_EQUAL(ftS.top(), stlS.top()));
+	}
+	{
+		ft::vector<int> ftV(10, 100);
+		std::vector<int> stlV(10, 100);
+
+		ft::stack<int, ft::vector<int> > ftS(ftV);
+		std::stack<int, std::vector<int> > stlS(stlV);
+
+		PRINT_RESULT(TO_EQUAL(ftS.top(), stlS.top()));
+	}
+	{
+		std::list<int> list1;
+		std::list<int> list2;
+
+		createRandomList(list1, list2, 100);
+
+		ft::stack<int, std::list<int> > ftS(list1);
+		std::stack<int, std::list<int> > stlS(list2);
+
+		PRINT_RESULT(TO_EQUAL(ftS.top(), stlS.top()));
+	}
+	{
+		std::list<int> list1;
+		std::list<int> list2;
+
+		ft::stack<int, std::list<int> > ftS(list1);
+		std::stack<int, std::list<int> > stlS(list2);
+
+		PRINT_RESULT(TO_EQUAL(ftS.top(), stlS.top()));
+	}
+	{
+		std::list<int> list1;
+		std::list<int> list2;
+
+		createRandomList(list1, list2, 100);
+
+		ft::stack<int, std::list<int> > ftS(list1);
+		std::stack<int, std::list<int> > stlS(list2);
+
+		createRandomStack(ftS, stlS, 15);
+
+		PRINT_RESULT(TO_EQUAL(ftS.top(), stlS.top()));
+	}
+
+	{
+		ft::stack<int, ft::vector<int> > ftS;
+		std::stack<int, std::vector<int> > stlS;
+
+		createRandomStack(ftS, stlS, 1);
+
+		const int ftVal = ftS.top();
+		const int stlVal = stlS.top();
+
+		PRINT_RESULT(TO_EQUAL(ftVal, stlVal));
+	}
+	{
+		ft::stack<int, ft::vector<int> > ftS;
+		std::stack<int, std::vector<int> > stlS;
+
+		createRandomStack(ftS, stlS, 100);
+
+		const int ftVal = ftS.top();
+		const int stlVal = stlS.top();
+
+		PRINT_RESULT(TO_EQUAL(ftVal, stlVal));
+	}
+	{
+		ft::vector<int> ftV;
+		std::vector<int> stlV;
+
+		createRandomVectors(ftV, stlV, 100);
+
+		ft::stack<int, ft::vector<int> > ftS(ftV);
+		std::stack<int, std::vector<int> > stlS(stlV);
+
+		const int ftVal = ftS.top();
+		const int stlVal = stlS.top();
+
+		PRINT_RESULT(TO_EQUAL(ftVal, stlVal));
+
+	}
+	{
+		ft::vector<int> ftV(10, 10);
+		std::vector<int> stlV(10, 10);
+
+		ft::stack<int, ft::vector<int> > ftS(ftV);
+		std::stack<int, std::vector<int> > stlS(stlV);
+
+		const int ftVal = ftS.top();
+		const int stlVal = stlS.top();
+
+		PRINT_RESULT(TO_EQUAL(ftVal, stlVal));
+	}
+	{
+		ft::vector<int> ftV;
+		std::vector<int> stlV;
+
+		ft::stack<int, ft::vector<int> > ftS(ftV);
+		std::stack<int, std::vector<int> > stlS(stlV);
+
+		createRandomStack(ftS, stlS, 100);
+
+		PRINT_RESULT(TO_EQUAL(ftS.top(), stlS.top()));
+	}
+	{
+		ft::vector<int> ftV(10, 100);
+		std::vector<int> stlV(10, 100);
+
+		ft::stack<int, ft::vector<int> > ftS(ftV);
+		std::stack<int, std::vector<int> > stlS(stlV);
+
+		createRandomStack(ftS, stlS, 100);
+
+		PRINT_RESULT(TO_EQUAL(ftS.top(), stlS.top()));
+	}
+	{
+		ft::vector<int> ftV(10, 100);
+		std::vector<int> stlV(10, 100);
+
+		ft::stack<int, ft::vector<int> > ftS(ftV);
+		std::stack<int, std::vector<int> > stlS(stlV);
+
+		const int ftVal = ftS.top();
+		const int stlVal = stlS.top();
+
+		PRINT_RESULT(TO_EQUAL(ftVal, stlVal));
+	}
+	{
+		std::list<int> list1;
+		std::list<int> list2;
+
+		createRandomList(list1, list2, 100);
+
+		ft::stack<int, std::list<int> > ftS(list1);
+		std::stack<int, std::list<int> > stlS(list2);
+
+		const int ftVal = ftS.top();
+		const int stlVal = stlS.top();
+
+		PRINT_RESULT(TO_EQUAL(ftVal, stlVal));
+	}
+	{
+		std::list<int> list1;
+		std::list<int> list2;
+
+		ft::stack<int, std::list<int> > ftS(list1);
+		std::stack<int, std::list<int> > stlS(list2);
+
+		const int ftVal = ftS.top();
+		const int stlVal = stlS.top();
+
+		PRINT_RESULT(TO_EQUAL(ftVal, stlVal));
+	}
+	{
+		std::list<int> list1;
+		std::list<int> list2;
+
+		createRandomList(list1, list2, 100);
+
+		ft::stack<int, std::list<int> > ftS(list1);
+		std::stack<int, std::list<int> > stlS(list2);
+
+		createRandomStack(ftS, stlS, 15);
+
+		const int ftVal = ftS.top();
+		const int stlVal = stlS.top();
+
+		PRINT_RESULT(TO_EQUAL(ftVal, stlVal));
 	}
 	std::cout << std::endl;
 }

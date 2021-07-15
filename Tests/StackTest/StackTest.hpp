@@ -14,6 +14,7 @@ class StackTest {
 		void	testPop() const;
 		void	testEmpty() const;
 		void	testSize() const;
+		void	testTop() const;
 
 
 	public:

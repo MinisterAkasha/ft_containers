@@ -44,13 +44,15 @@ void	removeElemsFromVector(Vector& vector, size_t size) {
 	}
 }
 
-template <class ftIterator, class stlIterator, class size_type, class T>
-void createBeginIterators(ftIterator& myIterator, stlIterator& defoultIterator, size_type size, T value) {
-	ft::vector<T>	myVector(size, value);
-	std::vector<T>	stlVector(size, value);
+template <class List>
+void	createRandomList(List& list1, List& list2, size_t size) {
+	int	rand = std::rand();
 
-	myIterator = myVector.begin();
-	defoultIterator = stlVector.begin();
+	for (size_t i = 0; i < size; i++) {
+		list1.push_back(rand);
+		list2.push_back(rand);
+		rand = std::rand();
+	}
 }
 
 template <class T1>

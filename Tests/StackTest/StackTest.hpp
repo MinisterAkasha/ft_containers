@@ -10,6 +10,7 @@
 class StackTest {
 	private:
 		void	testConstructor() const;
+		void	testEmpty() const;
 
 
 	public:

@@ -31,9 +31,28 @@ namespace ft {
 			typedef	typename ft::iterator_traits<iterator>::difference_type	difference_type;
 			typedef	size_t													size_type;
 
+			class value_compare;
+
 
 		private:
 	};
-	
+
+
+	template <class Key, class T, class Compare, class Alloc>
+	class map< Key, T, Compare, Alloc >::value_compare {
+		public:
+			typedef bool												result_type;
+			typedef typename map<Key, T, Compare, Alloc>::value_type	first_argument_type;
+			typedef typename map<Key, T, Compare, Alloc>::value_type	second_argument_type;
+
+			value_compare(Compare c) : comp(c) {}
+
+			result_type operator()(const first_argument_type & x,
+								const second_argument_type & y) const {
+				return comp(x.first, y.first);
+			}
+		protected:
+			Compare	comp;
+	};
 }
 #endif

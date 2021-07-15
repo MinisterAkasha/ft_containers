@@ -17,6 +17,10 @@ class StackTest {
 		void	testTop() const;
 		void	testNonMemberEqualOperator() const;
 		void	testNonMemberNotEqualOperator() const;
+		void	testNonMemberLessOperator() const;
+		void	testNonMemberLessOrEqualOperator() const;
+		void	testNonMemberMoreOperator() const;
+		void	testNonMemberMoreOrEqualOperator() const;
 
 
 	public:

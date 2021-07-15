@@ -82,6 +82,20 @@ bool	TO_EQUAL_VECTOR(V1& ftVector, V2& stlVector) {
 	return true;
 }
 
+template <class S1, class S2>
+bool	TO_EQUAL_STACK(S1& ftStack, S2& stlStack) {
+	if (ftStack.size() != stlStack.size())
+		return false;
+
+	while (!ftStack.empty() && !stlStack.empty()) {
+		if (ftStack.top() != stlStack.top())
+			return false;
+		ftStack.pop();
+		stlStack.pop();
+	}
+	return true;
+}
+
 template<class Bool>
 void	PRINT_RESULT(Bool res) {
 	if (res)

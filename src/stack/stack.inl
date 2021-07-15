@@ -36,7 +36,7 @@ namespace ft {
 	
 	template <class T, class Container>
 	void stack<T, Container>::pop() {
-		_c.pop_back(val);
+		_c.pop_back();
 	}
 	
 }

@@ -11,6 +11,7 @@ class StackTest {
 	private:
 		void	testConstructor() const;
 		void	testPush() const;
+		void	testPop() const;
 		void	testEmpty() const;
 		void	testSize() const;
 

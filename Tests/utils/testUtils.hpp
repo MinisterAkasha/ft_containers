@@ -55,6 +55,17 @@ void	createRandomList(List& list1, List& list2, size_t size) {
 	}
 }
 
+template <class ftStack, class stlStack>
+void	createRandomStack(ftStack& stack1, stlStack& stack2, size_t size) {
+	int	rand = std::rand();
+
+	for (size_t i = 0; i < size; i++) {
+		stack1.push(rand);
+		stack2.push(rand);
+		rand = std::rand();
+	}
+}
+
 template <class T1>
 bool	TO_EQUAL(T1 value1, T1 value2) {
 	if (value1 == value2)

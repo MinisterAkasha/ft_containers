@@ -8,13 +8,6 @@
 
 class VectorTest {
 	private:
-		ft::vector<int>		myVecorEmpty;
-		ft::vector<int>		myVecor;
-
-		std::vector<int>	stdVecorEmpty;
-		std::vector<int>	stdVecor;
-	
-	private:
 		void testFillConstructor() const;
 		void testRangeConstructor() const;
 		void testCopyConstructor() const;

@@ -3,7 +3,7 @@
 
 # include <memory>
 # include "utils.hpp"
-# include "Node.hpp"
+# include "Tree.hpp"
 # include "MapIterator.hpp"
 # include "reverseIterator.hpp"
 
@@ -125,14 +125,15 @@ namespace ft {
 
 			allocator_type 			get_allocator() const;
 
-		private:
-			typedef	Node<value_type> tree;
+		// private:
+		// 	typedef	Tree<value_type> tree;
 
 		private:
-			tree					*_root;
-			allocator_type			_allocator;
-			key_compare				_keyComp;
-			value_compare			_valueComp;
+			Tree< value_type,
+				allocator_type>					_tree;
+			allocator_type						_allocator;
+			key_compare							_keyComp;
+			value_compare						_valueComp;
 
 		private:
 			void					_initTree(value_type value);

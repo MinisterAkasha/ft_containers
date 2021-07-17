@@ -102,11 +102,11 @@ class Node {
 		static void			insert(value_type data, Node* root, Comp& comp, ValueAlloc& alloc) {
 			Node *current;
 			Node *parent;
-			Node *x;
+			Node *newNode;
 
-			/* find where node belongs */
 			current = root;
 			parent = nullptr;
+
 			while (current != nullptr) {
 				if (getNodeData(current).first == data.first)
 					return ;
@@ -116,21 +116,19 @@ class Node {
 					current->left : current->right;
 			}
 
-			/* setup new node */
-			x = createNode(data, alloc, parent);
+			newNode = createNode(data, alloc, parent);
 
-			/* insert node in tree */
 			if (parent) {
 				if (comp(data, getNodeData(parent)))
-					parent->left = x;
+					parent->left = newNode;
 				else
-					parent->right = x;
+					parent->right = newNode;
 			} else {
-				root = x;
+				root = newNode;
 			}
 
-			// insertFixup(x); //TODO
-			// return (x);
+			// insertFixup(newNode); //TODO
+			// return (newNode);
 		}
 
 		void			insertFixup(Node *x) {

@@ -32,12 +32,17 @@ class Node {
 		};
 
 		template <class ValueAlloc>
-		void	clearTree(Node* node, ValueAlloc& alloc) {
+		void			clearTree(Node* node, ValueAlloc& alloc) {
 			if (node->right)
 				clearTree(node->right, alloc);
-			else if (node->left)
+			if (node->left)
 				clearTree(node->left, alloc);
 
+			clearNode(node, alloc);
+		}
+
+		template <class ValueAlloc>
+		void			clearNode(Node* node, ValueAlloc& alloc) {
 			alloc.destroy(node->data);
 			alloc.deallocate(node->data, 1);
 			delete node;
@@ -104,7 +109,7 @@ class Node {
 		}
 
 		template <class Comp, class ValueAlloc>
-		static void			insert(value_type data, Node* root, Comp& comp, ValueAlloc& alloc) {
+		static void		insert(value_type data, Node* root, Comp& comp, ValueAlloc& alloc) {
 			Node *current;
 			Node *parent;
 			Node *newNode;
@@ -136,7 +141,7 @@ class Node {
 			// return (newNode);
 		}
 
-		static void			insertFixup(Node* node, Node* root) {
+		static void		insertFixup(Node* node, Node* root) {
 			while (node != root && node->parent->_color == RED) {
 				if (node->parent == node->parent->parent->left) {
 					Node* uncle = node->parent->parent->right;
@@ -170,6 +175,7 @@ class Node {
 			}
 			root->_color = BLACK;
 		};
+
 
 		void			deleteFixup(Node *x);
 		Node*			find(value_type value);

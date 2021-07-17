@@ -131,28 +131,29 @@ namespace ft {
 		private:
 			tree					*_root;
 			allocator_type			_allocator;
-			key_compare				_comp;
+			key_compare				_keyComp;
+			value_compare			_valueComp;
 
 		private:
 			void					_initTree(value_type value);
 	};
 
-
 	template <class Key, class T, class Compare, class Alloc>
-	class map< Key, T, Compare, Alloc >::value_compare {
-		public:
-			typedef bool												result_type;
-			typedef typename map<Key, T, Compare, Alloc>::value_type	first_argument_type;
-			typedef typename map<Key, T, Compare, Alloc>::value_type	second_argument_type;
+	class map<Key,T,Compare,Alloc>::value_compare {
+		friend class map;
 
+		protected:
+			Compare comp;
 			value_compare(Compare c) : comp(c) {}
 
-			result_type operator()(const first_argument_type & x,
-								const second_argument_type & y) const {
+		public:
+			typedef bool		result_type;
+			typedef value_type	first_argument_type;
+			typedef value_type	second_argument_type;
+			
+			bool operator()(const value_type& x, const value_type& y) const {
 				return comp(x.first, y.first);
 			}
-		protected:
-			Compare	comp;
 	};
 }
 

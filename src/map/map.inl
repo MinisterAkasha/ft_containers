@@ -29,7 +29,7 @@ namespace ft {
 
 	template <class Key, class T, class Compare, class Alloc>
 	map<Key, T, Compare, Alloc>::~map() {
-		
+		_root->clearTree(_root, _allocator);
 	}
 
 	/*
@@ -38,6 +38,6 @@ namespace ft {
 
 	template <class Key, class T, class Compare, class Alloc>
 	void	map<Key, T, Compare, Alloc>::_initTree(value_type value) {
-		_root = tree::createNode(value, _allocator, nullptr);
+		_root = _root->createNode(value, _allocator, nullptr);
 	}
 }

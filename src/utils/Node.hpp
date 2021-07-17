@@ -16,7 +16,7 @@ class Node {
 
 	public:
 		template <class ValueAlloc>
-		static Node*		createNode(value_type value, ValueAlloc& valueAllocator, Node* parent) {
+		Node*		createNode(value_type value, ValueAlloc& valueAllocator, Node* parent) {
 			Node* node = new Node<value_type>;
 
 			node->left = nullptr;
@@ -31,13 +31,26 @@ class Node {
 			return node;
 		};
 
-		static void			rotateLeft(Node* node);
-		static void			rotateRight(Node* node);
-		static void			swapColors(Node* parentNode);
-		static void			insert(value_type value);
-		static void			insertFixup(Node *x);
-		static void			deleteFixup(Node *x);
-		static Node*		find(value_type value);
+		template <class ValueAlloc>
+		void	clearTree(Node* node, ValueAlloc& valueAllocator) {
+			if (node->right)
+				clearTree(node->right, valueAllocator);
+			else if (node->left)
+				clearTree(node->left, valueAllocator);
+
+			valueAllocator.destroy(node->data);
+			valueAllocator.deallocate(node->data, 1);
+			delete node;
+		}
+
+		static void		rotateLeft(Node* node);
+		static void		rotateRight(Node* node);
+		static void		swapColors(Node* parentNode);
+
+		void			insert(value_type value);
+		void			insertFixup(Node *x);
+		void			deleteFixup(Node *x);
+		Node*			find(value_type value);
 };
 
 #endif

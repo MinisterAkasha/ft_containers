@@ -16,15 +16,15 @@ class Node {
 
 	public:
 		template <class ValueAlloc>
-		Node*		createNode(value_type value, ValueAlloc& valueAllocator, Node* parent) {
+		static Node*		createNode(value_type& value, ValueAlloc& alloc, Node* parent) {
 			Node* node = new Node<value_type>;
 
 			node->left = nullptr;
 			node->right = nullptr;
 			node->parent = parent;
 
-			node->data = valueAllocator.allocate(1);
-			valueAllocator.construct(node->data, value);
+			node->data = alloc.allocate(1);
+			alloc.construct(node->data, value);
 
 			node->_color = RED;
 
@@ -32,25 +32,140 @@ class Node {
 		};
 
 		template <class ValueAlloc>
-		void	clearTree(Node* node, ValueAlloc& valueAllocator) {
+		void	clearTree(Node* node, ValueAlloc& alloc) {
 			if (node->right)
-				clearTree(node->right, valueAllocator);
+				clearTree(node->right, alloc);
 			else if (node->left)
-				clearTree(node->left, valueAllocator);
+				clearTree(node->left, alloc);
 
-			valueAllocator.destroy(node->data);
-			valueAllocator.deallocate(node->data, 1);
+			alloc.destroy(node->data);
+			alloc.deallocate(node->data, 1);
 			delete node;
 		}
 
-		static void		rotateLeft(Node* node);
-		static void		rotateRight(Node* node);
+		static void		rotateLeft(Node* x, Node* root) {
+			Node *y = x->right;
+
+			/* establish x->right link */
+			x->right = y->left;
+			if (y->left != nullptr)
+				y->left->parent = x;
+
+			/* establish y->parent link */
+			if (y != nullptr)
+				y->parent = x->parent;
+
+			if (x->parent) {
+				if (x == x->parent->left)
+					x->parent->left = y;
+				else
+					x->parent->right = y;
+			} else {
+				root = y;
+			}
+
+			/* link x and y */
+			y->left = x;
+			if (x != nullptr)
+				x->parent = y;
+		}
+
+		static void		rotateRight(Node* x, Node* root) {
+			Node *y = x->left;
+
+			/* establish x->left link */
+			x->left = y->right;
+			if (y->right != nullptr)
+				y->right->parent = x;
+
+			/* establish y->parent link */
+			if (y != nullptr)
+				y->parent = x->parent;
+			if (x->parent) {
+				if (x == x->parent->right)
+					x->parent->right = y;
+				else
+					x->parent->left = y;
+			} else {
+				root = y;
+			}
+
+			/* link x and y */
+			y->right = x;
+			if (x != nullptr)
+				x->parent = y;
+		}
+
 		static void		swapColors(Node* parentNode);
 
-		void			insert(value_type value);
-		void			insertFixup(Node *x);
+		template <class Comp, class ValueAlloc>
+		static void			insert(value_type data, Node* root, Comp& comp, ValueAlloc& alloc) {
+			Node *current;
+			Node *parent;
+			Node *x;
+
+			/* find where node belongs */
+			current = root;
+			parent = nullptr;
+			while (current != nullptr) {
+				if (getNodeData(current).first == data.first)
+					return ;
+					// return (current); //TODO
+				parent = current;
+				current = comp(data, getNodeData(current)) ?
+					current->left : current->right;
+			}
+
+			/* setup new node */
+			x = createNode(data, alloc, parent);
+
+			/* insert node in tree */
+			if (parent) {
+				if (comp(data, getNodeData(parent)))
+					parent->left = x;
+				else
+					parent->right = x;
+			} else {
+				root = x;
+			}
+
+			// insertFixup(x); //TODO
+			// return (x);
+		}
+
+		void			insertFixup(Node *x) {
+
+		};
+
 		void			deleteFixup(Node *x);
 		Node*			find(value_type value);
+
+	private:
+		static value_type&	getNodeData(const Node* node) {
+			return *(node->data);
+		}
+
+	public://!DELETE
+		static void printTree(const std::string& prefix, const Node* node, bool isLeft) {
+			if (node != nullptr) {
+				std::cout << prefix;
+
+				if (prefix.length())
+					std::cout << (isLeft ? "├─L─" : "└─R─" );
+
+				// print the value of the node
+				std::cout << " {" << node->data->first << ": " << node->data->second << "}" << std::endl;
+
+				// enter the next tree level - left and right branch
+				printTree( prefix + (isLeft ? "│   " : "    "), node->left, true);
+				printTree( prefix + (isLeft ? "│   " : "    "), node->right, false);
+			}
+		}
+
+		static void printTree(const Node* node) {
+			printTree("", node, false);    
+		}
+
 };
 
 #endif

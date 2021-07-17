@@ -32,7 +32,7 @@ class Tree {
 		}
 
 		~Tree() {
-			delete _NIL;//TODO
+			delete _NIL;
 		}
 
 	public:
@@ -164,80 +164,72 @@ class Tree {
 			// return (newNode);
 		}
 
-	// 	template <class Comp, class ValueAlloc>
-	// 	static void		deleteNode(value_type data, Node* root, Comp& comp, ValueAlloc& alloc) {
-	// 		Node* tmp = root;
+		template <class Comp>
+		void		deleteNode(value_type data, Comp& comp) {
+			Node* tmp = _root;
 
-	// 		while (getNodeData(tmp).first != data.first) {
-	// 			if (comp(data, getNodeData(tmp)))
-	// 				tmp = tmp->left;
-	// 			else
-	// 				tmp = tmp->right;
-	// 		}
+			while (getNodeData(tmp).first != data.first) {
+				if (comp(data, getNodeData(tmp)))
+					tmp = tmp->left;
+				else
+					tmp = tmp->right;
+			}
 
-	// 		// std::cout << tmp->data->first << std::endl;
+			if (!tmp->left && !tmp->right) {
+				if (tmp == _root)
+					_root = _NIL;
+				else {
+					if (tmp->parent->left == tmp)
+						tmp->parent->left = _NIL;
+					else
+						tmp->parent->right = _NIL;
+				}
+				return ;
+			}
 
-	// 		if (!tmp->left && !tmp->right) {
-	// 			if (tmp == root)
-	// 				root = nullptr;
-	// 			else {
-	// 				if (tmp->parent->left == tmp)
-	// 					tmp->parent->left = nullptr;
-	// 				else
-	// 					tmp->parent->right = nullptr;
-	// 			}
-	// 			return ;
-	// 		}
+			// Node y = _NIL;
+			// Node q = _NIL;
 
-	// 		// Node y = nullptr;
-	// 		// Node q = nullptr;
+			Node *x, *y;
 
-	// 		Node *x, *y;
+			if (!tmp || tmp == _NIL)
+				return;
 
-	// 		if (!tmp || tmp == nullptr)
-	// 			return;
+			if (tmp->left == _NIL || tmp->right == _NIL) {
+				/* y has a _NIL tmp as a child */
+				y = tmp;
+			} else {
+				/* find min(right) node */
+				y = tmp->right;
+				while (y->left != _NIL)
+					y = y->left;
+			}
+			/* x is y's only child */
 
-	// 		if (tmp->left == nullptr || tmp->right == nullptr) {
-	// 			/* y has a nullptr tmp as a child */
-	// 			y = tmp;
-	// 		} else {
-	// 			/* find min(right) node */
-	// 			y = tmp->right;
-	// 			while (y->left != nullptr)
-	// 				y = y->left;
-	// 		}
-	// 		std::cout << y->data->first << std::endl;
-	// 		/* x is y's only child */
+			if (y->left != _NIL)
+				x = y->left;
+			else
+				x = y->right;
 
-	// 		if (y->left != nullptr)
-	// 			x = y->left;
-	// 		else if (y->right != nullptr)
-	// 			x = y->right;
+			/* remove y from the parent chain */
+			x->parent = y->parent;
 
-	// 		// if (y->right)
-	// 		// 	x = y->right;
+			if (y->parent)
+				if (y == y->parent->left)
+					y->parent->left = x;
+				else
+					y->parent->right = x;
+			else
+				_root = x;
 
-	// 		/* remove y from the parent chain */
-	// 		std::cout << "/* message */" << std::endl;
-	// 		x->parent = y->parent;
-	// 		std::cout << "/* message */" << std::endl;
+			if (y != tmp)
+				tmp->data = y->data;
 
-	// 		if (y->parent)
-	// 			if (y == y->parent->left)
-	// 				y->parent->left = x;
-	// 			else
-	// 				y->parent->right = x;
-	// 		else
-	// 			root = x;
+			// if (y->color == BLACK)
+			// 	deleteFixup(x);//TODO
 
-	// 		if (y != tmp)
-	// 			tmp->data = y->data;
-
-	// 		if (y->color == BLACK)
-	// 			deleteFixup(x);
-
-	// 		// clearNode(y, alloc);
-	// 	}
+			clearNode(y);
+		}
 
 		void		insertFixup(NodePtr node) {
 			while (node != _root && node->parent->color == RED) {
@@ -302,9 +294,9 @@ class Tree {
 					std::cout << (isLeft ? "├─L─" : "└─R─" );
 
 				if (node->color == RED)
-					std::cout << " \033[1;31m{\033[0;0m" << node->data->first << ": " << node->data->second << "\033[1;31m}\033[0;0m" << std::endl;
+					std::cout << " \033[1;31m{\033[0;0m" << getNodeKey(node) << ": " << getNodeValue(node) << "\033[1;31m}\033[0;0m" << std::endl;
 				else
-					std::cout << " \033[1;30m{\033[0;0m" << node->data->first << ": " << node->data->second << "\033[1;30m}\033[0;0m" << std::endl;
+					std::cout << " \033[1;30m{\033[0;0m" << getNodeKey(node) << ": " << getNodeValue(node) << "\033[1;30m}\033[0;0m" << std::endl;
 
 				printTree( prefix + (isLeft ? "│   " : "    "), node->left, true);
 				printTree( prefix + (isLeft ? "│   " : "    "), node->right, false);
@@ -312,7 +304,7 @@ class Tree {
 		}
 
 		void printTree() {
-			printTree("", _root, false);    
+			printTree("", _root, false);
 		}
 
 };

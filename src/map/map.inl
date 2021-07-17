@@ -11,9 +11,18 @@ namespace ft {
 
 		
 		tree::insert(ft::make_pair(key_type(-2), mapped_type(-2)), _root, _valueComp, _allocator);
-		tree::insert(ft::make_pair(key_type(3), mapped_type(3)), _root, _valueComp, _allocator);
 		tree::insert(ft::make_pair(key_type(2), mapped_type(2)), _root, _valueComp, _allocator);
+		tree::insert(ft::make_pair(key_type(1), mapped_type(1)), _root, _valueComp, _allocator);
 		tree::insert(ft::make_pair(key_type(4), mapped_type(4)), _root, _valueComp, _allocator);
+		tree::insert(ft::make_pair(key_type(4), mapped_type(4)), _root, _valueComp, _allocator);
+		tree::insert(ft::make_pair(key_type(-3), mapped_type(-3)), _root, _valueComp, _allocator);
+		tree::insert(ft::make_pair(key_type(-7), mapped_type(-7)), _root, _valueComp, _allocator);
+		tree::insert(ft::make_pair(key_type(10), mapped_type(10)), _root, _valueComp, _allocator);
+		tree::insert(ft::make_pair(key_type(3), mapped_type(3)), _root, _valueComp, _allocator);
+		tree::insert(ft::make_pair(key_type(-1), mapped_type(-1)), _root, _valueComp, _allocator);
+
+
+		tree::deleteNode(ft::make_pair(key_type(2), mapped_type(2)), _root, _valueComp, _allocator);
 
 		tree::printTree(_root);
 	}

@@ -42,7 +42,7 @@ class Node {
 		}
 
 		template <class ValueAlloc>
-		void			clearNode(Node* node, ValueAlloc& alloc) {
+		static void			clearNode(Node* node, ValueAlloc& alloc) {
 			alloc.destroy(node->data);
 			alloc.deallocate(node->data, 1);
 			delete node;
@@ -141,6 +141,81 @@ class Node {
 			// return (newNode);
 		}
 
+		template <class Comp, class ValueAlloc>
+		static void		deleteNode(value_type data, Node* root, Comp& comp, ValueAlloc& alloc) {
+			Node* tmp = root;
+
+			while (getNodeData(tmp).first != data.first) {
+				if (comp(data, getNodeData(tmp)))
+					tmp = tmp->left;
+				else
+					tmp = tmp->right;
+			}
+
+			// std::cout << tmp->data->first << std::endl;
+
+			if (!tmp->left && !tmp->right) {
+				if (tmp == root)
+					root = nullptr;
+				else {
+					if (tmp->parent->left == tmp)
+						tmp->parent->left = nullptr;
+					else
+						tmp->parent->right = nullptr;
+				}
+				return ;
+			}
+
+			// Node y = nullptr;
+			// Node q = nullptr;
+
+			Node *x, *y;
+
+			if (!tmp || tmp == nullptr)
+				return;
+
+			if (tmp->left == nullptr || tmp->right == nullptr) {
+				/* y has a nullptr tmp as a child */
+				y = tmp;
+			} else {
+				/* find min(right) node */
+				y = tmp->right;
+				while (y->left != nullptr)
+					y = y->left;
+			}
+			std::cout << y->data->first << std::endl;
+			/* x is y's only child */
+
+			if (y->left != nullptr)
+				x = y->left;
+			else if (y->right != nullptr)
+				x = y->right;
+
+			// if (y->right)
+			// 	x = y->right;
+
+			/* remove y from the parent chain */
+			std::cout << "/* message */" << std::endl;
+			x->parent = y->parent;
+			std::cout << "/* message */" << std::endl;
+
+			if (y->parent)
+				if (y == y->parent->left)
+					y->parent->left = x;
+				else
+					y->parent->right = x;
+			else
+				root = x;
+
+			if (y != tmp)
+				tmp->data = y->data;
+
+			if (y->_color == BLACK)
+				deleteFixup(x);
+
+			// clearNode(y, alloc);
+		}
+
 		static void		insertFixup(Node* node, Node* root) {
 			while (node != root && node->parent->_color == RED) {
 				if (node->parent == node->parent->parent->left) {
@@ -176,8 +251,10 @@ class Node {
 			root->_color = BLACK;
 		};
 
+		static void		deleteFixup(Node *x) {
 
-		void			deleteFixup(Node *x);
+		}
+
 		Node*			find(value_type value);
 
 	private:

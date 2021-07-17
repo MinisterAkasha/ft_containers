@@ -3,12 +3,13 @@
 
 # include <memory>
 # include "utils.hpp"
+# include "Node.hpp"
 # include "MapIterator.hpp"
 # include "reverseIterator.hpp"
 
 namespace ft {
 
-	template < class Key, class T, class Compare = std::less<Key>, class Alloc = std::allocator<ft::pair<const Key,T> > >
+	template <class Key, class T, class Compare = std::less<Key>, class Alloc = std::allocator<ft::pair<const Key,T> > >
 	class map {
 		public:
 			typedef Key														key_type;
@@ -37,17 +38,17 @@ namespace ft {
 			** Constructor
 			*/
 
-			explicit map (const key_compare& comp = key_compare(),
+			explicit map(const key_compare& comp = key_compare(),
 						const allocator_type& alloc = allocator_type());	// empty
 
 			template <class InputIterator>
-			map (InputIterator first, InputIterator last,
+			map(InputIterator first, InputIterator last,
 				const key_compare& comp = key_compare(),
 				const allocator_type& alloc = allocator_type());			// range
 
-			map (const map& x);												// copy
+			map(const map& x);												// copy
 
-			map& operator= (const map& x);
+			map& operator=(const map& x);
 
 			/*
 			** Destructor
@@ -115,8 +116,8 @@ namespace ft {
 			iterator 				upper_bound(const key_type& k);
 			const_iterator			upper_bound(const key_type& k) const;
 			pair<const_iterator,
-			const_iterator>			equal_range (const key_type& k) const;
-			pair<iterator,iterator> equal_range (const key_type& k);
+			const_iterator>			equal_range(const key_type& k) const;
+			pair<iterator,iterator> equal_range(const key_type& k);
 
 			/*
 			** Allocator
@@ -125,6 +126,15 @@ namespace ft {
 			allocator_type 			get_allocator() const;
 
 		private:
+			typedef	Node<value_type> tree;
+
+		private:
+			tree					*_root;
+			allocator_type			_allocator;
+			key_compare				_comp;
+
+		private:
+			void					_initTree(value_type value);
 	};
 
 
@@ -145,4 +155,7 @@ namespace ft {
 			Compare	comp;
 	};
 }
+
+# include "map.inl"
+
 #endif

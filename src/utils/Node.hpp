@@ -96,7 +96,12 @@ class Node {
 				x->parent = y;
 		}
 
-		static void		swapColors(Node* parentNode);
+		static void		swapColors(Node* node, Node* uncle) {
+			node->parent->_color = BLACK;
+			if (uncle)
+				uncle->_color = BLACK;
+			node->parent->parent->_color = RED;
+		}
 
 		template <class Comp, class ValueAlloc>
 		static void			insert(value_type data, Node* root, Comp& comp, ValueAlloc& alloc) {
@@ -133,49 +138,32 @@ class Node {
 
 		static void			insertFixup(Node* node, Node* root) {
 			while (node != root && node->parent->_color == RED) {
-				/* we have a violation */
 				if (node->parent == node->parent->parent->left) {
 					Node* uncle = node->parent->parent->right;
 
 					if (uncle && uncle->_color == RED) {
-						/* uncle is RED */
-						node->parent->_color = BLACK;
-						uncle->_color = BLACK;
-						node->parent->parent->_color = RED;
+						swapColors(node, uncle);
 						node = node->parent->parent;
 					} else {
-						/* uncle is BLACK */
 						if (node == node->parent->right) {
-							/* make node a left child */
 							node = node->parent;
 							rotateLeft(node, root);
 						}
-
-						/* re_color and rotate */
-						node->parent->_color = BLACK;
-						node->parent->parent->_color = RED;
+						swapColors(node, nullptr);
 						rotateRight(node->parent->parent, root);
 					}
 				} else {
-					/* mirror image of above code */
 					Node* uncle = node->parent->parent->left;
 
 					if (uncle && uncle->_color == RED) {
-
-						/* uncle is RED */
-						node->parent->_color = BLACK;
-						uncle->_color = BLACK;
-						node->parent->parent->_color = RED;
+						swapColors(node, uncle);
 						node = node->parent->parent;
 					} else {
-
-						/* uncle is BLACK */
 						if (node == node->parent->left) {
 							node = node->parent;
 							rotateRight(node, root);
 						}
-						node->parent->_color = BLACK;
-						node->parent->parent->_color = RED;
+						swapColors(node, nullptr);
 						rotateLeft(node->parent->parent, root);
 					}
 				}

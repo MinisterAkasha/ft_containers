@@ -26,7 +26,7 @@ class Node {
 			node->data = alloc.allocate(1);
 			alloc.construct(node->data, value);
 
-			node->_color = RED;
+			node->_color = parent ? RED : BLACK;
 
 			return node;
 		};
@@ -127,12 +127,60 @@ class Node {
 				root = newNode;
 			}
 
-			// insertFixup(newNode); //TODO
+			insertFixup(newNode, root); //TODO
 			// return (newNode);
 		}
 
-		void			insertFixup(Node *x) {
+		static void			insertFixup(Node* node, Node* root) {
+			while (node != root && node->parent->_color == RED) {
+				/* we have a violation */
+				if (node->parent == node->parent->parent->left) {
+					Node* uncle = node->parent->parent->right;
 
+					if (uncle && uncle->_color == RED) {
+						/* uncle is RED */
+						node->parent->_color = BLACK;
+						uncle->_color = BLACK;
+						node->parent->parent->_color = RED;
+						node = node->parent->parent;
+					} else {
+						/* uncle is BLACK */
+						if (node == node->parent->right) {
+							/* make node a left child */
+							node = node->parent;
+							rotateLeft(node, root);
+						}
+
+						/* re_color and rotate */
+						node->parent->_color = BLACK;
+						node->parent->parent->_color = RED;
+						rotateRight(node->parent->parent, root);
+					}
+				} else {
+					/* mirror image of above code */
+					Node* uncle = node->parent->parent->left;
+
+					if (uncle && uncle->_color == RED) {
+
+						/* uncle is RED */
+						node->parent->_color = BLACK;
+						uncle->_color = BLACK;
+						node->parent->parent->_color = RED;
+						node = node->parent->parent;
+					} else {
+
+						/* uncle is BLACK */
+						if (node == node->parent->left) {
+							node = node->parent;
+							rotateRight(node, root);
+						}
+						node->parent->_color = BLACK;
+						node->parent->parent->_color = RED;
+						rotateLeft(node->parent->parent, root);
+					}
+				}
+			}
+			root->_color = BLACK;
 		};
 
 		void			deleteFixup(Node *x);
@@ -151,10 +199,11 @@ class Node {
 				if (prefix.length())
 					std::cout << (isLeft ? "├─L─" : "└─R─" );
 
-				// print the value of the node
-				std::cout << " {" << node->data->first << ": " << node->data->second << "}" << std::endl;
+				if (node->_color == RED)
+					std::cout << " \033[1;31m{\033[0;0m" << node->data->first << ": " << node->data->second << "\033[1;31m}\033[0;0m" << std::endl;
+				else
+					std::cout << " \033[1;30m{\033[0;0m" << node->data->first << ": " << node->data->second << "\033[1;30m}\033[0;0m" << std::endl;
 
-				// enter the next tree level - left and right branch
 				printTree( prefix + (isLeft ? "│   " : "    "), node->left, true);
 				printTree( prefix + (isLeft ? "│   " : "    "), node->right, false);
 			}

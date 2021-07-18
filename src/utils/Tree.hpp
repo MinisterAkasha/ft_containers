@@ -160,11 +160,8 @@ class Tree {
 			else
 				_root = successorChild;
 
-			if (successor != tmp) {
-				value_type* copy = tmp->data;
-				tmp->data = successor->data;
-				successor->data = copy;
-			}
+			if (successor != tmp)
+				swapNodeData(tmp, successor);
 
 			if (successor->color == BLACK)
 				deleteFixup(successorChild);
@@ -343,6 +340,12 @@ class Tree {
 			}
 
 			return successor;
+		}
+
+		void								swapNodeData(NodePtr& node1, NodePtr& node2) {
+			value_type* copy = node1->data;
+			node1->data = node2->data;
+			node2->data = copy;
 		}
 
 	public://!DELETE

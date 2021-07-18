@@ -129,11 +129,12 @@ namespace ft {
 		// 	typedef	Tree<value_type> tree;
 
 		private:
-			Tree< value_type,
-				allocator_type>					_tree;
 			allocator_type						_allocator;
+			size_type							_size;
 			key_compare							_keyComp;
 			value_compare						_valueComp;
+			Tree< value_type,
+				allocator_type>					_tree;
 
 		private:
 			void					_initTree(value_type value);

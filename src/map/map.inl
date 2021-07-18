@@ -6,12 +6,18 @@ namespace ft {
 
 	template <class Key, class T, class Compare, class Alloc>
 	map<Key, T, Compare, Alloc>::map(const key_compare& comp, const allocator_type& alloc)
-	: _allocator(alloc), _keyComp(comp), _valueComp(comp) {
+	: _allocator(alloc), _size(0), _keyComp(comp), _valueComp(comp) {
 		// _initTree(ft::make_pair(key_type(), mapped_type()));
 
 		_tree.insert(ft::make_pair(key_type(0), mapped_type(0)), _valueComp);
 		_tree.insert(ft::make_pair(key_type(-2), mapped_type(-2)), _valueComp);
+		_tree.insert(ft::make_pair(key_type(-4), mapped_type(-4)), _valueComp);
+		_tree.insert(ft::make_pair(key_type(-6), mapped_type(-6)), _valueComp);
+		_tree.insert(ft::make_pair(key_type(-8), mapped_type(-8)), _valueComp);
 		_tree.insert(ft::make_pair(key_type(2), mapped_type(2)), _valueComp);
+
+
+		_tree.deleteNode(ft::make_pair(key_type(2), mapped_type(2)), _valueComp);
 
 
 		// tree::deleteNode(ft::make_pair(key_type(2), mapped_type(2)), _root, _valueComp, _allocator);

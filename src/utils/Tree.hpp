@@ -187,9 +187,6 @@ class Tree {
 				return ;
 			}
 
-			// Node y = _NIL;
-			// Node q = _NIL;
-
 			Node *x, *y;
 
 			if (!tmp || tmp == _NIL)
@@ -225,8 +222,8 @@ class Tree {
 			if (y != tmp)
 				tmp->data = y->data;
 
-			// if (y->color == BLACK)
-			// 	deleteFixup(x);//TODO
+			if (y->color == BLACK)
+				deleteFixup(x);
 
 			clearNode(y);
 		}
@@ -266,9 +263,62 @@ class Tree {
 			_root->color = BLACK;
 		};
 
-	// 	static void		deleteFixup(Node *x) {
+		void		deleteFixup(NodePtr node) {
+			while (node != _root && node->color == BLACK) {
+				if (node == node->parent->left) {
+					NodePtr sibling = node->parent->right;
 
-	// 	}
+					if (sibling->color == RED) {
+						sibling->color = BLACK;
+						node->parent->color = RED;
+						rotateLeft (node->parent);
+						sibling = node->parent->right;
+					}
+					if (sibling->left->color == BLACK && sibling->right->color == BLACK) {
+						sibling->color = RED;
+						node = node->parent;
+					} else {
+						if (sibling->right->color == BLACK) {
+							sibling->left->color = BLACK;
+							sibling->color = RED;
+							rotateRight(sibling);
+							sibling = node->parent->right;
+						}
+						sibling->color = node->parent->color;
+						node->parent->color = BLACK;
+						sibling->right->color = BLACK;
+						rotateLeft(node->parent);
+						node = _root;
+					}
+				} else {
+					NodePtr sibling = node->parent->left;
+
+					if (sibling->color == RED) {
+						sibling->color = BLACK;
+						node->parent->color = RED;
+						rotateRight(node->parent);
+						sibling = node->parent->left;
+					}
+					if (sibling->right->color == BLACK && sibling->left->color == BLACK) {
+						sibling->color = RED;
+						node = node->parent;
+					} else {
+						if (sibling->left->color == BLACK) {
+							sibling->right->color = BLACK;
+							sibling->color = RED;
+							rotateLeft(sibling);
+							sibling = node->parent->left;
+						}
+						sibling->color = node->parent->color;
+						node->parent->color = BLACK;
+						sibling->left->color = BLACK;
+						rotateRight(node->parent);
+						node = _root;
+					}
+				}
+			}
+			node->color = BLACK;
+		}
 
 	// 	Node*			find(value_type value);
 

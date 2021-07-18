@@ -128,7 +128,7 @@ class Tree {
 			NodePtr node = find(data, comp);
 
 			if (node != _NIL)
-				setNewDataToNode(node, data);
+				updateNodeDate(node, data);
 			else
 				insertNewNode(data, comp);
 
@@ -142,32 +142,32 @@ class Tree {
 			if (!tmp || tmp == _NIL)
 				return;
 
-			NodePtr	x;
-			NodePtr successor = successor(tmp);
-
-			/* x is successor's only child */
+			NodePtr successor = getSuccessor(tmp);
+			NodePtr	successorChild;
 
 			if (successor->left != _NIL)
-				x = successor->left;
+				successorChild = successor->left;
 			else
-				x = successor->right;
+				successorChild = successor->right;
 
-			/* remove successor from the parent chain */
-			x->parent = successor->parent;
+			successorChild->parent = successor->parent;
 
 			if (successor->parent)
 				if (successor == successor->parent->left)
-					successor->parent->left = x;
+					successor->parent->left = successorChild;
 				else
-					successor->parent->right = x;
+					successor->parent->right = successorChild;
 			else
-				_root = x;
+				_root = successorChild;
 
-			if (successor != tmp)
+			if (successor != tmp) {
+				value_type* copy = tmp->data;
 				tmp->data = successor->data;
+				successor->data = copy;
+			}
 
 			if (successor->color == BLACK)
-				deleteFixup(x);
+				deleteFixup(successorChild);
 
 			clearNode(successor);
 		}
@@ -279,7 +279,7 @@ class Tree {
 		}
 
 	private:
-		void								setNewDataToNode(NodePtr& node, value_type data) {
+		void								updateNodeDate(NodePtr& node, value_type data) {
 			node->data->second = data.second;
 		}
 
@@ -304,10 +304,8 @@ class Tree {
 			parent = nullptr;
 
 			while (current != _NIL) {
-				if (getNodeKey(current) == data.first) {
-					std::cout << "/* message */" << std::endl;
+				if (getNodeKey(current) == data.first)
 					return nullptr;
-				}
 				parent = current;
 				current = comp(data, getNodeData(current)) ?
 					current->left : current->right;
@@ -333,7 +331,7 @@ class Tree {
 				insertFixup(newNode);
 		}
 
-		NodePtr								successor(NodePtr node) {
+		NodePtr								getSuccessor(NodePtr node) {
 			NodePtr successor;
 
 			if (node->left == _NIL || node->right == _NIL) {
@@ -346,8 +344,6 @@ class Tree {
 
 			return successor;
 		}
-
-		
 
 	public://!DELETE
 		void printTree(const std::string& prefix, const NodePtr node, bool isLeft) {

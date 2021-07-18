@@ -6,8 +6,13 @@
 template <class value_type>
 class MapIterator : public ft::iterator<ft::bidirectional_iterator_tag, value_type> {
 	public:
-		typedef value_type&				reference;
-		typedef Node<value_type>*		pointer;
+		typedef value_type&						reference;
+		typedef Node<value_type>*				pointer;
+
+		typedef ptrdiff_t						difference_type;
+		typedef typename ft::iterator<
+			ft::bidirectional_iterator_tag,
+			value_type>::iterator_category		iterator_category;
 
 	private:
 		pointer	_ptr;

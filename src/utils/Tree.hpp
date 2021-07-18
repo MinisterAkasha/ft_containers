@@ -276,6 +276,20 @@ class Tree {
 			return tmp;
 		}
 
+		NodePtr		min() {
+			NodePtr node = _root;
+			while (node->left != _NIL)
+				node = node->left;
+			return node;
+		}
+
+		NodePtr		max() {
+			NodePtr node = _root;
+			while (node->right != _NIL)
+				node = node->right;
+			return node;
+		}
+
 	private:
 		void								updateNodeDate(NodePtr& node, value_type data) {
 			node->data->second = data.second;

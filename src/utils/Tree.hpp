@@ -126,53 +126,32 @@ class Tree {
 
 		template <class Comp>
 		void		insert(value_type data, Comp comp) {
-			NodePtr current;
-			NodePtr parent;
-			NodePtr newNode;
+			NodePtr node = find(data, comp);
 
-			current = _root;
-			parent = nullptr;
-
-			while (current != _NIL) {
-				if (getNodeKey(current) == data.first)
-					return ;
-					// return (current); //TODO
-				parent = current;
-				current = comp(data, getNodeData(current)) ?
-					current->left : current->right;
-			}
-
-			newNode = createNode(data, parent);
-
-
-			if (parent) {
-				if (comp(data, getNodeData(parent)))
-					parent->left = newNode;
-				else
-					parent->right = newNode;
+			if (node != _NIL) {
+				setNewDataToNode(node, data);
 			} else {
-				_root = newNode;
+				NodePtr parent = getNewNodeParent(data, comp);
+				NodePtr newNode = createNode(data, parent);
+
+				if (parent) {
+					if (comp(data, getNodeData(parent)))
+						parent->left = newNode;
+					else
+						parent->right = newNode;
+				} else {
+					_root = newNode;
+				}
+
+				insertFixup(newNode); //TODO
 			}
 
-			insertFixup(newNode); //TODO
 			// return (newNode);
 		}
 
 		template <class Comp>
 		void		deleteNode(value_type data, Comp& comp) {
-			Node* tmp = find(data);
-
-			if (!tmp->left && !tmp->right) {
-				if (tmp == _root)
-					_root = _NIL;
-				else {
-					if (tmp->parent->left == tmp)
-						tmp->parent->left = _NIL;
-					else
-						tmp->parent->right = _NIL;
-				}
-				return ;
-			}
+			NodePtr tmp = find(data, comp);
 
 			NodePtr	x;
 			NodePtr successor;
@@ -308,10 +287,11 @@ class Tree {
 			node->color = BLACK;
 		}
 
-		NodePtr			find(value_type data) {
+		template <class Comp>
+		NodePtr		find(value_type data, Comp comp) {
 			NodePtr tmp = _root;
 
-			while (getNodeData(tmp).first != data.first) {
+			while (tmp != _NIL && getNodeData(tmp).first != data.first) {
 				if (comp(data, getNodeData(tmp)))
 					tmp = tmp->left;
 				else
@@ -322,17 +302,43 @@ class Tree {
 		}
 
 	private:
-		value_type& 						getNodeData(const NodePtr node) {
+		void								setNewDataToNode(NodePtr& node, value_type data) {
+			node->data->second = data.second;
+		}
+
+		value_type& 						getNodeData(const NodePtr& node) {
 			return *(node->data);
 		}
 
-		typename value_type::first_type&	getNodeKey(const NodePtr node) {
+		typename value_type::first_type&	getNodeKey(const NodePtr& node) {
 			return node->data->first;
 		}
 
-		typename value_type::first_type&	getNodeValue(const NodePtr node) {
-			return node->data->first;
+		typename value_type::first_type&	getNodeValue(const NodePtr& node) {
+			return node->data->second;
 		}
+
+		template <class Comp>
+		NodePtr								getNewNodeParent(value_type data, Comp comp) {
+			NodePtr current;
+			NodePtr parent;
+
+			current = _root;
+			parent = nullptr;
+
+			while (current != _NIL) {
+				if (getNodeKey(current) == data.first) {
+					std::cout << "/* message */" << std::endl;
+					return nullptr;
+				}
+				parent = current;
+				current = comp(data, getNodeData(current)) ?
+					current->left : current->right;
+			}
+			
+			return parent;
+		}
+
 
 	public://!DELETE
 		void printTree(const std::string& prefix, const NodePtr node, bool isLeft) {

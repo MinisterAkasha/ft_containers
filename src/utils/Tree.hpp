@@ -51,7 +51,7 @@ class Tree {
 			return node;
 		};
 
-		void			clearTree(NodePtr node) {
+		void		clearTree(NodePtr node) {
 			if (node->right != _NIL)
 				clearTree(node->right);
 			if (node->left != _NIL)
@@ -60,67 +60,61 @@ class Tree {
 			clearNode(node);
 		}
 
-		void			clearNode(NodePtr node) {
+		void		clearNode(NodePtr node) {
 			_allocator.destroy(node->data);
 			_allocator.deallocate(node->data, 1);
 			delete node;
 		}
 
-		NodePtr	getRoot() {
+		NodePtr		getRoot() {
 			return _root;
 		}
 
-		void		rotateLeft(NodePtr x) {
-			NodePtr y = x->right;
+		void		rotateLeft(NodePtr node) {
+			NodePtr y = node->right;
 
-			/* establish x->right link */
-			x->right = y->left;
-			if (y->left != nullptr)
-				y->left->parent = x;
+			node->right = y->left;
+			if (y->left != _NIL)
+				y->left->parent = node;
 
-			/* establish y->parent link */
-			if (y != nullptr)
-				y->parent = x->parent;
+			if (y != _NIL)
+				y->parent = node->parent;
 
-			if (x->parent) {
-				if (x == x->parent->left)
-					x->parent->left = y;
+			if (node->parent) {
+				if (node == node->parent->left)
+					node->parent->left = y;
 				else
-					x->parent->right = y;
+					node->parent->right = y;
 			} else {
 				_root = y;
 			}
 
-			/* link x and y */
-			y->left = x;
-			if (x != nullptr)
-				x->parent = y;
+			y->left = node;
+			if (node != _NIL)
+				node->parent = y;
 		}
 
-		void		rotateRight(NodePtr x) {
-			NodePtr y = x->left;
+		void		rotateRight(NodePtr node) {
+			NodePtr y = node->left;
 
-			/* establish x->left link */
-			x->left = y->right;
-			if (y->right != nullptr)
-				y->right->parent = x;
+			node->left = y->right;
+			if (y->right != _NIL)
+				y->right->parent = node;
 
-			/* establish y->parent link */
-			if (y != nullptr)
-				y->parent = x->parent;
-			if (x->parent) {
-				if (x == x->parent->right)
-					x->parent->right = y;
+			if (y != _NIL)
+				y->parent = node->parent;
+			if (node->parent) {
+				if (node == node->parent->right)
+					node->parent->right = y;
 				else
-					x->parent->left = y;
+					node->parent->left = y;
 			} else {
 				_root = y;
 			}
 
-			/* link x and y */
-			y->right = x;
-			if (x != nullptr)
-				x->parent = y;
+			y->right = node;
+			if (node != _NIL)
+				node->parent = y;
 		}
 
 		void		swapColors(NodePtr node, NodePtr uncle) {
@@ -187,45 +181,46 @@ class Tree {
 				return ;
 			}
 
-			Node *x, *y;
+			NodePtr	x;
+			NodePtr successor;
 
 			if (!tmp || tmp == _NIL)
 				return;
 
 			if (tmp->left == _NIL || tmp->right == _NIL) {
-				/* y has a _NIL tmp as a child */
-				y = tmp;
+				/* successor has a _NIL tmp as a child */
+				successor = tmp;
 			} else {
 				/* find min(right) node */
-				y = tmp->right;
-				while (y->left != _NIL)
-					y = y->left;
+				successor = tmp->right;
+				while (successor->left != _NIL)
+					successor = successor->left;
 			}
-			/* x is y's only child */
+			/* x is successor's only child */
 
-			if (y->left != _NIL)
-				x = y->left;
+			if (successor->left != _NIL)
+				x = successor->left;
 			else
-				x = y->right;
+				x = successor->right;
 
-			/* remove y from the parent chain */
-			x->parent = y->parent;
+			/* remove successor from the parent chain */
+			x->parent = successor->parent;
 
-			if (y->parent)
-				if (y == y->parent->left)
-					y->parent->left = x;
+			if (successor->parent)
+				if (successor == successor->parent->left)
+					successor->parent->left = x;
 				else
-					y->parent->right = x;
+					successor->parent->right = x;
 			else
 				_root = x;
 
-			if (y != tmp)
-				tmp->data = y->data;
+			if (successor != tmp)
+				tmp->data = successor->data;
 
-			if (y->color == BLACK)
+			if (successor->color == BLACK)
 				deleteFixup(x);
 
-			clearNode(y);
+			clearNode(successor);
 		}
 
 		void		insertFixup(NodePtr node) {

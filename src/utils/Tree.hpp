@@ -6,7 +6,6 @@ typedef enum { BLACK, RED } nodeColor;
 template <class value_type, class ValueAlloc>
 class Tree {
 	private:
-		// template <class value_type>
 		struct Node {
 			value_type*	data;
 			Node*		left;
@@ -128,23 +127,10 @@ class Tree {
 		void		insert(value_type data, Comp comp) {
 			NodePtr node = find(data, comp);
 
-			if (node != _NIL) {
+			if (node != _NIL)
 				setNewDataToNode(node, data);
-			} else {
-				NodePtr parent = getNewNodeParent(data, comp);
-				NodePtr newNode = createNode(data, parent);
-
-				if (parent) {
-					if (comp(data, getNodeData(parent)))
-						parent->left = newNode;
-					else
-						parent->right = newNode;
-				} else {
-					_root = newNode;
-				}
-
-				insertFixup(newNode); //TODO
-			}
+			else
+				insertNewNode(data, comp);
 
 			// return (newNode);
 		}
@@ -339,6 +325,22 @@ class Tree {
 			return parent;
 		}
 
+		template <class Comp>
+		void								insertNewNode(value_type data, Comp comp) {
+			NodePtr parent = getNewNodeParent(data, comp);
+				NodePtr newNode = createNode(data, parent);
+
+				if (parent) {
+					if (comp(data, getNodeData(parent)))
+						parent->left = newNode;
+					else
+						parent->right = newNode;
+				} else {
+					_root = newNode;
+				}
+
+				insertFixup(newNode);
+		}
 
 	public://!DELETE
 		void printTree(const std::string& prefix, const NodePtr node, bool isLeft) {

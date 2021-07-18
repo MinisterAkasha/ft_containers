@@ -3,18 +3,19 @@
 
 typedef enum { BLACK, RED } nodeColor;
 
+template <class value_type>
+struct Node {
+	value_type*	data;
+	Node*		left;
+	Node*		right;
+	Node*		parent;
+	bool		color;
+};
+
 template <class value_type, class ValueAlloc>
 class Tree {
 	private:
-		struct Node {
-			value_type*	data;
-			Node*		left;
-			Node*		right;
-			Node*		parent;
-			bool		color;
-		};
-
-		typedef Node*		NodePtr;
+		typedef Node<value_type>*		NodePtr;
 
 	private:
 		ValueAlloc	_allocator;
@@ -23,7 +24,7 @@ class Tree {
 
 	public:
 		Tree() {
-			_NIL = new Node;
+			_NIL = new Node<value_type>;
 			_NIL->color = 0;
 			_NIL->left = nullptr;
 			_NIL->right = nullptr;
@@ -36,7 +37,7 @@ class Tree {
 
 	public:
 		NodePtr		createNode(value_type& value, NodePtr parent) {
-			NodePtr node = new Node;
+			NodePtr node = new Node<value_type>;
 
 			node->left = _NIL;
 			node->right = _NIL;
@@ -212,7 +213,7 @@ class Tree {
 					if (sibling->color == RED) {
 						sibling->color = BLACK;
 						node->parent->color = RED;
-						rotateLeft (node->parent);
+						rotateLeft(node->parent);
 						sibling = node->parent->right;
 					}
 					if (sibling->left->color == BLACK && sibling->right->color == BLACK) {

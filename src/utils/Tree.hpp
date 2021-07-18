@@ -160,14 +160,7 @@ class Tree {
 
 		template <class Comp>
 		void		deleteNode(value_type data, Comp& comp) {
-			Node* tmp = _root;
-
-			while (getNodeData(tmp).first != data.first) {
-				if (comp(data, getNodeData(tmp)))
-					tmp = tmp->left;
-				else
-					tmp = tmp->right;
-			}
+			Node* tmp = find(data);
 
 			if (!tmp->left && !tmp->right) {
 				if (tmp == _root)
@@ -315,7 +308,18 @@ class Tree {
 			node->color = BLACK;
 		}
 
-	// 	Node*			find(value_type value);
+		NodePtr			find(value_type data) {
+			NodePtr tmp = _root;
+
+			while (getNodeData(tmp).first != data.first) {
+				if (comp(data, getNodeData(tmp)))
+					tmp = tmp->left;
+				else
+					tmp = tmp->right;
+			}
+
+			return tmp;
+		}
 
 	private:
 		value_type& 						getNodeData(const NodePtr node) {

@@ -139,21 +139,12 @@ class Tree {
 		void		deleteNode(value_type data, Comp& comp) {
 			NodePtr tmp = find(data, comp);
 
-			NodePtr	x;
-			NodePtr successor;
-
 			if (!tmp || tmp == _NIL)
 				return;
 
-			if (tmp->left == _NIL || tmp->right == _NIL) {
-				/* successor has a _NIL tmp as a child */
-				successor = tmp;
-			} else {
-				/* find min(right) node */
-				successor = tmp->right;
-				while (successor->left != _NIL)
-					successor = successor->left;
-			}
+			NodePtr	x;
+			NodePtr successor = successor(tmp);
+
 			/* x is successor's only child */
 
 			if (successor->left != _NIL)
@@ -341,6 +332,22 @@ class Tree {
 
 				insertFixup(newNode);
 		}
+
+		NodePtr								successor(NodePtr node) {
+			NodePtr successor;
+
+			if (node->left == _NIL || node->right == _NIL) {
+				successor = node;
+			} else {
+				successor = node->right;
+				while (successor->left != _NIL)
+					successor = successor->left;
+			}
+
+			return successor;
+		}
+
+		
 
 	public://!DELETE
 		void printTree(const std::string& prefix, const NodePtr node, bool isLeft) {

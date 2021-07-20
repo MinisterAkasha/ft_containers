@@ -21,6 +21,7 @@ class Tree {
 		// ValueAlloc	_allocator;
 		NodePtr		_root;
 		NodePtr		_NIL;
+		size_t		_size;
 
 	public:
 		Tree() {
@@ -29,6 +30,7 @@ class Tree {
 			_NIL->left = nullptr;
 			_NIL->right = nullptr;
 			_root = _NIL;
+			_size = 0;
 		}
 
 		~Tree() {}
@@ -52,36 +54,25 @@ class Tree {
 		};
 
 		template <class ValueAlloc>
-		void		clearTree(NodePtr node, ValueAlloc& alloc) {
-			ft::stack<NodePtr> s;
-			NodePtr curr = _root;
-			NodePtr parent;
+		void		clearTree(ValueAlloc& alloc) {
+			if (_root == _NIL)
+				return;
 		
-			// while (curr != _NIL || !s.empty()) {
-			// 	while (curr != _NIL) {
-			// 		s.push(curr);
-			// 		curr = curr->left;
-			// 		clearNode(curr, alloc);
-			// 	}
-			// 	curr = s.top();
-			// 	s.pop();
-			// 	curr = curr->right;
-			// 	clearNode(curr, alloc);
-			// }
-
-			while (curr != _NIL) {
-				while (curr != _NIL) {
-					curr = curr->left;
-					parent = curr->parent;
-					clearNode(curr, alloc);
-					curr = _NIL;
-				}
-				curr = parent;
-				curr = curr->right;
-
-
+			ft::vector<NodePtr> queue;
+		
+			queue.push_back(_root);
+			while (!queue.empty())
+			{
+				NodePtr node = queue.front();
+				queue.erase(queue.begin());
+		
+				if (node->left != _NIL)
+					queue.push_back(node->left);
+				if (node->right != _NIL)
+					queue.push_back(node->right);
+		
+				clearNode(node, alloc);
 			}
-
 			delete _NIL;
 		}
 
@@ -194,6 +185,7 @@ class Tree {
 				deleteFixup(successorChild);
 
 			clearNode(successor, alloc);
+			_size--;
 		}
 
 		void		insertFixup(NodePtr node) {
@@ -369,6 +361,7 @@ class Tree {
 				} else {
 					_root = newNode;
 				}
+				_size++;
 
 				insertFixup(newNode);
 		}

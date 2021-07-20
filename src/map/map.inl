@@ -63,7 +63,7 @@ namespace ft {
 
 	template <class Key, class T, class Compare, class Alloc>
 	map<Key, T, Compare, Alloc>::~map() {
-		_tree.clearTree(_tree.getRoot(), _allocator);
+		_tree.clearTree(_allocator);
 	}
 
 	/*

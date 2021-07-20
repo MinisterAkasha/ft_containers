@@ -18,17 +18,21 @@ class Tree {
 		typedef Node<value_type>*		NodePtr;
 
 	private:
-		// ValueAlloc	_allocator;
 		NodePtr		_root;
 		NodePtr		_NIL;
 		size_t		_size;
 
 	public:
-		Tree() {
+		template <class ValueAlloc>
+		Tree(ValueAlloc alloc) {
 			_NIL = new Node<value_type>;
 			_NIL->color = 0;
 			_NIL->left = nullptr;
 			_NIL->right = nullptr;
+			
+			_NIL->data = alloc.allocate(1);
+			alloc.construct(_NIL->data, value_type());
+
 			_root = _NIL;
 			_size = 0;
 		}
@@ -73,7 +77,7 @@ class Tree {
 		
 				clearNode(node, alloc);
 			}
-			delete _NIL;
+			clearNode(_NIL, alloc);
 		}
 
 		template <class ValueAlloc>

@@ -74,6 +74,8 @@ class MapIterator : public ft::iterator<ft::bidirectional_iterator_tag, value_ty
 
 					while (_ptr->left != _tree.getNil())
 						_ptr = _ptr->left;
+				} else if (_ptr == _tree.max()) {
+					_ptr = _ptr->right;
 				} else {
 					pointer	tmp = _ptr;
 

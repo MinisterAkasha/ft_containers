@@ -75,12 +75,12 @@ namespace ft {
 		return iterator(_tree.min(), _tree);
 	}
 
+	template <class Key, class T, class Compare, class Alloc>
+	typename map<Key, T, Compare, Alloc>::iterator map<Key, T, Compare, Alloc>::end() {
+		return iterator(_tree.max()->right, _tree);
+	}
+
 	/*
 	** Private
 	*/
-
-	template <class Key, class T, class Compare, class Alloc>
-	void	map<Key, T, Compare, Alloc>::_initTree(value_type value) {
-		// _root = _root->createNode(value, _allocator, nullptr);
-	}
 }

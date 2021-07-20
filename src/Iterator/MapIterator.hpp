@@ -54,6 +54,7 @@ class MapIterator : public ft::iterator<ft::bidirectional_iterator_tag, value_ty
 			return *this;
 		}
 		MapIterator&		operator--() {
+			this->prev();
 			return *this;
 		}
 		MapIterator		operator++(int) {
@@ -61,11 +62,11 @@ class MapIterator : public ft::iterator<ft::bidirectional_iterator_tag, value_ty
 			operator++();
 			return tmp;
 		}
-		// MapIterator		operator--(int) {
-		// 	_tree *	tmp = _ptr;
-		// 	operator--();
-		// 	return MapIterator(tmp);
-		// }
+		MapIterator		operator--(int) {
+			MapIterator	tmp = *this;
+			operator--();
+			return tmp;
+		}
 
 		private:
 			void	next() {
@@ -89,11 +90,14 @@ class MapIterator : public ft::iterator<ft::bidirectional_iterator_tag, value_ty
 			}
 
 			void	prev() {
-				// if (_ptr != _NIL) {
-
-				// } else {
-
-				// }
+				if (_ptr->left != _tree.getNil()) {
+					_ptr = _ptr->left;
+					
+					while (_ptr->ritgh != _tree.getNil())
+						_ptr = _ptr->right;
+				} else {
+					_ptr = _ptr->parent;
+				}
 			}
 };
 

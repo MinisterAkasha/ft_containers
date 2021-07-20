@@ -20,7 +20,9 @@ class MapIterator : public ft::iterator<ft::bidirectional_iterator_tag, value_ty
 	public:
 		MapIterator() : _ptr(nullptr) {}
 
-		MapIterator(const pointer ptr) : _ptr(ptr) {}
+		MapIterator(const pointer ptr) : _ptr(ptr) {
+			std::cout << "/* message */" << std::endl;
+		}
 
 		MapIterator(const MapIterator &other) : _ptr(other._ptr) {}
 
@@ -47,22 +49,45 @@ class MapIterator : public ft::iterator<ft::bidirectional_iterator_tag, value_ty
 		}
 
 		MapIterator&		operator++() {
+			this->next();
 			return *this;
 		}
 		MapIterator&		operator--() {
 			return *this;
 		}
-		// MapIterator		operator++(int) {
-		// 	_tree *	tmp = _ptr;
-		// 	operator++();
-		// 	return MapIterator(tmp);
-		// }
+		MapIterator		operator++(int) {
+			pointer	tmp = _ptr;
+			operator++();
+			return tmp;
+		}
 		// MapIterator		operator--(int) {
 		// 	_tree *	tmp = _ptr;
 		// 	operator--();
 		// 	return MapIterator(tmp);
 		// }
 
+		private:
+			void	next() {
+				if (!_ptr->right->isNil) {
+					_ptr = _ptr->right;
+					while (!_ptr->left->isNil)
+						_ptr = _ptr->left;
+				} else {
+					pointer	tmp = _ptr;
+					_ptr = _ptr->parent;
+					while (tmp != _ptr->left) {
+						_ptr = _ptr->parent;
+					}
+				}
+			}
+
+			void	prev() {
+				// if (_ptr != _NIL) {
+
+				// } else {
+
+				// }
+			}
 };
 
 

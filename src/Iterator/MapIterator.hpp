@@ -8,23 +8,24 @@ class MapIterator : public ft::iterator<ft::bidirectional_iterator_tag, value_ty
 	public:
 		typedef value_type&						reference;
 		typedef Node<value_type>*				pointer;
-
 		typedef ptrdiff_t						difference_type;
 		typedef typename ft::iterator<
 			ft::bidirectional_iterator_tag,
 			value_type>::iterator_category		iterator_category;
 
 	private:
-		pointer	_ptr;
+		pointer				_ptr;
+		Tree<value_type>	_tree;
 	
 	public:
-		MapIterator() : _ptr(nullptr) {}
+		MapIterator() : _ptr(nullptr), _tree(nullptr) {}
 
-		MapIterator(const pointer ptr) : _ptr(ptr) {
-			std::cout << "/* message */" << std::endl;
+		MapIterator(const pointer& ptr, const Tree<value_type>& tree) : _ptr(ptr), _tree(tree) {}
+
+		MapIterator(const MapIterator &other) : _ptr(other._ptr), _tree(other._tree) {
+			_ptr = other._ptr;
+			_tree = other._tree;
 		}
-
-		MapIterator(const MapIterator &other) : _ptr(other._ptr) {}
 
 		MapIterator &operator=(const MapIterator &other) {
 			_ptr = other._ptr;
@@ -68,14 +69,17 @@ class MapIterator : public ft::iterator<ft::bidirectional_iterator_tag, value_ty
 
 		private:
 			void	next() {
-				if (!_ptr->right->isNil) {
+				std::cout << _ptr->data->first << std::endl;
+				if (_ptr->right != _tree.getNil()) {
 					_ptr = _ptr->right;
-					while (!_ptr->left->isNil)
+					while (_ptr->left != _tree.getNil())
 						_ptr = _ptr->left;
 				} else {
 					pointer	tmp = _ptr;
 					_ptr = _ptr->parent;
 					while (tmp != _ptr->left) {
+						if (!_ptr->parent)
+							return ;
 						_ptr = _ptr->parent;
 					}
 				}

@@ -12,13 +12,13 @@ struct Node {
 	bool		color;
 };
 
-template <class value_type, class ValueAlloc>
+template <class value_type>
 class Tree {
 	private:
 		typedef Node<value_type>*		NodePtr;
 
 	private:
-		ValueAlloc	_allocator;
+		// ValueAlloc	_allocator;
 		NodePtr		_root;
 		NodePtr		_NIL;
 
@@ -31,38 +31,64 @@ class Tree {
 			_root = _NIL;
 		}
 
-		~Tree() {
-			delete _NIL;
-		}
+		~Tree() {}
 
 	public:
-		NodePtr		createNode(value_type& value, NodePtr parent) {
+
+		template <class ValueAlloc>
+		NodePtr		createNode(value_type& value, NodePtr parent, ValueAlloc& alloc) {
 			NodePtr node = new Node<value_type>;
 
 			node->left = _NIL;
 			node->right = _NIL;
 			node->parent = parent;
 
-			node->data = _allocator.allocate(1);
-			_allocator.construct(node->data, value);
+			node->data = alloc.allocate(1);
+			alloc.construct(node->data, value);
 
 			node->color = parent ? RED : BLACK;
 
 			return node;
 		};
 
-		void		clearTree(NodePtr node) {
-			if (node->right != _NIL)
-				clearTree(node->right);
-			if (node->left != _NIL)
-				clearTree(node->left);
+		template <class ValueAlloc>
+		void		clearTree(NodePtr node, ValueAlloc& alloc) {
+			ft::stack<NodePtr> s;
+			NodePtr curr = _root;
+			NodePtr parent;
+		
+			// while (curr != _NIL || !s.empty()) {
+			// 	while (curr != _NIL) {
+			// 		s.push(curr);
+			// 		curr = curr->left;
+			// 		clearNode(curr, alloc);
+			// 	}
+			// 	curr = s.top();
+			// 	s.pop();
+			// 	curr = curr->right;
+			// 	clearNode(curr, alloc);
+			// }
 
-			clearNode(node);
+			while (curr != _NIL) {
+				while (curr != _NIL) {
+					curr = curr->left;
+					parent = curr->parent;
+					clearNode(curr, alloc);
+					curr = _NIL;
+				}
+				curr = parent;
+				curr = curr->right;
+
+
+			}
+
+			delete _NIL;
 		}
 
-		void		clearNode(NodePtr node) {
-			_allocator.destroy(node->data);
-			_allocator.deallocate(node->data, 1);
+		template <class ValueAlloc>
+		void		clearNode(NodePtr node, ValueAlloc alloc) {
+			alloc.destroy(node->data);
+			alloc.deallocate(node->data, 1);
 			delete node;
 		}
 
@@ -124,20 +150,20 @@ class Tree {
 			node->parent->parent->color = RED;
 		}
 
-		template <class Comp>
-		void		insert(value_type data, Comp comp) {
+		template <class Comp, class ValueAlloc>
+		void		insert(value_type data, Comp comp, ValueAlloc& alloc) {
 			NodePtr node = find(data, comp);
 
 			if (node != _NIL)
 				updateNodeDate(node, data);
 			else
-				insertNewNode(data, comp);
+				insertNewNode(data, comp, alloc);
 
 			// return (newNode);
 		}
 
-		template <class Comp>
-		void		deleteNode(value_type data, Comp& comp) {
+		template <class Comp, class ValueAlloc>
+		void		deleteNode(value_type data, Comp& comp, ValueAlloc& alloc) {
 			NodePtr tmp = find(data, comp);
 
 			if (!tmp || tmp == _NIL)
@@ -167,7 +193,7 @@ class Tree {
 			if (successor->color == BLACK)
 				deleteFixup(successorChild);
 
-			clearNode(successor);
+			clearNode(successor, alloc);
 		}
 
 		void		insertFixup(NodePtr node) {
@@ -290,6 +316,10 @@ class Tree {
 			return node;
 		}
 
+		NodePtr		getNil() {
+			return _NIL;
+		}
+
 	private:
 		void								updateNodeDate(NodePtr& node, value_type data) {
 			node->data->second = data.second;
@@ -326,10 +356,10 @@ class Tree {
 			return parent;
 		}
 
-		template <class Comp>
-		void								insertNewNode(value_type data, Comp comp) {
+		template <class Comp, class ValueAlloc>
+		void								insertNewNode(value_type data, Comp comp, ValueAlloc& alloc) {
 			NodePtr parent = getNewNodeParent(data, comp);
-				NodePtr newNode = createNode(data, parent);
+				NodePtr newNode = createNode(data, parent, alloc);
 
 				if (parent) {
 					if (comp(data, getNodeData(parent)))

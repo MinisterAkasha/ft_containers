@@ -11,9 +11,9 @@ namespace ft {
 
 		for (int i = 0; i < 10; i++) {
 			if (i % 2)
-				_tree.insert(ft::make_pair(key_type(i), mapped_type(i)), _valueComp);
+				_tree.insert(ft::make_pair(key_type(i), mapped_type(i)), _valueComp, _allocator);
 			else
-				_tree.insert(ft::make_pair(key_type(-i), mapped_type(-i)), _valueComp);
+				_tree.insert(ft::make_pair(key_type(-i), mapped_type(-i)), _valueComp, _allocator);
 		}
 		// _tree.insert(ft::make_pair(key_type(20), mapped_type(20)), _valueComp);
 		// _tree.insert(ft::make_pair(key_type(25), mapped_type(25)), _valueComp);
@@ -36,12 +36,12 @@ namespace ft {
 		// _tree.insert(ft::make_pair(key_type(2), mapped_type(2)), _valueComp);
 
 
-		// _tree.deleteNode(ft::make_pair(key_type(2), mapped_type(2)), _valueComp);
+		_tree.deleteNode(ft::make_pair(key_type(9), mapped_type(9)), _valueComp, _allocator);
 		// _tree.deleteNode(ft::make_pair(key_type(10), mapped_type(10)), _valueComp);
 		// _tree.deleteNode(ft::make_pair(key_type(4), mapped_type(4)), _valueComp);
 
 
-		// _tree.printTree();
+		_tree.printTree();
 	}
 
 	// template <class Key, class T, class Compare, class Alloc>
@@ -63,7 +63,7 @@ namespace ft {
 
 	template <class Key, class T, class Compare, class Alloc>
 	map<Key, T, Compare, Alloc>::~map() {
-		_tree.clearTree(_tree.getRoot());
+		_tree.clearTree(_tree.getRoot(), _allocator);
 	}
 
 	/*
@@ -72,7 +72,7 @@ namespace ft {
 
 	template <class Key, class T, class Compare, class Alloc>
 	typename map<Key, T, Compare, Alloc>::iterator map<Key, T, Compare, Alloc>::begin() {
-		return _tree.min();
+		return iterator(_tree.min(), _tree);
 	}
 
 	/*

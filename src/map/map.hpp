@@ -137,8 +137,7 @@ namespace ft {
 			size_type							_size;
 			key_compare							_keyComp;
 			value_compare						_valueComp;
-			Tree< value_type,
-				allocator_type>					_tree;
+			Tree<value_type>					_tree;
 
 		private:
 			void					_initTree(value_type value);

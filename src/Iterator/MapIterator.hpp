@@ -2,6 +2,7 @@
 # define MAP_ITERATOR_HPP
 
 # include "Tree.hpp"
+# include "IteratorTraits.hpp"
 
 template <class value_type, class Compare>
 class MapIterator : public ft::iterator<ft::bidirectional_iterator_tag, value_type> {

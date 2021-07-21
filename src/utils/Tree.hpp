@@ -1,6 +1,8 @@
 #ifndef NODE_HPP
 # define NODE_HPP
 
+# include "vector.hpp"
+
 typedef enum { BLACK, RED } nodeColor;
 
 template <class value_type>

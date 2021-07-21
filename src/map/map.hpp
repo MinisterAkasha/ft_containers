@@ -74,7 +74,7 @@ namespace ft {
 			const_reverse_iterator	rend() const;
 
 			/*
-			** Iterators
+			** Capacity
 			*/
 
 			bool 					empty() const;

@@ -79,51 +79,24 @@ class MapIterator : public ft::iterator<ft::bidirectional_iterator_tag, value_ty
 
 		private:
 			void	next() {
-				// if (_ptr->right != _tree.getNil()) {
-				// 	_ptr = _tree.min(_ptr->right); //find the minimum relative to _ptr->left
-				// } else if (_ptr == _tree.max(_tree.getRoot())) {
-				// 	_ptr = _ptr->right; // if _ptr == max of Tree
-				// } else {
-				// 	if (_ptr->parent->right == _ptr) {
-				// 		_ptr = _ptr->parent->parent; 
-				// 	} else if (_ptr->parent->left == _ptr) {
-				// 		_ptr = _ptr->parent;
-				// 	}
-				// 	// pointer	tmp = _ptr;
-
-				// 	// _ptr = _ptr->parent;
-				// 	// while (tmp != _ptr->left) {
-				// 	// 	if (!_ptr->parent)
-				// 	// 		return ;
-				// 	// 	_ptr = _ptr->parent;
-				// 	// }
-				// }
-
-				// pointer	curr = _tree.getRoot();
-				// ft::stack<pointer> stack;
-
-
-				// while (true) {
-				// 	while (curr != _tree.getNil()) {
-				// 		stack.push(curr);
-				// 		curr = curr->left;
-				// 	}
-
-				// 	if (stack.empty())
-				// 		break;
-
-				// 	curr = stack.top();
-				// 	stack.pop();
-				// 	std::cout << curr->data->first << std::endl;
-				// 	curr = curr->right;
-				// }
-
+				if (_ptr->right != _NIL) {
+					_ptr = _tree.min(_ptr->right); //find the minimum relative to _ptr->left
+				} else if (_ptr == _tree.max(_tree.getRoot())) {
+					_ptr = _ptr->right; // if _ptr == max of Tree
+				} else {
+					if (_ptr->parent) {
+						while (_comp(_ptr->parent->data->first, _ptr->data->first)) {
+							_ptr = _ptr->parent;
+						}
+						_ptr = _ptr->parent;
+					}
+				}
 			}
 
 			void	prev() {
-				if (_ptr == _tree.getNil()) {
+				if (_ptr == _NIL) {
 					_ptr = _tree.max(_tree.getRoot()); // if _ptr == end
-				} else if (_ptr->left != _tree.getNil()) {
+				} else if (_ptr->left != _NIL) {
 					_ptr = _tree.max(_ptr->left); // find the maximum relative to _ptr->left
 				} else {
 					if (_ptr->parent) {

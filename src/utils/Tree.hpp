@@ -26,6 +26,8 @@ class Tree {
 		size_t		_size;
 
 	public:
+		Tree() {}
+
 		template <class ValueAlloc>
 		Tree(ValueAlloc alloc) {
 			_NIL = createNilNode(nullptr, alloc);
@@ -424,7 +426,7 @@ class Tree {
 			node2->data = copy;
 		}
 
-	private://!DELETE
+	public://!DELETE
 		void printTree(const std::string& prefix, const NodePtr node, bool isLeft) {
 			if (node != _NIL) {
 				std::cout << prefix;

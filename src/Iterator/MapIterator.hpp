@@ -4,7 +4,7 @@
 # include "Tree.hpp"
 # include "IteratorTraits.hpp"
 
-template <class value_type, class Compare>
+template <class value_type, class Compare, class Alloc>
 class MapIterator : public ft::iterator<ft::bidirectional_iterator_tag, value_type> {
 	public:
 		typedef value_type&						reference;
@@ -21,7 +21,7 @@ class MapIterator : public ft::iterator<ft::bidirectional_iterator_tag, value_ty
 		Compare				_comp;
 	
 	public:
-		MapIterator() : _ptr(nullptr), _tree(), _comp() {}
+		MapIterator() : _ptr(nullptr), _tree(Alloc()), _comp() {}
 
 		MapIterator(const pointer& ptr, const Tree<value_type>& tree, const Compare& comp) : _ptr(ptr), _tree(tree), _comp(comp) {
 			_NIL = _tree.getNil();

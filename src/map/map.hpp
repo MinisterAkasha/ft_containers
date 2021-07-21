@@ -28,8 +28,8 @@ namespace ft {
 			typedef	ft::pair<const key_type, const mapped_type>				const_value_type;
 			
 		public:
-			typedef MapIterator<value_type, key_compare>					iterator;
-			typedef MapIterator<const_value_type, key_compare>				const_iterator;
+			typedef MapIterator<value_type, key_compare, Alloc>				iterator;
+			typedef MapIterator<const_value_type, key_compare, Alloc>		const_iterator;
 			typedef	ft::reverse_iterator<iterator>							reverse_iterator;
 			typedef	ft::reverse_iterator<const_iterator>					const_reverse_iterator;
 
@@ -91,7 +91,7 @@ namespace ft {
 			** Modifiers
 			*/
 
-			pair<iterator,bool> 	insert(const value_type& val);						// single element
+			ft::pair<iterator,bool> insert(const value_type& val);						// single element
 			iterator 				insert(iterator position, const value_type& val);	// with hint
 			template <class InputIterator>
 			void 					insert(InputIterator first, InputIterator last);	// range

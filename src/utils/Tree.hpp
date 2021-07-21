@@ -298,18 +298,18 @@ class Tree {
 			return tmp;
 		}
 
-		NodePtr		min() {
-			NodePtr node = _root;
-			while (node->left != _NIL)
-				node = node->left;
-			return node;
+		NodePtr		min(NodePtr node) {
+			NodePtr tmp = node;
+			while (tmp->left != _NIL)
+				tmp = tmp->left;
+			return tmp;
 		}
 
-		NodePtr		max() {
-			NodePtr node = _root;
-			while (node->right != _NIL)
-				node = node->right;
-			return node;
+		NodePtr		max(NodePtr node) {
+			NodePtr tmp = node;
+			while (tmp->right != _NIL)
+				tmp = tmp->right;
+			return tmp;
 		}
 
 		NodePtr		getNil() {

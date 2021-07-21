@@ -5,10 +5,12 @@
 # include <map>
 # include "map.hpp"
 # include "testUtils.hpp"
+#include "utils.hpp"
 
 class MapTest {
 	private:
 		void	testDefaultConstructor() const;
+		void	testSingleInsert() const;
 		// void testMapIterator() const;
 	
 	public:

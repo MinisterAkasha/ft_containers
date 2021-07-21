@@ -95,6 +95,27 @@ bool	TO_EQUAL_VECTOR(V1& ftVector, V2& stlVector) {
 	return true;
 }
 
+template <class M1, class M2>
+bool	TO_EQUAL_MAP(M1& ftVector, M2& stlVector) {
+	typename M1::iterator		myIterator = ftVector.begin();
+	typename M2::iterator		stlIterator = stlVector.begin();
+
+	if (ftVector.size() != stlVector.size()) {
+		std::cout << "[Current size: " << ftVector.size() << " Should be " << stlVector.size() << "] ";
+		return false;
+	}
+	
+	while (myIterator != ftVector.end() || stlIterator != stlVector.end()) {
+		if (*myIterator != *stlIterator) {
+			std::cout << "[Current value: " << *myIterator << " Should be " << *stlIterator << "] ";
+			return false;
+		}
+		myIterator++;
+		stlIterator++;
+	}
+	return true;
+}
+
 template <class S1, class S2>
 bool	TO_EQUAL_STACK(S1& ftStack, S2& stlStack) {
 	if (ftStack.size() != stlStack.size())

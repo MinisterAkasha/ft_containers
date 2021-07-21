@@ -21,18 +21,14 @@ class MapIterator : public ft::iterator<ft::bidirectional_iterator_tag, value_ty
 		Compare				_comp;
 	
 	public:
-		MapIterator() : _ptr(nullptr), _tree(nullptr), _comp() {}
+		MapIterator() : _ptr(nullptr), _tree(), _comp() {}
 
 		MapIterator(const pointer& ptr, const Tree<value_type>& tree, const Compare& comp) : _ptr(ptr), _tree(tree), _comp(comp) {
 			_NIL = _tree.getNil();
 		}
 
-		MapIterator(const MapIterator &other) : _ptr(other._ptr), _tree(other._tree) {
-			_ptr = other._ptr;
-			_tree = other._tree;
-			_NIL = other._NIL;
-			_comp = other._comp;
-		}
+		MapIterator(const MapIterator &other)
+			: _ptr(other._ptr), _tree(other._tree), _NIL(other._NIL), _comp(other._comp) {}
 
 		MapIterator &operator=(const MapIterator &other) {
 			_ptr = other._ptr;

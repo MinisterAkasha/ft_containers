@@ -22,20 +22,18 @@ class Tree {
 	private:
 		NodePtr		_root;
 		NodePtr		_NIL;
+		NodePtr		_end;
 		size_t		_size;
 
 	public:
 		template <class ValueAlloc>
 		Tree(ValueAlloc alloc) {
-			_NIL = new Node<value_type>;
-			_NIL->color = 0;
-			_NIL->left = nullptr;
-			_NIL->right = nullptr;
-			
-			_NIL->data = alloc.allocate(1);
-			alloc.construct(_NIL->data, value_type());
-
+			_NIL = createNilNode(nullptr, alloc);
 			_root = _NIL;
+			_end = createNilNode(_root, alloc);
+			_root->right = _end;
+
+
 			_size = 0;
 		}
 
@@ -60,9 +58,27 @@ class Tree {
 		};
 
 		template <class ValueAlloc>
+		NodePtr		createNilNode(NodePtr parent, ValueAlloc& alloc) {
+			NodePtr node = new Node<value_type>;
+
+			node->left = nullptr;
+			node->right = nullptr;
+
+			node->data = alloc.allocate(1);
+			alloc.construct(node->data, value_type());
+
+			node->color = BLACK;
+
+			return node;
+		};
+
+		template <class ValueAlloc>
 		void		clearTree(ValueAlloc& alloc) {
-			if (_root == _NIL)
+			if (_root == _NIL) {
+				clearNode(_NIL, alloc);
+				clearNode(_end, alloc);
 				return;
+			}
 		
 			ft::vector<NodePtr> queue;
 		
@@ -318,6 +334,10 @@ class Tree {
 			return _NIL;
 		}
 
+		NodePtr		getEnd() {
+			return _end;
+		}
+
 	private:
 		void								updateNodeDate(NodePtr& node, value_type data) {
 			node->data->second = data.second;
@@ -392,7 +412,7 @@ class Tree {
 			node2->data = copy;
 		}
 
-	public://!DELETE
+	private://!DELETE
 		void printTree(const std::string& prefix, const NodePtr node, bool isLeft) {
 			if (node != _NIL) {
 				std::cout << prefix;

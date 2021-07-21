@@ -29,10 +29,8 @@ class Tree {
 		template <class ValueAlloc>
 		Tree(ValueAlloc alloc) {
 			_NIL = createNilNode(nullptr, alloc);
-			_root = _NIL;
 			_end = createNilNode(_root, alloc);
-			_root->right = _end;
-
+			_root = _NIL;
 
 			_size = 0;
 		}
@@ -207,6 +205,7 @@ class Tree {
 				deleteFixup(successorChild);
 
 			clearNode(successor, alloc);
+			_end->parent = max(_root);
 			_size--;
 		}
 
@@ -390,6 +389,9 @@ class Tree {
 				_size++;
 
 				insertFixup(newNode);
+
+				if (newNode == max(_root))
+					_end->parent = newNode;
 		}
 
 		NodePtr								getSuccessor(NodePtr node) {

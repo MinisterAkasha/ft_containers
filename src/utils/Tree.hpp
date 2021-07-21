@@ -98,6 +98,7 @@ class Tree {
 				clearNode(node, alloc);
 			}
 			clearNode(_NIL, alloc);
+			clearNode(_end, alloc);
 		}
 
 		template <class ValueAlloc>

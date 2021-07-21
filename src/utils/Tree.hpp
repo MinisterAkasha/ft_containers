@@ -302,14 +302,14 @@ class Tree {
 
 		NodePtr		min(NodePtr node) {
 			NodePtr tmp = node;
-			while (tmp->left != _NIL)
+			while (tmp->left != _NIL && tmp->left)
 				tmp = tmp->left;
 			return tmp;
 		}
 
 		NodePtr		max(NodePtr node) {
 			NodePtr tmp = node;
-			while (tmp->right != _NIL)
+			while (tmp->right != _NIL && tmp->right)
 				tmp = tmp->right;
 			return tmp;
 		}

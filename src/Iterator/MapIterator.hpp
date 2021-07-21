@@ -3,7 +3,7 @@
 
 # include "Tree.hpp"
 
-template <class value_type>
+template <class value_type, class Compare>
 class MapIterator : public ft::iterator<ft::bidirectional_iterator_tag, value_type> {
 	public:
 		typedef value_type&						reference;
@@ -17,11 +17,12 @@ class MapIterator : public ft::iterator<ft::bidirectional_iterator_tag, value_ty
 		pointer				_ptr;
 		Tree<value_type>	_tree;
 		pointer				_NIL;
+		Compare				_comp;
 	
 	public:
-		MapIterator() : _ptr(nullptr), _tree(nullptr) {}
+		MapIterator() : _ptr(nullptr), _tree(nullptr), _comp() {}
 
-		MapIterator(const pointer& ptr, const Tree<value_type>& tree) : _ptr(ptr), _tree(tree) {
+		MapIterator(const pointer& ptr, const Tree<value_type>& tree, const Compare& comp) : _ptr(ptr), _tree(tree), _comp(comp) {
 			_NIL = _tree.getNil();
 		}
 
@@ -29,12 +30,14 @@ class MapIterator : public ft::iterator<ft::bidirectional_iterator_tag, value_ty
 			_ptr = other._ptr;
 			_tree = other._tree;
 			_NIL = other._NIL;
+			_comp = other._comp;
 		}
 
 		MapIterator &operator=(const MapIterator &other) {
 			_ptr = other._ptr;
 			_tree = other._tree;
 			_NIL = other._NIL;
+			_comp = other._comp;
 			return (*this);
 		};
 
@@ -124,17 +127,11 @@ class MapIterator : public ft::iterator<ft::bidirectional_iterator_tag, value_ty
 					_ptr = _tree.max(_ptr->left); // find the maximum relative to _ptr->left
 				} else {
 					if (_ptr->parent) {
-						_ptr = _ptr->parent;
-						while (_ptr->data->first < _ptr->parent->data->first)
+						while (_comp(_ptr->data->first, _ptr->parent->data->first)) {
 							_ptr = _ptr->parent;
+						}
+						_ptr = _ptr->parent;
 					}
-
-
-					// if (_ptr->parent->left == _ptr) {
-					// 	_ptr = _ptr->parent->parent; 
-					// } else if (_ptr->parent->right == _ptr) {
-					// 	_ptr = _ptr->parent;
-					// }
 				}
 			}
 };

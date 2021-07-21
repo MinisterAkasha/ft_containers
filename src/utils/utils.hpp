@@ -91,6 +91,7 @@ namespace ft {
 		pair& operator=(const pair& pr) {
 			first = pr.first;
 			second = pr.second;
+			return *this;
 		};
 
 		first_type		first;

@@ -96,18 +96,21 @@ bool	TO_EQUAL_VECTOR(V1& ftVector, V2& stlVector) {
 }
 
 template <class M1, class M2>
-bool	TO_EQUAL_MAP(M1& ftVector, M2& stlVector) {
-	typename M1::iterator		myIterator = ftVector.begin();
-	typename M2::iterator		stlIterator = stlVector.begin();
-
-	if (ftVector.size() != stlVector.size()) {
-		std::cout << "[Current size: " << ftVector.size() << " Should be " << stlVector.size() << "] ";
+bool	TO_EQUAL_MAP(M1& ftMap, M2& stlMap) {
+	typename M1::iterator		myIterator = ftMap.begin();
+	typename M2::iterator		stlIterator = stlMap.begin();
+	
+	if (ftMap.size() != stlMap.size()) {
+		std::cout << "[Current size: " << ftMap.size() << " Should be " << stlMap.size() << "] ";
 		return false;
 	}
-	
-	while (myIterator != ftVector.end() || stlIterator != stlVector.end()) {
-		if (*myIterator != *stlIterator) {
-			std::cout << "[Current value: " << *myIterator << " Should be " << *stlIterator << "] ";
+
+	while (stlIterator != stlMap.end()) {
+		if (myIterator->first != stlIterator->first) {
+			std::cout << "[Current key: " << myIterator->first << " Should be " << stlIterator->first << "] ";
+			return false;
+		} else if (myIterator->second != stlIterator->second) {
+			std::cout << "[Current value: " << myIterator->second << " Should be " << stlIterator->second << "] ";
 			return false;
 		}
 		myIterator++;

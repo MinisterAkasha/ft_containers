@@ -16,19 +16,25 @@ class MapIterator : public ft::iterator<ft::bidirectional_iterator_tag, value_ty
 	private:
 		pointer				_ptr;
 		Tree<value_type>	_tree;
+		pointer				_NIL;
 	
 	public:
 		MapIterator() : _ptr(nullptr), _tree(nullptr) {}
 
-		MapIterator(const pointer& ptr, const Tree<value_type>& tree) : _ptr(ptr), _tree(tree) {}
+		MapIterator(const pointer& ptr, const Tree<value_type>& tree) : _ptr(ptr), _tree(tree) {
+			_NIL = _tree.getNil();
+		}
 
 		MapIterator(const MapIterator &other) : _ptr(other._ptr), _tree(other._tree) {
 			_ptr = other._ptr;
 			_tree = other._tree;
+			_NIL = other._NIL;
 		}
 
 		MapIterator &operator=(const MapIterator &other) {
 			_ptr = other._ptr;
+			_tree = other._tree;
+			_NIL = other._NIL;
 			return (*this);
 		};
 
@@ -70,33 +76,65 @@ class MapIterator : public ft::iterator<ft::bidirectional_iterator_tag, value_ty
 
 		private:
 			void	next() {
-				if (_ptr->right != _tree.getNil()) {
-					_ptr = _ptr->right;
+				// if (_ptr->right != _tree.getNil()) {
+				// 	_ptr = _tree.min(_ptr->right); //find the minimum relative to _ptr->left
+				// } else if (_ptr == _tree.max(_tree.getRoot())) {
+				// 	_ptr = _ptr->right; // if _ptr == max of Tree
+				// } else {
+				// 	if (_ptr->parent->right == _ptr) {
+				// 		_ptr = _ptr->parent->parent; 
+				// 	} else if (_ptr->parent->left == _ptr) {
+				// 		_ptr = _ptr->parent;
+				// 	}
+				// 	// pointer	tmp = _ptr;
 
-					while (_ptr->left != _tree.getNil())
-						_ptr = _ptr->left;
-				} else if (_ptr == _tree.max()) {
-					_ptr = _ptr->right;
-				} else {
-					pointer	tmp = _ptr;
+				// 	// _ptr = _ptr->parent;
+				// 	// while (tmp != _ptr->left) {
+				// 	// 	if (!_ptr->parent)
+				// 	// 		return ;
+				// 	// 	_ptr = _ptr->parent;
+				// 	// }
+				// }
 
-					_ptr = _ptr->parent;
-					while (tmp != _ptr->left) {
-						if (!_ptr->parent)
-							return ;
-						_ptr = _ptr->parent;
-					}
-				}
+				// pointer	curr = _tree.getRoot();
+				// ft::stack<pointer> stack;
+
+
+				// while (true) {
+				// 	while (curr != _tree.getNil()) {
+				// 		stack.push(curr);
+				// 		curr = curr->left;
+				// 	}
+
+				// 	if (stack.empty())
+				// 		break;
+
+				// 	curr = stack.top();
+				// 	stack.pop();
+				// 	std::cout << curr->data->first << std::endl;
+				// 	curr = curr->right;
+				// }
+
 			}
 
 			void	prev() {
-				if (_ptr->left != _tree.getNil()) {
-					_ptr = _ptr->left;
-					
-					while (_ptr->ritgh != _tree.getNil())
-						_ptr = _ptr->right;
+				if (_ptr == _tree.getNil()) {
+					_ptr = _tree.max(_tree.getRoot()); // if _ptr == end
+				} else if (_ptr->left != _tree.getNil()) {
+					_ptr = _tree.max(_ptr->left); // find the maximum relative to _ptr->left
 				} else {
-					_ptr = _ptr->parent;
+					if (_ptr->parent) {
+						_ptr = _ptr->parent;
+						while (_ptr->data->first < _ptr->parent->data->first)
+							_ptr = _ptr->parent;
+					}
+
+
+					// if (_ptr->parent->left == _ptr) {
+					// 	_ptr = _ptr->parent->parent; 
+					// } else if (_ptr->parent->right == _ptr) {
+					// 	_ptr = _ptr->parent;
+					// }
 				}
 			}
 };

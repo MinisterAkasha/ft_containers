@@ -8,6 +8,7 @@
 
 class MapTest {
 	private:
+		void	testDefaultConstructor() const;
 		// void testMapIterator() const;
 	
 	public:

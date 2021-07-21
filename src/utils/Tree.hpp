@@ -16,7 +16,7 @@ struct Node {
 
 template <class value_type>
 class Tree {
-	private:
+	public:
 		typedef Node<value_type>*		NodePtr;
 
 	private:
@@ -164,15 +164,18 @@ class Tree {
 		}
 
 		template <class Comp, class ValueAlloc>
-		void		insert(value_type data, Comp comp, ValueAlloc& alloc) {
+		ft::pair<NodePtr, bool>		insert(value_type data, Comp comp, ValueAlloc& alloc) {
 			NodePtr node = find(data, comp);
+			bool	isInserted;
 
 			if (node != _NIL)
-				updateNodeDate(node, data);
-			else
-				insertNewNode(data, comp, alloc);
+				isInserted = false;
+			else {
+				node = insertNewNode(data, comp, alloc);
+				isInserted = true;
+			}
 
-			// return (newNode);
+			return (ft::make_pair(node, isInserted));
 		}
 
 		template <class Comp, class ValueAlloc>
@@ -380,24 +383,25 @@ class Tree {
 		}
 
 		template <class Comp, class ValueAlloc>
-		void								insertNewNode(value_type data, Comp comp, ValueAlloc& alloc) {
+		NodePtr								insertNewNode(value_type data, Comp comp, ValueAlloc& alloc) {
 			NodePtr parent = getNewNodeParent(data, comp);
-				NodePtr newNode = createNode(data, parent, alloc);
+			NodePtr newNode = createNode(data, parent, alloc);
 
-				if (parent) {
-					if (comp(data, getNodeData(parent)))
-						parent->left = newNode;
-					else
-						parent->right = newNode;
-				} else {
-					_root = newNode;
-				}
-				_size++;
+			if (parent) {
+				if (comp(data, getNodeData(parent)))
+					parent->left = newNode;
+				else
+					parent->right = newNode;
+			} else {
+				_root = newNode;
+			}
+			_size++;
 
-				insertFixup(newNode);
+			insertFixup(newNode);
 
-				if (newNode == max(_root))
-					_end->parent = newNode;
+			if (newNode == max(_root))
+				_end->parent = newNode;
+			return newNode;
 		}
 
 		NodePtr								getSuccessor(NodePtr node) {

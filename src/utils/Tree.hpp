@@ -37,6 +37,8 @@ class Tree {
 
 		~Tree() {}
 
+		//TODO copy constryctor and opeartor=
+
 	public:
 
 		template <class ValueAlloc>
@@ -335,6 +337,10 @@ class Tree {
 
 		NodePtr		getEnd() {
 			return _end;
+		}
+
+		size_t		getSize() const {
+			return _size;
 		}
 
 	private:

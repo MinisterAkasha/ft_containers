@@ -76,10 +76,7 @@ class MapIterator : public ft::iterator<ft::bidirectional_iterator_tag, value_ty
 
 		private:
 			void	next() {
-				if (_ptr == _NIL) {
-					return ;
-				}
-				else if (_ptr->right != _NIL) {
+				if (_ptr->right != _NIL) {
 					_ptr = _tree.min(_ptr->right); //find the minimum relative to _ptr->left
 				} else if (_ptr == _tree.max(_tree.getRoot())) {
 					_ptr = _tree.getEnd(); // if _ptr == max of Tree

@@ -31,8 +31,8 @@ class Tree {
 		template <class ValueAlloc>
 		Tree(ValueAlloc alloc) {
 			_NIL = createNilNode(nullptr, alloc);
-			_root = _NIL;
-			_end = createNilNode(_root, alloc);
+			_end = createNilNode(nullptr, alloc);
+			_root = _end;
 
 			_size = 0;
 		}
@@ -76,7 +76,7 @@ class Tree {
 
 		template <class ValueAlloc>
 		void		clearTree(ValueAlloc& alloc) {
-			if (_root == _NIL) {
+			if (_root == _end) {
 				clearNode(_NIL, alloc);
 				clearNode(_end, alloc);
 				return;
@@ -171,7 +171,7 @@ class Tree {
 			NodePtr node = find(data, comp);
 			bool	isInserted;
 
-			if (node != _NIL)
+			if (node != _NIL && node != _end)
 				isInserted = false;
 			else {
 				node = insertNewNode(data, comp, alloc);
@@ -185,7 +185,7 @@ class Tree {
 		void		deleteNode(value_type data, Comp& comp, ValueAlloc& alloc) {
 			NodePtr tmp = find(data, comp);
 
-			if (!tmp || tmp == _NIL)
+			if (!tmp || tmp == _NIL || tmp == _end)
 				return;
 
 			NodePtr successor = getSuccessor(tmp);

@@ -14,7 +14,7 @@ class MapIterator : public ft::iterator<ft::bidirectional_iterator_tag, value_ty
 			ft::bidirectional_iterator_tag,
 			value_type>::iterator_category		iterator_category;
 
-	private:
+	public:
 		pointer				_ptr;
 		Tree<value_type>	_tree;
 		pointer				_NIL;
@@ -27,7 +27,8 @@ class MapIterator : public ft::iterator<ft::bidirectional_iterator_tag, value_ty
 			_NIL = _tree.getNil();
 		}
 
-		MapIterator(const MapIterator &other)
+		template <class _V, class _C>
+		MapIterator(const MapIterator<_V, _C>& other)
 			: _ptr(other._ptr), _tree(other._tree), _NIL(other._NIL), _comp(other._comp) {}
 
 		MapIterator &operator=(const MapIterator &other) {

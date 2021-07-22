@@ -86,6 +86,13 @@ namespace ft {
 		_tree.deleteNode(*position, _valueComp, _allocator);
 	}
 
+	
+	template <class Key, class T, class Compare, class Alloc>
+	typename map<Key, T, Compare, Alloc>::size_type 				map<Key, T, Compare, Alloc>::erase(const key_type& k) {
+		_tree.deleteNode(ft::make_pair(k, mapped_type()), _valueComp, _allocator);
+		return 1;
+	}
+
 	/*
 	** Private
 	*/

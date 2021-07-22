@@ -13,6 +13,8 @@ class MapTest {
 		void	testSingleInsert() const;
 		void	testWithHintInsert() const;
 		void	testRangeInsert() const;
+		void	testErasePosition() const;
+
 		// void testMapIterator() const;
 	
 	public:

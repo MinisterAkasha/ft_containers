@@ -13,6 +13,7 @@ void	MapTest::test() const {
 	testSingleInsert();
 	testWithHintInsert();
 	testRangeInsert();
+	testErasePosition();
 }
 
 void	MapTest::testDefaultConstructor() const {
@@ -488,6 +489,117 @@ void	MapTest::testRangeInsert() const {
 
 		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
 	}
+	std::cout << std::endl;
+}
+
+void	MapTest::testErasePosition() const {
+	std::cout << "* erase() <position>: ";
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		for (int i = 0; i < 10; i++) {
+			ft.insert(ft::make_pair(i, i));
+			stl.insert(std::make_pair(i, i));
+		}
+
+		ft.erase(ft.begin());
+		stl.erase(stl.begin());
+
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	}
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		createRandomMap(ft, stl, 10);
+
+		ft.erase(ft.begin());
+		stl.erase(stl.begin());
+
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	}
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		createRandomMap(ft, stl, 100);
+
+		ft.erase(ft.begin());
+		stl.erase(stl.begin());
+
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	}
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		createRandomMap(ft, stl, 100);
+
+		ft.erase(++(++ft.begin()));
+		stl.erase(++(++stl.begin()));
+
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	}
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		for (int i = 0; i < 10; i++) {
+			ft.insert(ft::make_pair(i, i));
+			stl.insert(std::make_pair(i, i));
+		}
+
+		ft.erase(--ft.end());
+		stl.erase(--stl.end());
+
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	}
+	{
+		ft::map<std::string, int> ft;
+		std::map<std::string, int> stl;
+
+		ft.insert(ft::make_pair("string", 1));
+		stl.insert(std::make_pair("string", 1));
+
+		ft.erase(ft.begin());
+		stl.erase(stl.begin());
+
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	}
+	{
+		ft::map<std::string, int> ft;
+		std::map<std::string, int> stl;
+
+		for (int i = 0; i < 10; i++) {
+			ft.insert(ft::make_pair("string", i));
+			stl.insert(std::make_pair("string", i));
+		}
+
+		ft.erase(--ft.end());
+		stl.erase(--stl.end());
+
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	}
+	{
+		ft::map<std::string, int> ft;
+		std::map<std::string, int> stl;
+
+		ft.insert(ft::make_pair("str1", 1));
+		stl.insert(std::make_pair("str1", 1));
+		ft.insert(ft::make_pair("str2", 2));
+		stl.insert(std::make_pair("str2", 2));
+		ft.insert(ft::make_pair("str3", 3));
+		stl.insert(std::make_pair("str3", 3));
+		ft.insert(ft::make_pair("str4", 4));
+		stl.insert(std::make_pair("str4", 4));
+
+		ft.erase(--ft.end());
+		stl.erase(--stl.end());
+
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	}
+	
 	std::cout << std::endl;
 }
 

@@ -77,6 +77,44 @@ void	MapTest::testSingleInsert() const {
 			&& TO_EQUAL(ftPair.second, stlPair.second));
 	}
 	{
+		ft::map<std::string, int> ft;
+		std::map<std::string, int> stl;
+
+		ft::pair<ft::map<std::string, int>::iterator, bool> ftPair;
+		std::pair<std::map<std::string, int>::iterator, bool> stlPair;
+
+		ft.insert(ft::make_pair("str1", 1));
+		ft.insert(ft::make_pair("str2", 2));
+		ftPair = ft.insert(ft::make_pair("str3", 3));
+
+		stl.insert(std::make_pair("str1", 1));
+		stl.insert(std::make_pair("str2", 2));
+		stlPair = stl.insert(std::make_pair("str3", 3));
+
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl)
+			&& TO_EQUAL(ftPair.first->first, stlPair.first->first)
+			&& TO_EQUAL(ftPair.first->second, stlPair.first->second)
+			&& TO_EQUAL(ftPair.second, stlPair.second));
+	}
+	{
+		ft::map<std::string, int> ft;
+		std::map<std::string, int> stl;
+
+		ft::pair<ft::map<std::string, int>::iterator, bool> ftPair;
+		std::pair<std::map<std::string, int>::iterator, bool> stlPair;
+
+		ft.insert(ft::make_pair("str1", 1));
+		ftPair = ft.insert(ft::make_pair("str1", 3));
+
+		stl.insert(std::make_pair("str1", 1));
+		stlPair = stl.insert(std::make_pair("str1", 3));
+
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl)
+			&& TO_EQUAL(ftPair.first->first, stlPair.first->first)
+			&& TO_EQUAL(ftPair.first->second, stlPair.first->second)
+			&& TO_EQUAL(ftPair.second, stlPair.second));
+	}
+	{
 		ft::map<int, int> ft;
 		std::map<int, int> stl;
 
@@ -100,6 +138,24 @@ void	MapTest::testSingleInsert() const {
 
 		stl.insert(std::make_pair(20, 2));
 		stlPair = stl.insert(std::make_pair(20, 3));
+
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl)
+			&& TO_EQUAL(ftPair.first->first, stlPair.first->first)
+			&& TO_EQUAL(ftPair.first->second, stlPair.first->second)
+			&& TO_EQUAL(ftPair.second, stlPair.second));
+	}
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		ft::pair<ft::map<int, int>::iterator, bool> ftPair;
+		std::pair<std::map<int, int>::iterator, bool> stlPair;
+
+		ft.insert(ft::make_pair(20, 2));
+		ftPair = ft.insert(ft::make_pair(10, 2));
+
+		stl.insert(std::make_pair(20, 2));
+		stlPair = stl.insert(std::make_pair(10, 2));
 
 		PRINT_RESULT(TO_EQUAL_MAP(ft, stl)
 			&& TO_EQUAL(ftPair.first->first, stlPair.first->first)
@@ -140,6 +196,23 @@ void	MapTest::testSingleInsert() const {
 		stl.insert(std::make_pair(20, 2));
 		stl.insert(std::make_pair(30, 3));
 		stlPair = stl.insert(std::make_pair(30, 30));
+
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl)
+			&& TO_EQUAL(ftPair.first->first, stlPair.first->first)
+			&& TO_EQUAL(ftPair.first->second, stlPair.first->second)
+			&& TO_EQUAL(ftPair.second, stlPair.second));
+	}
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		ft::pair<ft::map<int, int>::iterator, bool> ftPair;
+		std::pair<std::map<int, int>::iterator, bool> stlPair;
+
+		for (int i = 0; i < 10; i++) {
+			ftPair = ft.insert(ft::make_pair(i * 10, i));
+			stlPair = stl.insert(std::make_pair(i * 10, i));
+		}
 
 		PRINT_RESULT(TO_EQUAL_MAP(ft, stl)
 			&& TO_EQUAL(ftPair.first->first, stlPair.first->first)

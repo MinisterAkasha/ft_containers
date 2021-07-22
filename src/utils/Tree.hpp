@@ -171,7 +171,7 @@ class Tree {
 			NodePtr node = find(data, comp);
 			bool	isInserted;
 
-			if (node != _NIL && node != _end)
+			if (node != _NIL)
 				isInserted = false;
 			else {
 				node = insertNewNode(data, comp, alloc);
@@ -313,13 +313,15 @@ class Tree {
 		NodePtr		find(value_type data, Comp comp) {
 			NodePtr tmp = _root;
 
+			if (tmp == _end)
+				return _NIL;
+
 			while (tmp != _NIL && getNodeData(tmp).first != data.first) {
 				if (comp(data, getNodeData(tmp)))
 					tmp = tmp->left;
 				else
 					tmp = tmp->right;
 			}
-
 			return tmp;
 		}
 
@@ -373,6 +375,9 @@ class Tree {
 
 			current = _root;
 			parent = nullptr;
+
+			if (current == _end)
+				return nullptr;
 
 			while (current != _NIL) {
 				if (getNodeKey(current) == data.first)

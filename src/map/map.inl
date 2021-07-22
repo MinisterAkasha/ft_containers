@@ -94,6 +94,15 @@ namespace ft {
 	}
 
 	/*
+	** Operations
+	*/
+
+	template <class Key, class T, class Compare, class Alloc>
+	typename map<Key, T, Compare, Alloc>::iterator 				map<Key, T, Compare, Alloc>::find(const key_type& k) {
+		return iterator(_tree.find(ft::make_pair(k, mapped_type()), _valueComp), _tree, _keyComp);
+	}
+
+	/*
 	** Private
 	*/
 }

@@ -81,6 +81,11 @@ namespace ft {
 			insert(*first++);
 	}
 
+	template <class Key, class T, class Compare, class Alloc>
+	void 					map<Key, T, Compare, Alloc>::erase(iterator position) {
+		_tree.deleteNode(*position, _valueComp, _allocator);
+	}
+
 	/*
 	** Private
 	*/

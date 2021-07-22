@@ -11,6 +11,7 @@ class MapTest {
 	private:
 		void	testDefaultConstructor() const;
 		void	testSingleInsert() const;
+		void	testWithHintInsert() const;
 		// void testMapIterator() const;
 	
 	public:

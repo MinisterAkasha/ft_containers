@@ -15,6 +15,7 @@ void	MapTest::test() const {
 	testRangeInsert();
 	testErasePosition();
 	testEraseKey();
+	testFind();
 }
 
 void	MapTest::testDefaultConstructor() const {
@@ -704,3 +705,97 @@ void	MapTest::testEraseKey() const {
 	std::cout << std::endl;
 }
 
+void	MapTest::testFind() const {
+	std::cout << "* find(): ";
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		ft.insert(ft.begin(), ft::make_pair(10, 1));
+		stl.insert(stl.begin(), std::make_pair(10, 1));
+
+		ft::map<int, int>::iterator ftI = ft.find(10);
+		std::map<int, int>::iterator stlI = stl.find(10);
+
+		PRINT_RESULT(TO_EQUAL(ftI->first, stlI->first)
+			&& TO_EQUAL(ftI->second, stlI->second));
+	}
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		ft.insert(ft.begin(), ft::make_pair(10, 1));
+		stl.insert(stl.begin(), std::make_pair(10, 1));
+		ft.insert(ft.begin(), ft::make_pair(20, 2));
+		stl.insert(stl.begin(), std::make_pair(20, 2));
+		ft.insert(ft.begin(), ft::make_pair(30, 3));
+		stl.insert(stl.begin(), std::make_pair(30, 3));
+
+		ft::map<int, int>::iterator ftI = ft.find(30);
+		std::map<int, int>::iterator stlI = stl.find(30);
+
+		PRINT_RESULT(TO_EQUAL(ftI->first, stlI->first)
+			&& TO_EQUAL(ftI->second, stlI->second));
+	}
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		for (int i = 0; i < 10; i++) {
+			ft.insert(ft.begin(), ft::make_pair(i, i));
+			stl.insert(stl.begin(), std::make_pair(i, i));
+		}
+
+		ft::map<int, int>::iterator ftI = --(ft.find(30));
+		std::map<int, int>::iterator stlI = --(stl.find(30));
+
+		PRINT_RESULT(TO_EQUAL(ftI->first, stlI->first)
+			&& TO_EQUAL(ftI->second, stlI->second));
+	}
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		for (int i = 0; i < 10; i++) {
+			ft.insert(ft.begin(), ft::make_pair(i, i));
+			stl.insert(stl.begin(), std::make_pair(i, i));
+		}
+
+		ft::map<int, int>::iterator ftI = --(ft.find(-1));
+		std::map<int, int>::iterator stlI = --(stl.find(-1));
+
+		PRINT_RESULT(TO_EQUAL(ftI->first, stlI->first)
+			&& TO_EQUAL(ftI->second, stlI->second));
+	}
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		for (int i = 0; i < 10; i++) {
+			ft.insert(ft.begin(), ft::make_pair(i * 10, i));
+			stl.insert(stl.begin(), std::make_pair(i * 10, i));
+		}
+
+		ft::map<int, int>::iterator ftI = ft.find(30);
+		std::map<int, int>::iterator stlI = stl.find(30);
+
+		PRINT_RESULT(TO_EQUAL(ftI->first, stlI->first)
+			&& TO_EQUAL(ftI->second, stlI->second));
+	}
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		for (int i = 0; i < 10; i++) {
+			ft.insert(ft.begin(), ft::make_pair(i * 10, i));
+			stl.insert(stl.begin(), std::make_pair(i * 10, i));
+		}
+
+		ft::map<int, int>::iterator ftI = ft.find(30);
+		std::map<int, int>::iterator stlI = stl.find(30);
+
+		PRINT_RESULT(TO_EQUAL(ftI->first, stlI->first)
+			&& TO_EQUAL(ftI->second, stlI->second));
+	}
+	std::cout << std::endl;
+}

@@ -30,8 +30,8 @@ class Tree {
 
 		template <class ValueAlloc>
 		Tree(ValueAlloc alloc) {
-			_NIL = createNilNode(nullptr, alloc);
-			_end = createNilNode(nullptr, alloc);
+			_NIL = createNilNode(alloc);
+			_end = createNilNode(alloc);
 			_root = _end;
 
 			_size = 0;
@@ -60,11 +60,12 @@ class Tree {
 		};
 
 		template <class ValueAlloc>
-		NodePtr		createNilNode(NodePtr parent, ValueAlloc& alloc) {
+		NodePtr		createNilNode(ValueAlloc& alloc) {
 			NodePtr node = new Node<value_type>;
 
 			node->left = nullptr;
 			node->right = nullptr;
+			node->parent = nullptr;
 
 			node->data = alloc.allocate(1);
 			alloc.construct(node->data, value_type());

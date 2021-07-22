@@ -172,7 +172,7 @@ class Tree {
 			NodePtr node = find(data, comp);
 			bool	isInserted;
 
-			if (node != _NIL)
+			if (node != _NIL && node != _end)
 				isInserted = false;
 			else {
 				node = insertNewNode(data, comp, alloc);
@@ -328,6 +328,8 @@ class Tree {
 				else
 					tmp = tmp->right;
 			}
+			if (tmp == _NIL)
+				return _end;
 			return tmp;
 		}
 

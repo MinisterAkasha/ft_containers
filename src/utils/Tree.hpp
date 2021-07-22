@@ -31,8 +31,8 @@ class Tree {
 		template <class ValueAlloc>
 		Tree(ValueAlloc alloc) {
 			_NIL = createNilNode(nullptr, alloc);
-			_end = createNilNode(_root, alloc);
 			_root = _NIL;
+			_end = createNilNode(_root, alloc);
 
 			_size = 0;
 		}

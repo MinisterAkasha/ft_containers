@@ -214,8 +214,13 @@ class Tree {
 				deleteFixup(successorChild);
 
 			clearNode(successor, alloc);
-			_end->parent = max(_root);
 			_size--;
+			if (!_size) {
+				_end->parent = nullptr;
+				_root = _end;
+			} else {
+				_end->parent = max(_root);
+			}
 		}
 
 		void		insertFixup(NodePtr node) {

@@ -9,9 +9,10 @@ MapTest::~MapTest() {}
 void	MapTest::test() const {
 	std::cout << std::endl << "<-- Map test -->" << std::endl << std::endl;
 	std::srand(time(NULL));
-	testDefaultConstructor();
-	testSingleInsert();
-	testWithHintInsert();
+	// testDefaultConstructor();
+	// testSingleInsert();
+	// testWithHintInsert();
+	testRangeInsert();
 }
 
 void	MapTest::testDefaultConstructor() const {
@@ -366,6 +367,51 @@ void	MapTest::testWithHintInsert() const {
 			&& TO_EQUAL(ftI->second, stlI->second));
 	}
 	
+	std::cout << std::endl;
+}
+
+void	MapTest::testRangeInsert() const {
+	std::cout << "* insert() <range>: ";
+	// {
+	// 	ft::map<int, int> ftSupport;
+	// 	std::map<int, int> stlSupport;
+
+	// 	ft::map<int, int> ft;
+	// 	std::map<int, int> stl;
+
+	// 	for (int i = 0; i < 10; i++) {
+	// 		ft.insert(ft::make_pair(i, i));
+	// 		stl.insert(std::make_pair(i, i));
+	// 	}
+
+	// 	ft.insert(ft.begin(), ft.end());
+	// 	stl.insert(stl.begin(), stl.end());
+
+	// 	PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	// }
+	// {
+	// 	ft::map<int, int> ftSupport;
+	// 	std::map<int, int> stlSupport;
+
+	// 	ft::map<int, int> ft;
+	// 	std::map<int, int> stl;
+
+	// 	createRandomMap(ftSupport, stlSupport, 10);
+
+	// 	ft.insert(ftSupport.begin(), ftSupport.end());
+	// 	stl.insert(stlSupport.begin(), stlSupport.end());
+
+	// 	PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	// }
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		ft.insert(ft.begin(), ft.end());
+		stl.insert(stl.begin(), stl.end());
+
+		// PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	}
 	std::cout << std::endl;
 }
 

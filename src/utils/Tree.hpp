@@ -382,10 +382,7 @@ class Tree {
 			current = _root;
 			parent = nullptr;
 
-			if (current == _end)
-				return nullptr;
-
-			while (current != _NIL) {
+			while (current != _NIL && current != _end) {
 				if (getNodeKey(current) == data.first)
 					return nullptr;
 				parent = current;

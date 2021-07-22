@@ -67,6 +67,14 @@ namespace ft {
 		return (ft::make_pair(iterator(pair.first, _tree, _keyComp), pair.second));
 	}
 
+	template <class Key, class T, class Compare, class Alloc>
+	typename map<Key, T, Compare, Alloc>::iterator 					map<Key, T, Compare, Alloc>::insert(iterator position, const value_type& val) {
+		ft::pair<typename Tree<value_type>::NodePtr, bool> pair = _tree.insert(val, _valueComp, _allocator);
+
+		return (iterator(pair.first, _tree, _keyComp));
+	}
+
+
 	/*
 	** Private
 	*/

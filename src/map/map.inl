@@ -74,6 +74,12 @@ namespace ft {
 		return (iterator(pair.first, _tree, _keyComp));
 	}
 
+	template <class Key, class T, class Compare, class Alloc>
+	template <class InputIterator>
+	void 					map<Key, T, Compare, Alloc>::insert(InputIterator first, InputIterator last) {
+		while (first != last)
+			insert(*first++);
+	}
 
 	/*
 	** Private

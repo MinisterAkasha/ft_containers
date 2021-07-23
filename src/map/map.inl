@@ -185,4 +185,10 @@ namespace ft {
 						const map<Key,T,Compare,Alloc>& rhs) {
 		return !operator<(rhs, lhs);
 	}
+
+	template <class Key, class T, class Compare, class Alloc>
+	bool operator>(const map<Key,T,Compare,Alloc>& lhs,
+						const map<Key,T,Compare,Alloc>& rhs) {
+		return (ft::lexicographical_compare(rhs.begin(), rhs.end(), lhs.begin(), lhs.end()));
+	}
 }

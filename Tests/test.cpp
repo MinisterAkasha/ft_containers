@@ -6,8 +6,7 @@
 
 int main() {
 	// ft::map<int, int>			ftMap;
-	// ft::map<int, int>::iterator begin = ftMap.begin();
-	// ft::map<int, int>::iterator end = ftMap.end();
+	
 
 	// while (end != begin) {
 	// 	end--;
@@ -19,6 +18,15 @@ int main() {
 	// 	end--;
 	// 	std::cout << end->first << std::endl;
 	// }
+	// for (int i = 0; i < 10; i++) {
+	// 	if (i % 2)
+	// 		ftMap.insert(ft::make_pair(-i, -i));
+	// 	else
+	// 		ftMap.insert(ft::make_pair(i, i));
+	// }
+
+	// ft::map<int, int>::iterator begin = ftMap.begin();
+	// ft::map<int, int>::iterator end = ftMap.end();
 
 	// while (end != begin) {
 	// 	std::cout << begin->first << " ";

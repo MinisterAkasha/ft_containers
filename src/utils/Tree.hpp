@@ -38,31 +38,16 @@ class Tree {
 			_size = 0;
 		}
 
-		// Tree(const Tree& other) {
-			// _root = other._root;
-			// _NIL = other._NIL;
-			// _end = other._end;
-			// _size = other._size;
-		// 	_allocator = other._allocator;
-		// 	_NIL = createNilNode();
-		// 	_end = createNilNode();
-		// 	_root = _end;
-
-		// 	NodePtr tmp = other.min(other._root);
-		// 	while (tmp != _end) {
-				
-		// 	}
-
-		// 	_size = other._size;
-		// }
-
-		// Tree& operator=(const Tree& other) {
-
-		// }
-
 		~Tree() {}
 
-		//TODO copy constructor and opeartor=
+		Tree&	operator=(const Tree& other) {
+			_allocator = other._allocator;
+			_size = other._size;
+			_end = other._end;
+			_NIL = other._NIL;
+			_root = _end;
+			return *this;
+		}
 
 	public:
 
@@ -400,6 +385,100 @@ class Tree {
 		typename value_type::second_type&	getNodeValue(const NodePtr& node) {
 			return node->data->second;
 		}
+
+		// void copyInOrder(TNode *orgTree, Tnode *& copyTree){
+		// 	if(orgTree !=NULL) {
+		// 		//left side
+		// 		TNode newLeftNode = cloneNode(orgTree->left_link);
+		// 		copyTree->left_link = newLeftNode;
+		// 		copyInOrder(orgTree->left_link, copyTree->left_link);
+
+		// 		//right side
+		// 		TNode newRightNode = cloneNode(orgTree->right_link);
+		// 		copyTree->right_link = newRightNode;
+		// 		copyInOrder(orgTree->right_link, copyTree->right_link);
+		// 	}
+		// }
+
+		class CopyTree {
+			public:
+
+				template <class A>
+				static NodePtr	createNilNode(A alloc) {
+					NodePtr node = new Node<value_type>;
+
+					node->left = nullptr;
+					node->right = nullptr;
+					node->parent = nullptr;
+
+					node->data = alloc.allocate(1);
+					alloc.construct(node->data, value_type());
+
+					node->color = BLACK;
+
+					return node;
+				}
+
+				template <class A>
+				static NodePtr	createNewNode(value_type& value, NodePtr parent, NodePtr _NIL, A alloc, int color) {//value_type& value, NodePtr parent, NodePtr _NIL, A alloc, int color
+					NodePtr node = new Node<value_type>;
+
+					// node->left = _NIL;
+					// node->right = _NIL;
+					// node->parent = parent;
+
+					// node->data = alloc.allocate(1);
+					// alloc.construct(value, value_type());
+
+					// node->color = color;
+
+					return node;
+				}
+
+				template <class A>
+				static Tree								copyTree(Tree otherTree, A alloc) {
+					Tree<value_type, Alloc> tree;
+					tree._NIL = createNilNode(alloc);
+					tree._end = createNilNode(alloc);
+					tree._root = tree._end;
+
+					NodePtr tmp = tree._root;
+					NodePtr	node = otherTree._root;
+
+					if (otherTree._root == otherTree._end) {
+						return nullptr;
+					}
+				
+					ft::vector<NodePtr> otherTreeQueue;
+					ft::vector<NodePtr> newTreeQueue;
+				
+					otherTreeQueue.push_back(node);
+					newTreeQueue.push_back(tmp);
+					while (!otherTreeQueue.empty())
+					{
+						node = otherTreeQueue.front();
+						tmp = newTreeQueue.front();
+						otherTreeQueue.erase(otherTreeQueue.begin());
+						newTreeQueue.erase(newTreeQueue.begin());
+				
+						if (node->left != otherTree.getNil()) {
+							tmp->left = createNewNode(*node->data, tmp, tree._NIL, alloc, node->color);
+							otherTreeQueue.push_back(node->left);
+							newTreeQueue.push_back(tmp->left);
+						}
+						if (node->right != otherTree.getNil()) {
+							tmp->right = createNewNode(*node->data, tmp, tree._NIL, alloc, node->color);
+							otherTreeQueue.push_back(node->right);
+							newTreeQueue.push_back(tmp->right);
+						}
+						std::cout << tmp->data->first << std::endl;
+					}
+					return tree;
+				}
+
+		};
+
+		
 
 	private:
 		void								updateNodeDate(NodePtr& node, value_type data) {

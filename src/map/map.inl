@@ -130,6 +130,11 @@ namespace ft {
 		_tree = treeTmp;
 	}
 
+	template <class Key, class T, class Compare, class Alloc>
+	void					map<Key, T, Compare, Alloc>::clear() {
+		erase(begin(), end());
+	}
+
 	/*
 	** Operations
 	*/

@@ -13,6 +13,7 @@ class MapTest {
 		void	testBegin() const;
 		void	testEnd() const;
 		void	testRBegin() const;
+		void	testREnd() const;
 		void	testSingleInsert() const;
 		void	testWithHintInsert() const;
 		void	testRangeInsert() const;

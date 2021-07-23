@@ -19,6 +19,7 @@ void	MapTest::test() const {
 	testSwap();
 	testClear();
 	testFind();
+	testEmpty();
 	testNonMemberOperatorEqual();
 	testNonMemberOperatorNotEqual();
 	testNonMemberOperatorLess();
@@ -931,6 +932,121 @@ void	MapTest::testEraseRange() const {
 		stl.erase(stl.find(0), stl.find(20));
 
 		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	}
+	std::cout << std::endl;
+}
+
+void	MapTest::testEmpty() const {
+	std::cout << "* empty(): ";
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		for (int i = 10; i < 15; i++) {
+			ft.insert(ft::make_pair(i, i));
+			stl.insert(std::make_pair(i, i));
+		}
+
+		PRINT_RESULT(TO_EQUAL(ft.empty(), stl.empty()));
+	}
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		for (int i = 0; i < 10; i++) {
+			ft.insert(ft::make_pair(i, i));
+			stl.insert(std::make_pair(i, i));
+		}
+
+		ft.erase(ft.begin(), ft.find(7));
+		stl.erase(stl.begin(), stl.find(7));
+
+		PRINT_RESULT(TO_EQUAL(ft.empty(), stl.empty()));
+	}
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		PRINT_RESULT(TO_EQUAL(ft.empty(), stl.empty()));
+	}
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		for (int i = 0; i < 10; i++) {
+			ft.insert(ft::make_pair(i, i));
+			stl.insert(std::make_pair(i, i));
+		}
+
+		ft.erase(ft.begin(), ft.end());
+		stl.erase(stl.begin(), stl.end());
+
+		PRINT_RESULT(TO_EQUAL(ft.empty(), stl.empty()));
+	}
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		for (int i = 0; i < 10; i++) {
+			ft.insert(ft::make_pair(i, i));
+			stl.insert(std::make_pair(i, i));
+		}
+
+		ft.erase(ft.begin(), ft.find(9));
+		stl.erase(stl.begin(), stl.find(9));
+
+		PRINT_RESULT(TO_EQUAL(ft.empty(), stl.empty()));
+	}
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		ft.erase(ft.begin(), ft.find(9));
+		stl.erase(stl.begin(), stl.find(9));
+
+		PRINT_RESULT(TO_EQUAL(ft.empty(), stl.empty()));
+	}
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		for (int i = 10; i < 15; i++) {
+			ft.insert(ft::make_pair(i, i));
+			stl.insert(std::make_pair(i, i));
+		}
+
+		ft.erase(ft.find(12), ft.find(20));
+		stl.erase(stl.find(12), stl.find(20));
+
+		PRINT_RESULT(TO_EQUAL(ft.empty(), stl.empty()));
+	}
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		for (int i = 0; i < 15; i++) {
+			ft.insert(ft::make_pair(i, i));
+			stl.insert(std::make_pair(i, i));
+		}
+
+		ft.erase(ft.find(12), ft.find(20));
+		stl.erase(stl.find(12), stl.find(20));
+
+		PRINT_RESULT(TO_EQUAL(ft.empty(), stl.empty()));
+	}
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		for (int i = 0; i < 5; i++) {
+			ft.insert(ft::make_pair(i, i));
+			stl.insert(std::make_pair(i, i));
+		}
+
+		ft.erase(ft.find(0), ft.find(20));
+		stl.erase(stl.find(0), stl.find(20));
+
+		PRINT_RESULT(TO_EQUAL(ft.empty(), stl.empty()));
 	}
 	std::cout << std::endl;
 }

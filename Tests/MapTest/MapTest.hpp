@@ -19,6 +19,7 @@ class MapTest {
 		void	testSwap() const;
 		void	testClear() const;
 		void	testFind() const;
+		void	testEmpty() const;
 
 		void	testNonMemberOperatorEqual() const;
 		void	testNonMemberOperatorNotEqual() const;

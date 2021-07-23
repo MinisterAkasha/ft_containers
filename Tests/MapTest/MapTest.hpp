@@ -20,6 +20,7 @@ class MapTest {
 		void	testFind() const;
 
 		void	testNonMemberOperatorEqual() const;
+		void	testNonMemberOperatorNotEqual() const;
 		// void testMapIterator() const;
 	
 	public:

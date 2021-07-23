@@ -152,20 +152,11 @@ namespace ft {
 		typedef typename ft::map<Key,T,Compare,Alloc>::const_iterator const_iterator;
 
 		const_iterator lBegin = lhs.begin();
-		const_iterator rBegin = rhs.begin();
 		const_iterator lEnd = lhs.end();
-		const_iterator rEnd = rhs.end();
 
-		while (lBegin != lEnd && rBegin != rEnd) {
-			if (lBegin->first != rBegin->first) {
-				return false;
-			} else if (lBegin->second != rBegin->second) {
-				return false;
-			}
-			lBegin++;
-			rBegin++;
-		}
-		return true;
+		const_iterator rBegin = rhs.begin();
+
+		return ft::equal(lBegin, lEnd, rBegin);
 	}
 
 	template <class Key, class T, class Compare, class Alloc>
@@ -190,5 +181,11 @@ namespace ft {
 	bool operator>(const map<Key,T,Compare,Alloc>& lhs,
 						const map<Key,T,Compare,Alloc>& rhs) {
 		return (ft::lexicographical_compare(rhs.begin(), rhs.end(), lhs.begin(), lhs.end()));
+	}
+
+	template <class Key, class T, class Compare, class Alloc>
+	bool operator>=(const map<Key,T,Compare,Alloc>& lhs,
+						const map<Key,T,Compare,Alloc>& rhs) {
+		return !operator>(rhs, lhs);
 	}
 }

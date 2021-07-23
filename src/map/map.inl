@@ -63,7 +63,6 @@ namespace ft {
 	template <class Key, class T, class Compare, class Alloc>
 	ft::pair<typename map<Key, T, Compare, Alloc>::iterator,bool> 	map<Key, T, Compare, Alloc>::insert(const value_type& val) {
 		ft::pair<typename Tree<value_type>::NodePtr, bool> pair = _tree.insert(val, _valueComp, _allocator);
-
 		return (ft::make_pair(iterator(pair.first, _tree, _keyComp), pair.second));
 	}
 
@@ -91,6 +90,15 @@ namespace ft {
 	typename map<Key, T, Compare, Alloc>::size_type 				map<Key, T, Compare, Alloc>::erase(const key_type& k) {
 		_tree.deleteNode(ft::make_pair(k, mapped_type()), _valueComp, _allocator);
 		return 1;
+	}
+
+	template <class Key, class T, class Compare, class Alloc>
+	void 					map<Key, T, Compare, Alloc>::erase(iterator first, iterator last) {
+		if (!size())
+			return ;
+	
+		while (first != last)
+			erase(first++);
 	}
 
 	/*

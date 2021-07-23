@@ -15,6 +15,7 @@ class MapTest {
 		void	testRangeInsert() const;
 		void	testErasePosition() const;
 		void	testEraseKey() const;
+		void	testEraseRange() const;
 		void	testFind() const;
 
 		// void testMapIterator() const;

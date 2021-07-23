@@ -15,6 +15,7 @@ void	MapTest::test() const {
 	testRangeInsert();
 	testErasePosition();
 	testEraseKey();
+	testEraseRange();
 	testFind();
 }
 
@@ -796,6 +797,135 @@ void	MapTest::testFind() const {
 
 		PRINT_RESULT(TO_EQUAL(ftI->first, stlI->first)
 			&& TO_EQUAL(ftI->second, stlI->second));
+	}
+	std::cout << std::endl;
+}
+
+void	MapTest::testEraseRange() const {
+	std::cout << "* erase() <range>: ";
+	{
+		ft::map<int, int> ftSupport;
+		std::map<int, int> stlSupport;
+
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		for (int i = 10; i < 15; i++) {
+			ft.insert(ft::make_pair(i, i));
+			stl.insert(std::make_pair(i, i));
+		}
+
+		ft.erase(ft.begin(), ft.end());
+		stl.erase(stl.begin(), stl.end());
+
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	}
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		for (int i = 0; i < 10; i++) {
+			ft.insert(ft::make_pair(i, i));
+			stl.insert(std::make_pair(i, i));
+		}
+
+		ft.erase(ft.begin(), ft.find(7));
+		stl.erase(stl.begin(), stl.find(7));
+
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	}
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		for (int i = 0; i < 10; i++) {
+			ft.insert(ft::make_pair(i, i));
+			stl.insert(std::make_pair(i, i));
+		}
+
+		ft.erase(ft.begin(), ft.begin());
+		stl.erase(stl.begin(), stl.begin());
+
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	}
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		for (int i = 0; i < 10; i++) {
+			ft.insert(ft::make_pair(i, i));
+			stl.insert(std::make_pair(i, i));
+		}
+
+		ft.erase(ft.end(), ft.end());
+		stl.erase(stl.end(), stl.end());
+
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	}
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		for (int i = 0; i < 10; i++) {
+			ft.insert(ft::make_pair(i, i));
+			stl.insert(std::make_pair(i, i));
+		}
+
+		ft.erase(ft.begin(), ft.find(9));
+		stl.erase(stl.begin(), stl.find(9));
+
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	}
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		ft.erase(ft.begin(), ft.find(9));
+		stl.erase(stl.begin(), stl.find(9));
+
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	}
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		for (int i = 10; i < 15; i++) {
+			ft.insert(ft::make_pair(i, i));
+			stl.insert(std::make_pair(i, i));
+		}
+
+		ft.erase(ft.find(12), ft.find(20));
+		stl.erase(stl.find(12), stl.find(20));
+
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	}
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		for (int i = 0; i < 15; i++) {
+			ft.insert(ft::make_pair(i, i));
+			stl.insert(std::make_pair(i, i));
+		}
+
+		ft.erase(ft.find(12), ft.find(20));
+		stl.erase(stl.find(12), stl.find(20));
+
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	}
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		for (int i = 0; i < 5; i++) {
+			ft.insert(ft::make_pair(i, i));
+			stl.insert(std::make_pair(i, i));
+		}
+
+		ft.erase(ft.find(0), ft.find(20));
+		stl.erase(stl.find(0), stl.find(20));
+
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
 	}
 	std::cout << std::endl;
 }

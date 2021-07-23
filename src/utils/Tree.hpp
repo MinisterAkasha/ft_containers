@@ -45,7 +45,8 @@ class Tree {
 			_size = other._size;
 			_end = other._end;
 			_NIL = other._NIL;
-			_root = _end;
+			_root = other._root;
+			// printTree();
 			return *this;
 		}
 
@@ -386,20 +387,6 @@ class Tree {
 			return node->data->second;
 		}
 
-		// void copyInOrder(TNode *orgTree, Tnode *& copyTree){
-		// 	if(orgTree !=NULL) {
-		// 		//left side
-		// 		TNode newLeftNode = cloneNode(orgTree->left_link);
-		// 		copyTree->left_link = newLeftNode;
-		// 		copyInOrder(orgTree->left_link, copyTree->left_link);
-
-		// 		//right side
-		// 		TNode newRightNode = cloneNode(orgTree->right_link);
-		// 		copyTree->right_link = newRightNode;
-		// 		copyInOrder(orgTree->right_link, copyTree->right_link);
-		// 	}
-		// }
-
 		class CopyTree {
 			public:
 
@@ -420,59 +407,75 @@ class Tree {
 				}
 
 				template <class A>
-				static NodePtr	createNewNode(value_type& value, NodePtr parent, NodePtr _NIL, A alloc, int color) {//value_type& value, NodePtr parent, NodePtr _NIL, A alloc, int color
+				static NodePtr	createNewNode(value_type& value, NodePtr parent, NodePtr& NIL, A alloc, int color) {
 					NodePtr node = new Node<value_type>;
 
-					// node->left = _NIL;
-					// node->right = _NIL;
-					// node->parent = parent;
+					node->left = NIL;
+					node->right = NIL;
+					node->parent = parent;
 
-					// node->data = alloc.allocate(1);
-					// alloc.construct(value, value_type());
+					node->data = alloc.allocate(1);
+					alloc.construct(node->data, value);
 
-					// node->color = color;
+					node->color = color;
 
 					return node;
 				}
 
 				template <class A>
+				static void 	copyLeft(NodePtr& newRoot, NodePtr& original, NodePtr NIL,A alloc) {
+					newRoot->left = createNewNode(*original->left->data, newRoot, NIL, alloc, original->left->color);
+					original = original->left;
+					newRoot = newRoot->left;
+				}
+
+				template <class A>
+				static void 	copyRight(NodePtr& newRoot, NodePtr& original, NodePtr NIL,A alloc) {
+					newRoot->right = createNewNode(*original->right->data, newRoot, NIL, alloc, original->right->color);
+					original = original->right;
+					newRoot = newRoot->right;
+				}
+
+				template <class A>
+				static void copy(Tree& originalTree, Tree& newTree, A alloc) {
+					NodePtr NIL = originalTree.getNil();
+
+					NodePtr	newRoot = newTree._root;
+					NodePtr	original = originalTree._root;
+
+					newRoot = createNewNode(*original->data, nullptr, newTree._NIL, alloc, original->color);
+				
+					while (true) {
+						if (original->left != NIL && newRoot->left == newTree._NIL)
+							copyLeft(newRoot, original, newTree._NIL, alloc);
+						else if (original->right != NIL && newRoot->right == newTree._NIL)
+							copyRight(newRoot, original, newTree._NIL, alloc);
+						else {
+							if (original->parent) {
+								original = original->parent;
+								newRoot = newRoot->parent;
+							} else {
+								break ;
+							}
+						}
+					}
+					newTree._root = newRoot;
+					newTree._end->parent = newTree.max(newTree._root);
+				}
+
+				template <class A>
 				static Tree								copyTree(Tree otherTree, A alloc) {
-					Tree<value_type, Alloc> tree;
+					Tree<value_type, Alloc> tree = new Tree<value_type, Alloc>;
 					tree._NIL = createNilNode(alloc);
 					tree._end = createNilNode(alloc);
 					tree._root = tree._end;
-
-					NodePtr tmp = tree._root;
-					NodePtr	node = otherTree._root;
+					tree._size = otherTree.getSize();
 
 					if (otherTree._root == otherTree._end) {
 						return nullptr;
 					}
-				
-					ft::vector<NodePtr> otherTreeQueue;
-					ft::vector<NodePtr> newTreeQueue;
-				
-					otherTreeQueue.push_back(node);
-					newTreeQueue.push_back(tmp);
-					while (!otherTreeQueue.empty())
-					{
-						node = otherTreeQueue.front();
-						tmp = newTreeQueue.front();
-						otherTreeQueue.erase(otherTreeQueue.begin());
-						newTreeQueue.erase(newTreeQueue.begin());
-				
-						if (node->left != otherTree.getNil()) {
-							tmp->left = createNewNode(*node->data, tmp, tree._NIL, alloc, node->color);
-							otherTreeQueue.push_back(node->left);
-							newTreeQueue.push_back(tmp->left);
-						}
-						if (node->right != otherTree.getNil()) {
-							tmp->right = createNewNode(*node->data, tmp, tree._NIL, alloc, node->color);
-							otherTreeQueue.push_back(node->right);
-							newTreeQueue.push_back(tmp->right);
-						}
-						std::cout << tmp->data->first << std::endl;
-					}
+					
+					copy(otherTree, tree, alloc);
 					return tree;
 				}
 

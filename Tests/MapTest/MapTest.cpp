@@ -586,14 +586,15 @@ void	MapTest::testCopyConstructor() const {
 		std::map<int, int>	stlSupport;
 
 		// createRandomMap(ftSupport, stlSupport, 1);
-		for (int i = 0; i < 5; i++) {
+		for (int i = 1; i < 6; i++) {
 			ftSupport.insert(ft::make_pair(i, i));
+			stlSupport.insert(std::make_pair(i, i));
 		}
 
 		ft::map<int, int>	ft(ftSupport);
-		// std::map<int, int>	stl(stlSupport);
+		std::map<int, int>	stl(stlSupport);
 
-		// PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
 	}
 	// {
 	// 	ft::map<int, int>	ftSupport;

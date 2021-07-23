@@ -16,8 +16,10 @@ class MapTest {
 		void	testErasePosition() const;
 		void	testEraseKey() const;
 		void	testEraseRange() const;
+		void	testSwap() const;
 		void	testFind() const;
 
+		void	testNonMemberOperatorEqual() const;
 		// void testMapIterator() const;
 	
 	public:

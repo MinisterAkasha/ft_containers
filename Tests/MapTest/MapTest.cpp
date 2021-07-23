@@ -16,7 +16,9 @@ void	MapTest::test() const {
 	testErasePosition();
 	testEraseKey();
 	testEraseRange();
+	testSwap();
 	testFind();
+	testNonMemberOperatorEqual();
 }
 
 void	MapTest::testDefaultConstructor() const {
@@ -804,9 +806,6 @@ void	MapTest::testFind() const {
 void	MapTest::testEraseRange() const {
 	std::cout << "* erase() <range>: ";
 	{
-		ft::map<int, int> ftSupport;
-		std::map<int, int> stlSupport;
-
 		ft::map<int, int> ft;
 		std::map<int, int> stl;
 
@@ -926,6 +925,130 @@ void	MapTest::testEraseRange() const {
 		stl.erase(stl.find(0), stl.find(20));
 
 		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	}
+	std::cout << std::endl;
+}
+
+void	MapTest::testSwap() const {
+	std::cout << "* swap(): ";
+	// {
+	// 	ft::map<int, int> ft1;
+	// 	ft::map<int, int> ft2;
+
+	// 	std::map<int, int> stl1;
+	// 	std::map<int, int> stl2;
+
+	// 	createRandomMap(ft1, stl1, 10);
+	// 	createRandomMap(ft2, stl2, 10);
+
+	// 	ft1.swap(ft2);
+	// 	stl1.swap(stl2);
+
+	// 	PRINT_RESULT(TO_EQUAL_MAP(ft1, stl1) == TO_EQUAL_MAP(ft2, stl2));
+	// }
+	std::cout << std::endl;
+}
+
+void	MapTest::testNonMemberOperatorEqual() const {
+	std::cout << "* operator== <non-member>: ";
+	{
+		ft::map<int, int> ft1;
+		ft::map<int, int> ft2;
+
+		std::map<int, int> stl1;
+		std::map<int, int> stl2;
+
+		PRINT_RESULT(TO_EQUAL((ft1 == ft2), (stl1 == stl2)));
+	}
+	{
+		ft::map<int, int> ft1;
+		ft::map<int, int> ft2;
+
+		std::map<int, int> stl1;
+		std::map<int, int> stl2;
+
+		createRandomMap(ft1, stl1, 10);
+		createRandomMap(ft2, stl2, 10);
+
+		PRINT_RESULT(TO_EQUAL((ft1 == ft2), (stl1 == stl2)));
+	}
+	{
+		ft::map<int, int> ft1;
+		ft::map<int, int> ft2;
+
+		std::map<int, int> stl1;
+		std::map<int, int> stl2;
+
+		createRandomMap(ft1, stl2, 10);
+		createRandomMap(ft2, stl1, 10);
+
+		PRINT_RESULT(TO_EQUAL((ft1 == ft2), (stl1 == stl2)));
+	}
+	{
+		ft::map<int, int> ft1;
+		ft::map<int, int> ft2;
+
+		std::map<int, int> stl1;
+		std::map<int, int> stl2;
+
+		for (int i = 0; i < 10; i++) {
+			ft1.insert(ft::make_pair(i, i));
+			stl1.insert(std::make_pair(i, i));
+		}
+
+		PRINT_RESULT(TO_EQUAL((ft1 == ft2), (stl1 == stl2)));
+	}
+	{
+		ft::map<int, int> ft1;
+		ft::map<int, int> ft2;
+
+		std::map<int, int> stl1;
+		std::map<int, int> stl2;
+
+		for (int i = 0; i< 10; i++) {
+			ft2.insert(ft::make_pair(i, i));
+			stl2.insert(std::make_pair(i, i));
+		}
+
+		PRINT_RESULT(TO_EQUAL((ft1 == ft2), (stl1 == stl2)));
+	}
+	{
+		ft::map<int, int> ft1;
+		ft::map<int, int> ft2;
+
+		std::map<int, int> stl1;
+		std::map<int, int> stl2;
+
+		for (int i = 0; i < 10; i++) {
+			ft1.insert(ft::make_pair(i, i));
+			stl1.insert(std::make_pair(i, i));
+		}
+
+		for (int i = 0; i < 10; i++) {
+			ft2.insert(ft::make_pair(i, i));
+			stl2.insert(std::make_pair(i, i));
+		}
+
+		PRINT_RESULT(TO_EQUAL((ft1 == ft2), (stl1 == stl2)));
+	}
+	{
+		ft::map<int, int> ft1;
+		ft::map<int, int> ft2;
+
+		std::map<int, int> stl1;
+		std::map<int, int> stl2;
+
+		for (int i = 10; i < 20; i++) {
+			ft1.insert(ft::make_pair(i, i));
+			stl1.insert(std::make_pair(i, i));
+		}
+
+		for (int i = 0; i < 10; i++) {
+			ft2.insert(ft::make_pair(i, i));
+			stl2.insert(std::make_pair(i, i));
+		}
+
+		PRINT_RESULT(TO_EQUAL((ft1 == ft2), (stl1 == stl2)));
 	}
 	std::cout << std::endl;
 }

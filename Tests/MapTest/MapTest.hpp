@@ -10,6 +10,7 @@
 class MapTest {
 	private:
 		void	testDefaultConstructor() const;
+		void	testRangeConstructor() const;
 		void	testBegin() const;
 		void	testEnd() const;
 		void	testRBegin() const;

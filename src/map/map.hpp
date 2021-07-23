@@ -128,7 +128,6 @@ namespace ft {
 
 		private:
 			allocator_type						_allocator;
-			size_type							_size;
 			key_compare							_keyComp;
 			value_compare						_valueComp;
 			Tree<value_type>					_tree;

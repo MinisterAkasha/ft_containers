@@ -8,22 +8,23 @@ template <class value_type, class Compare>
 class MapIterator : public ft::iterator<ft::bidirectional_iterator_tag, value_type> {
 	public:
 		typedef value_type&						reference;
-		typedef Node<value_type>*				pointer;
+		typedef value_type*						pointer;
+		typedef Node<value_type>*				NodePointer;
 		typedef ptrdiff_t						difference_type;
 		typedef typename ft::iterator<
 			ft::bidirectional_iterator_tag,
 			value_type>::iterator_category		iterator_category;
 
 	public:
-		pointer				_ptr;
+		NodePointer				_ptr;
 		Tree<value_type>	_tree;
-		pointer				_NIL;
+		NodePointer				_NIL;
 		Compare				_comp;
 	
 	public:
 		MapIterator() : _ptr(nullptr), _tree(), _comp() {}
 
-		MapIterator(const pointer& ptr, const Tree<value_type>& tree, const Compare& comp) : _ptr(ptr), _tree(tree), _comp(comp) {
+		MapIterator(const NodePointer& ptr, const Tree<value_type>& tree, const Compare& comp) : _ptr(ptr), _tree(tree), _comp(comp) {
 			_NIL = _tree.getNil();
 		}
 
@@ -106,6 +107,10 @@ class MapIterator : public ft::iterator<ft::bidirectional_iterator_tag, value_ty
 				}
 			}
 };
+
+/*
+** Non-member overloads
+*/
 
 
 #endif

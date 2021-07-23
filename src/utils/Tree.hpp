@@ -109,10 +109,6 @@ class Tree {
 			delete node;
 		}
 
-		NodePtr		getRoot() {
-			return _root;
-		}
-
 		void		rotateLeft(NodePtr node) {
 			NodePtr y = node->right;
 
@@ -340,22 +336,41 @@ class Tree {
 			return tmp;
 		}
 
-		NodePtr		max(NodePtr node) {
+		const NodePtr		min(NodePtr node) const {
+			NodePtr tmp = node;
+			while (tmp->left != _NIL && tmp->left)
+				tmp = tmp->left;
+			return tmp;
+		}
+
+		NodePtr				max(NodePtr node) {
 			NodePtr tmp = node;
 			while (tmp->right != _NIL && tmp->right)
 				tmp = tmp->right;
 			return tmp;
 		}
 
-		NodePtr		getNil() {
+		NodePtr				getRoot() {
+			return _root;
+		}
+
+		const NodePtr		getRoot() const {
+			return _root;
+		}
+
+		NodePtr				getNil() {
 			return _NIL;
 		}
 
-		NodePtr		getEnd() {
+		NodePtr				getEnd() {
 			return _end;
 		}
 
-		size_t		getSize() const {
+		const NodePtr		getEnd() const {
+			return _end;
+		}
+
+		size_t				getSize() const {
 			return _size;
 		}
 

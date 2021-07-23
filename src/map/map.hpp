@@ -26,7 +26,7 @@ namespace ft {
 
 			typedef MapIterator<value_type, key_compare>					iterator;
 			typedef MapIterator<ft::pair<const key_type, 
-				const mapped_type>, key_compare>							const_iterator;
+				mapped_type>, key_compare>							const_iterator;
 			typedef	ft::reverse_iterator<iterator>							reverse_iterator;
 			typedef	ft::reverse_iterator<const_iterator>					const_reverse_iterator;
 
@@ -150,6 +150,34 @@ namespace ft {
 				return comp(x.first, y.first);
 			}
 	};
+
+	/*
+	** Non-member overloads
+	*/
+
+	template <class Key, class T, class Compare, class Alloc>
+	bool operator==(const map<Key,T,Compare,Alloc>& lhs,
+						const map<Key,T,Compare,Alloc>& rhs);
+
+	template <class Key, class T, class Compare, class Alloc>
+	bool operator!=(const map<Key,T,Compare,Alloc>& lhs,
+						const map<Key,T,Compare,Alloc>& rhs);
+
+	template <class Key, class T, class Compare, class Alloc>
+	bool operator< (const map<Key,T,Compare,Alloc>& lhs,
+						const map<Key,T,Compare,Alloc>& rhs);
+
+	template <class Key, class T, class Compare, class Alloc>
+	bool operator<=(const map<Key,T,Compare,Alloc>& lhs,
+						const map<Key,T,Compare,Alloc>& rhs);
+
+	template <class Key, class T, class Compare, class Alloc>
+	bool operator> (const map<Key,T,Compare,Alloc>& lhs,
+						const map<Key,T,Compare,Alloc>& rhs);
+
+	template <class Key, class T, class Compare, class Alloc>
+	bool operator>=(const map<Key,T,Compare,Alloc>& lhs,
+						const map<Key,T,Compare,Alloc>& rhs);
 }
 
 # include "map.inl"

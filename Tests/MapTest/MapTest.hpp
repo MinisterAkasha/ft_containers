@@ -22,6 +22,7 @@ class MapTest {
 		void	testNonMemberOperatorEqual() const;
 		void	testNonMemberOperatorNotEqual() const;
 		void	testNonMemberOperatorLess() const;
+		void	testNonMemberOperatorLessOrEqual() const;
 		// void testMapIterator() const;
 	
 	public:

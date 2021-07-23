@@ -936,21 +936,103 @@ void	MapTest::testEraseRange() const {
 
 void	MapTest::testSwap() const {
 	std::cout << "* swap(): ";
-	// {
-	// 	ft::map<int, int> ft1;
-	// 	ft::map<int, int> ft2;
+	{
+		ft::map<int, int> ft1;
+		ft::map<int, int> ft2;
 
-	// 	std::map<int, int> stl1;
-	// 	std::map<int, int> stl2;
+		std::map<int, int> stl1;
+		std::map<int, int> stl2;
 
-	// 	createRandomMap(ft1, stl1, 10);
-	// 	createRandomMap(ft2, stl2, 10);
+		createRandomMap(ft1, stl1, 10);
+		createRandomMap(ft2, stl2, 10);
 
-	// 	ft1.swap(ft2);
-	// 	stl1.swap(stl2);
+		ft1.swap(ft2);
+		stl1.swap(stl2);
 
-	// 	PRINT_RESULT(TO_EQUAL_MAP(ft1, stl1) == TO_EQUAL_MAP(ft2, stl2));
-	// }
+		PRINT_RESULT(TO_EQUAL_MAP(ft1, stl1) == TO_EQUAL_MAP(ft2, stl2));
+	}
+	{
+		ft::map<int, int> ft1;
+		ft::map<int, int> ft2;
+
+		std::map<int, int> stl1;
+		std::map<int, int> stl2;
+
+		createRandomMap(ft1, stl1, 10);
+		createRandomMap(ft2, stl2, 10);
+
+		ft1.swap(ft1);
+		stl1.swap(stl1);
+
+		PRINT_RESULT(TO_EQUAL_MAP(ft1, stl1) == TO_EQUAL_MAP(ft2, stl2));
+	}
+	{
+		ft::map<int, int> ft1;
+		ft::map<int, int> ft2;
+
+		std::map<int, int> stl1;
+		std::map<int, int> stl2;
+
+		for (int i = 0; i < 10; i++) {
+			ft1.insert(ft::make_pair(i, i));
+			stl1.insert(std::make_pair(i, i));
+		}
+
+		ft1.swap(ft2);
+		stl1.swap(stl2);
+
+		PRINT_RESULT(TO_EQUAL_MAP(ft1, stl1) == TO_EQUAL_MAP(ft2, stl2));
+	}
+	{
+		ft::map<int, int> ft1;
+		ft::map<int, int> ft2;
+
+		std::map<int, int> stl1;
+		std::map<int, int> stl2;
+
+		for (int i = 0; i < 10; i++) {
+			ft2.insert(ft::make_pair(i, i));
+			stl2.insert(std::make_pair(i, i));
+		}
+
+		ft1.swap(ft2);
+		stl1.swap(stl2);
+
+		PRINT_RESULT(TO_EQUAL_MAP(ft1, stl1) == TO_EQUAL_MAP(ft2, stl2));
+	}
+	{
+		ft::map<std::string, int> ft1;
+		ft::map<std::string, int> ft2;
+
+		std::map<std::string, int> stl1;
+		std::map<std::string, int> stl2;
+
+		ft2.insert(ft::make_pair("string", 1));
+		stl2.insert(std::make_pair("string", 1));
+
+		ft1.swap(ft2);
+		stl1.swap(stl2);
+
+		PRINT_RESULT(TO_EQUAL_MAP(ft1, stl1) == TO_EQUAL_MAP(ft2, stl2));
+	}
+	{
+		ft::map<std::string, int> ft1;
+		ft::map<std::string, int> ft2;
+
+		std::map<std::string, int> stl1;
+		std::map<std::string, int> stl2;
+
+		ft2.insert(ft::make_pair("string", 1));
+		stl2.insert(std::make_pair("string", 1));
+
+		ft1.insert(ft::make_pair("st", 2));
+		stl1.insert(std::make_pair("st", 2));
+
+		ft1.swap(ft2);
+		stl1.swap(stl2);
+
+		PRINT_RESULT(TO_EQUAL_MAP(ft1, stl1) == TO_EQUAL_MAP(ft2, stl2));
+	}
 	std::cout << std::endl;
 }
 

@@ -374,6 +374,14 @@ class Tree {
 			return _size;
 		}
 
+		typename value_type::first_type&	getNodeKey(const NodePtr& node) {
+			return node->data->first;
+		}
+
+		typename value_type::second_type&	getNodeValue(const NodePtr& node) {
+			return node->data->second;
+		}
+
 	private:
 		void								updateNodeDate(NodePtr& node, value_type data) {
 			node->data->second = data.second;
@@ -381,14 +389,6 @@ class Tree {
 
 		value_type& 						getNodeData(const NodePtr& node) {
 			return *(node->data);
-		}
-
-		typename value_type::first_type&	getNodeKey(const NodePtr& node) {
-			return node->data->first;
-		}
-
-		typename value_type::first_type&	getNodeValue(const NodePtr& node) {
-			return node->data->second;
 		}
 
 		template <class Comp>

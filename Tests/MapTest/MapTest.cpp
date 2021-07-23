@@ -10,6 +10,7 @@ void	MapTest::test() const {
 	std::cout << std::endl << "<-- Map test -->" << std::endl << std::endl;
 	std::srand(time(NULL));
 	testDefaultConstructor();
+	testBegin();
 	testSingleInsert();
 	testWithHintInsert();
 	testRangeInsert();
@@ -27,6 +28,90 @@ void	MapTest::test() const {
 	testNonMemberOperatorLessOrEqual();
 	testNonMemberOperatorMore();
 	testNonMemberOperatorMoreOrEqual();
+}
+
+void	MapTest::testBegin() const {
+	std::cout << "* begin(): ";
+	{
+		ft::map<int, int>	ft;
+		std::map<int, int>	stl;
+
+		for (int i = 0; i < 10; i++) {
+			ft.insert(ft::make_pair(i, i));
+			stl.insert(std::make_pair(i, i));
+		}
+
+		ft::map<int, int>::iterator		ftI = ft.begin();
+		std::map<int, int>::iterator	stlI = stl.begin();
+
+		PRINT_RESULT(TO_EQUAL(ftI->first, stlI->first) && TO_EQUAL(ftI->second, stlI->second));
+	}
+	{
+		ft::map<int, int>	ft;
+		std::map<int, int>	stl;
+
+
+		ft.insert(ft::make_pair(10, 10));
+		stl.insert(std::make_pair(10, 10));
+
+		ft::map<int, int>::iterator		ftI = ft.begin();
+		std::map<int, int>::iterator	stlI = stl.begin();
+
+		PRINT_RESULT(TO_EQUAL(ftI->first, stlI->first) && TO_EQUAL(ftI->second, stlI->second));
+	}
+	{
+		ft::map<int, int>	ft;
+		std::map<int, int>	stl;
+
+
+		ft.insert(ft::make_pair(10, 10));
+		stl.insert(std::make_pair(10, 10));
+
+		ft::map<int, int>::iterator		ftI = ft.begin();
+		std::map<int, int>::iterator	stlI = stl.begin();
+
+		PRINT_RESULT(TO_EQUAL(ftI->first, stlI->first) && TO_EQUAL(ftI->second, stlI->second));
+	}
+	{
+		ft::map<std::string, int>	ft;
+		std::map<std::string, int>	stl;
+
+
+		ft.insert(ft::make_pair("string", 10));
+		stl.insert(std::make_pair("string", 10));
+
+		ft::map<std::string, int>::iterator		ftI = ft.begin();
+		std::map<std::string, int>::iterator	stlI = stl.begin();
+
+		PRINT_RESULT(TO_EQUAL(ftI->first, stlI->first) && TO_EQUAL(ftI->second, stlI->second));
+	}
+	{
+		ft::map<std::string, std::string>	ft;
+		std::map<std::string, std::string>	stl;
+
+
+		ft.insert(ft::make_pair("string", "10"));
+		stl.insert(std::make_pair("string", "10"));
+
+		ft::map<std::string, std::string>::iterator		ftI = ft.begin();
+		std::map<std::string, std::string>::iterator	stlI = stl.begin();
+
+		PRINT_RESULT(TO_EQUAL(ftI->first, stlI->first) && TO_EQUAL(ftI->second, stlI->second));
+	}
+	{
+		ft::map<std::string, std::string>	ft;
+		std::map<std::string, std::string>	stl;
+
+
+		ft.insert(ft::make_pair("", ""));
+		stl.insert(std::make_pair("", ""));
+
+		ft::map<std::string, std::string>::iterator		ftI = ft.begin();
+		std::map<std::string, std::string>::iterator	stlI = stl.begin();
+
+		PRINT_RESULT(TO_EQUAL(ftI->first, stlI->first) && TO_EQUAL(ftI->second, stlI->second));
+	}
+	std::cout << std::endl;
 }
 
 void	MapTest::testDefaultConstructor() const {

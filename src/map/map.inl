@@ -50,8 +50,28 @@ namespace ft {
 	}
 
 	template <class Key, class T, class Compare, class Alloc>
-	typename map<Key, T, Compare, Alloc>::const_iterator 					map<Key, T, Compare, Alloc>::end() const {
+	typename map<Key, T, Compare, Alloc>::const_iterator 			map<Key, T, Compare, Alloc>::end() const {
 		return const_iterator(_tree.getEnd(), _tree, _keyComp);
+	}
+
+	template <class Key, class T, class Compare, class Alloc>
+	typename map<Key, T, Compare, Alloc>::reverse_iterator			map<Key, T, Compare, Alloc>::rbegin() {
+		return reverse_iterator(_tree.getEnd(), _tree, _keyComp);
+	}
+
+	template <class Key, class T, class Compare, class Alloc>
+	typename map<Key, T, Compare, Alloc>::const_reverse_iterator	map<Key, T, Compare, Alloc>::rbegin() const {
+		return const_reverse_iterator(_tree.getEnd(), _tree, _keyComp);
+	}
+
+	template <class Key, class T, class Compare, class Alloc>
+	typename map<Key, T, Compare, Alloc>::reverse_iterator			map<Key, T, Compare, Alloc>::rend() {
+		return reverse_iterator(begin(), _tree, _keyComp);
+	}
+
+	template <class Key, class T, class Compare, class Alloc>
+	typename map<Key, T, Compare, Alloc>::const_reverse_iterator	map<Key, T, Compare, Alloc>::rend() const {
+		return const_reverse_iterator(begin(), _tree, _keyComp);
 	}
 
 	/*

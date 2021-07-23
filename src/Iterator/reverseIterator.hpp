@@ -47,6 +47,12 @@ namespace ft {
 				return *ite;
 			};
 
+			typename iterator_type::value_type*			operator->() const {
+				Iter ite(_base);
+				--ite;
+				return ite.operator->();
+			}
+
 			reverse_iterator	operator+(difference_type n) const {
 				return reverse_iterator(_base - n);
 			};

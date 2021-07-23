@@ -17,6 +17,7 @@ void	MapTest::test() const {
 	testEraseKey();
 	testEraseRange();
 	testSwap();
+	testClear();
 	testFind();
 	testNonMemberOperatorEqual();
 	testNonMemberOperatorNotEqual();
@@ -928,6 +929,59 @@ void	MapTest::testEraseRange() const {
 
 		ft.erase(ft.find(0), ft.find(20));
 		stl.erase(stl.find(0), stl.find(20));
+
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	}
+	std::cout << std::endl;
+}
+
+void	MapTest::testClear() const {
+	std::cout << "* clear(): ";
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		ft.clear();
+		stl.clear();
+
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	}
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		ft.insert(ft::make_pair(10, 1));
+		stl.insert(std::make_pair(10, 1));
+
+		ft.clear();
+		stl.clear();
+
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	}
+	{
+		ft::map<int, int> ft;
+		std::map<int, int> stl;
+
+		createRandomMap(ft, stl, 100);
+
+		ft.clear();
+		stl.clear();
+
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	}
+	{
+		ft::map<std::string, int> ft;
+		std::map<std::string, int> stl;
+
+		ft.insert(ft::make_pair("string", 1));
+		ft.insert(ft::make_pair("string1", 2));
+		ft.insert(ft::make_pair("string2", 3));
+		stl.insert(std::make_pair("string", 1));
+		stl.insert(std::make_pair("string1", 2));
+		stl.insert(std::make_pair("string2", 3));
+
+		ft.clear();
+		stl.clear();
 
 		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
 	}

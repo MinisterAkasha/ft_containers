@@ -17,6 +17,7 @@ class MapTest {
 		void	testEraseKey() const;
 		void	testEraseRange() const;
 		void	testSwap() const;
+		void	testClear() const;
 		void	testFind() const;
 
 		void	testNonMemberOperatorEqual() const;

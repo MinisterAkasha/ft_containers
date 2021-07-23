@@ -175,6 +175,21 @@ namespace ft {
 	}
 
 	/*
+	** Observers
+	*/
+
+	template <class Key, class T, class Compare, class Alloc>
+	typename map<Key, T, Compare, Alloc>::key_compare				map<Key, T, Compare, Alloc>::key_comp() const {
+		return _keyComp;
+	}
+
+	template <class Key, class T, class Compare, class Alloc>
+	typename map<Key, T, Compare, Alloc>::value_compare 			map<Key, T, Compare, Alloc>::value_comp() const {
+		return _valueComp;
+	}
+
+
+	/*
 	** Operations
 	*/
 

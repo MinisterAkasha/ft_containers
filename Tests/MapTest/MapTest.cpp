@@ -20,6 +20,7 @@ void	MapTest::test() const {
 	testClear();
 	testFind();
 	testEmpty();
+	testtestAccessOperator();
 	testNonMemberOperatorEqual();
 	testNonMemberOperatorNotEqual();
 	testNonMemberOperatorLess();
@@ -1202,6 +1203,78 @@ void	MapTest::testSwap() const {
 		stl1.swap(stl2);
 
 		PRINT_RESULT(TO_EQUAL_MAP(ft1, stl1) == TO_EQUAL_MAP(ft2, stl2));
+	}
+	std::cout << std::endl;
+}
+
+void	MapTest::testtestAccessOperator() const {
+	std::cout << "* opearator[]: ";
+	{
+		ft::map<int, int>	ft;
+		std::map<int, int>	stl;
+
+		PRINT_RESULT(TO_EQUAL(ft[5], stl[5]));
+	}
+	{
+		ft::map<int, int>	ft;
+		std::map<int, int>	stl;
+
+		for (int i = 0; i < 10; i++) {
+			ft.insert(ft::make_pair(i, i));
+			stl.insert(std::make_pair(i, i));
+		}
+
+		PRINT_RESULT(TO_EQUAL(ft[5], stl[5]));
+	}
+	{
+		ft::map<int, int>	ft;
+		std::map<int, int>	stl;
+
+
+		ft.insert(ft::make_pair(10, 10));
+		stl.insert(std::make_pair(10, 10));
+
+		PRINT_RESULT(TO_EQUAL(ft[2], stl[2]));
+	}
+	{
+		ft::map<int, int>	ft;
+		std::map<int, int>	stl;
+
+
+		ft.insert(ft::make_pair(10, 10));
+		stl.insert(std::make_pair(10, 10));
+
+		PRINT_RESULT(TO_EQUAL(ft[10], stl[10]));
+	}
+	{
+		ft::map<std::string, int>	ft;
+		std::map<std::string, int>	stl;
+
+
+		ft.insert(ft::make_pair("string", 10));
+		stl.insert(std::make_pair("string", 10));
+
+		PRINT_RESULT(TO_EQUAL(ft["string"], stl["string"]));
+	}
+	{
+		ft::map<std::string, std::string>	ft;
+		std::map<std::string, std::string>	stl;
+
+
+		ft.insert(ft::make_pair("string", "10"));
+		stl.insert(std::make_pair("string", "10"));
+
+		PRINT_RESULT(TO_EQUAL(ft["string"], stl["string"]));
+	}
+	{
+		ft::map<std::string, std::string>	ft;
+		std::map<std::string, std::string>	stl;
+
+
+		ft.insert(ft::make_pair("", ""));
+		stl.insert(std::make_pair("", ""));
+
+		PRINT_RESULT(TO_EQUAL(ft[""], stl[""]));
 	}
 	std::cout << std::endl;
 }

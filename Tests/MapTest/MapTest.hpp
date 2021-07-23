@@ -20,6 +20,7 @@ class MapTest {
 		void	testClear() const;
 		void	testFind() const;
 		void	testEmpty() const;
+		void	testtestAccessOperator() const;
 
 		void	testNonMemberOperatorEqual() const;
 		void	testNonMemberOperatorNotEqual() const;

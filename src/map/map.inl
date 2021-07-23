@@ -63,6 +63,11 @@ namespace ft {
 		return _tree.getSize();
 	}
 
+	template <class Key, class T, class Compare, class Alloc>
+	bool 															map<Key, T, Compare, Alloc>::empty() const {
+		return size() == 0;
+	}
+
 
 	/*
 	** Modifiers

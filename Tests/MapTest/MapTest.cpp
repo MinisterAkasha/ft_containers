@@ -12,6 +12,7 @@ void	MapTest::test() const {
 	testDefaultConstructor();
 	testBegin();
 	testEnd();
+	testRBegin();
 	testSingleInsert();
 	testWithHintInsert();
 	testRangeInsert();
@@ -193,6 +194,111 @@ void	MapTest::testEnd() const {
 
 		ft::map<std::string, std::string>::iterator		ftI = --(ft.end());
 		std::map<std::string, std::string>::iterator	stlI = --(stl.end());
+
+		PRINT_RESULT(TO_EQUAL(ftI->first, stlI->first) && TO_EQUAL(ftI->second, stlI->second));
+	}
+	std::cout << std::endl;
+}
+
+void	MapTest::testRBegin() const {
+	std::cout << "* rbegin(): ";
+	{
+		ft::map<int, int>	ft;
+		std::map<int, int>	stl;
+
+		for (int i = 0; i < 10; i++) {
+			ft.insert(ft::make_pair(i, i));
+			stl.insert(std::make_pair(i, i));
+		}
+
+		ft::map<int, int>::reverse_iterator		ftI = ++(ft.rbegin());
+		std::map<int, int>::reverse_iterator	stlI = ++(stl.rbegin());
+
+		PRINT_RESULT(TO_EQUAL(ftI->first, stlI->first) && TO_EQUAL(ftI->second, stlI->second));
+	}
+	{
+		ft::map<int, int>	ft;
+		std::map<int, int>	stl;
+
+
+		for (int i = 0; i < 20; i++) {
+			if (i % 2) {
+				ft.insert(ft::make_pair(i, i));
+				stl.insert(std::make_pair(i, i));
+			} else {
+				ft.insert(ft::make_pair(-i, -i));
+				stl.insert(std::make_pair(-i, -i));
+
+			}
+		}
+
+		ft::map<int, int>::reverse_iterator		ftI = ++(ft.rbegin());
+		std::map<int, int>::reverse_iterator	stlI = ++(stl.rbegin());
+
+		PRINT_RESULT(TO_EQUAL(ftI->first, stlI->first) && TO_EQUAL(ftI->second, stlI->second));
+	}
+	{
+		ft::map<int, int>	ft;
+		std::map<int, int>	stl;
+
+
+		ft.insert(ft::make_pair(10, 10));
+		stl.insert(std::make_pair(10, 10));
+
+		ft::map<int, int>::reverse_iterator		ftI = ++(ft.rbegin());
+		std::map<int, int>::reverse_iterator	stlI = ++(stl.rbegin());
+
+		PRINT_RESULT(TO_EQUAL(ftI->first, stlI->first) && TO_EQUAL(ftI->second, stlI->second));
+	}
+	{
+		ft::map<int, int>	ft;
+		std::map<int, int>	stl;
+
+
+		ft.insert(ft::make_pair(10, 10));
+		stl.insert(std::make_pair(10, 10));
+
+		ft::map<int, int>::reverse_iterator		ftI = (ft.rbegin());
+		std::map<int, int>::reverse_iterator	stlI = (stl.rbegin());
+
+		PRINT_RESULT(TO_EQUAL(ftI->first, stlI->first) && TO_EQUAL(ftI->second, stlI->second));
+	}
+	{
+		ft::map<std::string, int>	ft;
+		std::map<std::string, int>	stl;
+
+
+		ft.insert(ft::make_pair("string", 10));
+		stl.insert(std::make_pair("string", 10));
+
+		ft::map<std::string, int>::reverse_iterator		ftI = (ft.rbegin());
+		std::map<std::string, int>::reverse_iterator	stlI = (stl.rbegin());
+
+		PRINT_RESULT(TO_EQUAL(ftI->first, stlI->first) && TO_EQUAL(ftI->second, stlI->second));
+	}
+	{
+		ft::map<std::string, std::string>	ft;
+		std::map<std::string, std::string>	stl;
+
+
+		ft.insert(ft::make_pair("string", "10"));
+		stl.insert(std::make_pair("string", "10"));
+
+		ft::map<std::string, std::string>::reverse_iterator		ftI = (ft.rbegin());
+		std::map<std::string, std::string>::reverse_iterator	stlI = (stl.rbegin());
+
+		PRINT_RESULT(TO_EQUAL(ftI->first, stlI->first) && TO_EQUAL(ftI->second, stlI->second));
+	}
+	{
+		ft::map<std::string, std::string>	ft;
+		std::map<std::string, std::string>	stl;
+
+
+		ft.insert(ft::make_pair("", ""));
+		stl.insert(std::make_pair("", ""));
+
+		ft::map<std::string, std::string>::reverse_iterator		ftI = (ft.rbegin());
+		std::map<std::string, std::string>::reverse_iterator	stlI = (stl.rbegin());
 
 		PRINT_RESULT(TO_EQUAL(ftI->first, stlI->first) && TO_EQUAL(ftI->second, stlI->second));
 	}

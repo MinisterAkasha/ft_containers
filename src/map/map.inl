@@ -73,6 +73,15 @@ namespace ft {
 		return _allocator.max_size();
 	}
 
+	/*
+	** Element access
+	*/
+
+	template <class Key, class T, class Compare, class Alloc>
+	typename map<Key, T, Compare, Alloc>::mapped_type& 			map<Key, T, Compare, Alloc>::operator[](const key_type& k) {
+		return _tree.getNodeValue(_tree.find(ft::make_pair(k, mapped_type()), _valueComp));
+	}
+
 
 	/*
 	** Modifiers

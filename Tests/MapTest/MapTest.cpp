@@ -23,6 +23,7 @@ void	MapTest::test() const {
 	testNonMemberOperatorLess();
 	testNonMemberOperatorLessOrEqual();
 	testNonMemberOperatorMore();
+	testNonMemberOperatorMoreOrEqual();
 }
 
 void	MapTest::testDefaultConstructor() const {
@@ -1054,6 +1055,55 @@ void	MapTest::testNonMemberOperatorEqual() const {
 
 		PRINT_RESULT(TO_EQUAL((ft1 == ft2), (stl1 == stl2)));
 	}
+	{
+		ft::map<std::string, int> ft1;
+		ft::map<std::string, int> ft2;
+
+		std::map<std::string, int> stl1;
+		std::map<std::string, int> stl2;
+
+		ft1.insert(ft::make_pair("string1", 1));
+		stl1.insert(std::make_pair("string2", 1));
+
+		ft2.insert(ft::make_pair("string1", 1));
+		stl2.insert(std::make_pair("string2", 1));
+
+		PRINT_RESULT(TO_EQUAL((ft1 == ft2), (stl1 == stl2)));
+	}
+	{
+		ft::map<std::string, int> ft1;
+		ft::map<std::string, int> ft2;
+
+		std::map<std::string, int> stl1;
+		std::map<std::string, int> stl2;
+
+		ft1.insert(ft::make_pair("string1", 1));
+		stl1.insert(std::make_pair("string1", 1));
+
+		ft2.insert(ft::make_pair("string2", 1));
+		stl2.insert(std::make_pair("string2", 1));
+
+		PRINT_RESULT(TO_EQUAL((ft1 == ft2), (stl1 == stl2)));
+	}
+	{
+		ft::map<std::string, int> ft1;
+		ft::map<std::string, int> ft2;
+
+		std::map<std::string, int> stl1;
+		std::map<std::string, int> stl2;
+
+		ft1.insert(ft::make_pair("string1", 1));
+		ft1.insert(ft::make_pair("string2", 2));
+		stl1.insert(std::make_pair("string1", 1));
+		stl1.insert(std::make_pair("string2", 2));
+
+		ft2.insert(ft::make_pair("string3", 3));
+		ft2.insert(ft::make_pair("string4", 4));
+		stl2.insert(std::make_pair("string3", 3));
+		stl2.insert(std::make_pair("string4", 4));
+
+		PRINT_RESULT(TO_EQUAL((ft1 == ft2), (stl1 == stl2)));
+	}
 	std::cout << std::endl;
 }
 
@@ -1155,6 +1205,55 @@ void	MapTest::testNonMemberOperatorNotEqual() const {
 			ft2.insert(ft::make_pair(i, i));
 			stl2.insert(std::make_pair(i, i));
 		}
+
+		PRINT_RESULT(TO_EQUAL((ft1 != ft2), (stl1 != stl2)));
+	}
+	{
+		ft::map<std::string, int> ft1;
+		ft::map<std::string, int> ft2;
+
+		std::map<std::string, int> stl1;
+		std::map<std::string, int> stl2;
+
+		ft1.insert(ft::make_pair("string1", 1));
+		stl1.insert(std::make_pair("string2", 1));
+
+		ft2.insert(ft::make_pair("string1", 1));
+		stl2.insert(std::make_pair("string2", 1));
+
+		PRINT_RESULT(TO_EQUAL((ft1 != ft2), (stl1 != stl2)));
+	}
+	{
+		ft::map<std::string, int> ft1;
+		ft::map<std::string, int> ft2;
+
+		std::map<std::string, int> stl1;
+		std::map<std::string, int> stl2;
+
+		ft1.insert(ft::make_pair("string1", 1));
+		stl1.insert(std::make_pair("string1", 1));
+
+		ft2.insert(ft::make_pair("string2", 1));
+		stl2.insert(std::make_pair("string2", 1));
+
+		PRINT_RESULT(TO_EQUAL((ft1 != ft2), (stl1 != stl2)));
+	}
+	{
+		ft::map<std::string, int> ft1;
+		ft::map<std::string, int> ft2;
+
+		std::map<std::string, int> stl1;
+		std::map<std::string, int> stl2;
+
+		ft1.insert(ft::make_pair("string1", 1));
+		ft1.insert(ft::make_pair("string2", 2));
+		stl1.insert(std::make_pair("string1", 1));
+		stl1.insert(std::make_pair("string2", 2));
+
+		ft2.insert(ft::make_pair("string3", 3));
+		ft2.insert(ft::make_pair("string4", 4));
+		stl2.insert(std::make_pair("string3", 3));
+		stl2.insert(std::make_pair("string4", 4));
 
 		PRINT_RESULT(TO_EQUAL((ft1 != ft2), (stl1 != stl2)));
 	}
@@ -1269,6 +1368,55 @@ void	MapTest::testNonMemberOperatorLess() const {
 
 		PRINT_RESULT(TO_EQUAL((ft1 < ft2), (stl1 < stl2)));
 	}
+	{
+		ft::map<std::string, int> ft1;
+		ft::map<std::string, int> ft2;
+
+		std::map<std::string, int> stl1;
+		std::map<std::string, int> stl2;
+
+		ft1.insert(ft::make_pair("string1", 1));
+		stl1.insert(std::make_pair("string2", 1));
+
+		ft2.insert(ft::make_pair("string1", 1));
+		stl2.insert(std::make_pair("string2", 1));
+
+		PRINT_RESULT(TO_EQUAL((ft1 < ft2), (stl1 < stl2)));
+	}
+	{
+		ft::map<std::string, int> ft1;
+		ft::map<std::string, int> ft2;
+
+		std::map<std::string, int> stl1;
+		std::map<std::string, int> stl2;
+
+		ft1.insert(ft::make_pair("string1", 1));
+		stl1.insert(std::make_pair("string1", 1));
+
+		ft2.insert(ft::make_pair("string2", 1));
+		stl2.insert(std::make_pair("string2", 1));
+
+		PRINT_RESULT(TO_EQUAL((ft1 < ft2), (stl1 < stl2)));
+	}
+	{
+		ft::map<std::string, int> ft1;
+		ft::map<std::string, int> ft2;
+
+		std::map<std::string, int> stl1;
+		std::map<std::string, int> stl2;
+
+		ft1.insert(ft::make_pair("string1", 1));
+		ft1.insert(ft::make_pair("string2", 2));
+		stl1.insert(std::make_pair("string1", 1));
+		stl1.insert(std::make_pair("string2", 2));
+
+		ft2.insert(ft::make_pair("string3", 3));
+		ft2.insert(ft::make_pair("string4", 4));
+		stl2.insert(std::make_pair("string3", 3));
+		stl2.insert(std::make_pair("string4", 4));
+
+		PRINT_RESULT(TO_EQUAL((ft1 < ft2), (stl1 < stl2)));
+	}
 	std::cout << std::endl;
 }
 
@@ -1377,6 +1525,55 @@ void	MapTest::testNonMemberOperatorLessOrEqual() const {
 			ft2.insert(ft::make_pair(i, i));
 			stl2.insert(std::make_pair(i, i));
 		}
+
+		PRINT_RESULT(TO_EQUAL((ft1 <= ft2), (stl1 <= stl2)));
+	}
+	{
+		ft::map<std::string, int> ft1;
+		ft::map<std::string, int> ft2;
+
+		std::map<std::string, int> stl1;
+		std::map<std::string, int> stl2;
+
+		ft1.insert(ft::make_pair("string1", 1));
+		stl1.insert(std::make_pair("string2", 1));
+
+		ft2.insert(ft::make_pair("string1", 1));
+		stl2.insert(std::make_pair("string2", 1));
+
+		PRINT_RESULT(TO_EQUAL((ft1 <= ft2), (stl1 <= stl2)));
+	}
+	{
+		ft::map<std::string, int> ft1;
+		ft::map<std::string, int> ft2;
+
+		std::map<std::string, int> stl1;
+		std::map<std::string, int> stl2;
+
+		ft1.insert(ft::make_pair("string1", 1));
+		stl1.insert(std::make_pair("string1", 1));
+
+		ft2.insert(ft::make_pair("string2", 1));
+		stl2.insert(std::make_pair("string2", 1));
+
+		PRINT_RESULT(TO_EQUAL((ft1 <= ft2), (stl1 <= stl2)));
+	}
+	{
+		ft::map<std::string, int> ft1;
+		ft::map<std::string, int> ft2;
+
+		std::map<std::string, int> stl1;
+		std::map<std::string, int> stl2;
+
+		ft1.insert(ft::make_pair("string1", 1));
+		ft1.insert(ft::make_pair("string2", 2));
+		stl1.insert(std::make_pair("string1", 1));
+		stl1.insert(std::make_pair("string2", 2));
+
+		ft2.insert(ft::make_pair("string3", 3));
+		ft2.insert(ft::make_pair("string4", 4));
+		stl2.insert(std::make_pair("string3", 3));
+		stl2.insert(std::make_pair("string4", 4));
 
 		PRINT_RESULT(TO_EQUAL((ft1 <= ft2), (stl1 <= stl2)));
 	}
@@ -1490,6 +1687,215 @@ void	MapTest::testNonMemberOperatorMore() const {
 		}
 
 		PRINT_RESULT(TO_EQUAL((ft1 > ft2), (stl1 > stl2)));
+	}
+	{
+		ft::map<std::string, int> ft1;
+		ft::map<std::string, int> ft2;
+
+		std::map<std::string, int> stl1;
+		std::map<std::string, int> stl2;
+
+		ft1.insert(ft::make_pair("string1", 1));
+		stl1.insert(std::make_pair("string2", 1));
+
+		ft2.insert(ft::make_pair("string1", 1));
+		stl2.insert(std::make_pair("string2", 1));
+
+		PRINT_RESULT(TO_EQUAL((ft1 > ft2), (stl1 > stl2)));
+	}
+	{
+		ft::map<std::string, int> ft1;
+		ft::map<std::string, int> ft2;
+
+		std::map<std::string, int> stl1;
+		std::map<std::string, int> stl2;
+
+		ft1.insert(ft::make_pair("string1", 1));
+		stl1.insert(std::make_pair("string1", 1));
+
+		ft2.insert(ft::make_pair("string2", 1));
+		stl2.insert(std::make_pair("string2", 1));
+
+		PRINT_RESULT(TO_EQUAL((ft1 > ft2), (stl1 > stl2)));
+	}
+	{
+		ft::map<std::string, int> ft1;
+		ft::map<std::string, int> ft2;
+
+		std::map<std::string, int> stl1;
+		std::map<std::string, int> stl2;
+
+		ft1.insert(ft::make_pair("string1", 1));
+		ft1.insert(ft::make_pair("string2", 2));
+		stl1.insert(std::make_pair("string1", 1));
+		stl1.insert(std::make_pair("string2", 2));
+
+		ft2.insert(ft::make_pair("string3", 3));
+		ft2.insert(ft::make_pair("string4", 4));
+		stl2.insert(std::make_pair("string3", 3));
+		stl2.insert(std::make_pair("string4", 4));
+
+		PRINT_RESULT(TO_EQUAL((ft1 > ft2), (stl1 > stl2)));
+	}
+	std::cout << std::endl;
+}
+
+void	MapTest::testNonMemberOperatorMoreOrEqual() const {
+	std::cout << "* operator> <non-member>: ";
+	{
+		ft::map<int, int> ft1;
+		ft::map<int, int> ft2;
+
+		std::map<int, int> stl1;
+		std::map<int, int> stl2;
+
+		PRINT_RESULT(TO_EQUAL((ft1 >= ft2), (stl1 >= stl2)));
+	}
+	{
+		ft::map<int, int> ft1;
+		ft::map<int, int> ft2;
+
+		std::map<int, int> stl1;
+		std::map<int, int> stl2;
+
+		createRandomMap(ft1, stl1, 10);
+		createRandomMap(ft2, stl2, 10);
+
+		PRINT_RESULT(TO_EQUAL((ft1 >= ft2), (stl1 >= stl2)));
+	}
+	{
+		ft::map<int, int> ft1;
+		ft::map<int, int> ft2;
+
+		std::map<int, int> stl1;
+		std::map<int, int> stl2;
+
+		for (int i = 0; i < 10; i++) {
+			ft1.insert(ft::make_pair(i, i));
+			stl1.insert(std::make_pair(i, i));
+		}
+
+		PRINT_RESULT(TO_EQUAL((ft1 >= ft2), (stl1 >= stl2)));
+	}
+	{
+		ft::map<int, int> ft1;
+		ft::map<int, int> ft2;
+
+		std::map<int, int> stl1;
+		std::map<int, int> stl2;
+
+		for (int i = 0; i< 10; i++) {
+			ft2.insert(ft::make_pair(i, i));
+			stl2.insert(std::make_pair(i, i));
+		}
+
+		PRINT_RESULT(TO_EQUAL((ft1 >= ft2), (stl1 >= stl2)));
+	}
+	{
+		ft::map<int, int> ft1;
+		ft::map<int, int> ft2;
+
+		std::map<int, int> stl1;
+		std::map<int, int> stl2;
+
+		for (int i = 0; i < 10; i++) {
+			ft1.insert(ft::make_pair(i, i));
+			stl1.insert(std::make_pair(i, i));
+		}
+
+		for (int i = 0; i < 10; i++) {
+			ft2.insert(ft::make_pair(i, i));
+			stl2.insert(std::make_pair(i, i));
+		}
+
+		PRINT_RESULT(TO_EQUAL((ft1 >= ft2), (stl1 >= stl2)));
+	}
+	{
+		ft::map<int, int> ft1;
+		ft::map<int, int> ft2;
+
+		std::map<int, int> stl1;
+		std::map<int, int> stl2;
+
+		for (int i = 10; i < 20; i++) {
+			ft1.insert(ft::make_pair(i, i));
+			stl1.insert(std::make_pair(i, i));
+		}
+
+		for (int i = 0; i < 10; i++) {
+			ft2.insert(ft::make_pair(i, i));
+			stl2.insert(std::make_pair(i, i));
+		}
+
+		PRINT_RESULT(TO_EQUAL((ft1 >= ft2), (stl1 >= stl2)));
+	}
+	{
+		ft::map<int, int> ft1;
+		ft::map<int, int> ft2;
+
+		std::map<int, int> stl1;
+		std::map<int, int> stl2;
+
+		for (int i = 0; i < 10; i++) {
+			ft1.insert(ft::make_pair(i, i));
+			stl1.insert(std::make_pair(i, i));
+		}
+
+		for (int i = 10; i < 20; i++) {
+			ft2.insert(ft::make_pair(i, i));
+			stl2.insert(std::make_pair(i, i));
+		}
+
+		PRINT_RESULT(TO_EQUAL((ft1 >= ft2), (stl1 >= stl2)));
+	}
+	{
+		ft::map<std::string, int> ft1;
+		ft::map<std::string, int> ft2;
+
+		std::map<std::string, int> stl1;
+		std::map<std::string, int> stl2;
+
+		ft1.insert(ft::make_pair("string1", 1));
+		stl1.insert(std::make_pair("string2", 1));
+
+		ft2.insert(ft::make_pair("string1", 1));
+		stl2.insert(std::make_pair("string2", 1));
+
+		PRINT_RESULT(TO_EQUAL((ft1 >= ft2), (stl1 >= stl2)));
+	}
+	{
+		ft::map<std::string, int> ft1;
+		ft::map<std::string, int> ft2;
+
+		std::map<std::string, int> stl1;
+		std::map<std::string, int> stl2;
+
+		ft1.insert(ft::make_pair("string1", 1));
+		stl1.insert(std::make_pair("string1", 1));
+
+		ft2.insert(ft::make_pair("string2", 1));
+		stl2.insert(std::make_pair("string2", 1));
+
+		PRINT_RESULT(TO_EQUAL((ft1 >= ft2), (stl1 >= stl2)));
+	}
+	{
+		ft::map<std::string, int> ft1;
+		ft::map<std::string, int> ft2;
+
+		std::map<std::string, int> stl1;
+		std::map<std::string, int> stl2;
+
+		ft1.insert(ft::make_pair("string1", 1));
+		ft1.insert(ft::make_pair("string2", 2));
+		stl1.insert(std::make_pair("string1", 1));
+		stl1.insert(std::make_pair("string2", 2));
+
+		ft2.insert(ft::make_pair("string3", 3));
+		ft2.insert(ft::make_pair("string4", 4));
+		stl2.insert(std::make_pair("string3", 3));
+		stl2.insert(std::make_pair("string4", 4));
+
+		PRINT_RESULT(TO_EQUAL((ft1 >= ft2), (stl1 >= stl2)));
 	}
 	std::cout << std::endl;
 }

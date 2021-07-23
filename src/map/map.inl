@@ -8,13 +8,13 @@ namespace ft {
 	map<Key, T, Compare, Alloc>::map(const key_compare& comp, const allocator_type& alloc)
 	: _allocator(alloc), _keyComp(comp), _valueComp(comp), _tree(alloc) {}
 
-	// template <class Key, class T, class Compare, class Alloc>
-	// template <class InputIterator>
-	// map<Key, T, Compare, Alloc>::map (InputIterator first, InputIterator last,
-	// 	const key_compare& comp, const allocator_type& alloc)
-	// : _allocator(alloc), _keyComp(comp) {
-
-	// }
+	template <class Key, class T, class Compare, class Alloc>
+	template <class InputIterator>
+	map<Key, T, Compare, Alloc>::map (InputIterator first, InputIterator last,
+		const key_compare& comp, const allocator_type& alloc)
+	: _allocator(alloc), _keyComp(comp), _valueComp(comp), _tree(alloc) {
+		insert(first, last);
+	}
 
 	// template <class Key, class T, class Compare, class Alloc>
 	// map<Key, T, Compare, Alloc>::map (const map& x) {

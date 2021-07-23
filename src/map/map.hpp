@@ -24,9 +24,10 @@ namespace ft {
 			typedef typename allocator_type::pointer						pointer;
 			typedef typename allocator_type::const_pointer					const_pointer;
 
-			typedef MapIterator<value_type, key_compare>					iterator;
+			typedef MapIterator<value_type, key_compare,
+				allocator_type>												iterator;
 			typedef MapIterator<ft::pair<const key_type, 
-				mapped_type>, key_compare>							const_iterator;
+				mapped_type>, key_compare, allocator_type>					const_iterator;
 			typedef	ft::reverse_iterator<iterator>							reverse_iterator;
 			typedef	ft::reverse_iterator<const_iterator>					const_reverse_iterator;
 
@@ -130,7 +131,8 @@ namespace ft {
 			allocator_type						_allocator;
 			key_compare							_keyComp;
 			value_compare						_valueComp;
-			Tree<value_type>					_tree;
+			Tree<value_type, 
+				allocator_type>					_tree;
 	};
 
 	template <class Key, class T, class Compare, class Alloc>

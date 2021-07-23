@@ -16,10 +16,9 @@ namespace ft {
 		insert(first, last);
 	}
 
-	// template <class Key, class T, class Compare, class Alloc>
-	// map<Key, T, Compare, Alloc>::map (const map& x) {
-
-	// }
+	template <class Key, class T, class Compare, class Alloc>
+	map<Key, T, Compare, Alloc>::map (const map& x) 
+		: _allocator(x._allocator), _keyComp(x._keyComp), _valueComp(x._valueComp), _tree(x._tree) {}
 
 	/*
 	** Destructor
@@ -27,7 +26,7 @@ namespace ft {
 
 	template <class Key, class T, class Compare, class Alloc>
 	map<Key, T, Compare, Alloc>::~map() {
-		_tree.clearTree(_allocator);
+		_tree.clearTree();
 	}
 
 	/*
@@ -109,13 +108,13 @@ namespace ft {
 
 	template <class Key, class T, class Compare, class Alloc>
 	ft::pair<typename map<Key, T, Compare, Alloc>::iterator,bool> 	map<Key, T, Compare, Alloc>::insert(const value_type& val) {
-		ft::pair<typename Tree<value_type>::NodePtr, bool> pair = _tree.insert(val, _valueComp, _allocator);
+		ft::pair<typename Tree<value_type, Alloc>::NodePtr, bool> pair = _tree.insert(val, _valueComp);
 		return (ft::make_pair(iterator(pair.first, _tree, _keyComp), pair.second));
 	}
 
 	template <class Key, class T, class Compare, class Alloc>
 	typename map<Key, T, Compare, Alloc>::iterator 					map<Key, T, Compare, Alloc>::insert(iterator position, const value_type& val) {
-		ft::pair<typename Tree<value_type>::NodePtr, bool> pair = _tree.insert(val, _valueComp, _allocator);
+		ft::pair<typename Tree<value_type, Alloc>::NodePtr, bool> pair = _tree.insert(val, _valueComp);
 
 		return (iterator(pair.first, _tree, _keyComp));
 	}
@@ -129,13 +128,13 @@ namespace ft {
 
 	template <class Key, class T, class Compare, class Alloc>
 	void 					map<Key, T, Compare, Alloc>::erase(iterator position) {
-		_tree.deleteNode(*position, _valueComp, _allocator);
+		_tree.deleteNode(*position, _valueComp);
 	}
 
 	
 	template <class Key, class T, class Compare, class Alloc>
 	typename map<Key, T, Compare, Alloc>::size_type 				map<Key, T, Compare, Alloc>::erase(const key_type& k) {
-		_tree.deleteNode(ft::make_pair(k, mapped_type()), _valueComp, _allocator);
+		_tree.deleteNode(ft::make_pair(k, mapped_type()), _valueComp);
 		return 1;
 	}
 
@@ -156,7 +155,7 @@ namespace ft {
 		allocator_type		allocatorTmp = x._allocator;
 		key_compare			keyCompareTMP = x._keyComp;
 		value_compare		valueCompareTMP = x._valueComp;
-		Tree<value_type>	treeTmp = x._tree;
+		Tree<value_type, Alloc>	treeTmp = x._tree;
 
 		x._allocator = _allocator;
 		x._keyComp = _keyComp;

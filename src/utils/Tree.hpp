@@ -14,7 +14,7 @@ struct Node {
 	bool		color;
 };
 
-template <class value_type>
+template <class value_type, class Alloc>
 class Tree {
 	public:
 		typedef Node<value_type>*		NodePtr;
@@ -24,62 +24,82 @@ class Tree {
 		NodePtr		_NIL;
 		NodePtr		_end;
 		size_t		_size;
+		Alloc		_allocator;
 
 	public:
 		Tree() {}
 
 		template <class ValueAlloc>
 		Tree(ValueAlloc alloc) {
-			_NIL = createNilNode(alloc);
-			_end = createNilNode(alloc);
+			_NIL = createNilNode();
+			_end = createNilNode();
 			_root = _end;
 
 			_size = 0;
 		}
 
+		// Tree(const Tree& other) {
+			// _root = other._root;
+			// _NIL = other._NIL;
+			// _end = other._end;
+			// _size = other._size;
+		// 	_allocator = other._allocator;
+		// 	_NIL = createNilNode();
+		// 	_end = createNilNode();
+		// 	_root = _end;
+
+		// 	NodePtr tmp = other.min(other._root);
+		// 	while (tmp != _end) {
+				
+		// 	}
+
+		// 	_size = other._size;
+		// }
+
+		// Tree& operator=(const Tree& other) {
+
+		// }
+
 		~Tree() {}
 
-		//TODO copy constryctor and opeartor=
+		//TODO copy constructor and opeartor=
 
 	public:
 
-		template <class ValueAlloc>
-		NodePtr		createNode(value_type& value, NodePtr parent, ValueAlloc& alloc) {
+		NodePtr		createNode(value_type& value, NodePtr parent) {
 			NodePtr node = new Node<value_type>;
 
 			node->left = _NIL;
 			node->right = _NIL;
 			node->parent = parent;
 
-			node->data = alloc.allocate(1);
-			alloc.construct(node->data, value);
+			node->data = _allocator.allocate(1);
+			_allocator.construct(node->data, value);
 
 			node->color = parent ? RED : BLACK;
 
 			return node;
 		};
 
-		template <class ValueAlloc>
-		NodePtr		createNilNode(ValueAlloc& alloc) {
+		NodePtr		createNilNode() {
 			NodePtr node = new Node<value_type>;
 
 			node->left = nullptr;
 			node->right = nullptr;
 			node->parent = nullptr;
 
-			node->data = alloc.allocate(1);
-			alloc.construct(node->data, value_type());
+			node->data = _allocator.allocate(1);
+			_allocator.construct(node->data, value_type());
 
 			node->color = BLACK;
 
 			return node;
 		};
 
-		template <class ValueAlloc>
-		void		clearTree(ValueAlloc& alloc) {
+		void		clearTree() {
 			if (_root == _end) {
-				clearNode(_NIL, alloc);
-				clearNode(_end, alloc);
+				clearNode(_NIL);
+				clearNode(_end);
 				return;
 			}
 		
@@ -96,16 +116,15 @@ class Tree {
 				if (node->right != _NIL)
 					queue.push_back(node->right);
 		
-				clearNode(node, alloc);
+				clearNode(node);
 			}
-			clearNode(_NIL, alloc);
-			clearNode(_end, alloc);
+			clearNode(_NIL);
+			clearNode(_end);
 		}
 
-		template <class ValueAlloc>
-		void		clearNode(NodePtr node, ValueAlloc alloc) {
-			alloc.destroy(node->data);
-			alloc.deallocate(node->data, 1);
+		void		clearNode(NodePtr node) {
+			_allocator.destroy(node->data);
+			_allocator.deallocate(node->data, 1);
 			delete node;
 		}
 
@@ -163,23 +182,23 @@ class Tree {
 			node->parent->parent->color = RED;
 		}
 
-		template <class Comp, class ValueAlloc>
-		ft::pair<NodePtr, bool>		insert(value_type data, Comp comp, ValueAlloc& alloc) {
+		template <class Comp>
+		ft::pair<NodePtr, bool>		insert(value_type data, Comp comp) {
 			NodePtr node = find(data, comp);
 			bool	isInserted;
 
 			if (node != _NIL && node != _end)
 				isInserted = false;
 			else {
-				node = insertNewNode(data, comp, alloc);
+				node = insertNewNode(data, comp);
 				isInserted = true;
 			}
 
 			return (ft::make_pair(node, isInserted));
 		}
 
-		template <class Comp, class ValueAlloc>
-		void		deleteNode(value_type data, Comp& comp, ValueAlloc& alloc) {
+		template <class Comp>
+		void		deleteNode(value_type data, Comp& comp) {
 			NodePtr tmp = find(data, comp);
 
 			if (!tmp || tmp == _NIL || tmp == _end)
@@ -209,7 +228,7 @@ class Tree {
 			if (successor->color == BLACK)
 				deleteFixup(successorChild);
 
-			clearNode(successor, alloc);
+			clearNode(successor);
 			_size--;
 			if (!_size) {
 				_end->parent = nullptr;
@@ -410,10 +429,10 @@ class Tree {
 			return parent;
 		}
 
-		template <class Comp, class ValueAlloc>
-		NodePtr								insertNewNode(value_type data, Comp comp, ValueAlloc& alloc) {
+		template <class Comp>
+		NodePtr								insertNewNode(value_type data, Comp comp) {
 			NodePtr parent = getNewNodeParent(data, comp);
-			NodePtr newNode = createNode(data, parent, alloc);
+			NodePtr newNode = createNode(data, parent);
 
 			if (parent) {
 				if (comp(data, getNodeData(parent)))

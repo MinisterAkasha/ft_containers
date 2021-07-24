@@ -76,6 +76,14 @@ class MapIterator : public ft::iterator<ft::bidirectional_iterator_tag, value_ty
 			return tmp;
 		}
 
+		NodePointer getNodePointer() const {
+			return _ptr;
+		}
+
+		// bool		operator==(const MapIterator& other) const {
+		// 	return _ptr == other._ptr;
+		// }
+
 		private:
 			void	next() {
 				if (_ptr->right != _NIL && _ptr->right) {
@@ -112,5 +120,16 @@ class MapIterator : public ft::iterator<ft::bidirectional_iterator_tag, value_ty
 ** Non-member overloads
 */
 
+template <class value_type, class Compare, class Alloc>
+bool operator==(const MapIterator<value_type, Compare, Alloc> &lhs,
+	const MapIterator<value_type, Compare, Alloc> &rhs) {
+	return lhs.getNodePointer() == rhs.getNodePointer();
+};
+
+template <class value_type, class Compare, class Alloc>
+bool operator!=(const MapIterator<value_type, Compare, Alloc> &lhs,
+	const MapIterator<value_type, Compare, Alloc> &rhs) {
+	return !operator==(lhs, rhs);
+};
 
 #endif

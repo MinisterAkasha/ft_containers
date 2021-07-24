@@ -267,7 +267,6 @@ class Tree {
 				}
 			}
 			node->color = BLACK;
-			printTree();
 		}
 
 		template <class Comp>

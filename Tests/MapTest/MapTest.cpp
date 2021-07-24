@@ -54,6 +54,10 @@ void	MapTest::testBegin() const {
 		ft::map<int, int>::iterator		ftI = ft.begin();
 		std::map<int, int>::iterator	stlI = stl.begin();
 
+		// (ftI->second)++;
+		// // (stlI->second)++;
+		// std::cout << ftI->second << std::endl;
+
 		PRINT_RESULT(TO_EQUAL(ftI->first, stlI->first) && TO_EQUAL(ftI->second, stlI->second));
 	}
 	{

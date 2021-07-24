@@ -198,6 +198,14 @@ namespace ft {
 	}
 
 	/*
+	** Allocator
+	*/
+	template <class Key, class T, class Compare, class Alloc>
+	typename map<Key, T, Compare, Alloc>::allocator_type 			map<Key, T, Compare, Alloc>::get_allocator() const {
+		return _allocator;
+	}
+
+	/*
 	** Non-member overloads
 	*/
 

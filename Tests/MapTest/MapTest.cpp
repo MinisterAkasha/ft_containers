@@ -30,6 +30,7 @@ void	MapTest::test() const {
 	testCount();
 	testLowerBound();
 	testUpperBound();
+	testEqualRange();
 	testtestAccessOperator();
 	testNonMemberOperatorEqual();
 	testNonMemberOperatorNotEqual();
@@ -3342,5 +3343,98 @@ void	MapTest::testUpperBound() const {
 
 		PRINT_RESULT(TO_EQUAL(ft.upper_bound("3")->first, stl.upper_bound("3")->first));
 	}
+	std::cout << std::endl;
+}
+
+void	MapTest::testEqualRange() const {
+	std::cout << "* equal_range(): ";
+	{
+		ft::map<int, int>	ft;
+		std::map<int, int>	stl;
+
+		for (int i = 1; i < 6; i++) {
+			ft.insert(ft::make_pair(i, i));
+			stl.insert(std::make_pair(i, i));
+		}
+		// PRINT_RESULT(TO_EQUAL_PAIR(ft.equal_range(0), stl.equal_range(0)));
+	}
+	// {
+	// 	ft::map<int, int>	ft;
+	// 	std::map<int, int>	stl;
+
+	// 	for (int i = 0; i < 20; i++) {
+	// 		ft.insert(ft::make_pair(i, i));
+	// 		stl.insert(std::make_pair(i, i));
+	// 	}
+
+	// 	PRINT_RESULT(TO_EQUAL_PAIR(ft.equal_range(100), stl.equal_range(100)));
+	// }
+	// {
+	// 	ft::map<int, int>	ft;
+	// 	std::map<int, int>	stl;
+
+	// 	for (int i = 0; i < 20; i++) {
+	// 		ft.insert(ft::make_pair(i, i));
+	// 		stl.insert(std::make_pair(i, i));
+	// 	}
+
+	// 	PRINT_RESULT(TO_EQUAL_PAIR(ft.equal_range(0), stl.equal_range(0)));
+	// }
+	// {
+	// 	ft::map<int, int>	ft;
+	// 	std::map<int, int>	stl;
+
+	// 	for (int i = 0; i < 20; i++) {
+	// 		ft.insert(ft::make_pair(i, i));
+	// 		stl.insert(std::make_pair(i, i));
+	// 	}
+
+	// 	PRINT_RESULT(TO_EQUAL_PAIR(ft.equal_range(20), stl.equal_range(20)));
+	// }
+	// {
+	// 	ft::map<int, int>	ft;
+	// 	std::map<int, int>	stl;
+
+	// 	for (int i = 0; i < 20; i++) {
+	// 		ft.insert(ft::make_pair(i, i));
+	// 		stl.insert(std::make_pair(i, i));
+	// 	}
+
+	// 	PRINT_RESULT(TO_EQUAL_PAIR(ft.equal_range(15), stl.equal_range(15)));
+	// }
+	// {
+	// 	ft::map<int, int>	ft;
+	// 	std::map<int, int>	stl;
+
+	// 	PRINT_RESULT(TO_EQUAL_PAIR(ft.equal_range(1), stl.equal_range(1)));
+	// }
+	// {
+	// 	ft::map<std::string, int>	ft;
+	// 	std::map<std::string, int>	stl;
+
+	// 	ft.insert(ft::make_pair("1", 1));
+	// 	stl.insert(std::make_pair("1", 1));
+	// 	ft.insert(ft::make_pair("2", 2));
+	// 	stl.insert(std::make_pair("2", 2));
+	// 	ft.insert(ft::make_pair("3", 3));
+	// 	stl.insert(std::make_pair("3", 3));
+
+	// 	PRINT_RESULT(TO_EQUAL_PAIR(ft.equal_range("1"), stl.equal_range("1")));
+	// }
+	// {
+	// 	ft::map<std::string, int>	ft;
+	// 	std::map<std::string, int>	stl;
+
+	// 	ft.insert(ft::make_pair("1", 1));
+	// 	stl.insert(std::make_pair("1", 1));
+	// 	ft.insert(ft::make_pair("2", 2));
+	// 	stl.insert(std::make_pair("2", 2));
+	// 	ft.insert(ft::make_pair("3", 3));
+	// 	stl.insert(std::make_pair("3", 3));
+	// 	ft.insert(ft::make_pair("3", 10));
+	// 	stl.insert(std::make_pair("3", 10));
+
+	// 	PRINT_RESULT(TO_EQUAL_PAIR(ft.equal_range("3"), stl.equal_range("3")));
+	// }
 	std::cout << std::endl;
 }

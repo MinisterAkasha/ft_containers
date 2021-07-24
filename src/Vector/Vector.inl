@@ -30,14 +30,9 @@ namespace ft
     vector<T, Allocator>::vector(InputIterator first, InputIterator last, const allocator_type& alloc,
 	typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type*)
 	: _arr(nullptr), _size(0), _capacity(0), _allocator(alloc) {
-		size_type size = 0;
-		InputIterator position = first;
-		while (position != last) {
-			size++;
-			position++;
-		}
+		size_type size = last._ptr - first._ptr;
 		_capacity = size;
-		_arr = _allocator.allocate(0);
+		_arr = _allocator.allocate(_capacity);
 
 		insert(_arr, first, last);
 	}
@@ -213,23 +208,20 @@ namespace ft
 
 	template <class T, class Allocator>
 	typename vector<T, Allocator>::iterator	vector<T, Allocator>::insert(iterator position, const value_type& val) {
-		size_type index = getIndexFromPosition(position);
+		pointer ptr = position._ptr;
 
-		if (_size == _capacity)
-			reserve(_capacity * 2 ? _capacity * 2 : 1);
-
-		pointer newArr = _allocator.allocate(_capacity);
-		size_type oldArrIndex = 0;
-		for (size_type i = 0; i < _size + 1; i++) {
-			if (i == index)
-				_allocator.construct(newArr + index, val);
-			else
-				_allocator.construct(newArr + i, _arr[oldArrIndex++]);
+		if (_size + 1 > _capacity) {
+			difference_type offset = _arr + _size - ptr;
+			reserve(_capacity ? _capacity * 2 : 1);
+			ptr = _arr + _size - offset;
 		}
-		this->~vector();
-		_arr = newArr;
+
+		std::memmove(ptr + 1, ptr,
+			   static_cast<size_t>((_arr + _size - ptr) * sizeof(value_type)));
+		
+		_allocator.construct(ptr, val);
 		_size++;
-		return &_arr[index];
+		return iterator(ptr);
 	}
 
 	template <class T, class Allocator>

@@ -261,58 +261,13 @@ class Tree {
 		void		deleteFixup(NodePtr node) {
 			while (node != _root && node->color == BLACK) {
 				if (node == node->parent->left) {
-					NodePtr sibling = node->parent->right;
-
-					if (sibling->color == RED) {
-						sibling->color = BLACK;
-						node->parent->color = RED;
-						rotateLeft(node->parent);
-						sibling = node->parent->right;
-					}
-					if (sibling->left->color == BLACK && sibling->right->color == BLACK) {
-						sibling->color = RED;
-						node = node->parent;
-					} else {
-						if (sibling->right->color == BLACK) {
-							sibling->left->color = BLACK;
-							sibling->color = RED;
-							rotateRight(sibling);
-							sibling = node->parent->right;
-						}
-						sibling->color = node->parent->color;
-						node->parent->color = BLACK;
-						sibling->right->color = BLACK;
-						rotateLeft(node->parent);
-						node = _root;
-					}
+					deleteFixupParentLeft(node);
 				} else {
-					NodePtr sibling = node->parent->left;
-
-					if (sibling->color == RED) {
-						sibling->color = BLACK;
-						node->parent->color = RED;
-						rotateRight(node->parent);
-						sibling = node->parent->left;
-					}
-					if (sibling->right->color == BLACK && sibling->left->color == BLACK) {
-						sibling->color = RED;
-						node = node->parent;
-					} else {
-						if (sibling->left->color == BLACK) {
-							sibling->right->color = BLACK;
-							sibling->color = RED;
-							rotateLeft(sibling);
-							sibling = node->parent->left;
-						}
-						sibling->color = node->parent->color;
-						node->parent->color = BLACK;
-						sibling->left->color = BLACK;
-						rotateRight(node->parent);
-						node = _root;
-					}
+					deleteFixupParentRight(node);
 				}
 			}
 			node->color = BLACK;
+			printTree();
 		}
 
 		template <class Comp>
@@ -567,6 +522,60 @@ class Tree {
 			value_type* copy = node1->data;
 			node1->data = node2->data;
 			node2->data = copy;
+		}
+
+		void								deleteFixupParentLeft(NodePtr& node) {
+			NodePtr sibling = node->parent->right;
+
+			if (sibling->color == RED) {
+				sibling->color = BLACK;
+				node->parent->color = RED;
+				rotateLeft(node->parent);
+				sibling = node->parent->right;
+			}
+			if (sibling->left->color == BLACK && sibling->right->color == BLACK) {
+				sibling->color = RED;
+				node = node->parent;
+			} else {
+				if (sibling->right->color == BLACK) {
+					sibling->left->color = BLACK;
+					sibling->color = RED;
+					rotateRight(sibling);
+					sibling = node->parent->right;
+				}
+				sibling->color = node->parent->color;
+				node->parent->color = BLACK;
+				sibling->right->color = BLACK;
+				rotateLeft(node->parent);
+				node = _root;
+			}
+		}
+
+		void								deleteFixupParentRight(NodePtr& node) {
+			NodePtr sibling = node->parent->left;
+
+			if (sibling->color == RED) {
+				sibling->color = BLACK;
+				node->parent->color = RED;
+				rotateRight(node->parent);
+				sibling = node->parent->left;
+			}
+			if (sibling->right->color == BLACK && sibling->left->color == BLACK) {
+				sibling->color = RED;
+				node = node->parent;
+			} else {
+				if (sibling->left->color == BLACK) {
+					sibling->right->color = BLACK;
+					sibling->color = RED;
+					rotateLeft(sibling);
+					sibling = node->parent->left;
+				}
+				sibling->color = node->parent->color;
+				node->parent->color = BLACK;
+				sibling->left->color = BLACK;
+				rotateRight(node->parent);
+				node = _root;
+			}
 		}
 
 	public://!DELETE

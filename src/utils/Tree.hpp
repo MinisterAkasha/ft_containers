@@ -465,7 +465,7 @@ class Tree {
 
 				template <class A>
 				static Tree								copyTree(Tree otherTree, A alloc) {
-					Tree<value_type, Alloc> tree = new Tree<value_type, Alloc>;
+					Tree<value_type, Alloc> tree;
 					tree._NIL = createNilNode(alloc);
 					tree._end = createNilNode(alloc);
 					tree._root = tree._end;

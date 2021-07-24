@@ -23,6 +23,18 @@ namespace ft {
 			typename map<Key, T, Compare, Alloc>::allocator_type>::CopyTree::copyTree(x._tree, _allocator);
 	}
 
+	template <class Key, class T, class Compare, class Alloc>
+	map<Key, T, Compare, Alloc>& map<Key, T, Compare, Alloc>::operator=(const map& x) {
+		if (&x != this) {
+			_allocator = x._allocator;
+			_keyComp = x._keyComp;
+			_valueComp = x._valueComp;
+			_tree = Tree<typename map<Key, T, Compare, Alloc>::value_type,
+				typename map<Key, T, Compare, Alloc>::allocator_type>::CopyTree::copyTree(x._tree, _allocator);
+		}
+		return *this;
+	}
+
 	/*
 	** Destructor
 	*/

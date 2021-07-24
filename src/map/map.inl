@@ -29,6 +29,7 @@ namespace ft {
 			_allocator = x._allocator;
 			_keyComp = x._keyComp;
 			_valueComp = x._valueComp;
+			_tree.clearTree();
 			_tree = Tree<typename map<Key, T, Compare, Alloc>::value_type,
 				typename map<Key, T, Compare, Alloc>::allocator_type>::CopyTree::copyTree(x._tree, _allocator);
 		}

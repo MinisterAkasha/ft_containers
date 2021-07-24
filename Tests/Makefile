@@ -33,7 +33,7 @@ all: $(OBJDIR) $(NAME)
 
 $(NAME): $(OBJ)
 	@$(CC) $(FLAGS) $(INCLUDE) $(O_FILES) -o $@
-	# mv $@ ../
+	mv $@ ../
 	@echo "$(GREEN)Success!"
 
 $(OBJDIR):

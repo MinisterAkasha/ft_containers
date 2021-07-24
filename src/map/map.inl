@@ -224,7 +224,7 @@ namespace ft {
 
 	template <class Key, class T, class Compare, class Alloc>
 	typename map<Key, T, Compare, Alloc>::iterator				map<Key, T, Compare, Alloc>::lower_bound(const key_type & k) {
-		iterator	it	= begin();
+		iterator	it	= this->begin();
 		iterator	end	= this->end();
 
 		while (it != end && _keyComp(it->first, k))
@@ -234,11 +234,37 @@ namespace ft {
 
 	template <class Key, class T, class Compare, class Alloc>
 	typename map<Key, T, Compare, Alloc>::const_iterator			map<Key, T, Compare, Alloc>::lower_bound(const key_type & k) const {
-		const_iterator	it	= begin();
+		const_iterator	it	= this->begin();
 		const_iterator	end	= this->end();
 
 		while (it != end && _keyComp(it->first, k))
 			++it;
+		return it;
+	}
+
+	template <class Key, class T, class Compare, class Alloc>
+	typename map<Key, T, Compare, Alloc>::iterator				map<Key, T, Compare, Alloc>::upper_bound(const key_type & k) {
+		iterator it = this->begin();
+		iterator end = this->end();
+
+		while (it != end) {
+			if (_keyComp(k, it->first))
+				break;
+			it++;
+		}
+		return it;
+	}
+
+	template <class Key, class T, class Compare, class Alloc>
+	typename map<Key, T, Compare, Alloc>::const_iterator			map<Key, T, Compare, Alloc>::upper_bound(const key_type & k) const {
+		const_iterator it = this->begin();
+		const_iterator end = this->end();
+
+		while (it != end) {
+			if (_keyComp(k, it->first))
+				break;
+			it++;
+		}
 		return it;
 	}
 

@@ -27,6 +27,7 @@ void	MapTest::test() const {
 	testClear();
 	testFind();
 	testEmpty();
+	testCount();
 	testtestAccessOperator();
 	testNonMemberOperatorEqual();
 	testNonMemberOperatorNotEqual();
@@ -3056,6 +3057,100 @@ void	MapTest::testMemberOperatorEqual() const {
 		stl = stlSupport;
 
 		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	}
+	std::cout << std::endl;
+}
+
+void	MapTest::testCount() const {
+	std::cout << "* count(): ";
+	{
+		ft::map<int, int>	ft;
+		std::map<int, int>	stl;
+
+		for (int i = 1; i < 6; i++) {
+			ft.insert(ft::make_pair(i, i));
+			stl.insert(std::make_pair(i, i));
+		}
+
+		PRINT_RESULT(TO_EQUAL(ft.count(0), stl.count(0)));
+	}
+	{
+		ft::map<int, int>	ft;
+		std::map<int, int>	stl;
+
+		for (int i = 0; i < 20; i++) {
+			ft.insert(ft::make_pair(i, i));
+			stl.insert(std::make_pair(i, i));
+		}
+
+		PRINT_RESULT(TO_EQUAL(ft.count(100), stl.count(100)));
+	}
+	{
+		ft::map<int, int>	ft;
+		std::map<int, int>	stl;
+
+		for (int i = 0; i < 20; i++) {
+			ft.insert(ft::make_pair(i, i));
+			stl.insert(std::make_pair(i, i));
+		}
+
+		PRINT_RESULT(TO_EQUAL(ft.count(0), stl.count(0)));
+	}
+	{
+		ft::map<int, int>	ft;
+		std::map<int, int>	stl;
+
+		for (int i = 0; i < 20; i++) {
+			ft.insert(ft::make_pair(i, i));
+			stl.insert(std::make_pair(i, i));
+		}
+
+		PRINT_RESULT(TO_EQUAL(ft.count(20), stl.count(20)));
+	}
+	{
+		ft::map<int, int>	ft;
+		std::map<int, int>	stl;
+
+		for (int i = 0; i < 20; i++) {
+			ft.insert(ft::make_pair(i, i));
+			stl.insert(std::make_pair(i, i));
+		}
+
+		PRINT_RESULT(TO_EQUAL(ft.count(15), stl.count(15)));
+	}
+	{
+		ft::map<int, int>	ft;
+		std::map<int, int>	stl;
+
+		PRINT_RESULT(TO_EQUAL(ft.count(1), stl.count(1)));
+	}
+	{
+		ft::map<std::string, int>	ft;
+		std::map<std::string, int>	stl;
+
+		ft.insert(ft::make_pair("1", 1));
+		stl.insert(std::make_pair("1", 1));
+		ft.insert(ft::make_pair("2", 2));
+		stl.insert(std::make_pair("2", 2));
+		ft.insert(ft::make_pair("3", 3));
+		stl.insert(std::make_pair("3", 3));
+
+		PRINT_RESULT(TO_EQUAL(ft.count("4"), stl.count("4")));
+	}
+	{
+		ft::map<std::string, int>	ft;
+		std::map<std::string, int>	stl;
+
+		ft.insert(ft::make_pair("1", 1));
+		stl.insert(std::make_pair("1", 1));
+		ft.insert(ft::make_pair("2", 2));
+		stl.insert(std::make_pair("2", 2));
+		ft.insert(ft::make_pair("3", 3));
+		stl.insert(std::make_pair("3", 3));
+		ft.insert(ft::make_pair("3", 10));
+		stl.insert(std::make_pair("3", 10));
+
+		PRINT_RESULT(TO_EQUAL(ft.count("3"), stl.count("3")));
 	}
 	std::cout << std::endl;
 }

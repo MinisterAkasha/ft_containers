@@ -585,7 +585,6 @@ void	MapTest::testCopyConstructor() const {
 		ft::map<int, int>	ftSupport;
 		std::map<int, int>	stlSupport;
 
-		// createRandomMap(ftSupport, stlSupport, 1);
 		for (int i = 1; i < 6; i++) {
 			ftSupport.insert(ft::make_pair(i, i));
 			stlSupport.insert(std::make_pair(i, i));
@@ -596,128 +595,128 @@ void	MapTest::testCopyConstructor() const {
 
 		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
 	}
-	// {
-	// 	ft::map<int, int>	ftSupport;
-	// 	std::map<int, int>	stlSupport;
+	{
+		ft::map<int, int>	ftSupport;
+		std::map<int, int>	stlSupport;
 
-	// 	for (int i = 0; i < 20; i++) {
-	// 		ftSupport.insert(ft::make_pair(i, i));
-	// 		stlSupport.insert(std::make_pair(i, i));
-	// 	}
+		for (int i = 0; i < 20; i++) {
+			ftSupport.insert(ft::make_pair(i, i));
+			stlSupport.insert(std::make_pair(i, i));
+		}
 
-	// 	ft::map<int, int>	ft(ftSupport);
-	// 	std::map<int, int>	stl(stlSupport);
+		ft::map<int, int>	ft(ftSupport);
+		std::map<int, int>	stl(stlSupport);
 
-	// 	PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
-	// }
-	// {
-	// 	ft::map<int, int>	ftSupport;
-	// 	std::map<int, int>	stlSupport;
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	}
+	{
+		ft::map<int, int>	ftSupport;
+		std::map<int, int>	stlSupport;
 
-	// 	for (int i = 0; i < 20; i++) {
-	// 		ftSupport.insert(ft::make_pair(i, i));
-	// 		stlSupport.insert(std::make_pair(i, i));
-	// 	}
+		for (int i = 0; i < 20; i++) {
+			ftSupport.insert(ft::make_pair(i, i));
+			stlSupport.insert(std::make_pair(i, i));
+		}
 
-	// 	ft::map<int, int>	ft(ftSupport);
-	// 	std::map<int, int>	stl(stlSupport);
+		ft::map<int, int>	ft(ftSupport);
+		std::map<int, int>	stl(stlSupport);
 
-	// 	PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
-	// }
-	// {
-	// 	ft::map<int, int>	ftSupport;
-	// 	std::map<int, int>	stlSupport;
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	}
+	{
+		ft::map<int, int>	ftSupport;
+		std::map<int, int>	stlSupport;
 
-	// 	for (int i = 0; i < 20; i++) {
-	// 		ftSupport.insert(ft::make_pair(i, i));
-	// 		stlSupport.insert(std::make_pair(i, i));
-	// 	}
+		for (int i = 0; i < 20; i++) {
+			ftSupport.insert(ft::make_pair(i, i));
+			stlSupport.insert(std::make_pair(i, i));
+		}
 
-	// 	ft::map<int, int>	ft(ftSupport);
-	// 	std::map<int, int>	stl(stlSupport);
+		ft::map<int, int>	ft(ftSupport);
+		std::map<int, int>	stl(stlSupport);
 
-	// 	PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
-	// }
-	// {
-	// 	ft::map<int, int>	ftSupport;
-	// 	std::map<int, int>	stlSupport;
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	}
+	{
+		ft::map<int, int>	ftSupport;
+		std::map<int, int>	stlSupport;
 
-	// 	for (int i = 0; i < 20; i++) {
-	// 		ftSupport.insert(ft::make_pair(i, i));
-	// 		stlSupport.insert(std::make_pair(i, i));
-	// 	}
+		for (int i = 0; i < 20; i++) {
+			ftSupport.insert(ft::make_pair(i, i));
+			stlSupport.insert(std::make_pair(i, i));
+		}
 
-	// 	ft::map<int, int>	ft(ftSupport);
-	// 	std::map<int, int>	stl(stlSupport);
+		ft::map<int, int>	ft(ftSupport);
+		std::map<int, int>	stl(stlSupport);
 
-	// 	PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
-	// }
-	// {
-	// 	ft::map<int, int>	ftSupport;
-	// 	std::map<int, int>	stlSupport;
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	}
+	{
+		ft::map<int, int>	ftSupport;
+		std::map<int, int>	stlSupport;
 
-	// 	for (int i = 0; i < 20; i++) {
-	// 		ftSupport.insert(ft::make_pair(i, i));
-	// 		stlSupport.insert(std::make_pair(i, i));
-	// 	}
+		for (int i = 0; i < 20; i++) {
+			ftSupport.insert(ft::make_pair(i, i));
+			stlSupport.insert(std::make_pair(i, i));
+		}
 
-	// 	ft::map<int, int>	ft(ftSupport);
-	// 	std::map<int, int>	stl(stlSupport);
+		ft::map<int, int>	ft(ftSupport);
+		std::map<int, int>	stl(stlSupport);
 
-	// 	PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
-	// }
-	// {
-	// 	ft::map<int, int>	ftSupport;
-	// 	std::map<int, int>	stlSupport;
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	}
+	{
+		ft::map<int, int>	ftSupport;
+		std::map<int, int>	stlSupport;
 
-	// 	ft::map<int, int>	ft(ftSupport);
-	// 	std::map<int, int>	stl(stlSupport);
+		ft::map<int, int>	ft(ftSupport);
+		std::map<int, int>	stl(stlSupport);
 
-	// 	PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
-	// }
-	// {
-	// 	ft::map<std::string, int>	ftSupport;
-	// 	std::map<std::string, int>	stlSupport;
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	}
+	{
+		ft::map<std::string, int>	ftSupport;
+		std::map<std::string, int>	stlSupport;
 
-	// 	ft::map<std::string, int>	ft(ftSupport);
-	// 	std::map<std::string, int>	stl(stlSupport);
+		ft::map<std::string, int>	ft(ftSupport);
+		std::map<std::string, int>	stl(stlSupport);
 
-	// 	PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
-	// }
-	// {
-	// 	ft::map<std::string, int>	ftSupport;
-	// 	std::map<std::string, int>	stlSupport;
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	}
+	{
+		ft::map<std::string, int>	ftSupport;
+		std::map<std::string, int>	stlSupport;
 
-	// 	ftSupport.insert(ft::make_pair("1", 1));
-	// 	stlSupport.insert(std::make_pair("1", 1));
-	// 	ftSupport.insert(ft::make_pair("2", 2));
-	// 	stlSupport.insert(std::make_pair("2", 2));
-	// 	ftSupport.insert(ft::make_pair("3", 3));
-	// 	stlSupport.insert(std::make_pair("3", 3));
+		ftSupport.insert(ft::make_pair("1", 1));
+		stlSupport.insert(std::make_pair("1", 1));
+		ftSupport.insert(ft::make_pair("2", 2));
+		stlSupport.insert(std::make_pair("2", 2));
+		ftSupport.insert(ft::make_pair("3", 3));
+		stlSupport.insert(std::make_pair("3", 3));
 
-	// 	ft::map<std::string, int>	ft(ftSupport);
-	// 	std::map<std::string, int>	stl(stlSupport);
+		ft::map<std::string, int>	ft(ftSupport);
+		std::map<std::string, int>	stl(stlSupport);
 
-	// 	PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
-	// }
-	// {
-	// 	ft::map<std::string, int>	ftSupport;
-	// 	std::map<std::string, int>	stlSupport;
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	}
+	{
+		ft::map<std::string, int>	ftSupport;
+		std::map<std::string, int>	stlSupport;
 
-	// 	ftSupport.insert(ft::make_pair("1", 1));
-	// 	stlSupport.insert(std::make_pair("1", 1));
-	// 	ftSupport.insert(ft::make_pair("2", 2));
-	// 	stlSupport.insert(std::make_pair("2", 2));
-	// 	ftSupport.insert(ft::make_pair("3", 3));
-	// 	stlSupport.insert(std::make_pair("3", 3));
-	// 	ftSupport.insert(ft::make_pair("3", 10));
-	// 	stlSupport.insert(std::make_pair("3", 10));
+		ftSupport.insert(ft::make_pair("1", 1));
+		stlSupport.insert(std::make_pair("1", 1));
+		ftSupport.insert(ft::make_pair("2", 2));
+		stlSupport.insert(std::make_pair("2", 2));
+		ftSupport.insert(ft::make_pair("3", 3));
+		stlSupport.insert(std::make_pair("3", 3));
+		ftSupport.insert(ft::make_pair("3", 10));
+		stlSupport.insert(std::make_pair("3", 10));
 
-	// 	ft::map<std::string, int>	ft(ftSupport);
-	// 	std::map<std::string, int>	stl(stlSupport);
+		ft::map<std::string, int>	ft(ftSupport);
+		std::map<std::string, int>	stl(stlSupport);
 
-	// 	PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
-	// }
+		PRINT_RESULT(TO_EQUAL_MAP(ft, stl));
+	}
 	std::cout << std::endl;
 }
 

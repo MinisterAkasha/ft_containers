@@ -32,8 +32,8 @@ void	VectorTest::test() const {
 	// testCapasity();
 	// testMaxSize();
 	// testClear();
-	testSingleErase();
-	// testRangeErase();
+	// testSingleErase();
+	testRangeErase();
 	// testSwap();
 	// testGetAllocator();
 	// testFillAssign();
@@ -53,7 +53,7 @@ void	VectorTest::test() const {
 	// testNonMemberOperatorMinus();
 	// testNonMemberOperatorPlus();
 
-	testVectorIterator();
+	// testVectorIterator();
 }
 
 void	VectorTest::testFillConstructor() const {
@@ -2227,9 +2227,23 @@ void	VectorTest::testRangeErase() const {
 		std::vector<int>	stlVector(2, 3);
 		
 		createRandomVectors(ft, stlVector, 100);
+		
+		ft.erase(ft.begin() + 5, ft.begin() + 8);
+		stlVector.erase(stlVector.begin() + 5, stlVector.begin() + 8);
 
-		ft.erase(ft.begin() + 50, ft.begin() + 80);
-		stlVector.erase(stlVector.begin() + 50, stlVector.begin() + 80);
+		PRINT_RESULT(TO_EQUAL_VECTOR(ft, stlVector));
+	}
+	{
+		ft::vector<int>		ft(2, 3);
+		std::vector<int>	stlVector(2, 3);
+		
+		for (int i = 0; i < 5; i++) {
+			ft.push_back(i);
+			stlVector.push_back(i);
+		}
+		
+		ft.erase(ft.begin(), ft.end());
+		stlVector.erase(stlVector.begin(), stlVector.end());
 
 		PRINT_RESULT(TO_EQUAL_VECTOR(ft, stlVector));
 	}
@@ -2351,10 +2365,24 @@ void	VectorTest::testRangeErase() const {
 		ft::vector<int>		ft(100, 150);
 		std::vector<int>	stlVector(100, 150);
 		
-		createRandomVectors(ft, stlVector, 100);
+		ft.push_back(1);
+		stlVector.push_back(1);
+		ft.push_back(2);
+		stlVector.push_back(2);
 
 		ft::vector<int>::iterator	ftIterator = ft.erase(ft.begin() + 50, ft.end());
 		std::vector<int>::iterator	stlIterator = stlVector.erase(stlVector.begin() + 50, stlVector.end());
+
+		PRINT_RESULT(TO_EQUAL(*ftIterator, *stlIterator));
+	}
+	{
+		ft::vector<int>		ft;
+		std::vector<int>	stlVector;
+		
+		createOrderedVectors(ft, stlVector, 15);
+
+		ft::vector<int>::iterator	ftIterator = ft.erase(ft.begin(), ft.end());
+		std::vector<int>::iterator	stlIterator = stlVector.erase(stlVector.begin(), stlVector.end());
 
 		PRINT_RESULT(TO_EQUAL(*ftIterator, *stlIterator));
 	}
@@ -2395,10 +2423,10 @@ void	VectorTest::testRangeErase() const {
 		ft::vector<int>		ft;
 		std::vector<int>	stlVector;
 		
-		createRandomVectors(ft, stlVector, 100);
+		createOrderedVectors(ft, stlVector, 100);
 
-		ft::vector<int>::iterator	ftIterator = ft.erase(ft.begin(), ft.end() - 1);
-		std::vector<int>::iterator	stlIterator = stlVector.erase(stlVector.begin(), stlVector.end() - 1);
+		ft::vector<int>::iterator	ftIterator = ft.erase(ft.begin(), ft.end());
+		std::vector<int>::iterator	stlIterator = stlVector.erase(stlVector.begin(), stlVector.end());
 
 		PRINT_RESULT(TO_EQUAL(*ftIterator, *stlIterator));
 	}

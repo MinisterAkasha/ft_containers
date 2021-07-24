@@ -341,4 +341,10 @@ namespace ft {
 						const map<Key,T,Compare,Alloc>& rhs) {
 		return !operator>(rhs, lhs);
 	}
+	
+	template <class Key, class T, class Compare, class Alloc>
+  	void swap(map<Key,T,Compare,Alloc>& x, map<Key,T,Compare,Alloc>& y) {
+		  x.swap(y);
+	}
+
 }

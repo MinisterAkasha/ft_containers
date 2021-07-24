@@ -3348,6 +3348,11 @@ void	MapTest::testUpperBound() const {
 
 void	MapTest::testEqualRange() const {
 	std::cout << "* equal_range(): ";
+	typedef ft::map<int, int>::iterator ftIterator;
+	typedef std::map<int, int>::iterator stlIterator;
+	
+	typedef ft::map<std::string, int>::iterator ftSTRIterator;
+	typedef std::map<std::string, int>::iterator stlSTRIterator;
 	{
 		ft::map<int, int>	ft;
 		std::map<int, int>	stl;
@@ -3356,85 +3361,111 @@ void	MapTest::testEqualRange() const {
 			ft.insert(ft::make_pair(i, i));
 			stl.insert(std::make_pair(i, i));
 		}
-		// PRINT_RESULT(TO_EQUAL_PAIR(ft.equal_range(0), stl.equal_range(0)));
+		ft::pair<ftIterator, ftIterator> ftPair = ft.equal_range(0);
+		std::pair<stlIterator, stlIterator> stlPair = stl.equal_range(0);
+		
+		PRINT_RESULT(TO_EQUAL_PAIR(ftPair.first, stlPair.first) && TO_EQUAL_PAIR(ftPair.second, stlPair.second));
 	}
-	// {
-	// 	ft::map<int, int>	ft;
-	// 	std::map<int, int>	stl;
+	{
+		ft::map<int, int>	ft;
+		std::map<int, int>	stl;
 
-	// 	for (int i = 0; i < 20; i++) {
-	// 		ft.insert(ft::make_pair(i, i));
-	// 		stl.insert(std::make_pair(i, i));
-	// 	}
+		for (int i = 0; i < 20; i++) {
+			ft.insert(ft::make_pair(i, i));
+			stl.insert(std::make_pair(i, i));
+		}
 
-	// 	PRINT_RESULT(TO_EQUAL_PAIR(ft.equal_range(100), stl.equal_range(100)));
-	// }
-	// {
-	// 	ft::map<int, int>	ft;
-	// 	std::map<int, int>	stl;
+		ft::pair<ftIterator, ftIterator> ftPair = ft.equal_range(10);
+		std::pair<stlIterator, stlIterator> stlPair = stl.equal_range(10);
 
-	// 	for (int i = 0; i < 20; i++) {
-	// 		ft.insert(ft::make_pair(i, i));
-	// 		stl.insert(std::make_pair(i, i));
-	// 	}
+		PRINT_RESULT(TO_EQUAL_PAIR(ftPair.first, stlPair.first) && TO_EQUAL_PAIR(ftPair.second, stlPair.second));
+	}
+	{
+		ft::map<int, int>	ft;
+		std::map<int, int>	stl;
 
-	// 	PRINT_RESULT(TO_EQUAL_PAIR(ft.equal_range(0), stl.equal_range(0)));
-	// }
-	// {
-	// 	ft::map<int, int>	ft;
-	// 	std::map<int, int>	stl;
+		for (int i = 0; i < 20; i++) {
+			ft.insert(ft::make_pair(i, i));
+			stl.insert(std::make_pair(i, i));
+		}
 
-	// 	for (int i = 0; i < 20; i++) {
-	// 		ft.insert(ft::make_pair(i, i));
-	// 		stl.insert(std::make_pair(i, i));
-	// 	}
+		ft::pair<ftIterator, ftIterator> ftPair = ft.equal_range(0);
+		std::pair<stlIterator, stlIterator> stlPair = stl.equal_range(0);
 
-	// 	PRINT_RESULT(TO_EQUAL_PAIR(ft.equal_range(20), stl.equal_range(20)));
-	// }
-	// {
-	// 	ft::map<int, int>	ft;
-	// 	std::map<int, int>	stl;
+		PRINT_RESULT(TO_EQUAL_PAIR(ftPair.first, stlPair.first) && TO_EQUAL_PAIR(ftPair.second, stlPair.second));
+	}
+	{
+		ft::map<int, int>	ft;
+		std::map<int, int>	stl;
 
-	// 	for (int i = 0; i < 20; i++) {
-	// 		ft.insert(ft::make_pair(i, i));
-	// 		stl.insert(std::make_pair(i, i));
-	// 	}
+		for (int i = 0; i < 20; i++) {
+			ft.insert(ft::make_pair(i, i));
+			stl.insert(std::make_pair(i, i));
+		}
 
-	// 	PRINT_RESULT(TO_EQUAL_PAIR(ft.equal_range(15), stl.equal_range(15)));
-	// }
-	// {
-	// 	ft::map<int, int>	ft;
-	// 	std::map<int, int>	stl;
+		ft::pair<ftIterator, ftIterator> ftPair = ft.equal_range(18);
+		std::pair<stlIterator, stlIterator> stlPair = stl.equal_range(18);
 
-	// 	PRINT_RESULT(TO_EQUAL_PAIR(ft.equal_range(1), stl.equal_range(1)));
-	// }
-	// {
-	// 	ft::map<std::string, int>	ft;
-	// 	std::map<std::string, int>	stl;
+		PRINT_RESULT(TO_EQUAL_PAIR(ftPair.first, stlPair.first) && TO_EQUAL_PAIR(ftPair.second, stlPair.second));
+	}
+	{
+		ft::map<int, int>	ft;
+		std::map<int, int>	stl;
 
-	// 	ft.insert(ft::make_pair("1", 1));
-	// 	stl.insert(std::make_pair("1", 1));
-	// 	ft.insert(ft::make_pair("2", 2));
-	// 	stl.insert(std::make_pair("2", 2));
-	// 	ft.insert(ft::make_pair("3", 3));
-	// 	stl.insert(std::make_pair("3", 3));
+		for (int i = 0; i < 20; i++) {
+			ft.insert(ft::make_pair(i, i));
+			stl.insert(std::make_pair(i, i));
+		}
 
-	// 	PRINT_RESULT(TO_EQUAL_PAIR(ft.equal_range("1"), stl.equal_range("1")));
-	// }
-	// {
-	// 	ft::map<std::string, int>	ft;
-	// 	std::map<std::string, int>	stl;
+		ft::pair<ftIterator, ftIterator> ftPair = ft.equal_range(15);
+		std::pair<stlIterator, stlIterator> stlPair = stl.equal_range(15);
 
-	// 	ft.insert(ft::make_pair("1", 1));
-	// 	stl.insert(std::make_pair("1", 1));
-	// 	ft.insert(ft::make_pair("2", 2));
-	// 	stl.insert(std::make_pair("2", 2));
-	// 	ft.insert(ft::make_pair("3", 3));
-	// 	stl.insert(std::make_pair("3", 3));
-	// 	ft.insert(ft::make_pair("3", 10));
-	// 	stl.insert(std::make_pair("3", 10));
+		PRINT_RESULT(TO_EQUAL_PAIR(ftPair.first, stlPair.first) && TO_EQUAL_PAIR(ftPair.second, stlPair.second));
+	}
+	{
+		ft::map<int, int>	ft;
+		std::map<int, int>	stl;
 
-	// 	PRINT_RESULT(TO_EQUAL_PAIR(ft.equal_range("3"), stl.equal_range("3")));
-	// }
+		ft::pair<ftIterator, ftIterator> ftPair = ft.equal_range(1);
+		std::pair<stlIterator, stlIterator> stlPair = stl.equal_range(1);
+
+		PRINT_RESULT(TO_EQUAL_PAIR(ftPair.first, stlPair.first) && TO_EQUAL_PAIR(ftPair.second, stlPair.second));
+	}
+	{
+		ft::map<std::string, int>	ft;
+		std::map<std::string, int>	stl;
+
+		ft.insert(ft::make_pair("1", 1));
+		stl.insert(std::make_pair("1", 1));
+		ft.insert(ft::make_pair("2", 2));
+		stl.insert(std::make_pair("2", 2));
+		ft.insert(ft::make_pair("3", 3));
+		stl.insert(std::make_pair("3", 3));
+
+		ft::pair<ftSTRIterator, ftSTRIterator> ftPair = ft.equal_range("1");
+		std::pair<stlSTRIterator, stlSTRIterator> stlPair = stl.equal_range("1");
+
+		PRINT_RESULT(TO_EQUAL_PAIR(ftPair.first, stlPair.first) && TO_EQUAL_PAIR(ftPair.second, stlPair.second));
+	}
+	{
+		ft::map<std::string, int>	ft;
+		std::map<std::string, int>	stl;
+
+		ft.insert(ft::make_pair("1", 1));
+		stl.insert(std::make_pair("1", 1));
+		ft.insert(ft::make_pair("2", 2));
+		stl.insert(std::make_pair("2", 2));
+		ft.insert(ft::make_pair("3", 3));
+		stl.insert(std::make_pair("3", 3));
+		ft.insert(ft::make_pair("3", 10));
+		stl.insert(std::make_pair("3", 10));
+		ft.insert(ft::make_pair("4", 10));
+		stl.insert(std::make_pair("4", 10));
+
+		ft::pair<ftSTRIterator, ftSTRIterator> ftPair = ft.equal_range("3");
+		std::pair<stlSTRIterator, stlSTRIterator> stlPair = stl.equal_range("3");
+
+		PRINT_RESULT(TO_EQUAL_PAIR(ftPair.first, stlPair.first) && TO_EQUAL_PAIR(ftPair.second, stlPair.second));
+	}
 	std::cout << std::endl;
 }

@@ -85,6 +85,13 @@ bool	TO_EQUAL(T1 value1, T1 value2) {
 	return false;
 }
 
+template <class P1, class P2>
+bool	TO_EQUAL_PAIR(P1 ftPair, P2 stdPair) {
+	if (ftPair.first == stdPair.first && ftPair.second == stdPair.second)
+		return true;
+	return false;
+}
+
 template <class V1, class V2>
 bool	TO_EQUAL_VECTOR(V1& ftVector, V2& stlVector) {
 	typename V1::iterator		myIterator = ftVector.begin();

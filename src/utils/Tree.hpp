@@ -333,6 +333,24 @@ class Tree {
 			return tmp;
 		}
 
+		template <class Comp>
+		const NodePtr		find(value_type data, Comp comp) const {
+			NodePtr tmp = _root;
+
+			if (tmp == _end)
+				return _NIL;
+
+			while (tmp != _NIL && getNodeData(tmp).first != data.first) {
+				if (comp(data, getNodeData(tmp)))
+					tmp = tmp->left;
+				else
+					tmp = tmp->right;
+			}
+			if (tmp == _NIL)
+				return _end;
+			return tmp;
+		}
+
 		NodePtr		min(NodePtr node) {
 			NodePtr tmp = node;
 			while (tmp->left != _NIL && tmp->left)
@@ -486,7 +504,7 @@ class Tree {
 			node->data->second = data.second;
 		}
 
-		value_type& 						getNodeData(const NodePtr& node) {
+		value_type& 						getNodeData(const NodePtr& node) const {
 			return *(node->data);
 		}
 

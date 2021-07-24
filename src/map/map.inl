@@ -217,6 +217,11 @@ namespace ft {
 		return const_iterator(_tree.find(ft::make_pair(k, mapped_type()), _valueComp), _tree, _keyComp);
 	}
 
+	template <class Key, class T, class Compare, class Alloc>
+	typename map<Key, T, Compare, Alloc>::size_type 			map<Key, T, Compare, Alloc>::count(const key_type& k) const {
+		return ((_tree.getSize() && _tree.find(ft::make_pair(k, mapped_type()), _valueComp) != _tree.getEnd()) ? 1 : 0);
+	}
+
 	/*
 	** Allocator
 	*/

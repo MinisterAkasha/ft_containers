@@ -465,15 +465,14 @@ class Tree {
 
 				template <class A>
 				static Tree								copyTree(Tree otherTree, A alloc) {
+					if (otherTree._root == otherTree._end) {
+						return nullptr;
+					}
 					Tree<value_type, Alloc> tree;
 					tree._NIL = createNilNode(alloc);
 					tree._end = createNilNode(alloc);
 					tree._root = tree._end;
 					tree._size = otherTree.getSize();
-
-					if (otherTree._root == otherTree._end) {
-						return nullptr;
-					}
 					
 					copy(otherTree, tree, alloc);
 					return tree;

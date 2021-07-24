@@ -87,9 +87,7 @@ bool	TO_EQUAL(T1 value1, T1 value2) {
 
 template <class P1, class P2>
 bool	TO_EQUAL_PAIR(P1 ftPair, P2 stdPair) {
-	if (ftPair.first == stdPair.first && ftPair.second == stdPair.second)
-		return true;
-	return false;
+	return (ftPair->first == stdPair->first && ftPair->second == stdPair->second);
 }
 
 template <class V1, class V2>

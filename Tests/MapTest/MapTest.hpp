@@ -29,6 +29,7 @@ class MapTest {
 		void	testEmpty() const;
 		void	testCount() const;
 		void	testLowerBound() const;
+		void	testUpperBound() const;
 		void	testtestAccessOperator() const;
 
 		void	testNonMemberOperatorEqual() const;

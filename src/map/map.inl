@@ -268,6 +268,20 @@ namespace ft {
 		return it;
 	}
 
+	template <class Key, class T, class Compare, class Alloc>
+	ft::pair< 
+		typename map<Key, T, Compare, Alloc>::const_iterator, 
+		typename map<Key, T, Compare, Alloc>::const_iterator > map<Key, T, Compare, Alloc>::equal_range(const key_type & k) const  {
+		return ft::make_pair(lower_bound(k), upper_bound(k));
+	}
+
+	template <class Key, class T, class Compare, class Alloc>
+	ft::pair< 
+		typename map<Key, T, Compare, Alloc>::iterator, 
+		typename map<Key, T, Compare, Alloc>::iterator > map<Key, T, Compare, Alloc>::equal_range(const key_type & k) {
+		return ft::make_pair(lower_bound(k), upper_bound(k));
+	}
+
 	/*
 	** Allocator
 	*/

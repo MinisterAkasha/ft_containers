@@ -9,51 +9,51 @@ VectorTest::~VectorTest() {}
 void	VectorTest::test() const {
 	std::cout << std::endl << "<-- Vector test -->" << std::endl << std::endl;
 	std::srand(time(NULL));
-	// testReserve();
-	// testPopBack();
-	// testPushBack();
-	// testSingleInsert();
-	// testFillInsert();
-	// testRangeInsert();
-	// testSize();
-	// testBegin();
-	// testConstBegin();
-	// testEnd();
-	// testConstEnd();
-	// testREnd();
-	// testConstREnd();
-	// testRBegin();
-	// testConstRBegin();
-	// testFillConstructor();
-	// testRangeConstructor();
-	// testCopyConstructor();
-	// testEqualOperator();
-	// testEmpty();
-	// testCapasity();
-	// testMaxSize();
-	// testClear();
-	// testSingleErase();
+	testReserve();
+	testPopBack();
+	testPushBack();
+	testSingleInsert();
+	testFillInsert();
+	testRangeInsert();
+	testSize();
+	testBegin();
+	testConstBegin();
+	testEnd();
+	testConstEnd();
+	testREnd();
+	testConstREnd();
+	testRBegin();
+	testConstRBegin();
+	testFillConstructor();
+	testRangeConstructor();
+	testCopyConstructor();
+	testEqualOperator();
+	testEmpty();
+	testCapasity();
+	testMaxSize();
+	testClear();
+	testSingleErase();
 	testRangeErase();
-	// testSwap();
-	// testGetAllocator();
-	// testFillAssign();
-	// testRangeAssign();
-	// testResize();
-	// testAccessOperator();
-	// testAt();
-	// testFront();
-	// testBack();
-	// testSwapNonMemver();
-	// testNonMemberEqualOperator();
-	// testNonMemberNotEqualOperator();
-	// testNonMemberLess();
-	// testNonMemberLessOrEqual();
-	// testNonMemberMore();
-	// testNonMemberMoreOrMore();
-	// testNonMemberOperatorMinus();
-	// testNonMemberOperatorPlus();
+	testSwap();
+	testGetAllocator();
+	testFillAssign();
+	testRangeAssign();
+	testResize();
+	testAccessOperator();
+	testAt();
+	testFront();
+	testBack();
+	testSwapNonMemver();
+	testNonMemberEqualOperator();
+	testNonMemberNotEqualOperator();
+	testNonMemberLess();
+	testNonMemberLessOrEqual();
+	testNonMemberMore();
+	testNonMemberMoreOrMore();
+	testNonMemberOperatorMinus();
+	testNonMemberOperatorPlus();
 
-	// testVectorIterator();
+	testVectorIterator();
 }
 
 void	VectorTest::testFillConstructor() const {
@@ -2251,18 +2251,7 @@ void	VectorTest::testRangeErase() const {
 		ft::vector<int>		ft;
 		std::vector<int>	stlVector;
 		
-		createRandomVectors(ft, stlVector, 100);
-
-		ft.erase(ft.begin() + 50, ft.begin() + 80);
-		stlVector.erase(stlVector.begin() + 50, stlVector.begin() + 80);
-
-		PRINT_RESULT(TO_EQUAL_VECTOR(ft, stlVector));
-	}
-	{
-		ft::vector<int>		ft;
-		std::vector<int>	stlVector;
-		
-		createRandomVectors(ft, stlVector, 100);
+		createOrderedVectors(ft, stlVector, 100);
 
 		ft.erase(ft.begin() + 50, ft.begin() + 80);
 		stlVector.erase(stlVector.begin() + 50, stlVector.begin() + 80);
@@ -4572,4 +4561,3 @@ void 	VectorTest::testNonMemberOperatorPlus() const {
 	}
 	std::cout << std::endl;
 }
-

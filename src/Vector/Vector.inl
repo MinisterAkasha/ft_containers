@@ -274,7 +274,12 @@ namespace ft
 
 	template <class T, class Allocator>
 	typename vector<T, Allocator>::iterator vector<T, Allocator>::erase(iterator first, iterator last) {
-		iterator begin = first;
+		if (last == end()) {
+			while (first != last)
+				erase(--last);
+			return last;
+		}
+
 		iterator position = first;
 		while (first != last) {
 			position = erase(position);

@@ -38,31 +38,16 @@ class Tree {
 			_size = 0;
 		}
 
-		// Tree(const Tree& other) {
-			// _root = other._root;
-			// _NIL = other._NIL;
-			// _end = other._end;
-			// _size = other._size;
-		// 	_allocator = other._allocator;
-		// 	_NIL = createNilNode();
-		// 	_end = createNilNode();
-		// 	_root = _end;
-
-		// 	NodePtr tmp = other.min(other._root);
-		// 	while (tmp != _end) {
-				
-		// 	}
-
-		// 	_size = other._size;
-		// }
-
-		// Tree& operator=(const Tree& other) {
-
-		// }
-
 		~Tree() {}
 
-		//TODO copy constructor and opeartor=
+		Tree&	operator=(const Tree& other) {
+			_allocator = other._allocator;
+			_size = other._size;
+			_end = other._end;
+			_NIL = other._NIL;
+			_root = other._root;
+			return *this;
+		}
 
 	public:
 
@@ -400,6 +385,101 @@ class Tree {
 		typename value_type::second_type&	getNodeValue(const NodePtr& node) {
 			return node->data->second;
 		}
+
+		class CopyTree {
+			public:
+
+				template <class A>
+				static NodePtr	createNilNode(A alloc) {
+					NodePtr node = new Node<value_type>;
+
+					node->left = nullptr;
+					node->right = nullptr;
+					node->parent = nullptr;
+
+					node->data = alloc.allocate(1);
+					alloc.construct(node->data, value_type());
+
+					node->color = BLACK;
+
+					return node;
+				}
+
+				template <class A>
+				static NodePtr	createNewNode(value_type& value, NodePtr parent, NodePtr& NIL, A alloc, int color) {
+					NodePtr node = new Node<value_type>;
+
+					node->left = NIL;
+					node->right = NIL;
+					node->parent = parent;
+
+					node->data = alloc.allocate(1);
+					alloc.construct(node->data, value);
+
+					node->color = color;
+
+					return node;
+				}
+
+				template <class A>
+				static void 	copyLeft(NodePtr& newRoot, NodePtr& original, NodePtr NIL,A alloc) {
+					newRoot->left = createNewNode(*original->left->data, newRoot, NIL, alloc, original->left->color);
+					original = original->left;
+					newRoot = newRoot->left;
+				}
+
+				template <class A>
+				static void 	copyRight(NodePtr& newRoot, NodePtr& original, NodePtr NIL,A alloc) {
+					newRoot->right = createNewNode(*original->right->data, newRoot, NIL, alloc, original->right->color);
+					original = original->right;
+					newRoot = newRoot->right;
+				}
+
+				template <class A>
+				static void copy(Tree& originalTree, Tree& newTree, A alloc) {
+					NodePtr NIL = originalTree.getNil();
+
+					NodePtr	newRoot = newTree._root;
+					NodePtr	original = originalTree._root;
+
+					newRoot = createNewNode(*original->data, nullptr, newTree._NIL, alloc, original->color);
+				
+					while (true) {
+						if (original->left != NIL && newRoot->left == newTree._NIL)
+							copyLeft(newRoot, original, newTree._NIL, alloc);
+						else if (original->right != NIL && newRoot->right == newTree._NIL)
+							copyRight(newRoot, original, newTree._NIL, alloc);
+						else {
+							if (original->parent) {
+								original = original->parent;
+								newRoot = newRoot->parent;
+							} else {
+								break ;
+							}
+						}
+					}
+					newTree._root = newRoot;
+					newTree._end->parent = newTree.max(newTree._root);
+				}
+
+				template <class A>
+				static Tree								copyTree(Tree otherTree, A alloc) {
+					if (otherTree._root == otherTree._end) {
+						return nullptr;
+					}
+					Tree<value_type, Alloc> tree;
+					tree._NIL = createNilNode(alloc);
+					tree._end = createNilNode(alloc);
+					tree._root = tree._end;
+					tree._size = otherTree.getSize();
+					
+					copy(otherTree, tree, alloc);
+					return tree;
+				}
+
+		};
+
+		
 
 	private:
 		void								updateNodeDate(NodePtr& node, value_type data) {

@@ -30,7 +30,7 @@ class Tree {
 		Tree() {}
 
 		template <class ValueAlloc>
-		Tree(ValueAlloc alloc) {
+		Tree(ValueAlloc) {
 			_NIL = createNilNode();
 			_end = createNilNode();
 			_root = _end;
@@ -576,29 +576,6 @@ class Tree {
 				node = _root;
 			}
 		}
-
-	public://!DELETE
-		void printTree(const std::string& prefix, const NodePtr node, bool isLeft) {
-			if (node != _NIL) {
-				std::cout << prefix;
-
-				if (prefix.length())
-					std::cout << (isLeft ? "├─L─" : "└─R─" );
-
-				if (node->color == RED)
-					std::cout << " \033[1;31m{\033[0;0m" << getNodeKey(node) << ": " << getNodeValue(node) << "\033[1;31m}\033[0;0m" << std::endl;
-				else
-					std::cout << " \033[1;30m{\033[0;0m" << getNodeKey(node) << ": " << getNodeValue(node) << "\033[1;30m}\033[0;0m" << std::endl;
-
-				printTree( prefix + (isLeft ? "│   " : "    "), node->left, true);
-				printTree( prefix + (isLeft ? "│   " : "    "), node->right, false);
-			}
-		}
-
-		void printTree() {
-			printTree("", _root, false);
-		}
-
 };
 
 #endif

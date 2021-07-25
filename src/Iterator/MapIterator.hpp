@@ -15,7 +15,7 @@ class MapIterator : public ft::iterator<ft::bidirectional_iterator_tag, value_ty
 			ft::bidirectional_iterator_tag,
 			value_type>::iterator_category		iterator_category;
 
-	public:
+	private:
 		NodePointer				_ptr;
 		Tree<value_type, Alloc>	_tree;
 		NodePointer				_NIL;

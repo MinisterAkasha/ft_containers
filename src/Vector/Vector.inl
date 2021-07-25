@@ -157,14 +157,14 @@ namespace ft
 	template <class T, class Allocator>
 	typename vector<T, Allocator>::reference vector<T, Allocator>::at(size_type pos) {
 		if (pos >= _size)
-			throw std::out_of_range("Out of bounds position");
+			throw std::out_of_range("vector: out of bounds position");
 		return _arr[pos];
 	}
 
 	template <class T, class Allocator>
 	typename vector<T, Allocator>::const_reference vector<T, Allocator>::at(size_type pos) const {
 		if (pos >= _size)
-			throw std::out_of_range("Out of bounds position");
+			throw std::out_of_range("vector: out of bounds position");
 		return _arr[pos];
 	}
 
